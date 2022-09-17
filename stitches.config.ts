@@ -17,13 +17,17 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
 			lg: '1.5rem',
     },
 		fonts: {
-			text: 'Poppins, sans-serif'
+			text: 'Inter, sans-serif'
+		},
+		radii: {
+			'sm': '0.375rem',
 		},
     fontSizes: {
-      xs: '0.75rem',
-			sm: '1rem',
-			md: '1.37500',
-			lg: '1.5rem',
+			xsm: '0.625rem',
+      sm: '0.75rem',
+			md: '0.75rem',
+			lg: '1.37500',
+			xlg: '1.5rem',
 		},
   },
 	media: {},
@@ -49,11 +53,11 @@ const globalStyle =  GlobalCss({
 	},
 	h1: {
 		fontWeight: '500',
-		fontFamily: '$title',
+		fontFamily: '$text',
 		lineHeight: '3.5rem'
 	},
 	h2: {
-		fontFamily: '$title',
+		fontFamily: '$text',
 		fontWeight: '500',
 		lineHeight: '4.3rem'
 	},
