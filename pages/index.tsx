@@ -5,11 +5,13 @@ import { getProduct } from 'services/rest/cms'
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const data = await getProduct()
+    const { data } = await getProduct()
     
-    console.log(data)
+
     return {
-      props: {},
+      props: {
+        ...data
+      },
       revalidate: 10,
     }
   } catch (err) {
@@ -20,8 +22,8 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-function Home () {
-  return <HomeLayout  />
+function Home (props: GetStaticProps<typeof getStaticProps>) {
+  return <HomeLayout  {...props} />
 }
 
 export default Home

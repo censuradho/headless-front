@@ -1,6 +1,6 @@
-import { HomeProps } from "./types";
+import { HomeProps } from "./types"
 
-export function HomeLayout () {
+export function HomeLayout (props: HomeProps) {
 
   return (
     <div>

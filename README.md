@@ -2,3 +2,4 @@
 
 queries
 http://localhost:1337/api/home?populate[langeriCarousel][populate]=*
+http://localhost:1337/api/home?populate[langeriCarousel][populate]=*

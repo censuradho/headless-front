@@ -22,12 +22,27 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
 		radii: {
 			'sm': '0.375rem',
 		},
+		lineHeights: {
+			caption2: '0.8125rem',
+			caption1: '1rem',
+			footnote: '1.12500rem',
+			subHeadline: '1.25rem',
+			callout: '1.3125rem',
+			body: '1.37500rem',
+			title1: '1.5625rem',
+			title2: '1.75rem',
+			largeTitle: '2.5625rem'
+		},
     fontSizes: {
-			xsm: '0.625rem',
-      sm: '0.75rem',
-			md: '0.75rem',
-			lg: '1.37500',
-			xlg: '1.5rem',
+			caption2: '0.6875rem',
+			caption1: '0.75rem',
+			footnote: '0.8125rem',
+			subHeadline: '0.9375rem',
+			callout: '1rem',
+			body: '1.0625rem',
+			title1: '1.25rem',
+			title2: '1.37500rem',
+			largeTitle: '2.12500rem'
 		},
   },
 	media: {},
