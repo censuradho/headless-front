@@ -7,6 +7,7 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
       primary: colors.RAZZMATAZZ,
       primaryDark: colors.ROSE_BUD_CHERRY,
       primaryLight: colors.CHERUB,
+			foreground: colors.CATSKILL_WHITE,
       title: colors.RIVER_BED,
       background: colors.WHITE,
       highlight: colors.CATSKILL_WHITE,
