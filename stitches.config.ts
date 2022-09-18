@@ -1,14 +1,18 @@
 import { createStitches } from '@stitches/react'
+import { colors } from 'constants/colors'
 
 const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createTheme } = createStitches({
   theme: {
     colors: {
-      primary: '#FE6F7B',
-      secondary: '#F78D76',
-      title: '#4B4B4B',
-      background: '#FDFDFD',
-      highlight: '#C0C0C0',
-      green: '#47B78C',
+      primary: colors.RAZZMATAZZ,
+      primaryDark: colors.ROSE_BUD_CHERRY,
+      primaryLight: colors.CHERUB,
+      title: colors.RIVER_BED,
+      background: colors.WHITE,
+      highlight: colors.CATSKILL_WHITE,
+      green: colors.SEA_GREEN,
+			greenLight: colors.BLUE_ROMANCE,
+			error: colors.CINNABAR,
     },
     space: {
       xs: '0.75rem',
