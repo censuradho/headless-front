@@ -1,4 +1,4 @@
-import { Header } from "components"
+import { Header, Icon } from "components"
 import { HomeProps } from "./types"
 
 export function HomeLayout (props: HomeProps) {
