@@ -14,6 +14,7 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
       green: colors.SEA_GREEN,
 			greenLight: colors.BLUE_ROMANCE,
 			error: colors.CINNABAR,
+			overlay: colors.OVERLAY
     },
     space: {
       xs: '0.75rem',

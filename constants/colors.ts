@@ -7,5 +7,6 @@ export const colors = {
   ROSE_BUD_CHERRY: '#7D0C40',
   CHERUB: '#FBE4EC',
   CINNABAR: '#E74C3C',
-  WHITE: '#FFF'
+  WHITE: '#FFF',
+  OVERLAY: 'rgba(0, 0, 0, 0.3)'
 }
