@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 import * as Styles from './styles'
 
-import { Button } from 'components'
+import { Button, Box } from 'components'
 
 import { CartButton, Navigation } from './components'
 import { useBooleanToggle } from 'hooks'
@@ -24,10 +24,15 @@ export function Header () {
           }}
         />
         <Logo />
-        <Styles.MyAccount>
-          <Button icon={{ name: 'outlineUser'}}>Minha conta</Button>
-        </Styles.MyAccount>
-        <CartButton count={5} />
+        <Styles.LaptopHidden>
+          <Box
+            alignItems="center"
+            gap={2.375}
+          >
+              <Button icon={{ name: 'outlineUser'}}>Minha conta</Button>
+              <CartButton count={5} />
+          </Box>
+        </Styles.LaptopHidden>
       </Styles.TopBar>
       <Navigation isOpen={isOpen} toggleIsOpen={toggleIsOpen} />        
     </Styles.Container>

@@ -20,7 +20,7 @@ export const ButtonIcon = styled(CommonButtonIcon, {
   }
 })
 
-export const MyAccount = styled('div', {
+export const LaptopHidden = styled('div', {
   '@laptops-max': {
     display: 'none'
   }

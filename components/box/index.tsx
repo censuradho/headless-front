@@ -17,17 +17,20 @@ type ViewStyle =  Pick<CSSProperties,
 
 interface BoxProps extends ViewStyle {
   children: ReactNode;
-  fullWidth?: boolean
+  fullWidth?: boolean;
+  gap?: number
 }
 
 
 export function Box (props: BoxProps) {
-  const { children, fullWidth, ...otherProps} = props
+  const { children, fullWidth, gap, ...otherProps} = props
 
 	return (
 		<div style={{
 			...otherProps,
-			width: fullWidth ? '100%' : 'auto'
+      display: 'flex',
+			width: fullWidth ? '100%' : 'auto',
+      gap: `${gap}rem`
 		}}>
 			{children}
 		</div>
