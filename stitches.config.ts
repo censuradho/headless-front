@@ -52,11 +52,17 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
 		},
   },
 	media: {
-		'smartphone': '(min-width: 480px)',
-		'tablet': '(min-width: 768px)',
-		'laptops': '(min-width: 1024px)',
-		'desktop': '(min-width: 1200px)',
-		'tv': '(min-width: 1420px)',
+		'smartphone-min': '(min-width: 480px)',
+		'tablet-min': '(min-width: 768px)',
+		'laptops-min': '(min-width: 1024px)',
+		'desktop-min': '(min-width: 1200px)',
+		'tv-min': '(min-width: 1420px)',
+
+		'smartphone-max': '(max-width: 480px)',
+		'tablet-max': '(max-width: 768px)',
+		'laptops-max': '(max-width: 1024px)',
+		'desktop-max': '(max-width: 1200px)',
+		'tv-max': '(max-width: 1420px)',
 	},
 })
 

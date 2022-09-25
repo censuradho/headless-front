@@ -1,10 +1,8 @@
-import { useState } from 'react'
-
 import dynamic from 'next/dynamic'
 
 import * as Styles from './styles'
 
-import { ButtonIcon } from 'components'
+import { Button } from 'components'
 
 import { Navigation } from './components'
 import { useBooleanToggle } from 'hooks'
@@ -18,14 +16,17 @@ export function Header () {
   return (
     <Styles.Container>
       <Styles.TopBar>
-      <ButtonIcon 
+        <Logo />
+        <Styles.ButtonIcon 
           onClick={toggleIsOpen} 
           icon={{ 
             name: 'menu',
             size: 30
           }}
         />
-        <Logo />
+        <Styles.MyAccount>
+          <Button icon={{ name: 'outlineUser'}}>Minha conta</Button>
+        </Styles.MyAccount>
       </Styles.TopBar>
       <Navigation isOpen={isOpen} toggleIsOpen={toggleIsOpen} />        
     </Styles.Container>

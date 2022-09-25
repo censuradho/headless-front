@@ -1,4 +1,5 @@
 import { styled } from "stitches.config";
+import { ButtonIcon as CommonButtonIcon } from 'components'
 
 export const Container = styled('header', {
   width: '100%',
@@ -12,13 +13,17 @@ export const Container = styled('header', {
   top: 0,
 })
 
-export const Navigation = styled('nav', {
-  width: '100%',
-  background: '$overlay',
-  position: 'absolute',
-  top: 0,
-  height: '100vh',
-  backdropFilter: 'blur(4px)'
+
+export const ButtonIcon = styled(CommonButtonIcon, {
+  '@laptops-min': {
+    display: 'none'
+  }
+})
+
+export const MyAccount = styled('div', {
+  '@laptops-max': {
+    display: 'none'
+  }
 })
 
 export const TopBar = styled('div', {
@@ -27,5 +32,5 @@ export const TopBar = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0.625rem'
+  padding: '0.625rem',
 })

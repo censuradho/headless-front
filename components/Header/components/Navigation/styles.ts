@@ -55,6 +55,12 @@ export const Container = styled('div', {
         animation: `${closeOverlay} 0.1s ease forwards`,
       },
     }
+  },
+
+  '@laptops-min': {
+    // position: 'relative',
+    // height: 'max-content',
+    // animation: 'unset',
   }
 })
 
@@ -79,6 +85,11 @@ export const Navigation = styled('nav', {
   },
   defaultVariants: {
     isOpen: 'false'
+  },
+  '@laptops-min': {
+    // position: 'relative',
+    // width: 'max-content',
+    // animation: 'unset',
   }
 })
 
@@ -100,3 +111,16 @@ export const List = styled('ul', {
   }
 })
 
+
+export const MyAccount = styled('div', {
+  height: '5.5625rem',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0.625rem',
+})
+
+export const SoftwareVersion = styled('span', {
+  display: 'flex',
+  padding: '0.625rem',
+  fontSize: '$caption1',
+})
