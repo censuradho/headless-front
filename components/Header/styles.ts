@@ -11,17 +11,17 @@ export const Container = styled('header', {
   alignItems: 'center',
   position: 'sticky',
   top: 0,
+
+  '@laptops-min': {
+    flexDirection: 'column',
+    height: 'auto',
+    padding:  '2.25rem 3rem'
+  }
 })
 
 
 export const ButtonIcon = styled(CommonButtonIcon, {
   '@laptops-min': {
-    display: 'none'
-  }
-})
-
-export const LaptopHidden = styled('div', {
-  '@laptops-max': {
     display: 'none'
   }
 })

@@ -46,6 +46,8 @@ export const Container = styled('div', {
   top: 0,
   height: '100vh',
   backdropFilter: 'blur(4px)',
+
+
   variants: {
     isOpen: {
       true: {
@@ -58,9 +60,14 @@ export const Container = styled('div', {
   },
 
   '@laptops-min': {
-    // position: 'relative',
-    // height: 'max-content',
-    // animation: 'unset',
+    background: 'none',
+    position: 'relative',
+    height: 'unset',
+    backdropFilter: 'none',
+  },
+
+  defaultVariants: {
+    isOpen: false,
   }
 })
 
@@ -70,26 +77,23 @@ export const Navigation = styled('nav', {
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
+
   variants: {
     isOpen: {
       true: {
-        animation: `${openNavigation} 0.25s ease`,
-        animationFillMode: 'forwards',
-
+        animation: `${openNavigation} 0.25s ease forwards`,
       },
       false: {
-        animation: `${closeNavigation} 0.25s ease`,
-        animationFillMode: 'forwards',
+        animation: `${closeNavigation} 0.25s ease forwards`,
       }
     }
   },
-  defaultVariants: {
-    isOpen: 'false'
-  },
   '@laptops-min': {
-    // position: 'relative',
-    // width: 'max-content',
-    // animation: 'unset',
+    width: '100%',
+  },
+
+  defaultVariants: {
+    isOpen: false
   }
 })
 
@@ -98,7 +102,18 @@ export const Item = styled('li', {
   a: {
     fontSize: '1rem',
     display: 'inline-block',
-    padding: '0.625rem'
+    padding: '0.625rem',
+
+    '@laptops-min': {
+      '&:hover': {
+        color: '$primary'
+      }
+    }
+
+  },
+
+  '@laptops-min': {
+    border: 'none',
   }
 })
 
@@ -108,6 +123,15 @@ export const List = styled('ul', {
   overflow: 'auto',
   [`${Item}:first-child`]: {
     borderTop: '1px solid $highlight',
+  },
+
+  '@laptops-min': {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '2.25rem',
+    [`${Item}:first-child`]: {
+      borderTop: 'none',
+    },
   }
 })
 
@@ -117,6 +141,10 @@ export const MyAccount = styled('div', {
   display: 'flex',
   alignItems: 'center',
   padding: '0.625rem',
+
+  '@laptops-min': {
+    display: 'none'
+  }
 })
 
 export const SoftwareVersion = styled('span', {

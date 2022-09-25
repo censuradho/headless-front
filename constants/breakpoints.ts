@@ -15,7 +15,6 @@ export const breakpointNames = {
 export type KeyBreakpoints = typeof breakpointNames[keyof typeof breakpointNames]
 
 export const breakpoints: Record<KeyBreakpoints, string> = {
-
   [breakpointNames.smartPhoneMin]: '(min-width: 480px)',
   [breakpointNames.tableMin]: '(min-width: 768px)',
   [breakpointNames.laptopsMin]: '(min-width: 1024px)',

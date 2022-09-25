@@ -6,6 +6,7 @@ import { routePaths } from 'constants/routes'
 import * as Styles from './styles'
 import { NavigationProps } from './types'
 import { Button } from 'components/button'
+import { HiddenView } from 'components/hidden-view'
 
 
 function BaseNavigation (props: NavigationProps) {
@@ -20,13 +21,27 @@ function BaseNavigation (props: NavigationProps) {
   ))
 
   return (
-    <Styles.Container isOpen={isOpen} onClick={toggleIsOpen}>
-      <Styles.Navigation isOpen={isOpen} onClick={event => event.stopPropagation()}>
+    <Styles.Container 
+      isOpen={{
+        '@laptops-max': isOpen,
+        '@laptops-min': undefined
+      }}
+      onClick={toggleIsOpen}
+    >
+      <Styles.Navigation 
+      isOpen={{
+        '@laptops-max': isOpen,
+        '@laptops-min': undefined
+      }}
+        onClick={event => event.stopPropagation()}
+      >
         <Styles.MyAccount>
           <Button icon={{ name: 'outlineUser' }}>Minha conta</Button>
         </Styles.MyAccount>
         <Styles.List>{renderList}</Styles.List>
-        <Styles.SoftwareVersion>V1.0.0</Styles.SoftwareVersion>
+        <HiddenView breakpoint="laptops-min">
+          <Styles.SoftwareVersion>V1.0.0</Styles.SoftwareVersion>
+        </HiddenView>
       </Styles.Navigation>
 
     </Styles.Container>

@@ -6,6 +6,8 @@ import { Button, Box, HiddenView } from 'components'
 
 import { CartButton, Navigation } from './components'
 import { useBooleanToggle } from 'hooks'
+import Link from 'next/link'
+import { routePaths } from 'constants/routes'
 
 const Logo = dynamic(() => import('public/icons/logo.svg'))
 
@@ -23,7 +25,14 @@ export function Header () {
             size: 30
           }}
         />
-        <Logo />
+        <Link href={routePaths.home.link}>
+          <a>
+            <Logo />
+          </a>
+        </Link>
+        <HiddenView breakpoint="laptops-min">
+          <CartButton count={5} />
+        </HiddenView>
         <HiddenView breakpoint="laptops-max">
           <Box
             alignItems="center"
