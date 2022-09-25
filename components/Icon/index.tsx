@@ -9,9 +9,9 @@ export function Icon (props: IconProps) {
 
   const Svg = icons[name]
 
-  const fill = ((color ? theme.colors[color].value : customColor) || theme.colors.title) as string
+  const fill = ((customColor || theme.colors[color || 'title'].value)) as string
 
   return (
-    <Svg fill={fill} size={size} />
+    <Svg style={{ fill }} size={size} />
   )
 }
