@@ -20,11 +20,7 @@ export const Container = styled('header', {
 })
 
 
-export const ButtonIcon = styled(CommonButtonIcon, {
-  '@laptops-min': {
-    display: 'none'
-  }
-})
+export const ButtonIcon = styled(CommonButtonIcon)
 
 export const TopBar = styled('div', {
   width: '100%',
