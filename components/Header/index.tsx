@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 import * as Styles from './styles'
 
-import { Button, Box } from 'components'
+import { Button, Box, HiddenView } from 'components'
 
 import { CartButton, Navigation } from './components'
 import { useBooleanToggle } from 'hooks'
@@ -24,7 +24,7 @@ export function Header () {
           }}
         />
         <Logo />
-        <Styles.LaptopHidden>
+        <HiddenView breakpoint="laptops-max">
           <Box
             alignItems="center"
             gap={2.375}
@@ -32,7 +32,7 @@ export function Header () {
               <Button icon={{ name: 'outlineUser'}}>Minha conta</Button>
               <CartButton count={5} />
           </Box>
-        </Styles.LaptopHidden>
+        </HiddenView>
       </Styles.TopBar>
       <Navigation isOpen={isOpen} toggleIsOpen={toggleIsOpen} />        
     </Styles.Container>

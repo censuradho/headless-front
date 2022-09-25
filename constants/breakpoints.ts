@@ -12,7 +12,7 @@ export const breakpointNames = {
   tvMax: 'tv-max',
 } as const
 
-type KeyBreakpoints = typeof breakpointNames[keyof typeof breakpointNames]
+export type KeyBreakpoints = typeof breakpointNames[keyof typeof breakpointNames]
 
 export const breakpoints: Record<KeyBreakpoints, string> = {
 
