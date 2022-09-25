@@ -1,5 +1,7 @@
-import { FiMenu } from '@meronex/icons/fi';
+import { FiMenu , } from '@meronex/icons/fi'
+import { AiOutlineUser } from '@meronex/icons/ai'
 
 export const icons = {
-  menu: FiMenu 
+  menu: FiMenu ,
+  outlineUser: AiOutlineUser
 }

@@ -51,7 +51,13 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
 			largeTitle: '2.12500rem'
 		},
   },
-	media: {},
+	media: {
+		'smartphone': '(min-width: 480px)',
+		'tablet': '(min-width: 768px)',
+		'laptops': '(min-width: 1024px)',
+		'desktop': '(min-width: 1200px)',
+		'tv': '(min-width: 1420px)',
+	},
 })
 
 const globalStyle =  GlobalCss({
