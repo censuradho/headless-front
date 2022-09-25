@@ -15,7 +15,8 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
       green: colors.SEA_GREEN,
 			greenLight: colors.BLUE_ROMANCE,
 			error: colors.CINNABAR,
-			overlay: colors.OVERLAY
+			overlay: colors.OVERLAY,
+			body: colors.SLATE_GRAY
     },
     space: {
       xs: '0.75rem',
@@ -65,8 +66,6 @@ const globalStyle =  GlobalCss({
 	},
 	body: {
 		backgroundColor: '$background',
-		width: '100%',
-		height: '100%'
 	},
 	button: {
 		background: 'none',

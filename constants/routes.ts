@@ -14,5 +14,9 @@ export const routePaths = {
   saudeIntima: {
     label: 'Saúde intima',
     link: '/p/saude-intima'
+  },
+  cart: {
+    label: 'Carrinho',
+    link: '/cart'
   }
 }

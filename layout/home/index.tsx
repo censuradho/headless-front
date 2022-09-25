@@ -1,10 +1,9 @@
-import { Header, Icon } from "components"
+import { MainLayout } from "layout/main"
 
 export function HomeLayout () {
   return (
-    <div>
-      <Header />
+    <MainLayout>
       <h1>home</h1>
-    </div>
+    </MainLayout>
   )
 }

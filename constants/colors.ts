@@ -8,5 +8,6 @@ export const colors = {
   CHERUB: '#FBE4EC',
   CINNABAR: '#E74C3C',
   WHITE: '#FFF',
-  OVERLAY: 'rgba(0, 0, 0, 0.3)'
+  OVERLAY: 'rgba(0, 0, 0, 0.3)',
+  SLATE_GRAY: '#718096'
 }
