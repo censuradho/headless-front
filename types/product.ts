@@ -1,5 +1,5 @@
 
-interface ImageFormat {
+export interface ImageFormat {
   name: string
   hash: string
   ext: string

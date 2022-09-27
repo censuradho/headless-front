@@ -4,6 +4,7 @@ import { cmsApi } from '.'
 import { responseFactory } from 'factors/meta'
 import strapiQuery from 'lib/strapi-query'
 import { Home } from 'layout/home/types'
+import { homeFactory } from 'factors/home'
 
 export async function getHome () {
   const query = strapiQuery.parse('/home', {
@@ -21,7 +22,10 @@ export async function getHome () {
 
   const { data: home, ...rest } = response
 
-  const data = responseFactory(home)
+  const data = responseFactory({
+    meta: home.meta,
+    data: homeFactory(home.data)
+  })
 
   return {
     ...rest,

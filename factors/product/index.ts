@@ -1,10 +1,22 @@
-import type { Image } from "types/product";
-import type { ProductProp } from './types'
+import type { Image, ImageFormat } from "types/product";
 import { Product } from 'types/product'
-import { metaFactory } from "factors/meta";
 
+function formatFactory (props?: ImageFormat) {
 
-function imageFactory (props: Partial<Image>): Image {
+  return {
+    ext: props?.ext || '',
+    hash: props?.hash || '',
+    height: props?.height || 0,
+    mime: props?.mime || '',
+    name: props?.name || '',
+    path: props?.path || '',
+    size: props?.size || 0,
+    width: props?.width || 0,
+    url: props?.url || ''
+  }
+}
+
+export function imageFactory (props: Partial<Image>): Image {
   const { attributes } = props
 
   return {
@@ -25,16 +37,10 @@ function imageFactory (props: Partial<Image>): Image {
       url: attributes?.url || '',
       provider: attributes?.provider || '',
       formats: {
-        thumbnail: {
-          ext: attributes?.formats?.thumbnail?.ext || '',
-          hash: attributes?.formats?.thumbnail?.hash || '',
-          height: attributes?.formats?.thumbnail?.height || 0,
-          mime: attributes?.formats?.thumbnail?.mime || '',
-          name: attributes?.formats?.thumbnail?.name || '',
-          path: attributes?.formats?.thumbnail?.path || '',
-          size: attributes?.formats?.thumbnail?.size || 0,
-          width: attributes?.formats?.thumbnail?.width || 0,
-        }
+        thumbnail: formatFactory(attributes?.formats?.thumbnail),
+        large: formatFactory(attributes?.formats?.large),
+        medium: formatFactory(attributes?.formats?.medium),
+        small: formatFactory(attributes?.formats?.small),
       }
     }
   }

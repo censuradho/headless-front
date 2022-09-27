@@ -12,6 +12,10 @@ export function HeroCarousel (props: HeroCarouselProps) {
 
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
+    slides: {
+      spacing: 0,
+      perView: 1
+    }
   })
 
   const renderItem = data?.map((value, index) => {

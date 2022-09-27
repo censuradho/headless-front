@@ -10,8 +10,17 @@ interface HeroAttrs {
 }
 
 type Hero  = Image
+
+export interface langeriCarousel {
+  id: number;
+  title: string
+  products: {
+    data: Product[]
+  }
+}
+
 export interface HomeAttrs {
-  langeriCarousel: Array<Product>;
+  langeriCarousel: langeriCarousel;
   hero: {
     data: Array<Hero>
   }
