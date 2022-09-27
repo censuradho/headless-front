@@ -43,7 +43,6 @@ export function ThemeProvider ({ children }: ThemeProviderProps) {
 
 
 	const toggleTheme = useCallback(() => {
-		console.log(true)
 		setCurrentTheme(prevState => prevState === LIGHT_THEME ? DARK_THEME : LIGHT_THEME)
 	}, [])
 

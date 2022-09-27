@@ -8,10 +8,10 @@ function parse <T>(path: string, options?: Options<T>) {
   const sort = options?.sort?.map(value => `${value.value}:${value.desk ? 'desk' : 'asc'}`)
 
   const query = {
-    ...({ fields } || []),
-    ...(({ sort }) || []),
-    ...(({ pagination }) || {}),
-    ...(({ populate }) || {}),
+    ...(fields && { fields }),
+    ...((sort && { sort })),
+    ...((pagination && { pagination })),
+    ...((populate && { populate })),
   }
 
   return `${path}?${stringify(query, { encodeValuesOnly: true })}`

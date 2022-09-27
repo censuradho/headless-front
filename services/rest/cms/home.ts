@@ -8,6 +8,9 @@ import { Home } from 'layout/home/types'
 export async function getHome () {
   const query = strapiQuery.parse('/home', {
     populate: {
+      hero: {
+        populate: '*'
+      },
       langeriCarousel: {
         populate: '*'
       }
@@ -16,9 +19,9 @@ export async function getHome () {
   
   const response = await cmsApi.get<ResponseDataType<Home>>(query)
 
-  const { data: product, ...rest } = response
+  const { data: home, ...rest } = response
 
-  const data = responseFactory(product)
+  const data = responseFactory(home)
 
   return {
     ...rest,

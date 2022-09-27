@@ -1,9 +1,10 @@
-import type { GetStaticProps,  } from 'next'
+import type { GetStaticProps, InferGetStaticPropsType,  } from 'next'
 
 import { HomeLayout } from 'layout'
 import { getHome } from 'services/rest/cms/home'
+import { HomeProps } from 'layout/home/types'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const { data } = await getHome()
 
@@ -21,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-function Home (props: GetStaticProps<typeof getStaticProps>) {
+function Home (props: InferGetStaticPropsType<typeof getStaticProps>) {
   return <HomeLayout {...props} />
 }
 

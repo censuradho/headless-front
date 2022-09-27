@@ -8,6 +8,7 @@ interface ImageFormat {
   width: number,
   height: number,
   size: number,
+  url: string
 }
 
 export interface ImageAttr {
@@ -17,7 +18,10 @@ export interface ImageAttr {
   width: number
   height: number
   formats: {
-    thumbnail: ImageFormat
+    thumbnail: ImageFormat;
+    large: ImageFormat;
+    medium: ImageFormat;
+    small: ImageFormat
   }
   hash: string,
   ext: string,
