@@ -5,44 +5,37 @@ interface Sort {
   desk?: boolean
 }
 
-interface FilterOptions {
-  /**Equal*/
-  $eq?: string | number
-  /**Equal (case-insensitive)*/
-  $eqi?: string | number
-  /**Not equal*/
-  $ne?: string | number
-  /**Less than*/
-  $lt?: string | number
-  /**Less than or equal to*/
-  $lte?: string | number
-  /**Greater than*/
-  $gt?: string | number
-  /**Greater than or equal to*/
-  $gte?: string | number
-  /**Included in an array*/
-  $in?: (string | number)[]
-  /**Not included in an array*/
-  $notIn?: (string | number)[]
-  /**Contains*/
-  $contains?: string | number
-  /**Does not contain*/
-  $notContains?: string | number
-  /**Contains (case-insensitive)*/
-  $containsi?: string | number
-  /**Does not contain (case-insensitive)*/
-  $notContainsi?: string | number
-  /**Is null*/
-  $null?: string | number
-  /**Is not null*/
-  $notNull?: string | number
-  /**Is between*/
-  $between?: string | number
-  /**Starts with*/
-  $startsWith?: string | number
-  /**Ends with*/
-  $endsWith?: string | number
-}
+type LogicalOperators<T> = {
+  $and?: WhereParams<T>[];
+  $or?: WhereParams<T>[];
+  $not?: WhereParams<T>;
+};
+
+type AttributeOperators<T, K extends keyof T> = {
+  $eq?: T[K] | Array<T[K]>;
+  $ne?: T[K] | Array<T[K]>;
+  $in?: T[K][];
+  $notIn?: T[K][];
+  $lt?: T[K];
+  $lte?: T[K];
+  $gt?: T[K];
+  $gte?: T[K];
+  $between?: [T[K], T[K]];
+  $contains?: T[K];
+  $notContains?: T[K];
+  $containsi?: T[K];
+  $notContainsi?: T[K];
+  $startsWith?: T[K];
+  $endsWith?: T[K];
+  $null?: boolean;
+  $notNull?: boolean;
+  $not?: WhereParams<T> | AttributeOperators<T, K>;
+};
+
+export type WhereParams<T> = {
+  [K in keyof T]?: T[K]  | AttributeOperators<T, K>;
+} &
+  LogicalOperators<T>;
 
 export interface Pagination {
   page?: number;
@@ -52,18 +45,11 @@ export interface Pagination {
   limit?: number
 }
 
-// type Filters<T> = Record<string, FilterOptions | RecursiveFilters<T>>
-
-type Filters<T = {}> = T extends FilterOptions ? Extract<FilterOptions, T> : Record<string, FilterOptions | RecursiveFilters>
-interface RecursiveFilters extends Filters {}
-
-
 export interface Options<F> {
   sort?: Sort[]
   pagination?: Pagination
   publicationState?: 'live' | 'preview'
-  /**By default, fields are selected except relations, media, dynamic zones, and components, but you can specify a wildcard * instead of an array.*/
   fields?: Array<DotNestedKeys<F>> 
-  // filters?: Filters<F> | FilterOptions
-  filters?: FilterOptions | Filters<F>
+  filters?: WhereParams<F>
+  populate?: Record<string, any>
 }

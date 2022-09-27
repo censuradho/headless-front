@@ -29,10 +29,10 @@ function BaseNavigation (props: NavigationProps) {
       onClick={toggleIsOpen}
     >
       <Styles.Navigation 
-      isOpen={{
-        '@laptops-max': isOpen,
-        '@laptops-min': undefined
-      }}
+        isOpen={{
+          '@laptops-max': isOpen,
+          '@laptops-min': undefined
+        }}
         onClick={event => event.stopPropagation()}
       >
         <Styles.MyAccount>

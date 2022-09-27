@@ -46,7 +46,7 @@ export const Container = styled('div', {
   top: 0,
   height: '100vh',
   backdropFilter: 'blur(4px)',
-
+  animationPlayState: 'revert',
 
   variants: {
     isOpen: {
@@ -54,7 +54,7 @@ export const Container = styled('div', {
         animation: `${openOverlay} 0.1s ease forwards`,
       },
       false: {
-        animation: `${closeOverlay} 0.1s ease forwards`,
+        animation: `${closeOverlay}  ease forwards`,
       },
     }
   },
@@ -84,12 +84,14 @@ export const Navigation = styled('nav', {
         animation: `${openNavigation} 0.25s ease forwards`,
       },
       false: {
-        animation: `${closeNavigation} 0.25s ease forwards`,
-      }
+        animation: `${closeNavigation}  ease forwards`,
+      },
     }
   },
+
   '@laptops-min': {
     width: '100%',
+    animation: 'none'
   },
 
   defaultVariants: {

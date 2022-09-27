@@ -6,7 +6,6 @@ import { getHome } from 'services/rest/cms/home'
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const { data } = await getHome()
-    
 
     return {
       props: {

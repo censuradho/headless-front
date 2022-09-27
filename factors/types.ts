@@ -11,5 +11,5 @@ export interface Meta {
 
 export interface ResponseDataType<T> {
   meta: Meta
-  data: T[]
+  data: T
 }
