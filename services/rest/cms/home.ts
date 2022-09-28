@@ -12,7 +12,10 @@ export async function getHome () {
       hero: {
         populate: '*'
       },
-      langeriCarousel: {
+      heroMobile: {
+        populate: '*'
+      },
+      langerieCarousel: {
         populate: '*'
       }
     }
