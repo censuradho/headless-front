@@ -1,7 +1,7 @@
 import { imageFactory, productFactory } from "factors/product";
-import type { Home, langeriCarousel } from "layout/home/types";
+import type { Home, LangerieCarousel } from "layout/home/types";
 
-function langeriCarouselFactory (props: Partial<langeriCarousel>): langeriCarousel {
+function langerieCarouselFactory (props: Partial<LangerieCarousel>): LangerieCarousel {
   return {
     id: props?.id || 0,
     products: {
@@ -18,7 +18,10 @@ export function homeFactory (props: Partial<Home>): Home {
       hero: {
         data: props?.attributes?.hero?.data?.map(value => imageFactory(value)) || []
       },
-      langeriCarousel: langeriCarouselFactory(props.attributes?.langeriCarousel || {}),
+      heroMobile: {
+        data: props?.attributes?.hero?.data?.map(value => imageFactory(value)) || []
+      },
+      langerieCarousel: langerieCarouselFactory(props.attributes?.langerieCarousel || {}),
     },
   }
 }
