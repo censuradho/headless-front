@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import Image from 'next/image'
 
 import 'keen-slider/keen-slider.min.css'
-import { useKeenSlider } from 'keen-slider/react' // import from 'keen-slider/react.es' for to get an ES module
+import { useKeenSlider } from 'keen-slider/react'
 import { HeroCarouselProps } from './types'
 
 import * as Styles from './styles'
-import { Box } from 'components'
+import { Image } from 'components'
 
 export function HeroCarousel (props: HeroCarouselProps) {
   const { data } = props
@@ -15,7 +14,6 @@ export function HeroCarousel (props: HeroCarouselProps) {
     loop: true,
     slides: {
       spacing: 0,
-      perView: 1
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
@@ -23,7 +21,6 @@ export function HeroCarousel (props: HeroCarouselProps) {
   })
 
   const [currentSlide, setCurrentSlide] = useState(0)
-
 
   const renderItem = data?.map((value, index) => {
 
@@ -41,7 +38,7 @@ export function HeroCarousel (props: HeroCarouselProps) {
   })
 
 
-  const renderDots = instanceRef.current?.track.details.slides?.map((value, index) => (
+  const renderDots = data?.map((value, index) => (
     <li key={index}>
       <Styles.Dot 
         onClick={() => instanceRef.current?.moveToIdx(index)} 
