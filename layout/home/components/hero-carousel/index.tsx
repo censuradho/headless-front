@@ -6,6 +6,8 @@ import { HeroCarouselProps } from './types'
 
 import * as Styles from './styles'
 import { Image } from 'components'
+import useInterval from 'hooks/useInterval'
+import { breakpoints } from 'constants/breakpoints'
 
 export function HeroCarousel (props: HeroCarouselProps) {
   const { data } = props
@@ -14,6 +16,14 @@ export function HeroCarousel (props: HeroCarouselProps) {
     loop: true,
     slides: {
       spacing: 0,
+    },
+    breakpoints: {
+      [breakpoints['smartphone-min']]: {
+        drag: true
+      },
+      [breakpoints['laptops-min']]: {
+        drag: false
+      }
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
@@ -46,6 +56,8 @@ export function HeroCarousel (props: HeroCarouselProps) {
       />
     </li>
   ))
+
+  useInterval(() => instanceRef?.current?.next(), 5000)
 
   return (
     <Styles.Container>
