@@ -1,15 +1,27 @@
+import { Box, ProductItem } from "components"
 import { MainLayout } from "layout/main"
-import { HeroCarousel } from "./components"
+import { HeroCarousel, ProductCategorySlide } from "./components"
 import { HomeProps } from "./types"
 
 export function HomeLayout (props: HomeProps) {
-  const { data: { attributes: { hero } } } = props
+  const { 
+    data: { 
+      attributes: { 
+        hero,
+        langerieCarousel
+      } 
+    } 
+  } = props || {}
   
-  console.log(props)
   
+  const renderProduct = langerieCarousel?.products?.data?.map((value, index) => (
+    <ProductItem key={value?.id} {...value}/>
+  ))
+
   return (
     <MainLayout>
-      <HeroCarousel data={hero.data} />
+        <HeroCarousel data={hero.data} />
+        <ProductCategorySlide data={langerieCarousel?.products?.data} />
     </MainLayout>
   )
 }

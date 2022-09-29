@@ -8,17 +8,13 @@ import { homeFactory } from 'factors/home'
 
 export async function getHome () {
   const query = strapiQuery.parse('/home', {
-    populate: {
-      hero: {
-        populate: '*'
-      },
-      heroMobile: {
-        populate: '*'
-      },
-      langerieCarousel: {
-        populate: '*'
-      }
-    }
+    populate: [
+      'hero', 
+      'heroMobile', 
+      'langerieCarousel', 
+      'langerieCarousel.products',
+      'langerieCarousel.products.image',
+    ]
   })
   
   const response = await cmsApi.get<ResponseDataType<Home>>(query)
@@ -35,3 +31,15 @@ export async function getHome () {
     data
   }
 }
+
+// {
+//   hero: {
+//     populate: '*'
+//   },
+//   heroMobile: {
+//     populate: '*'
+//   },
+//   langerieCarousel: {
+//     populate: '*',
+//   }
+// }

@@ -51,5 +51,5 @@ export interface Options<F> {
   publicationState?: 'live' | 'preview'
   fields?: Array<DotNestedKeys<F>> 
   filters?: WhereParams<F>
-  populate?: Record<string, any>
+  populate?: Record<string, any> | string[]
 }
