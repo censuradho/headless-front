@@ -7,7 +7,6 @@ export const Container = styled('div', {
 
   '.keen-slider': {
     width: '100%',
-  },
 
-  
+  },
 })

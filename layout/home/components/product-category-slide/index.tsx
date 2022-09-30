@@ -15,21 +15,22 @@ export function ProductCategorySlide (props: ProductCategorySlideProps) {
 
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: false,
+    mode: 'snap',
     slides: {
-      perView: 2.3,
-      spacing: 10
+      perView: 1.8,
+      spacing: 20
     },
     breakpoints: {
       [breakpoints?.["table-min"]]: {
         slides: {
           perView: 4.5,
-          spacing: 0,
+          spacing: 20
         },
       },
       [breakpoints?.["laptops-min"]]: {
         slides: {
           perView: 'auto',
-          spacing: 0,
+          spacing: 35
         },
       },
     }

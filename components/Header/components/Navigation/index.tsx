@@ -29,7 +29,7 @@ function BaseNavigation (props: NavigationProps) {
         '@laptops-min': undefined
       }}
       onClick={toggleIsOpen}
-      isScrolled={{
+      isScrollDown={{
         '@laptops-min': scrollDirection === 'down'
       }}
     >

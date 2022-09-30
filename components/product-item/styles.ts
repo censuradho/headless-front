@@ -6,16 +6,28 @@ export const Container = styled('div', {
 })
 
 export const Name = styled('h3', {
-  fontSize: '$subHeadline',
-  fontWeight: 400
+  fontSize: '$footnote',
+  fontWeight: 400,
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  width: '100%',
+  overflow: 'hidden',
 })
 
 export const Content = styled('div', {
-  marginTop: '2.125rem'
+  marginTop: '2.125rem',
+  display: 'flex',
+  gap: '0.8125rem',
+  flexDirection: 'column'
 })
 
 export const Thumb = styled('figure', {
   height: '20rem',
   width: '100%',
   position: 'relative'
+})
+
+export const Price = styled('span', {
+  fontSize: '$title2',
+  color: '$green',
 })

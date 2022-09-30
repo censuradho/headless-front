@@ -57,14 +57,14 @@ export const Container = styled('div', {
         animation: `${closeOverlay}  ease forwards`,
       },
     },
-    isScrolled: {
+    isScrollDown: {
       true: {
         transform: 'translateY(-100%)',
         position: 'absolute',
         left: 0,
       },
       false: {
-        transform: 'translateY(-10%)',
+        transform: 'translateY(0%)',
         position: 'relative',
       }
     }

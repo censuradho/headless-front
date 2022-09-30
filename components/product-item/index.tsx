@@ -1,4 +1,5 @@
 import { Image } from "components";
+import { toLocaleDateString } from "lib/toLocaleDateString";
 
 import { Product } from "types/product";
 
@@ -31,6 +32,7 @@ export function ProductItem (props: Product) {
         </Styles.Thumb>
       <Styles.Content>
         <Styles.Name>{name}</Styles.Name>
+        <Styles.Price>{toLocaleDateString(price)}</Styles.Price>
       </Styles.Content>
     </Styles.Container>
   )
