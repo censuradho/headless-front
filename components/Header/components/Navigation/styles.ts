@@ -56,14 +56,29 @@ export const Container = styled('div', {
       false: {
         animation: `${closeOverlay}  ease forwards`,
       },
+    },
+    isScrolled: {
+      true: {
+        transform: 'translateY(-100%)',
+        position: 'absolute',
+        left: 0,
+      },
+      false: {
+        transform: 'translateY(-10%)',
+        position: 'relative',
+      }
     }
   },
 
   '@laptops-min': {
     background: 'none',
-    position: 'relative',
     height: 'unset',
+    top: '100%',
     backdropFilter: 'none',
+    padding:  '1.25rem 3rem',
+    zIndex: 1,
+    backgroundColor: '$background',
+    transition: '.1s ease',
   },
 
   defaultVariants: {
@@ -91,7 +106,7 @@ export const Navigation = styled('nav', {
 
   '@laptops-min': {
     width: '100%',
-    animation: 'none'
+    animation: 'none',
   },
 
   defaultVariants: {
@@ -123,9 +138,14 @@ export const List = styled('ul', {
   width: '100%',
   flex: 1,
   overflow: 'auto',
+
+  // variants: {
+
+  // },
   [`${Item}:first-child`]: {
     borderTop: '1px solid $highlight',
   },
+
 
   '@laptops-min': {
     display: 'flex',

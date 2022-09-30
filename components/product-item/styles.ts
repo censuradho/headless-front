@@ -13,3 +13,9 @@ export const Name = styled('h3', {
 export const Content = styled('div', {
   marginTop: '2.125rem'
 })
+
+export const Thumb = styled('figure', {
+  height: '20rem',
+  width: '100%',
+  position: 'relative'
+})

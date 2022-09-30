@@ -1,9 +1,16 @@
 import { Box, ProductItem } from "components"
+import { useScrollDirection } from "hooks/useScrollDirection"
 import { MainLayout } from "layout/main"
 import { HeroCarousel, ProductCategorySlide } from "./components"
 import { HomeProps } from "./types"
 
+import * as Styles from './styles'
+
 export function HomeLayout (props: HomeProps) {
+  const scrollDirection = useScrollDirection()
+
+
+  console.log(scrollDirection)
   const { 
     data: { 
       attributes: { 
@@ -20,8 +27,10 @@ export function HomeLayout (props: HomeProps) {
 
   return (
     <MainLayout>
+      <Styles.Container>
         <HeroCarousel data={hero.data} />
         <ProductCategorySlide data={langerieCarousel?.products?.data} />
+      </Styles.Container>
     </MainLayout>
   )
 }

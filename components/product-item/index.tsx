@@ -19,13 +19,16 @@ export function ProductItem (props: Product) {
 
   return (
     <Styles.Container>
-      <Image 
-        src={firstImage?.attributes?.url} 
-        alt={firstImage?.attributes?.alternativeText} 
-        height={firstImage?.attributes?.height}
-        width={firstImage?.attributes?.width}
-        layout="responsive"
-      />
+      <Styles.Thumb>
+          <Image 
+            src={firstImage?.attributes?.url} 
+            alt={firstImage?.attributes?.alternativeText} 
+            height={firstImage?.attributes?.height}
+            width={firstImage?.attributes?.width}
+            layout="fill"
+            objectFit="contain"
+          />
+        </Styles.Thumb>
       <Styles.Content>
         <Styles.Name>{name}</Styles.Name>
       </Styles.Content>

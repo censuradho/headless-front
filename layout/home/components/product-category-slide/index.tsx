@@ -26,6 +26,12 @@ export function ProductCategorySlide (props: ProductCategorySlideProps) {
           spacing: 0,
         },
       },
+      [breakpoints?.["laptops-min"]]: {
+        slides: {
+          perView: 'auto',
+          spacing: 0,
+        },
+      },
     }
   })
 

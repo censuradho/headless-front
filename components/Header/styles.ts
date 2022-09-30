@@ -15,7 +15,8 @@ export const Container = styled('header', {
   '@laptops-min': {
     flexDirection: 'column',
     height: 'auto',
-    padding:  '2.25rem 3rem'
+    padding:  '1.25rem 3rem 1.25rem 3rem',
+    
   }
 })
 
@@ -29,4 +30,8 @@ export const TopBar = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '0.625rem',
+  background: '$background',
+  '@laptops-min': {
+    zIndex: 2,
+  }
 })

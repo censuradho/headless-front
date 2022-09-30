@@ -7,10 +7,12 @@ import * as Styles from './styles'
 import { NavigationProps } from './types'
 import { Button } from 'components/button'
 import { HiddenView } from 'components/hidden-view'
+import { useScrollDirection } from 'hooks'
 
 
 function BaseNavigation (props: NavigationProps) {
   const { isOpen, toggleIsOpen } = props
+  const scrollDirection = useScrollDirection()
 
   const renderList = Object.entries(routePaths).map(([, value], index) => (
     <Styles.Item key={index}>
@@ -27,8 +29,11 @@ function BaseNavigation (props: NavigationProps) {
         '@laptops-min': undefined
       }}
       onClick={toggleIsOpen}
+      isScrolled={{
+        '@laptops-min': scrollDirection === 'down'
+      }}
     >
-      <Styles.Navigation 
+      <Styles.Navigation
         isOpen={{
           '@laptops-max': isOpen,
           '@laptops-min': undefined

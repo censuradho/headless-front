@@ -1,19 +1,20 @@
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 
 import * as Styles from './styles'
 
 import { Button, Box, HiddenView, ButtonIcon } from 'components'
 
-import { CartButton, Navigation } from './components'
 import { useBooleanToggle } from 'hooks'
-import Link from 'next/link'
 import { routePaths } from 'constants/routes'
+
+import { CartButton, Navigation } from './components'
 
 const Logo = dynamic(() => import('public/icons/logo.svg'))
 
 export function Header () {
   const [isOpen, toggleIsOpen] = useBooleanToggle()
-
+  
   return (
     <Styles.Container>
       <Styles.TopBar>
