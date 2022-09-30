@@ -46,6 +46,7 @@ interface ProductAttr {
   createdAt: string
   updatedAt: string
   publishedAt: string
+  discount: number;
   image: {
     data: Image[]
   }

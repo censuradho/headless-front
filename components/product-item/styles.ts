@@ -31,3 +31,9 @@ export const Price = styled('span', {
   fontSize: '$title2',
   color: '$green',
 })
+
+export const DiscountValue = styled('span', {
+  fontSize: '0.8rem',
+  color: '$body',
+  textDecoration: 'line-through'
+})
