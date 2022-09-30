@@ -29,7 +29,7 @@ export function HomeLayout (props: HomeProps) {
     <MainLayout>
       <Styles.Container>
         <HeroCarousel data={hero.data} />
-        <ProductCategorySlide data={langerieCarousel?.products?.data} />
+        <ProductCategorySlide title={langerieCarousel?.title} data={langerieCarousel?.products?.data} />
       </Styles.Container>
     </MainLayout>
   )

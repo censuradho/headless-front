@@ -22,6 +22,7 @@ export function homeFactory (props: Partial<Home>): Home {
         data: props?.attributes?.hero?.data?.map(value => imageFactory(value)) || []
       },
       langerieCarousel: langerieCarouselFactory(props.attributes?.langerieCarousel || {}),
+      sectionBanner1: imageFactory(props.attributes?.sectionBanner1 || {})
     },
   }
 }

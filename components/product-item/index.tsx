@@ -23,11 +23,16 @@ export function ProductItem (props: Product) {
   const renderDiscount  = () => {
     if (!discount) return null
 
-    const value = ((price * discount) / 100) - price
-
     return (
-      <Styles.DiscountValue>{toLocaleDateString(value)}</Styles.DiscountValue>
+      <Styles.DiscountValue>{toLocaleDateString(price)}</Styles.DiscountValue>
     )
+  }
+
+  const renderValue = () => {
+    const value = discount ? price - ((discount / 100) * price) : price
+    const hasDiscount = !!discount
+
+    return <Styles.Price hasDiscount={hasDiscount}>{toLocaleDateString(value)}</Styles.Price>
   }
 
   const renderDiscountTag = () => {
@@ -53,7 +58,7 @@ export function ProductItem (props: Product) {
         <Styles.Name>{name}</Styles.Name>
         {renderDiscount()}
         <Box gap={1}>
-          <Styles.Price>{toLocaleDateString(price)}</Styles.Price>
+          {renderValue()}
           {renderDiscountTag()}
         </Box>
       </Styles.Content>

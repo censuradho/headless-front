@@ -20,7 +20,7 @@ export function imageFactory (props: Partial<Image>): Image {
   const { attributes } = props
 
   return {
-    id: props.id || 0,
+    id: props?.id || 0,
     attributes: {
       alternativeText: attributes?.alternativeText || '',
       caption: attributes?.caption || '',

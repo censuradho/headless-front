@@ -12,6 +12,7 @@ export const Container = styled('header', {
   position: 'sticky',
   top: 0,
   zIndex: 10,
+  
   '@laptops-min': {
     flexDirection: 'column',
     height: 'auto',

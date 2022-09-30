@@ -7,11 +7,12 @@ export const Container = styled('div', {
 
 export const Name = styled('h3', {
   fontSize: '$footnote',
-  fontWeight: 400,
+  fontWeight: 600,
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
   overflow: 'hidden',
+  textTransform: 'uppercase',
 })
 
 export const Content = styled('div', {
@@ -29,7 +30,15 @@ export const Thumb = styled('figure', {
 
 export const Price = styled('span', {
   fontSize: '$title2',
-  color: '$green',
+  
+
+  variants: {
+    hasDiscount: {
+      true: {
+        color: '$green'
+      }
+    }
+  }
 })
 
 export const DiscountValue = styled('span', {
