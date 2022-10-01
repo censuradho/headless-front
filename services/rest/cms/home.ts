@@ -14,6 +14,7 @@ export async function getHome () {
       'langerieCarousel', 
       'langerieCarousel.products',
       'langerieCarousel.products.image',
+      'sectionBanner1'
     ]
   })
   
@@ -22,7 +23,7 @@ export async function getHome () {
   const { data: home, ...rest } = response
 
   const data = responseFactory({
-    meta: home.meta,
+    meta: home?.meta,
     data: homeFactory(home.data)
   })
 

@@ -17,7 +17,9 @@ export interface HomeAttrs {
   heroMobile: {
     data: Array<Image>
   }
-  sectionBanner1: Image
+  sectionBanner1: {
+    data: Image
+  }
 }
 export interface Home  {
   id: number;

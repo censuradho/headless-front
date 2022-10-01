@@ -11,7 +11,7 @@ export const Container = styled('div', {
 
   '@table-min': {
     paddingLeft: '2rem',
-  }
+  },
 })
 
 
@@ -41,5 +41,17 @@ export const Hr = styled('hr', {
   height: '1px',
   background: '$highlight',
   border: 'none',
-  
+})
+
+export const DraggableView = styled('div', {
+  variants: {
+    isGrab: {
+      false: {
+        cursor: 'pointer',
+      },
+      true: {
+        cursor: 'grabbing'
+      }
+    }
+  }
 })

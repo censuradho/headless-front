@@ -1,4 +1,18 @@
 import { styled } from "stitches.config";
+import NextLink from "next/link";
+
+export const Link = styled(NextLink, {
+  variants: {
+    isGrab: {
+      false: {
+        cursor: 'pointer',
+      },
+      true: {
+        cursor: 'grabbing'
+      }
+    }
+  }
+})
 
 export const Container = styled('div', {
   width: '100%',

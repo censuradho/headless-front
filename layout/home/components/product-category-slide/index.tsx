@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from "keen-slider/react";
 
@@ -6,7 +7,6 @@ import { breakpoints } from "constants/breakpoints";
 
 import* as Styles from './styles'
 
-import { Product } from "types/product";
 import { ProductCategorySlideProps } from "./types";
 
 export function ProductCategorySlide (props: ProductCategorySlideProps) {
@@ -36,6 +36,7 @@ export function ProductCategorySlide (props: ProductCategorySlideProps) {
       [breakpoints?.["desktop-min"]]: {
         slides: {
           perView: 'auto',
+          spacing: 30
         },
       },
     }
@@ -47,6 +48,7 @@ export function ProductCategorySlide (props: ProductCategorySlideProps) {
     </div>
   ))
 
+  if (data?.length === 0) return null
 
   return (
     <Styles.Container>

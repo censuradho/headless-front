@@ -1,3 +1,12 @@
+export const paths = {
+  pdp: '/p/:id',
+  home: '/home',
+  vibradores: '/vibradores',
+  lingerie: 'lingerie',
+  saudeIntima: 'saudeIntima',
+  cart: 'cart',
+}
+
 export const routePaths = {
   home: {
     label: 'Home',
@@ -18,5 +27,6 @@ export const routePaths = {
   cart: {
     label: 'Carrinho',
     link: '/cart'
-  }
+  },
+
 }
