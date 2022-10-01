@@ -10,8 +10,10 @@ import { resolvePath } from "utils";
 import { Discount } from './components'
 
 import * as Styles from './styles'
+import { useLocalStorage } from 'hooks';
 
 export function ProductItem (props: Product) {
+
   const { 
     id,
     attributes: { 
@@ -52,15 +54,17 @@ export function ProductItem (props: Product) {
     id
   })
 
+
   return (
-    <Styles.Link 
-      href={href}
-      isGrab={isGrab} 
-      onMouseDown={() => setIsGrab(true)} 
-      onMouseUp={() => setIsGrab(false)}
-    >
-      <a>
-        <Styles.Container>
+
+    <Styles.Container>
+      <Styles.Link 
+          href={href}
+          isGrab={isGrab} 
+          onMouseDown={() => setIsGrab(true)} 
+          onMouseUp={() => setIsGrab(false)}
+        >
+          <a>
           <Styles.Thumb>
               <Image 
                 src={firstImage?.attributes?.url} 
@@ -79,8 +83,9 @@ export function ProductItem (props: Product) {
               {renderDiscountTag()}
             </Box>
           </Styles.Content>
-        </Styles.Container>
-      </a>
-    </Styles.Link>
+        </a>
+      </Styles.Link>        
+    </Styles.Container>
+
   )
 }

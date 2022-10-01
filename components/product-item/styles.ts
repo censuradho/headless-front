@@ -1,6 +1,7 @@
 import { styled } from "stitches.config";
 import NextLink from "next/link";
 
+
 export const Link = styled(NextLink, {
   variants: {
     isGrab: {
@@ -13,6 +14,7 @@ export const Link = styled(NextLink, {
     }
   }
 })
+
 
 export const Container = styled('div', {
   width: '100%',
