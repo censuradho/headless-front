@@ -47,6 +47,8 @@ interface ProductAttr {
   updatedAt: string
   publishedAt: string
   discount: number;
+  slug: string;
+  
   hoverImage: {
     data: Image
   },

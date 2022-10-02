@@ -63,6 +63,8 @@ export function productFactory (props: Partial<Product>): Product {
       publishedAt: attributes?.publishedAt || '',
       updatedAt: attributes?.updatedAt || '',
       discount: attributes?.discount || 0,
+      slug: attributes?.slug || '',
+
       image:{
         data: images
       },

@@ -18,6 +18,7 @@ export function ProductItem (props: Product) {
     id,
     attributes: { 
       image,
+      slug,
       hoverImage,
       name,
       price,
@@ -56,6 +57,7 @@ export function ProductItem (props: Product) {
   }
 
   const href = resolvePath(paths.pdp, {
+    slug,
     id
   })
 
