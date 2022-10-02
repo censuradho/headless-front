@@ -32,25 +32,25 @@ export function ProductInfo (props: ProductInfo) {
 
     return (
       <Typography variant="footnote">
-          Em até 3x  <Typography variant="footnote" semiBold></Typography>{value} <Typography uppercase>sem juros</Typography>
+          Em até 3x  <Typography variant="footnote" semiBold as="strong">{value} </Typography><Typography uppercase>sem juros</Typography>
       </Typography>
     )
   }
 
   return (
     <Styles.Container>
-      <Typography 
+      <Typography
+        as="h1"
         variant={{
           "@initial": 'footnote',
           '@laptops-min': 'sub-headline'
         }}
       >{props?.name}</Typography>
-
       <Box flexDirection="column" gap={0.5}>
         {renderValue()}
         <Box flexDirection="column" gap={1}>
           <Box alignItems="flex-end" gap={0.3}>
-            <Typography variant="title2" semiBold>{toLocaleDateString(price)}</Typography>
+            <Typography variant="title2" semiBold as="strong">{toLocaleDateString(price)}</Typography>
             <Typography variant="caption2">à vista</Typography>
           </Box>
         {renderParcelamento()}

@@ -2,6 +2,12 @@ import { styled } from "stitches.config";
 
 export const Container = styled('div', {
   position: 'relative',
+
+  '.keen-slider': {
+    '&__slide': {
+      maxHeight: '70vh'
+    }
+  },
 })
 
 export const DotContainer = styled('div', {
@@ -33,4 +39,15 @@ export const Dot = styled('button', {
       }
     }
   }
+})
+
+export const Thumb = styled('div', {
+  position: 'relative'
+})
+
+export const LikeMobile = styled('div', {
+  position: 'absolute',
+  right: '2rem',
+  top: '2rem',
+  zIndex: 9
 })

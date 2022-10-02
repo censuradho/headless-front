@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Image } from 'components'
+import { ButtonIcon, Image } from 'components'
 import { useKeenSlider } from 'keen-slider/react'
 import * as Styles from './styles'
 import { PreviewProps } from './types'
@@ -40,9 +40,19 @@ export function Preview (props: PreviewProps) {
 
   return (
     <Styles.Container>
-      <div ref={sliderRef} className="keen-slider">
-        {renderPhotos}
-      </div>
+      <Styles.Thumb>
+        <Styles.LikeMobile>
+            <ButtonIcon 
+              icon={{ name: 'heart' }}
+            />
+            <ButtonIcon 
+              icon={{ name: 'shoppingBag' }}
+            />
+          </Styles.LikeMobile>
+          <div ref={sliderRef} className="keen-slider">
+            {renderPhotos}
+          </div>
+      </Styles.Thumb>
       <Styles.DotContainer>{renderDots}</Styles.DotContainer>
     </Styles.Container>
   )
