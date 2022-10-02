@@ -47,9 +47,9 @@ export function imageFactory (props: Partial<Image>): Image {
 }
 
 export function productFactory (props: Partial<Product>): Product {
-  const { attributes, id } = props
+  const { attributes, id } = props || {}
 
-  const images = attributes?.image?.data.map(image => imageFactory(image)) || []
+  const images = attributes?.image?.data?.map(image => imageFactory(image)) || []
 
   return {
     id: id || 0,

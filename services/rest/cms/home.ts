@@ -14,7 +14,10 @@ export async function getHome () {
       'langerieCarousel', 
       'langerieCarousel.products',
       'langerieCarousel.products.image',
-      'sectionBanner1'
+      'sectionBanner1',
+      'lubrificantes',
+      'lubrificantes.products',
+      'lubrificantes.products.image',
     ]
   })
   
@@ -32,15 +35,3 @@ export async function getHome () {
     data
   }
 }
-
-// {
-//   hero: {
-//     populate: '*'
-//   },
-//   heroMobile: {
-//     populate: '*'
-//   },
-//   langerieCarousel: {
-//     populate: '*',
-//   }
-// }
