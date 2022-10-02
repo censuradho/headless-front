@@ -1,12 +1,12 @@
-import { MainLayout } from "layout";
+import { MainLayout, ProductPageLayout } from "layout";
+import { ProductPageProps } from "layout/product/types";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { getProduct, getProducts } from "services/rest/cms";
 
 export default function ProductPage (props: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(props)
   return (
     <MainLayout>
-      <h1>Product page</h1>
+      <ProductPageLayout {...props} />
     </MainLayout>
   )
 }
@@ -27,19 +27,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps<ProductPageProps> = async (context) => {
   const id = context?.params?.id as string
   const slug = context?.params?.slug as string
 
 
-  const { data: product } = await getProduct({
+  const { 
+    data: {
+      data: product
+    } 
+  } = await getProduct({
     id,
     slug
   })
 
   return {
     props: {
-      product,
+      product
     },
     revalidate: 10
   }
