@@ -5,7 +5,7 @@ import { paths } from "constants/routes";
 import { toLocaleDateString } from "lib/toLocaleDateString";
 
 import { Product } from "types/product";
-import { resolvePath } from "utils";
+import { getPercentValue, resolvePath } from "utils";
 
 import { Discount } from './components'
 
@@ -43,7 +43,7 @@ export function ProductItem (props: Product) {
   }
 
   const renderValue = () => {
-    const value = discount ? price - ((discount / 100) * price) : price
+    const value = discount ? getPercentValue(discount, price)  : price
     const hasDiscount = !!discount
 
     return <Styles.Price hasDiscount={hasDiscount}>{toLocaleDateString(value)}</Styles.Price>

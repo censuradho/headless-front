@@ -56,6 +56,7 @@ export function productFactory (props: Partial<Product>): Product {
   return {
     id: id || 0,
     attributes: {
+      parcelamento: attributes?.parcelamento || 0,
       createdAt: attributes?.createdAt || '',
       description: attributes?.description || '',
       name: attributes?.name || '',

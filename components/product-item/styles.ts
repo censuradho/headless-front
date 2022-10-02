@@ -56,7 +56,6 @@ export const Thumb = styled('figure', {
 export const Price = styled('span', {
   fontSize: '$title2',
   
-
   variants: {
     hasDiscount: {
       true: {
