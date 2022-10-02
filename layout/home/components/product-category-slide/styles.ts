@@ -33,7 +33,8 @@ export const Header = styled('div', {
 
 export const Title = styled('h2', {
   fontSize: '$title2',
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
+  whiteSpace: 'nowrap'
 })
 
 export const Hr = styled('hr', {

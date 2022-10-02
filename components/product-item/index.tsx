@@ -18,14 +18,19 @@ export function ProductItem (props: Product) {
     id,
     attributes: { 
       image,
-      description,
+      hoverImage,
       name,
       price,
+      defaultImage,
       discount = 0
     } 
   } = props || {}
 
-  const [firstImage] = image?.data || []
+  const firstImage = defaultImage?.data || {}
+  const lastImage = hoverImage?.data || {}
+
+  const [isHoverThumb, setIsHoverThumb] = useState(true)
+
   const [isGrab, setIsGrab] = useState(false)
 
   const renderDiscount  = () => {
@@ -55,26 +60,45 @@ export function ProductItem (props: Product) {
   })
 
 
+  const handleHoverThumb = () => {
+    if (!lastImage?.id) return;
+
+    setIsHoverThumb(prevState => !prevState)
+  }
+
   return (
 
     <Styles.Container>
       <Styles.Link 
           href={href}
-          isGrab={isGrab} 
+          isGrab={isGrab}
           onMouseDown={() => setIsGrab(true)} 
           onMouseUp={() => setIsGrab(false)}
         >
           <a>
-          <Styles.Thumb>
+          <Styles.Thumb 
+            onMouseEnter={handleHoverThumb}
+            onMouseLeave={handleHoverThumb}
+          >
+            <Styles.ImageContainer isHidden={!isHoverThumb}>
               <Image 
                 src={firstImage?.attributes?.url} 
                 alt={firstImage?.attributes?.alternativeText} 
                 height={firstImage?.attributes?.height}
                 width={firstImage?.attributes?.width}
-                layout="fill"
-                objectFit="contain"
+                layout="responsive"
               />
-            </Styles.Thumb>
+            </Styles.ImageContainer>
+            <Styles.ImageContainer isHidden={isHoverThumb}>
+              <Image 
+                src={lastImage?.attributes?.url} 
+                alt={lastImage?.attributes?.alternativeText} 
+                height={lastImage?.attributes?.height}
+                width={lastImage?.attributes?.width}
+                layout="responsive"
+              />
+            </Styles.ImageContainer>
+          </Styles.Thumb>
           <Styles.Content>
             <Styles.Name>{name}</Styles.Name>
             {renderDiscount()}

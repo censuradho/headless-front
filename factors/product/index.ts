@@ -49,6 +49,8 @@ export function imageFactory (props: Partial<Image>): Image {
 export function productFactory (props: Partial<Product>): Product {
   const { attributes, id } = props || {}
 
+  console.log(attributes?.hoverImage)
+  
   const images = attributes?.image?.data?.map(image => imageFactory(image)) || []
 
   return {
@@ -63,6 +65,12 @@ export function productFactory (props: Partial<Product>): Product {
       discount: attributes?.discount || 0,
       image:{
         data: images
+      },
+      hoverImage: {
+        data: imageFactory(attributes?.hoverImage?.data || {})
+      },
+      defaultImage: {
+        data: imageFactory(attributes?.defaultImage?.data || {})
       }
     }
   }

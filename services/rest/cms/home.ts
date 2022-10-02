@@ -14,10 +14,14 @@ export async function getHome () {
       'langerieCarousel', 
       'langerieCarousel.products',
       'langerieCarousel.products.image',
+      'langerieCarousel.products.hoverImage',
+      'langerieCarousel.products.defaultImage',
       'sectionBanner1',
       'lubrificantes',
       'lubrificantes.products',
       'lubrificantes.products.image',
+      'lubrificantes.products.hoverImage',
+      'lubrificantes.products.defaultImage',
     ]
   })
   

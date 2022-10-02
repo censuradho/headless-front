@@ -20,7 +20,8 @@ export interface HomeAttrs {
   sectionBanner1: {
     data: Image
   },
-  lubrificantes: LangerieCarousel
+  lubrificantes: LangerieCarousel,
+  lubri: any
 }
 export interface Home  {
   id: number;

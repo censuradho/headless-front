@@ -26,7 +26,8 @@ export function homeFactory (props: Partial<Home>): Home {
       langerieCarousel: carouselFactory(props.attributes?.langerieCarousel || {}),
       sectionBanner1: {
         data: imageFactory(props.attributes?.sectionBanner1?.data || {})
-      }
+      },
+      lubri: props.attributes?.lubri || {}
     },
   }
 }

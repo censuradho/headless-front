@@ -6,6 +6,7 @@ import { HomeProps } from "./types"
 import * as Styles from './styles'
 
 export function HomeLayout (props: HomeProps) {
+  console.log(props)
   const { 
     data: { 
       attributes: { 
