@@ -5,9 +5,9 @@ import { colors } from 'constants/colors'
 const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createTheme } = createStitches({
   theme: {
     colors: {
-      primary: colors.RAZZMATAZZ,
-      primaryDark: colors.ROSE_BUD_CHERRY,
-      primaryLight: colors.CHERUB,
+      primary: colors.MINE_SHAFT,
+      primaryDark: colors.BLACK,
+      primaryLight: colors.SILVER,
 			foreground: colors.CATSKILL_WHITE,
       title: colors.RIVER_BED,
       background: colors.WHITE,
