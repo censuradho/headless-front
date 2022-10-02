@@ -22,6 +22,9 @@ export async function getProduct (options: { id: string, slug: string }) {
   const { id, slug } = options
 
   const query = strapiQuery.parse(`/products/${id}`, {
+    populate: [
+      'image'
+    ],
     filters: {
       slug: {
         $eq: slug

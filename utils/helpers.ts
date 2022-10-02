@@ -7,3 +7,7 @@ export const resolvePath = (path: string, obj: Record<string, any>) => {
 
   return tempPath;
 };
+
+export const getPercentValue = (percent: number, value: number) => {
+  return value - ((percent / 100) * value)
+}

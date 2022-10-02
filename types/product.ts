@@ -39,7 +39,7 @@ export interface Image {
   attributes: ImageAttr
 }
 
-interface ProductAttr {
+export interface ProductAttr {
   name: string
   description: string,
   price: number,
@@ -48,6 +48,7 @@ interface ProductAttr {
   publishedAt: string
   discount: number;
   slug: string;
+  parcelamento: number;
   
   hoverImage: {
     data: Image

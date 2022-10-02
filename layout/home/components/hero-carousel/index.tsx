@@ -11,6 +11,8 @@ import { breakpoints } from 'constants/breakpoints'
 
 export function HeroCarousel (props: HeroCarouselProps) {
   const { data } = props
+  
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
@@ -30,7 +32,6 @@ export function HeroCarousel (props: HeroCarouselProps) {
     },
   })
 
-  const [currentSlide, setCurrentSlide] = useState(0)
 
   const renderItem = data?.map((value, index) => {
 
