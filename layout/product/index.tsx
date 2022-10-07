@@ -16,7 +16,6 @@ export function ProductPageLayout (props: ProductPageProps) {
         <Preview {...attributes} />
         <ProductInfo {...attributes} />
       </Styles.Content>
-      
     </Styles.Container>
   )
 }
