@@ -60,7 +60,10 @@ export const PreviewImageItem = styled('div', {
   }
 })
 
-export const PreviewIconBottom = styled(ButtonIcon, {})
+export const PreviewIconBottom = styled(ButtonIcon, {
+  position: 'absolute',
+  bottom: 0,
+})
 
 export const DotContainer = styled('div', {
   width: '100%',

@@ -1,6 +1,7 @@
 import { FiMenu, FiTruck } from '@meronex/icons/fi'
 import { AiOutlineUser, AiFillHeart } from '@meronex/icons/ai'
 import { BiShoppingBag } from '@meronex/icons/bi';
+import { BsChevronDown, BsChevronUp } from '@meronex/icons/bs'
 
 export const icons = {
   menu: FiMenu ,
@@ -8,4 +9,6 @@ export const icons = {
   shoppingBag: BiShoppingBag,
   outlineUser: AiOutlineUser,
   outlineTruck: FiTruck,
+  chevronDown: BsChevronDown,
+  chevronUp: BsChevronUp
 }
