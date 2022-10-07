@@ -49,6 +49,7 @@ export interface ProductAttr {
   discount: number;
   slug: string;
   parcelamento: number;
+  videoPreview?: string;
   
   hoverImage: {
     data: Image
