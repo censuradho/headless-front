@@ -86,10 +86,19 @@ export function Preview (props: PreviewProps) {
   return (
     <Styles.Container>
       <Styles.Preview>
+        <Styles.PreviewIconUp
+          icon={{ 
+            name: 'chevronUp',
+          }} 
+        />
         <div ref={sliderPreviewRef} className="keen-slider">
           {renderPreview}
         </div>
-        {/* <Styles.PreviewIconBottom icon={{ }} /> */}
+        <Styles.PreviewIconBottom 
+          icon={{ 
+            name: 'chevronDown',
+          }} 
+        />
       </Styles.Preview>
       <Styles.Thumb>
         <Styles.LikeMobile>

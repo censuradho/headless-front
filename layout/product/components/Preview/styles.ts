@@ -38,7 +38,8 @@ export const Thumb = styled('div', {
 export const Preview = styled('div', {
   display: 'none',
   '@laptops-min': {
-    display: 'block',
+    display: 'flex',
+    justifyContent: 'center',
     flex: 1,
     marginRight: '1rem',
     '.keen-slider': {
@@ -64,6 +65,12 @@ export const PreviewIconBottom = styled(ButtonIcon, {
   position: 'absolute',
   bottom: 0,
 })
+
+export const PreviewIconUp = styled(ButtonIcon, {
+  position: 'absolute',
+  top: 0,
+})
+
 
 export const DotContainer = styled('div', {
   width: '100%',
