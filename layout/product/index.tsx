@@ -1,14 +1,12 @@
-import { Preview, ProductInfo } from './components'
-import * as Styles from './styles'
+import { Preview, ProductInfo } from "./components";
+import * as Styles from "./styles";
 
-import { ProductPageProps } from './types'
+import { ProductPageProps } from "./types";
 
-export function ProductPageLayout (props: ProductPageProps) {
+export function ProductPageLayout(props: ProductPageProps) {
   const {
-    product: {
-      attributes
-    }
-   } = props
+    product: { attributes },
+  } = props;
 
   return (
     <Styles.Container>
@@ -17,5 +15,5 @@ export function ProductPageLayout (props: ProductPageProps) {
         <ProductInfo {...attributes} />
       </Styles.Content>
     </Styles.Container>
-  )
+  );
 }
