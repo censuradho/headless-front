@@ -2,6 +2,7 @@ import { SizeButton, Tooltip, Typography } from "components";
 import { useProductSizes } from "hooks/useProductSizes";
 import { ProductAttr } from "types/product";
 import { uuid } from "utils";
+import { NotifyMe } from "../notify-me";
 
 import * as Styles from "./styles";
 
@@ -40,6 +41,7 @@ export function ProductSizes(props: ProductAttr) {
       <Styles.SizeList>
         {renderSizes}
       </Styles.SizeList>
+      <NotifyMe />
     </Styles.Container>
   );
 }
