@@ -1,3 +1,3 @@
-import { getProduct } from "services/rest/cms"
+import { getProduct } from "services/rest/cms";
 
-export type ProductProp = Awaited<ReturnType<typeof getProduct>>['data']
+export type ProductProp = Awaited<ReturnType<typeof getProduct>>["data"]

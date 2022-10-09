@@ -13,10 +13,10 @@ export function ProductInfo(props: ProductInfoProps) {
     name,
   } = props;
 
+  const priceWithDiscount = discount ? getPercentValue(discount, price) : price;
+
   const renderValue = () => {
     if (!discount) return null;
-
-    const value = discount ? getPercentValue(discount, price) : price;
 
     return (
       <Box alignItems="center" gap={1}>
@@ -25,7 +25,7 @@ export function ProductInfo(props: ProductInfoProps) {
           {" "}
           OFF
         </DiscountOff>
-        <Typography variant="caption1-regular" lineThrough>{toLocaleDateString(value)}</Typography>
+        <Typography variant="caption1" lineThrough>{toLocaleDateString(price)}</Typography>
       </Box>
     );
   };
@@ -64,7 +64,7 @@ export function ProductInfo(props: ProductInfoProps) {
         {renderValue()}
         <Box flexDirection="column" gap={1}>
           <Box alignItems="flex-end" gap={0.3}>
-            <Typography variant="title2" semiBold as="strong">{toLocaleDateString(price)}</Typography>
+            <Typography variant="title2" semiBold as="strong">{toLocaleDateString(priceWithDiscount)}</Typography>
             <Typography variant="caption2">à vista</Typography>
           </Box>
           {renderInstallment()}

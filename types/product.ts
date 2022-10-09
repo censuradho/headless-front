@@ -10,6 +10,7 @@ export interface ImageFormat {
   url: string
 }
 
+export interface Size {}
 export interface ImageAttr {
   name: string
   alternativeText: string

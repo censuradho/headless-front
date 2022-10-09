@@ -8,6 +8,7 @@ export function ProductPageLayout(props: ProductPageProps) {
     product: { attributes },
   } = props;
 
+  console.log(attributes);
   return (
     <Styles.Container>
       <Styles.Content>
