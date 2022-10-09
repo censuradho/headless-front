@@ -8,17 +8,12 @@ import * as Styles from "./styles";
 export function ProductSizes(props: ProductAttr) {
   const {
     sizes,
-    unavailableSizes,
     setSize,
     size,
   } = useProductSizes(props);
 
   const renderSizes = sizes.map((value) => {
     const isSelected = value.size === size?.size;
-
-    const disabled = unavailableSizes
-      .map((option) => option.size)
-      .includes(value.size);
 
     return (
       <li
@@ -28,7 +23,7 @@ export function ProductSizes(props: ProductAttr) {
           <SizeButton
             onClick={() => setSize(value)}
             selected={isSelected}
-            disabled={disabled}
+            disabled={value.unavailableSize}
           >
             {value.size}
           </SizeButton>
@@ -37,7 +32,7 @@ export function ProductSizes(props: ProductAttr) {
     );
   });
 
-  if (!sizes) return null;
+  if (!sizes || sizes.length === 0) return null;
 
   return (
     <Styles.Container>

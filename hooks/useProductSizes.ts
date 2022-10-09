@@ -25,10 +25,11 @@ export function useProductSizes(props: ProductAttr) {
       stock: value?.stock,
       size: value?.size?.data?.attributes?.name,
       id: value?.id,
-      remainingMessage: value.stock > 0 && value.stock <= 3 ? `Restam ${value.stock}` : "",
+      // eslint-disable-next-line no-nested-ternary
+      remainingMessage: value.stock === 1 ? `Resta ${value.stock}` : value.stock > 0 && value.stock <= 3 ? `Restam ${value.stock}` : "",
+      unavailableSize: value?.stock === 0,
     }));
 
-  const unavailableSizes = sizes?.filter((value) => value.stock === 0);
   const isUniqueSize = sizes.length === 1;
 
   useEffect(() => {
@@ -39,7 +40,6 @@ export function useProductSizes(props: ProductAttr) {
 
   return {
     sizes,
-    unavailableSizes,
     isUniqueSize,
     size,
     setSize,

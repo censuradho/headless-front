@@ -10,21 +10,22 @@ export const Container = styled("button", {
     borderColor: "$black",
   },
 
-  "&:disabled": {
-    color: "$highlight",
-    borderColor: "$highlight",
-    "&:hover": {
-      borderColor: "$highlight",
-      color: "$highlight",
-    },
-  },
-
   variants: {
     selected: {
       true: {
         borderColor: "transparent",
         background: "$primary",
         color: "#fff",
+      },
+    },
+    noSizes: {
+      true: {
+        borderColor: "$highlight",
+        color: "$highlight",
+        "&:hover": {
+          color: "$highlight",
+          borderColor: "$highlight",
+        },
       },
     },
   },
