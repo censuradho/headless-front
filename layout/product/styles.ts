@@ -1,7 +1,9 @@
 import { styled } from "stitches.config";
 
 export const Container = styled('div', {
-  marginTop: '3rem'
+  '@laptops-min': {
+    marginTop: '3rem'
+  }
 })
 
 export const Content = styled('div', {
