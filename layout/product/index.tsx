@@ -1,4 +1,4 @@
-import { Preview, ProductInfo } from "./components";
+import { Preview, ProductInfo, ProductSizes } from "./components";
 import * as Styles from "./styles";
 
 import { ProductPageProps } from "./types";
@@ -8,12 +8,12 @@ export function ProductPageLayout(props: ProductPageProps) {
     product: { attributes },
   } = props;
 
-  console.log(attributes);
   return (
     <Styles.Container>
       <Styles.Content>
         <Preview {...attributes} />
         <ProductInfo {...attributes} />
+        <ProductSizes {...attributes} />
       </Styles.Content>
       <h1>product page</h1>
     </Styles.Container>

@@ -10,7 +10,22 @@ export interface ImageFormat {
   url: string
 }
 
-export interface Size {}
+export interface SizeAttr {
+  name: string
+}
+export interface Size {
+  id: number
+  attributes: SizeAttr
+}
+
+export interface SizeProduct {
+  id: number
+  size: {
+    data: Size
+  }
+  stock: number
+}
+
 export interface ImageAttr {
   name: string
   alternativeText: string
@@ -60,6 +75,7 @@ export interface ProductAttr {
   defaultImage: {
     data: Image
   }
+  sizes: SizeProduct[]
 }
 
 export interface Product {

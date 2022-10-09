@@ -3,6 +3,7 @@ import { ResponseDataType } from "factors/types";
 
 import { responseFactory } from "factors/meta";
 import strapiQuery from "lib/strapi-query";
+import { productFactory } from "factors/product";
 import { cmsApi } from ".";
 
 export async function getProducts() {
@@ -24,7 +25,8 @@ export async function getProduct(options: { id: string, slug: string }) {
   const query = strapiQuery.parse(`/products/${id}`, {
     populate: [
       "image",
-      "size",
+      "sizes",
+      "sizes.size",
     ],
     filters: {
       slug: {
@@ -37,9 +39,10 @@ export async function getProduct(options: { id: string, slug: string }) {
 
   const { data: product, ...rest } = response;
 
-  console.log(product);
-
-  const data = responseFactory(product);
+  const data = responseFactory({
+    meta: product?.meta,
+    data: productFactory(product.data),
+  });
 
   return {
     ...rest,

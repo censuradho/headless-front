@@ -1,5 +1,6 @@
-import type { Image, ImageFormat } from "types/product";
-import { Product } from "types/product";
+import type {
+  Image, ImageFormat, Product, Size, SizeProduct,
+} from "types/product";
 
 function formatFactory(props?: ImageFormat) {
   return {
@@ -45,6 +46,25 @@ export function imageFactory(props: Partial<Image>): Image {
   };
 }
 
+function sizeFactory(props: Partial<Size>): Size {
+  return {
+    id: props?.id || 0,
+    attributes: {
+      name: props?.attributes?.name || "",
+    },
+  };
+}
+
+function sizeProductFactory(props: Partial<SizeProduct[]>): SizeProduct[] {
+  return props.map((value) => ({
+    id: value?.id || 0,
+    size: {
+      data: sizeFactory(value?.size.data || {}),
+    },
+    stock: value?.stock || 0,
+  }));
+}
+
 export function productFactory(props: Partial<Product>): Product {
   const { attributes, id } = props || {};
 
@@ -62,7 +82,7 @@ export function productFactory(props: Partial<Product>): Product {
       updatedAt: attributes?.updatedAt || "",
       discount: attributes?.discount || 0,
       slug: attributes?.slug || "",
-      sizes: attributes?.size || {},
+      sizes: sizeProductFactory(attributes?.sizes || []),
       image: {
         data: images,
       },
