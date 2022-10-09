@@ -9,3 +9,4 @@ export * from "./product-item";
 export * from "./discount";
 export * from "./typography";
 export * from "./size-button";
+export * from "./Tooltip";

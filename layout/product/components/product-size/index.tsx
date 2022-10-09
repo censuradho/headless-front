@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-import { SizeButton, Typography } from "components";
+import { SizeButton, Tooltip, Typography } from "components";
 import { useProductSizes } from "hooks/useProductSizes";
 import { ProductAttr } from "types/product";
 import { uuid } from "utils";
@@ -12,26 +12,34 @@ export function ProductSizes(props: ProductAttr) {
   const router = useRouter();
   const { size: defaultSize } = router.query;
 
-  const [size, setSize] = useState<string | null>(defaultSize as string);
-
-  const { sizes, unavailableSizes } = useProductSizes(props);
+  const {
+    sizes,
+    unavailableSizes,
+    setSize,
+    remainingMessage,
+    size,
+  } = useProductSizes(props, (defaultSize || "") as string);
 
   const renderSizes = sizes.map((value) => {
     const isSelected = value.size === size;
 
-    const disabled = unavailableSizes.map((option) => option.size).includes(value.size);
+    const disabled = unavailableSizes
+      .map((option) => option.size)
+      .includes(value.size);
 
     return (
       <li
         key={uuid()}
       >
-        <SizeButton
-          onClick={() => setSize(value.size)}
-          selected={isSelected}
-          disabled={disabled}
-        >
-          {value.size}
-        </SizeButton>
+        <Tooltip message={remainingMessage}>
+          <SizeButton
+            onClick={() => setSize(value.size)}
+            selected={isSelected}
+            disabled={disabled}
+          >
+            {value.size}
+          </SizeButton>
+        </Tooltip>
       </li>
     );
   });

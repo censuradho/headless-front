@@ -7,7 +7,6 @@ export function SizeButton(props: SizeButtonProps) {
   return (
     <Styles.Container {...otherProps}>
       {children}
-
     </Styles.Container>
   );
 }
