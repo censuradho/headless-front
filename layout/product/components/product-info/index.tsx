@@ -1,4 +1,4 @@
-import { Box, DiscountOff, Typography } from "components";
+import { Box, Discount, Typography } from "components";
 import { toLocaleDateString } from "lib/toLocaleDateString";
 import { getPercentValue } from "utils";
 import * as Styles from "./styles";
@@ -20,11 +20,11 @@ export function ProductInfo(props: ProductInfoProps) {
 
     return (
       <Box alignItems="center" gap={1}>
-        <DiscountOff>
+        <Discount>
           {discount}
           {" "}
           OFF
-        </DiscountOff>
+        </Discount>
         <Typography variant="caption1" lineThrough>{toLocaleDateString(price)}</Typography>
       </Box>
     );
@@ -52,6 +52,7 @@ export function ProductInfo(props: ProductInfoProps) {
     <Styles.Container>
       <Typography
         as="h1"
+        capitalize
         variant={{
           "@initial": "footnote",
           "@laptops-min": "sub-headline",

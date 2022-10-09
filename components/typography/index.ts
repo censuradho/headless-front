@@ -40,5 +40,11 @@ export const Typography = styled("span", {
         textTransform: "uppercase",
       },
     },
+
+    capitalize: {
+      true: {
+        textTransform: "capitalize",
+      },
+    },
   },
 });
