@@ -10,7 +10,10 @@ export function useProductSizes(props: ProductAttr) {
     size: value?.size?.data?.attributes?.name,
   }));
 
+  const unavailableSizes = sizes?.filter((value) => value.stock === 0);
+
   return {
     sizes,
+    unavailableSizes,
   };
 }

@@ -25,6 +25,7 @@ const {
       error: colors.CINNABAR,
       overlay: colors.OVERLAY,
       body: colors.SLATE_GRAY,
+      black: colors.BLACK,
     },
     space: {
       xs: "0.75rem",
@@ -100,4 +101,6 @@ const globalStyle = GlobalCss({
   },
 });
 
-export { styled, getCssText, theme, css, keyframes, createTheme, globalStyle };
+export {
+  styled, getCssText, theme, css, keyframes, createTheme, globalStyle,
+};

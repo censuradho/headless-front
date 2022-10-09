@@ -2,9 +2,12 @@ import * as Styles from "./styles";
 import { SizeButtonProps } from "./types";
 
 export function SizeButton(props: SizeButtonProps) {
-  const { children } = props;
+  const { children, ...otherProps } = props;
 
   return (
-    <Styles.Container>{children}</Styles.Container>
+    <Styles.Container {...otherProps}>
+      {children}
+
+    </Styles.Container>
   );
 }
