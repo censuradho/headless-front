@@ -11,6 +11,7 @@ export function ProductSizes(props: ProductAttr) {
     sizes,
     setSize,
     size,
+
   } = useProductSizes(props);
 
   const renderSizes = sizes.map((value) => {
@@ -33,6 +34,11 @@ export function ProductSizes(props: ProductAttr) {
     );
   });
 
+  const renderNotifyMe = () => {
+    if (!size?.unavailableSize) return null;
+    return <NotifyMe />;
+  };
+
   if (!sizes || sizes.length === 0) return null;
 
   return (
@@ -41,7 +47,7 @@ export function ProductSizes(props: ProductAttr) {
       <Styles.SizeList>
         {renderSizes}
       </Styles.SizeList>
-      <NotifyMe />
+      {renderNotifyMe()}
     </Styles.Container>
   );
 }

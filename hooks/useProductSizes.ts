@@ -7,6 +7,8 @@ interface Size {
   stock: number,
   size: string,
   id: number,
+  remainingMessage: string
+  unavailableSize: boolean
 }
 
 export function useProductSizes(props: ProductAttr) {
