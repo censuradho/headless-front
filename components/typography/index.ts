@@ -16,7 +16,6 @@ export const Typography = styled("span", {
       },
       caption1: {
         fontSize: "0.75rem",
-        color: "$body",
       },
       footnote: {
         fontSize: "0.8125rem",

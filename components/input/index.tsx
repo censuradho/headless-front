@@ -6,9 +6,10 @@ import { InputProps } from "./types";
 export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     label,
-    hasError,
+    errorMessage,
     ...otherProps
   } = props;
+  const hasError = !!errorMessage;
 
   const renderLabel = () => {
     if (!label) return null;
@@ -16,11 +17,20 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
       <Styles.Label
         as="label"
         htmlFor={otherProps?.id}
-        variant="caption2"
+        variant="caption1"
         hasError={hasError}
       >
         {label}
       </Styles.Label>
+    );
+  };
+
+  const renderErrorMessage = () => {
+    if (!hasError) return null;
+
+    return (
+      <Styles.ErrorMessage variant="caption2">{errorMessage}</Styles.ErrorMessage>
+
     );
   };
 
@@ -32,6 +42,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
         hasError={hasError}
         ref={ref}
       />
+      {renderErrorMessage()}
     </Styles.Container>
   );
 });

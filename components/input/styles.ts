@@ -45,3 +45,7 @@ export const Label = styled(Typography, {
     },
   },
 });
+
+export const ErrorMessage = styled(Typography, {
+  color: "$error",
+});
