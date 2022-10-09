@@ -24,6 +24,9 @@ export const Typography = styled("span", {
       "sub-headline": {
         fontSize: "0.9375rem",
       },
+      callout: {
+        fontSize: "1rem",
+      },
       title2: {
         fontSize: "1.375rem",
       },

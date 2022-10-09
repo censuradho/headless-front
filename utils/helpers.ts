@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { v4 } from "uuid";
 
 export const isBrowser = () => typeof window !== "undefined";
@@ -17,3 +18,8 @@ export function getPercentValue(percent: number, value: number) {
 }
 
 export const uuid = v4;
+
+export function parseUrlQuery(value: ReturnType<typeof useRouter>["query"]) {
+  if (typeof value !== "string") return null;
+  return value;
+}
