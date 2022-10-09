@@ -16,7 +16,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
       <Styles.Label
         as="label"
         htmlFor={otherProps?.id}
-        variant="sub-headline"
+        variant="caption2"
         hasError={hasError}
       >
         {label}
