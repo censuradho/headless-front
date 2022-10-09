@@ -1,4 +1,3 @@
-
 export interface ImageFormat {
   name: string
   hash: string
@@ -48,9 +47,9 @@ export interface ProductAttr {
   publishedAt: string
   discount: number;
   slug: string;
-  parcelamento: number;
+  installment: number;
   videoPreview?: string;
-  
+
   hoverImage: {
     data: Image
   },

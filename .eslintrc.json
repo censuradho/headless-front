@@ -32,6 +32,9 @@
             "double"
           ],
           "no-duplicate-imports": "error",
-          "linebreak-style": "off"
+          "linebreak-style": "off",
+          "import/extensions": "off",
+          "react/jsx-props-no-spreading": "off",
+          "import/no-unresolved": "off"
     }
 }

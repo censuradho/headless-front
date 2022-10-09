@@ -1,80 +1,77 @@
 import type { Image, ImageFormat } from "types/product";
-import { Product } from 'types/product'
+import { Product } from "types/product";
 
-function formatFactory (props?: ImageFormat) {
-
+function formatFactory(props?: ImageFormat) {
   return {
-    ext: props?.ext || '',
-    hash: props?.hash || '',
+    ext: props?.ext || "",
+    hash: props?.hash || "",
     height: props?.height || 0,
-    mime: props?.mime || '',
-    name: props?.name || '',
-    path: props?.path || '',
+    mime: props?.mime || "",
+    name: props?.name || "",
+    path: props?.path || "",
     size: props?.size || 0,
     width: props?.width || 0,
-    url: props?.url || ''
-  }
+    url: props?.url || "",
+  };
 }
 
-export function imageFactory (props: Partial<Image>): Image {
-  const { attributes } = props
+export function imageFactory(props: Partial<Image>): Image {
+  const { attributes } = props;
 
   return {
     id: props?.id || 0,
     attributes: {
-      alternativeText: attributes?.alternativeText || '',
-      caption: attributes?.caption || '',
-      createdAt: attributes?.createdAt || '',
-      ext: attributes?.ext || '',
-      hash: attributes?.hash || '',
+      alternativeText: attributes?.alternativeText || "",
+      caption: attributes?.caption || "",
+      createdAt: attributes?.createdAt || "",
+      ext: attributes?.ext || "",
+      hash: attributes?.hash || "",
       height: attributes?.height || 0,
-      mime: attributes?.mime || '',
-      name: attributes?.name || '',
+      mime: attributes?.mime || "",
+      name: attributes?.name || "",
       size: attributes?.size || 0,
-      updatedAt: attributes?.updatedAt || '',
+      updatedAt: attributes?.updatedAt || "",
       width: attributes?.width || 0,
-      previewUrl: attributes?.previewUrl || '',
-      url: attributes?.url || '',
-      provider: attributes?.provider || '',
+      previewUrl: attributes?.previewUrl || "",
+      url: attributes?.url || "",
+      provider: attributes?.provider || "",
       formats: {
         thumbnail: formatFactory(attributes?.formats?.thumbnail),
         large: formatFactory(attributes?.formats?.large),
         medium: formatFactory(attributes?.formats?.medium),
         small: formatFactory(attributes?.formats?.small),
-      }
-    }
-  }
+      },
+    },
+  };
 }
 
-export function productFactory (props: Partial<Product>): Product {
-  const { attributes, id } = props || {}
+export function productFactory(props: Partial<Product>): Product {
+  const { attributes, id } = props || {};
 
-  console.log(attributes?.hoverImage)
-  
-  const images = attributes?.image?.data?.map(image => imageFactory(image)) || []
+  const images = attributes?.image?.data?.map((image) => imageFactory(image)) || [];
 
   return {
     id: id || 0,
     attributes: {
-      parcelamento: attributes?.parcelamento || 0,
-      createdAt: attributes?.createdAt || '',
-      description: attributes?.description || '',
-      name: attributes?.name || '',
+      installment: attributes?.installment || 0,
+      createdAt: attributes?.createdAt || "",
+      description: attributes?.description || "",
+      name: attributes?.name || "",
       price: attributes?.price || 0,
-      publishedAt: attributes?.publishedAt || '',
-      updatedAt: attributes?.updatedAt || '',
+      publishedAt: attributes?.publishedAt || "",
+      updatedAt: attributes?.updatedAt || "",
       discount: attributes?.discount || 0,
-      slug: attributes?.slug || '',
+      slug: attributes?.slug || "",
 
-      image:{
-        data: images
+      image: {
+        data: images,
       },
       hoverImage: {
-        data: imageFactory(attributes?.hoverImage?.data || {})
+        data: imageFactory(attributes?.hoverImage?.data || {}),
       },
       defaultImage: {
-        data: imageFactory(attributes?.defaultImage?.data || {})
-      }
-    }
-  }
+        data: imageFactory(attributes?.defaultImage?.data || {}),
+      },
+    },
+  };
 }
