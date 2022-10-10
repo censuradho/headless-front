@@ -1,4 +1,3 @@
-
 export interface ImageFormat {
   name: string
   hash: string
@@ -9,6 +8,22 @@ export interface ImageFormat {
   height: number,
   size: number,
   url: string
+}
+
+export interface SizeAttr {
+  name: string
+}
+export interface Size {
+  id: number
+  attributes: SizeAttr
+}
+
+export interface SizeProduct {
+  id: number
+  size: {
+    data: Size
+  }
+  stock: number
 }
 
 export interface ImageAttr {
@@ -48,9 +63,9 @@ export interface ProductAttr {
   publishedAt: string
   discount: number;
   slug: string;
-  parcelamento: number;
+  installment: number;
   videoPreview?: string;
-  
+
   hoverImage: {
     data: Image
   },
@@ -60,6 +75,7 @@ export interface ProductAttr {
   defaultImage: {
     data: Image
   }
+  sizes: SizeProduct[]
 }
 
 export interface Product {

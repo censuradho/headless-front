@@ -1,23 +1,24 @@
-import { styled } from "stitches.config"; 
+import { styled } from "stitches.config";
 
-export const Button = styled('button', {
-  borderRadius: '50%',
-  padding: '0.3rem',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+export const Button = styled("button", {
+  borderRadius: "50%",
+  padding: "0.3rem",
+  width: "max-content",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 
-  outline: 'none',
-  
+  outline: "none",
+
   variants: {
     isRipple: {
       true: {
-        background: '$foreground',
+        background: "$foreground",
       },
       false: {
-        background: 'none',
+        background: "none",
 
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});

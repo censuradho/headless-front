@@ -1,61 +1,72 @@
-import { Box, DiscountOff, Typography } from 'components'
-import { toLocaleDateString } from 'lib/toLocaleDateString'
-import { getPercentValue } from 'utils'
-import * as Styles from './styles'
+import { Box, Discount, Typography } from "components";
+import { toLocaleDateString } from "lib/toLocaleDateString";
+import { getPercentValue } from "utils";
+import * as Styles from "./styles";
 
-import { ProductInfo } from './types'
+import { ProductInfoProps } from "./types";
 
-export function ProductInfo (props: ProductInfo) {
+export function ProductInfo(props: ProductInfoProps) {
   const {
     discount,
-    parcelamento,
-    price
-   } = props
+    installment,
+    price,
+    name,
+  } = props;
+
+  const priceWithDiscount = discount ? getPercentValue(discount, price) : price;
 
   const renderValue = () => {
-    if (!discount) return null
-
-    const value = discount ? getPercentValue(discount, price)  : price
+    if (!discount) return null;
 
     return (
       <Box alignItems="center" gap={1}>
-        <DiscountOff>{discount} OFF</DiscountOff>
-        <Typography variant="caption1-regular" lineThrough>{toLocaleDateString(value)}</Typography>
+        <Discount>{`${discount}% OFF`}</Discount>
+        <Typography variant="caption1" lineThrough>{toLocaleDateString(price)}</Typography>
       </Box>
-    )
-  }
+    );
+  };
 
-  const renderParcelamento = () => {
-    if (!parcelamento) return null
+  const renderInstallment = () => {
+    if (!installment) return null;
 
-    const value = toLocaleDateString(price / parcelamento)
+    const value = toLocaleDateString(price / installment);
 
     return (
       <Typography variant="footnote">
-          Em até 3x  <Typography variant="footnote" semiBold as="strong">{value} </Typography><Typography uppercase>sem juros</Typography>
+        Em até 3x
+        {" "}
+        <Typography variant="footnote" semiBold as="strong">
+          {value}
+          {" "}
+        </Typography>
+        <Typography uppercase>sem juros</Typography>
       </Typography>
-    )
-  }
+    );
+  };
 
   return (
     <Styles.Container>
       <Typography
         as="h1"
+        capitalize
         variant={{
-          "@initial": 'footnote',
-          '@laptops-min': 'sub-headline'
+          "@initial": "footnote",
+          "@laptops-min": "sub-headline",
         }}
-      >{props?.name}</Typography>
+      >
+        {name}
+
+      </Typography>
       <Box flexDirection="column" gap={0.5}>
         {renderValue()}
         <Box flexDirection="column" gap={1}>
           <Box alignItems="flex-end" gap={0.3}>
-            <Typography variant="title2" semiBold as="strong">{toLocaleDateString(price)}</Typography>
+            <Typography variant="title2" semiBold as="strong">{toLocaleDateString(priceWithDiscount)}</Typography>
             <Typography variant="caption2">à vista</Typography>
           </Box>
-        {renderParcelamento()}
+          {renderInstallment()}
         </Box>
       </Box>
     </Styles.Container>
-  )
+  );
 }

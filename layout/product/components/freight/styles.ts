@@ -1,9 +1,11 @@
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {
-  width: "100%",
   padding: "1rem",
+  marginBottom: "1rem",
+});
+
+export const Form = styled("form", {
   display: "flex",
-  flexDirection: "column",
-  gap: "1",
+  width: "100%",
 });
