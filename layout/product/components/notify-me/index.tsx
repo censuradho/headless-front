@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box, Button, Input, Typography,
 } from "components";
@@ -10,6 +11,8 @@ import { notifyMeValidationSchema } from "./validations";
 import { FormData } from "./types";
 
 export function NotifyMe() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -44,7 +47,13 @@ export function NotifyMe() {
           />
         </Box>
         <Box marginTop={1}>
-          <Button fullWidth>Enviar</Button>
+          <Button
+            loading={isLoading}
+            fullWidth
+          >
+            Enviar
+
+          </Button>
         </Box>
       </Styles.Form>
     </Styles.Container>

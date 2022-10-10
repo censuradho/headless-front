@@ -20,11 +20,7 @@ export function ProductInfo(props: ProductInfoProps) {
 
     return (
       <Box alignItems="center" gap={1}>
-        <Discount>
-          {discount}
-          {" "}
-          OFF
-        </Discount>
+        <Discount>{`${discount}% OFF`}</Discount>
         <Typography variant="caption1" lineThrough>{toLocaleDateString(price)}</Typography>
       </Box>
     );
