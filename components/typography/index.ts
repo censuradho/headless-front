@@ -9,7 +9,6 @@ export const Typography = styled("span", {
         fontWeight: 600,
       },
     },
-
     variant: {
       caption2: {
         fontSize: "0.6875rem",
@@ -30,19 +29,16 @@ export const Typography = styled("span", {
         fontSize: "1.375rem",
       },
     },
-
     lineThrough: {
       true: {
         textDecoration: "line-through",
       },
     },
-
     uppercase: {
       true: {
         textTransform: "uppercase",
       },
     },
-
     capitalize: {
       true: {
         textTransform: "capitalize",

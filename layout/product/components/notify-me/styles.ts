@@ -1,3 +1,4 @@
+import { Typography } from "components";
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {
@@ -8,3 +9,7 @@ export const Container = styled("div", {
 });
 
 export const Form = styled("form", {});
+
+export const SuccessTitle = styled(Typography, {
+  color: "$green",
+});

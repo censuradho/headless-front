@@ -1,3 +1,4 @@
+import { Box, Button } from "components";
 import { Preview, ProductInfo, ProductSizes } from "./components";
 import * as Styles from "./styles";
 
@@ -15,9 +16,12 @@ export function ProductPageLayout(props: ProductPageProps) {
         <Styles.ProductInfo>
           <ProductInfo {...attributes} />
           <ProductSizes {...attributes} />
+          <Box justifyContent="center" gap={1}>
+            <Button fullWidth variant="letter">Adicionar à sacola</Button>
+            <Button fullWidth>Comprar</Button>
+          </Box>
         </Styles.ProductInfo>
       </Styles.Content>
-      <h1>product page</h1>
     </Styles.Container>
   );
 }

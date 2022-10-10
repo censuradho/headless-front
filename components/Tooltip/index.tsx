@@ -1,8 +1,11 @@
+import { isBrowser } from "utils";
 import { TooltipProps } from "./types";
 import * as Styles from "./styles";
 
 export function Tooltip(props: TooltipProps) {
   const { children, message } = props;
+
+  if (!isBrowser()) return null;
 
   const renderMessage = () => {
     if (!message) return null;

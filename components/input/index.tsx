@@ -7,6 +7,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
   const {
     label,
     errorMessage,
+    register,
     ...otherProps
   } = props;
   const hasError = !!errorMessage;
@@ -39,8 +40,9 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
       {renderLabel()}
       <Styles.Input
         {...otherProps}
-        hasError={hasError}
         ref={ref}
+        {...register}
+        hasError={hasError}
       />
       {renderErrorMessage()}
     </Styles.Container>

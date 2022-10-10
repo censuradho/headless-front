@@ -18,9 +18,7 @@ export function ProductSizes(props: ProductAttr) {
     const isSelected = value.size === size?.size;
 
     return (
-      <li
-        key={uuid()}
-      >
+      <li key={uuid()}>
         <Tooltip message={value.remainingMessage}>
           <SizeButton
             onClick={() => setSize(value)}
