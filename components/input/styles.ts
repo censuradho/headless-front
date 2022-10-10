@@ -11,7 +11,7 @@ export const Input = styled("input", {
   borderColor: "$highlight",
   borderWidth: "1px",
   borderStyle: "solid",
-  height: "2.5rem",
+  height: "3rem",
   outline: "none",
   padding: "0 1rem",
   "&::placeholder": {
@@ -25,6 +25,11 @@ export const Input = styled("input", {
   },
 
   variants: {
+    fullWidth: {
+      true: {
+        width: "100%",
+      },
+    },
     hasError: {
       true: {
         borderColor: "$error",

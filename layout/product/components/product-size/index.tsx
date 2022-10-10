@@ -1,18 +1,21 @@
 import { SizeButton, Tooltip, Typography } from "components";
 import { useProductSizes } from "hooks/useProductSizes";
-import { ProductAttr } from "types/product";
+
 import { uuid } from "utils";
 import { NotifyMe } from "../notify-me";
 
 import * as Styles from "./styles";
+import { ProductSizeProps } from "./types";
 
-export function ProductSizes(props: ProductAttr) {
+export function ProductSizes(props: ProductSizeProps) {
+  const { onSelectSize, ...otherProps } = props;
+
   const {
     sizes,
     setSize,
     size,
 
-  } = useProductSizes(props);
+  } = useProductSizes(otherProps);
 
   const renderSizes = sizes.map((value) => {
     const isSelected = value.size === size?.size;
@@ -21,7 +24,10 @@ export function ProductSizes(props: ProductAttr) {
       <li key={uuid()}>
         <Tooltip message={value.remainingMessage}>
           <SizeButton
-            onClick={() => setSize(value)}
+            onClick={() => {
+              setSize(value);
+              onSelectSize?.(value);
+            }}
             selected={isSelected}
             disabled={value.unavailableSize}
           >

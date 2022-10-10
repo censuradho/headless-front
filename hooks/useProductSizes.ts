@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { ProductAttr } from "types/product";
 
-interface Size {
+export interface SizeOption {
   stock: number,
   size: string,
   id: number,
@@ -15,7 +15,7 @@ export function useProductSizes(props: ProductAttr) {
   const router = useRouter();
   const { size: defaultSize } = router.query;
 
-  const [size, setSize] = useState<Size>();
+  const [size, setSize] = useState<SizeOption>();
 
   const {
     sizes: productSizes,
