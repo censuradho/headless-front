@@ -1,12 +1,8 @@
 import { ProfileContextProps } from "./types";
 
 export const baseProfileContext: ProfileContextProps = {
-  bag: {
-    productsId: ([] as number[]),
-  },
+  bag: [],
   setBag: () => {},
-  favorite: {
-    productsId: ([] as number[]),
-  },
+  favorite: [],
   setFavorite: () => {},
 };
