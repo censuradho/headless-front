@@ -7,6 +7,7 @@ import {
 
 import { useBooleanToggle } from "hooks";
 import { routePaths } from "constants/routes";
+import { useProfileContext } from "context";
 import * as Styles from "./styles";
 
 import { CartButton, Navigation } from "./components";
@@ -15,6 +16,7 @@ const Logo = dynamic(() => import("public/icons/logo.svg"));
 
 export function Header() {
   const [isOpen, toggleIsOpen] = useBooleanToggle();
+  const profileContext = useProfileContext();
 
   return (
     <Styles.Container>
@@ -42,7 +44,7 @@ export function Header() {
             gap={2.375}
           >
             <Button variant="letter" icon={{ name: "outlineUser" }}>Minha conta</Button>
-            <CartButton count={5} />
+            <CartButton count={profileContext?.favorite?.length} />
           </Box>
         </HiddenView>
       </Styles.TopBar>
