@@ -1,19 +1,18 @@
-import { CSSProperties, memo, ReactNode } from 'react'
+import { CSSProperties, memo, ReactNode } from "react";
 
-type ViewStyle =  Pick<CSSProperties, 
-  'alignItems' 
-  | 'alignSelf'
-  | 'alignContent'
-  | 'justifyContent'
-  | 'flex'
-  | 'marginBottom'
-  | 'marginRight'
-  | 'marginLeft'
-  | 'marginTop'
-  | 'flexDirection'
-  | 'backgroundColor'
+type ViewStyle = Pick<CSSProperties,
+  "alignItems"
+  | "alignSelf"
+  | "alignContent"
+  | "justifyContent"
+  | "flex"
+  | "marginBottom"
+  | "marginRight"
+  | "marginLeft"
+  | "marginTop"
+  | "flexDirection"
+  | "backgroundColor"
 >
-
 
 interface BoxProps extends ViewStyle {
   children: ReactNode;
@@ -21,18 +20,25 @@ interface BoxProps extends ViewStyle {
   gap?: number
 }
 
+export function Box(props: BoxProps) {
+  const {
+    children,
+    fullWidth,
+    gap,
+    marginTop,
+    ...otherProps
+  } = props;
 
-export function Box (props: BoxProps) {
-  const { children, fullWidth, gap, ...otherProps} = props
-
-	return (
-		<div style={{
-			...otherProps,
-      display: 'flex',
-			width: fullWidth ? '100%' : 'auto',
-      gap: `${gap}rem`
-		}}>
-			{children}
-		</div>
-	)
+  return (
+    <div style={{
+      ...otherProps,
+      display: "flex",
+      width: fullWidth ? "100%" : "auto",
+      ...(gap && { gap: `${gap}rem` }),
+      ...(marginTop && { marginTop: `${marginTop}rem` }),
+    }}
+    >
+      {children}
+    </div>
+  );
 }

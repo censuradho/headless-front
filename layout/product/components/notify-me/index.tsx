@@ -1,4 +1,6 @@
-import { Box, Input, Typography } from "components";
+import {
+  Box, Button, Input, Typography,
+} from "components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Styles from "./styles";
@@ -41,7 +43,9 @@ export function NotifyMe() {
             errorMessage={errors.name?.message}
           />
         </Box>
-
+        <Box marginTop={1}>
+          <Button fullWidth>Enviar</Button>
+        </Box>
       </Styles.Form>
     </Styles.Container>
   );

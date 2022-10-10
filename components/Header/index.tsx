@@ -1,31 +1,32 @@
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
+import dynamic from "next/dynamic";
+import Link from "next/link";
 
-import * as Styles from './styles'
+import {
+  Button, Box, HiddenView, ButtonIcon,
+} from "components";
 
-import { Button, Box, HiddenView, ButtonIcon } from 'components'
+import { useBooleanToggle } from "hooks";
+import { routePaths } from "constants/routes";
+import * as Styles from "./styles";
 
-import { useBooleanToggle } from 'hooks'
-import { routePaths } from 'constants/routes'
+import { CartButton, Navigation } from "./components";
 
-import { CartButton, Navigation } from './components'
+const Logo = dynamic(() => import("public/icons/logo.svg"));
 
-const Logo = dynamic(() => import('public/icons/logo.svg'))
+export function Header() {
+  const [isOpen, toggleIsOpen] = useBooleanToggle();
 
-export function Header () {
-  const [isOpen, toggleIsOpen] = useBooleanToggle()
-  
   return (
     <Styles.Container>
       <Styles.TopBar>
         <HiddenView breakpoint="laptops-min">
-          <ButtonIcon 
-              onClick={toggleIsOpen} 
-              icon={{ 
-                name: 'menu',
-                size: 30
-              }}
-            />
+          <ButtonIcon
+            onClick={toggleIsOpen}
+            icon={{
+              name: "menu",
+              size: 30,
+            }}
+          />
         </HiddenView>
         <Link href={routePaths.home.link}>
           <a>
@@ -40,12 +41,12 @@ export function Header () {
             alignItems="center"
             gap={2.375}
           >
-              <Button icon={{ name: 'outlineUser'}}>Minha conta</Button>
-              <CartButton count={5} />
+            <Button variant="letter" icon={{ name: "outlineUser" }}>Minha conta</Button>
+            <CartButton count={5} />
           </Box>
         </HiddenView>
       </Styles.TopBar>
-      <Navigation isOpen={isOpen} toggleIsOpen={toggleIsOpen} />        
+      <Navigation isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
     </Styles.Container>
-  )
+  );
 }
