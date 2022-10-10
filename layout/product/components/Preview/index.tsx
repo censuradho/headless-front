@@ -2,13 +2,19 @@ import { useMemo, useState } from "react";
 
 import { ButtonIcon, Image } from "components";
 import { useKeenSlider } from "keen-slider/react";
+import { useProfileContext } from "context";
 import * as Styles from "./styles";
 import { PreviewProps } from "./types";
 
 export function Preview(props: PreviewProps) {
   const {
-    image,
+    id,
+    attributes: {
+      image,
+    },
   } = props;
+
+  const profileContext = useProfileContext();
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSlidePreview, setCurrentSlidePreview] = useState(0);
@@ -33,6 +39,8 @@ export function Preview(props: PreviewProps) {
       setCurrentSlidePreview(slider.track.details.rel);
     },
   });
+
+  const isProductLiked = profileContext?.favorite?.productsId.includes(id);
 
   const renderPhotos = useMemo(() => (
     image?.data?.map((value) => (
@@ -85,7 +93,10 @@ export function Preview(props: PreviewProps) {
       <Styles.Thumb>
         <Styles.LikeMobile>
           <ButtonIcon
-            icon={{ name: "heart" }}
+            // onClick={}
+            icon={{
+              name: isProductLiked ? "heart" : "outlineHeart",
+            }}
           />
           <ButtonIcon
             icon={{ name: "shoppingBag" }}

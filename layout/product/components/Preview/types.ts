@@ -1,3 +1,3 @@
-import { ProductAttr } from "types/product";
+import { Product } from "types/product";
 
-export type PreviewProps = ProductAttr 
+export type PreviewProps = Product

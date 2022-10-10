@@ -1,12 +1,15 @@
-import { ThemeProvider } from 'context/theme'
-import type { AppProps } from 'next/app'
+import { ProfileProvider, ThemeProvider } from "context";
+
+import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
-  )
+    <ProfileProvider>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ProfileProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

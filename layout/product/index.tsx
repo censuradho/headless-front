@@ -15,6 +15,7 @@ export function ProductPageLayout(props: ProductPageProps) {
 
   const {
     product: { attributes },
+    product,
   } = props;
 
   const renderSubmitButtons = () => {
@@ -31,7 +32,7 @@ export function ProductPageLayout(props: ProductPageProps) {
   return (
     <Styles.Container>
       <Styles.Content>
-        <Preview {...attributes} />
+        <Preview {...product} />
         <Styles.ProductInfo>
           <ProductInfo {...attributes} />
           <ProductSizes
