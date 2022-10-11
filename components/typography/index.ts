@@ -45,4 +45,7 @@ export const Typography = styled("span", {
       },
     },
   },
+  defaultVariants: {
+    variant: "caption1",
+  },
 });

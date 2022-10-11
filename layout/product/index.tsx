@@ -1,10 +1,11 @@
-import { Box, Button } from "components";
+import { Button } from "components";
 import { useState } from "react";
 import {
   Preview,
   ProductInfo,
   ProductSizes,
   Freight,
+  ProductDescription,
 } from "./components";
 import * as Styles from "./styles";
 
@@ -40,6 +41,9 @@ export function ProductPageLayout(props: ProductPageProps) {
             {...attributes}
           />
           <Freight />
+          <ProductDescription
+            product={product}
+          />
           {renderSubmitButtons()}
         </Styles.ProductInfo>
       </Styles.Content>
