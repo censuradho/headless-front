@@ -15,7 +15,9 @@ export function ProductPageLayout(props: ProductPageProps) {
   const [isUnavailableSize, setIsUnavailableSize] = useState(false);
 
   const {
-    product: { attributes },
+    product: {
+      attributes,
+    },
     product,
   } = props;
 
