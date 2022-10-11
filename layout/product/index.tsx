@@ -30,6 +30,14 @@ export function ProductPageLayout(props: ProductPageProps) {
     );
   };
 
+  const renderFreight = () => {
+    if (isUnavailableSize) return null;
+
+    return (
+      <Freight />
+    );
+  };
+
   return (
     <Styles.Container>
       <Styles.Content>
@@ -40,10 +48,10 @@ export function ProductPageLayout(props: ProductPageProps) {
             onSelectSize={(size) => setIsUnavailableSize(size.unavailableSize)}
             {...attributes}
           />
-          <Freight />
           <ProductDescription
             product={product}
           />
+          {renderFreight()}
           {renderSubmitButtons()}
         </Styles.ProductInfo>
       </Styles.Content>
