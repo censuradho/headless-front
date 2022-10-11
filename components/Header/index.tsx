@@ -21,6 +21,7 @@ export function Header() {
   const renderCartButton = () => (
     <CartButton count={profileContext?.favorite?.length} />
   );
+
   return (
     <Styles.Container>
       <Styles.TopBar>
@@ -51,7 +52,10 @@ export function Header() {
           </Box>
         </HiddenView>
       </Styles.TopBar>
-      <Navigation isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
+      <Navigation
+        isOpen={isOpen}
+        toggleIsOpen={toggleIsOpen}
+      />
     </Styles.Container>
   );
 }

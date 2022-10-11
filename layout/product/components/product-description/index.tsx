@@ -1,6 +1,5 @@
 import { Button, Typography } from "components";
 import { useBooleanToggle } from "hooks";
-import { useState } from "react";
 
 import * as Styles from "./styles";
 import { ProductDescriptionProps } from "./types";

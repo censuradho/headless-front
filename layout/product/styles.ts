@@ -1,8 +1,11 @@
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {
+  paddingBottom: "5rem",
+
   "@laptops-min": {
     marginTop: "3rem",
+    paddingBottom: 0,
   },
 });
 
@@ -16,10 +19,6 @@ export const Content = styled("div", {
     margin: "0 auto",
     display: "grid",
     gridTemplateColumns: "60% 1fr",
-  },
-
-  "@desktop-min": {
-    gridAutoRows: "70vh",
   },
 });
 
