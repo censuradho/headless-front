@@ -1,4 +1,6 @@
-import { Typography } from "components";
+import { Button, Typography } from "components";
+import { useBooleanToggle } from "hooks";
+import { useState } from "react";
 
 import * as Styles from "./styles";
 import { ProductDescriptionProps } from "./types";
@@ -11,6 +13,8 @@ export function ProductDescription(props: ProductDescriptionProps) {
       },
     },
   } = props;
+
+  const [isHidden, toggleIsHidden] = useBooleanToggle(true);
 
   if (!description) return null;
 
@@ -26,7 +30,20 @@ export function ProductDescription(props: ProductDescriptionProps) {
       >
         Descrição
       </Typography>
-      <Typography>{description}</Typography>
+      <Styles.HiddenView hidden={isHidden}>
+        <Typography>{description}</Typography>
+      </Styles.HiddenView>
+      <Styles.ShowMoreView>
+        <Button
+          onClick={toggleIsHidden}
+          variant="letter"
+          icon={{
+            name: isHidden ? "arrowDown" : "arrowUp",
+          }}
+        >
+          {isHidden ? "Ver mais" : "Ver menos"}
+        </Button>
+      </Styles.ShowMoreView>
     </Styles.Container>
   );
 }
