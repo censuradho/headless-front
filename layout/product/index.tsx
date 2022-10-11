@@ -22,10 +22,10 @@ export function ProductPageLayout(props: ProductPageProps) {
     if (isUnavailableSize) return null;
 
     return (
-      <Box justifyContent="center" gap={1}>
+      <Styles.BuyButtons>
         <Button fullWidth variant="letter">Adicionar à sacola</Button>
         <Button fullWidth>Comprar</Button>
-      </Box>
+      </Styles.BuyButtons>
     );
   };
 

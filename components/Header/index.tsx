@@ -18,6 +18,9 @@ export function Header() {
   const [isOpen, toggleIsOpen] = useBooleanToggle();
   const profileContext = useProfileContext();
 
+  const renderCartButton = () => (
+    <CartButton count={profileContext?.favorite?.length} />
+  );
   return (
     <Styles.Container>
       <Styles.TopBar>
@@ -36,7 +39,7 @@ export function Header() {
           </a>
         </Link>
         <HiddenView breakpoint="laptops-min">
-          <CartButton count={5} />
+          {renderCartButton()}
         </HiddenView>
         <HiddenView breakpoint="laptops-max">
           <Box
@@ -44,7 +47,7 @@ export function Header() {
             gap={2.375}
           >
             <Button variant="letter" icon={{ name: "outlineUser" }}>Minha conta</Button>
-            <CartButton count={profileContext?.favorite?.length} />
+            {renderCartButton()}
           </Box>
         </HiddenView>
       </Styles.TopBar>

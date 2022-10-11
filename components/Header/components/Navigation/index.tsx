@@ -1,18 +1,17 @@
-import { memo, useState } from 'react'
-import Link from 'next/link'
+import { memo, useState } from "react";
+import Link from "next/link";
 
-import { routePaths } from 'constants/routes'
+import { routePaths } from "constants/routes";
 
-import * as Styles from './styles'
-import { NavigationProps } from './types'
-import { Button } from 'components/button'
-import { HiddenView } from 'components/hidden-view'
-import { useScrollDirection } from 'hooks'
+import { Button } from "components/button";
+import { HiddenView } from "components/hidden-view";
+import { useScrollDirection } from "hooks";
+import { NavigationProps } from "./types";
+import * as Styles from "./styles";
 
-
-function BaseNavigation (props: NavigationProps) {
-  const { isOpen, toggleIsOpen } = props
-  const scrollDirection = useScrollDirection()
+function BaseNavigation(props: NavigationProps) {
+  const { isOpen, toggleIsOpen } = props;
+  const scrollDirection = useScrollDirection();
 
   const renderList = Object.entries(routePaths).map(([, value], index) => (
     <Styles.Item key={index}>
@@ -20,28 +19,33 @@ function BaseNavigation (props: NavigationProps) {
         <a>{value.label}</a>
       </Link>
     </Styles.Item>
-  ))
+  ));
 
   return (
-    <Styles.Container 
+    <Styles.Container
       isOpen={{
-        '@laptops-max': isOpen,
-        '@laptops-min': undefined
+        "@laptops-max": isOpen,
+        "@laptops-min": undefined,
       }}
       onClick={toggleIsOpen}
       isScrollDown={{
-        '@laptops-min': scrollDirection === 'down'
+        "@laptops-min": scrollDirection === "down",
       }}
     >
       <Styles.Navigation
         isOpen={{
-          '@laptops-max': isOpen,
-          '@laptops-min': undefined
+          "@laptops-max": isOpen,
+          "@laptops-min": undefined,
         }}
-        onClick={event => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
       >
         <Styles.MyAccount>
-          <Button icon={{ name: 'outlineUser' }}>Minha conta</Button>
+          <Button
+            variant="letter"
+            icon={{ name: "outlineUser" }}
+          >
+            Minha conta
+          </Button>
         </Styles.MyAccount>
         <Styles.List>{renderList}</Styles.List>
         <HiddenView breakpoint="laptops-min">
@@ -50,7 +54,7 @@ function BaseNavigation (props: NavigationProps) {
       </Styles.Navigation>
 
     </Styles.Container>
-  )
+  );
 }
 
-export const Navigation = memo(BaseNavigation)
+export const Navigation = memo(BaseNavigation);
