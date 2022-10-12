@@ -8,6 +8,8 @@ import {
   IosArrowDown,
   IosArrowUp,
   IosTrash,
+  IosAdd,
+  IosRemove,
 } from "@meronex/icons/ios";
 
 export const icons = {
@@ -23,4 +25,6 @@ export const icons = {
   arrowDown: IosArrowDown,
   arrowUp: IosArrowUp,
   trash: IosTrash,
+  add: IosAdd,
+  remove: IosRemove,
 };

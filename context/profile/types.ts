@@ -42,4 +42,6 @@ export interface ProfileContextProps {
   unlikeProduct?: (data: Favorite) => void;
   addWishlist?: (data: Wish) => void
   removeWishlist?: (data: Wish) => void
+  increaseWishProduct?: (productId: number, sizeId: number) => void
+  decreaseWishProduct?: (productId: number, sizeId: number) => void
 }

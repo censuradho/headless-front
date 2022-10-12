@@ -7,6 +7,7 @@ import { paths } from "constants/routes";
 import { toLocaleDateString } from "lib/toLocaleDateString";
 import { getPriceProduct, resolvePath } from "utils";
 
+import { useProfileContext } from "context";
 import * as Styles from "./styles";
 
 import { ProductPreviewProps } from "./types";
@@ -26,6 +27,8 @@ export function ProductPreview(props: ProductPreviewProps) {
     size,
     amount,
   } = props;
+
+  const profileContext = useProfileContext();
 
   const priceParsed = getPriceProduct(price, discount);
 
@@ -51,11 +54,25 @@ export function ProductPreview(props: ProductPreviewProps) {
           <Box flexDirection="column" gap={1}>
             <Box alignItems="center" gap={0.5}>
               <Styles.Name variant="caption1">{name}</Styles.Name>
-              <ButtonIcon
-                icon={{
-                  name: "trash",
-                }}
-              />
+              <Box gap={0.2}>
+                <ButtonIcon
+                  onClick={() => profileContext?.decreaseWishProduct?.(id, size.id)}
+                  icon={{
+                    name: "remove",
+                  }}
+                />
+                <ButtonIcon
+                  icon={{
+                    name: "trash",
+                  }}
+                />
+                <ButtonIcon
+                  onClick={() => profileContext?.increaseWishProduct?.(id, size.id)}
+                  icon={{
+                    name: "add",
+                  }}
+                />
+              </Box>
             </Box>
             <Typography variant="footnote" semiBold>{toLocaleDateString(priceParsed)}</Typography>
             <Box justifyContent="space-between">
