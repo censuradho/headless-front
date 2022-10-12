@@ -106,6 +106,19 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
     });
   };
 
+  const handleDeleteWishProduct = (productId: number, sizeId: number) => {
+    setWishlist((prevState) => {
+      if (!prevState) return;
+      const currentState = prevState;
+
+      delete currentState[productId].sizes[sizeId];
+
+      return ({
+        ...currentState,
+      });
+    });
+  };
+
   return (
     <ProfileContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -118,6 +131,7 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
         unlikeProduct: handleUnlikeProduct,
         increaseWishProduct: handleIncreaseWishProduct,
         decreaseWishProduct: handleDecreaseWishProduct,
+        deleteWishProduct: handleDeleteWishProduct,
       }}
     >
       {children}

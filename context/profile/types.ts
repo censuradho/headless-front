@@ -44,4 +44,5 @@ export interface ProfileContextProps {
   removeWishlist?: (data: Wish) => void
   increaseWishProduct?: (productId: number, sizeId: number) => void
   decreaseWishProduct?: (productId: number, sizeId: number) => void
+  deleteWishProduct?: (productId: number, sizeId: number) => void
 }

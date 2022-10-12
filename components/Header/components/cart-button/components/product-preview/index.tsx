@@ -30,7 +30,7 @@ export function ProductPreview(props: ProductPreviewProps) {
 
   const profileContext = useProfileContext();
 
-  const priceParsed = getPriceProduct(price, discount);
+  const priceParsed = getPriceProduct(price, discount) * amount;
 
   const href = resolvePath(paths.pdp, {
     slug,
@@ -62,6 +62,7 @@ export function ProductPreview(props: ProductPreviewProps) {
                   }}
                 />
                 <ButtonIcon
+                  onClick={() => profileContext?.deleteWishProduct?.(id, size.id)}
                   icon={{
                     name: "trash",
                   }}
