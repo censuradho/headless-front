@@ -30,6 +30,15 @@ export function Freight() {
         <Input fullWidth register={register("cep")} placeholder="00000-00" />
         <Button>Calcular</Button>
       </Styles.Form>
+      <Styles.Link
+        as="a"
+        target="_blank"
+        rel="noreferrer"
+        href="https://buscacepinter.correios.com.br/app/endereco/index.php?t"
+      >
+        Não sei meu CEP
+
+      </Styles.Link>
     </Styles.Container>
   );
 }

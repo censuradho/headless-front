@@ -1,3 +1,4 @@
+import { Typography } from "components";
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {
@@ -8,4 +9,10 @@ export const Container = styled("div", {
 export const Form = styled("form", {
   display: "flex",
   width: "100%",
+});
+
+export const Link = styled(Typography, {
+  textDecoration: "underline",
+  paddingTop: "0.5rem",
+  display: "block",
 });
