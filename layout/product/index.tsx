@@ -6,6 +6,7 @@ import {
   ProductSizes,
   Freight,
   ProductDescription,
+  Color,
 } from "./components";
 import * as Styles from "./styles";
 
@@ -50,9 +51,8 @@ export function ProductPageLayout(props: ProductPageProps) {
             onSelectSize={(size) => setIsUnavailableSize(size.unavailableSize)}
             {...attributes}
           />
-          <ProductDescription
-            product={product}
-          />
+          <ProductDescription product={product} />
+          <Color product={product} />
           {renderFreight()}
           {renderSubmitButtons()}
         </Styles.ProductInfo>

@@ -11,3 +11,5 @@ export interface ProductColorsRequest {
   id: number
   attributes: ProductColorsAttr
 }
+
+export type ProductColor = ProductColorsRequest
