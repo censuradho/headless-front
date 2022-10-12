@@ -7,7 +7,7 @@ import { cmsApi } from ".";
 
 export async function getProductColor(productId: number) {
   const query = strapiQuery.parse("/product-colors", {
-    populate: ["image"],
+    populate: ["image", "products"],
     filters: {
       products: {
         id: {

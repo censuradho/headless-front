@@ -1,9 +1,12 @@
-import { Image } from "./product";
+import { Image, Product } from "./product";
 
 export interface ProductColorsAttr {
   name: string,
   image: {
     data: Image
+  }
+  products?: {
+    data: Product[]
   }
 }
 

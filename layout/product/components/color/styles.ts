@@ -6,14 +6,26 @@ export const Container = styled("div", {
 });
 
 export const Item = styled("li", {
-  width: "2.2rem",
-  height: "2.2rem",
+  width: "2rem",
+  height: "2rem",
   borderRadius: "50%",
   overflow: "hidden",
-  borderColor: "$foreground",
-  borderWidth: "4px",
-  borderStyle: "solid",
   cursor: "pointer",
+
+  variants: {
+    selected: {
+      true: {
+        borderColor: "$foreground",
+        borderWidth: "4px",
+        borderStyle: "solid",
+      },
+      false: {
+        borderColor: "transparent",
+        borderWidth: "4px",
+        borderStyle: "solid",
+      },
+    },
+  },
 });
 
 export const List = styled("ul", {});

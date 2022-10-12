@@ -6,6 +6,8 @@ import * as Styles from "./styles";
 
 import type { ColorProps } from "./types";
 
+import { Loader } from "./loader";
+
 export function Color(props: ColorProps) {
   const {
     product: {
@@ -15,21 +17,25 @@ export function Color(props: ColorProps) {
 
   const {
     data,
-    error,
     isLoading,
   } = useProductColor(id);
 
-  const renderColors = data?.map((value) => (
-    <Styles.Item key={uuid()}>
-      <Image
-        width={value.attributes?.image?.data?.attributes?.width}
-        src={value.attributes?.image?.data?.attributes?.url}
-        height={value.attributes?.image?.data?.attributes?.height}
-        alt={value.attributes?.image?.data?.attributes?.alternativeText}
-        layout="responsive"
-      />
-    </Styles.Item>
-  ));
+  const renderColors = data?.map((value) => {
+    const productIds = value.attributes?.products?.data?.map?.((product) => product.id);
+    const isSelected = productIds?.includes(id);
+
+    return (
+      <Styles.Item key={uuid()} selected={isSelected}>
+        <Image
+          width={value.attributes?.image?.data?.attributes?.width}
+          src={value.attributes?.image?.data?.attributes?.url}
+          height={value.attributes?.image?.data?.attributes?.height}
+          alt={value.attributes?.image?.data?.attributes?.alternativeText}
+          layout="responsive"
+        />
+      </Styles.Item>
+    );
+  });
 
   return (
     <Styles.Container>

@@ -19,7 +19,7 @@ export function Header() {
   const profileContext = useProfileContext();
 
   const renderCartButton = () => (
-    <CartButton count={profileContext?.favorite?.length} />
+    <CartButton count={profileContext?.wishlist?.length} />
   );
 
   return (

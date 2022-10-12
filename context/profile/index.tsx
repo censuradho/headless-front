@@ -2,13 +2,15 @@ import {
   createContext, useContext, useState,
 } from "react";
 import { baseProfileContext } from "./mock";
-import { Favorite, ProfileContextProps, ProfileProviderProps } from "./types";
+import {
+  Favorite, ProfileContextProps, ProfileProviderProps, Wishlist,
+} from "./types";
 
 const ProfileContext = createContext<ProfileContextProps>(baseProfileContext);
 
 export function ProfileProvider({ children }: ProfileProviderProps) {
   const [favorite, setFavorite] = useState(baseProfileContext.favorite);
-  const [bag, setBag] = useState(baseProfileContext.bag);
+  const [wishlist, setWishlist] = useState(baseProfileContext.wishlist);
 
   const handleLikeProduct = (data: Favorite) => {
     setFavorite((prevState) => ([
@@ -25,16 +27,29 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
     ]));
   };
 
+  const handleAddWishlist = (data: Wishlist) => {
+    setWishlist((prevState) => ([
+      ...prevState,
+      data,
+    ]));
+  };
+
+  const handleRemoveWishlist = (data: Favorite) => {
+    setWishlist((prevState) => ([
+      ...prevState.filter((value) => value.id !== data.id),
+    ]));
+  };
+
   return (
     <ProfileContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         favorite,
-        setFavorite,
-        setBag,
-        bag,
+        wishlist,
         likeProduct: handleLikeProduct,
         unlikeProduct: handleUnlikeProduct,
+        addWishlist: handleAddWishlist,
+        removeWishlist: handleRemoveWishlist,
       }}
     >
       {children}

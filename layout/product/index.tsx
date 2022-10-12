@@ -1,4 +1,5 @@
 import { Button } from "components";
+import { useProfileContext } from "context";
 import { useState } from "react";
 import {
   Preview,
@@ -13,11 +14,14 @@ import * as Styles from "./styles";
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
+  const profileContext = useProfileContext();
+
   const [isUnavailableSize, setIsUnavailableSize] = useState(false);
 
   const {
     product: {
       attributes,
+      id,
     },
     product,
   } = props;
@@ -26,7 +30,7 @@ export function ProductPageLayout(props: ProductPageProps) {
     if (isUnavailableSize) return null;
 
     return (
-      <Styles.BuyButtons>
+      <Styles.BuyButtons onClick={() => profileContext?.addWishlist?.({ id })}>
         <Button fullWidth variant="letter">Adicionar à sacola</Button>
         <Button fullWidth>Comprar</Button>
       </Styles.BuyButtons>

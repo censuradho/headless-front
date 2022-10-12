@@ -8,15 +8,15 @@ export interface Favorite {
   id: number
 }
 
-interface Bag {
+export interface Wishlist {
   id: number
 }
 
 export interface ProfileContextProps {
   favorite: Favorite[]
-  setFavorite: Dispatch<SetStateAction<Favorite[]>>
-  setBag: Dispatch<SetStateAction<Bag[]>>
   likeProduct?: (data: Favorite) => void;
   unlikeProduct?: (data: Favorite) => void;
-  bag: Bag[]
+  addWishlist?: (data: Wishlist) => void
+  removeWishlist?: (data: Wishlist) => void
+  wishlist: Wishlist[]
 }
