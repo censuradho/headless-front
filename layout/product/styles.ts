@@ -13,7 +13,7 @@ export const Content = styled("div", {
   width: "100%",
   display: "flex",
   flexDirection: "column",
-
+  paddingBottom: "2rem",
   "@laptops-min": {
     maxWidth: "1280px",
     margin: "0 auto",

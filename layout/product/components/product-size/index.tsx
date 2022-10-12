@@ -1,5 +1,5 @@
 import { SizeButton, Tooltip, Typography } from "components";
-import { useProductSizes } from "hooks/useProductSizes";
+import { SizeOption, useProductSizes } from "hooks/useProductSizes";
 
 import { uuid } from "utils";
 import { NotifyMe } from "../notify-me";
@@ -8,7 +8,11 @@ import * as Styles from "./styles";
 import { ProductSizeProps } from "./types";
 
 export function ProductSizes(props: ProductSizeProps) {
-  const { onSelectSize, ...otherProps } = props;
+  const {
+    onSelectSize,
+    errorMessage,
+    ...otherProps
+  } = props;
 
   const {
     sizes,
@@ -17,6 +21,11 @@ export function ProductSizes(props: ProductSizeProps) {
 
   } = useProductSizes(otherProps);
 
+  const handleSelectSize = (value: SizeOption) => {
+    setSize(value);
+    onSelectSize?.(value);
+  };
+
   const renderSizes = sizes.map((value) => {
     const isSelected = value.size === size?.size;
 
@@ -24,10 +33,7 @@ export function ProductSizes(props: ProductSizeProps) {
       <li key={uuid()}>
         <Tooltip message={value.remainingMessage}>
           <SizeButton
-            onClick={() => {
-              setSize(value);
-              onSelectSize?.(value);
-            }}
+            onClick={() => handleSelectSize(value)}
             selected={isSelected}
             disabled={value.unavailableSize}
           >
@@ -48,6 +54,7 @@ export function ProductSizes(props: ProductSizeProps) {
   return (
     <Styles.Container>
       <Typography variant="callout">Tamanho</Typography>
+      {errorMessage && <Styles.ErrorMessage uppercase>Selecione Uma Opção</Styles.ErrorMessage>}
       <Styles.SizeList>
         {renderSizes}
       </Styles.SizeList>

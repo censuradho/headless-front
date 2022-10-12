@@ -2,6 +2,7 @@ import { Image, Typography } from "components";
 import { useProductColor } from "hooks/services";
 import { uuid } from "utils";
 
+import { useMemo } from "react";
 import * as Styles from "./styles";
 
 import type { ColorProps } from "./types";
@@ -20,7 +21,7 @@ export function Color(props: ColorProps) {
     isLoading,
   } = useProductColor(id);
 
-  const renderColors = data?.map((value) => {
+  const renderColors = useMemo(() => data?.map((value) => {
     const productIds = value.attributes?.products?.data?.map?.((product) => product.id);
     const isSelected = productIds?.includes(id);
 
@@ -35,7 +36,7 @@ export function Color(props: ColorProps) {
         />
       </Styles.Item>
     );
-  });
+  }), [data]);
 
   return (
     <Styles.Container>

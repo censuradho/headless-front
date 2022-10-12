@@ -27,7 +27,12 @@ export function Freight() {
         Calcular frete
       </Typography>
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
-        <Input fullWidth register={register("cep")} placeholder="00000-00" />
+        <Input
+          errorMessage={errors?.cep?.message}
+          fullWidth
+          register={register("cep")}
+          placeholder="00000-00"
+        />
         <Button>Calcular</Button>
       </Styles.Form>
       <Styles.Link

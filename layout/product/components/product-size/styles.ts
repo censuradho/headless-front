@@ -1,3 +1,4 @@
+import { Typography } from "components";
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {
@@ -14,4 +15,8 @@ export const SizeList = styled("ul", {
   display: "flex",
   gap: "1.25rem",
   flexWrap: "wrap",
+});
+
+export const ErrorMessage = styled(Typography, {
+  color: "$error",
 });
