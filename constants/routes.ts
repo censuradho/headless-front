@@ -1,32 +1,33 @@
 export const paths = {
-  pdp: '/:slug/p/:id',
-  home: '/home',
-  vibradores: '/vibradores',
-  lingerie: 'lingerie',
-  saudeIntima: 'saudeIntima',
-  cart: 'cart',
-}
+  pdp: "/:slug/p/:id",
+  home: "/home",
+  vibradores: "/vibradores",
+  lingerie: "/lingerie",
+  saudeIntima: "/saudeIntima",
+  cart: "/cart",
+  auth: "/auth",
+};
 
 export const routePaths = {
   home: {
-    label: 'Home',
-    link: '/'
+    label: "Home",
+    link: "/",
   },
   vibradores: {
-    label: 'Vibradores',
-    link: '/p/vibradores'
+    label: "Vibradores",
+    link: "/p/vibradores",
   },
   lingerie: {
-    label: 'lingerie',
-    link: '/p/vibradores'
+    label: "lingerie",
+    link: "/p/vibradores",
   },
   saudeIntima: {
-    label: 'Saúde intima',
-    link: '/p/saude-intima'
+    label: "Saúde intima",
+    link: "/p/saude-intima",
   },
   cart: {
-    label: 'Carrinho',
-    link: '/cart'
+    label: "Carrinho",
+    link: "/cart",
   },
 
-}
+};

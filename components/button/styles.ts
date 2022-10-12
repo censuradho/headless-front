@@ -23,7 +23,9 @@ export const Button = styled("button", {
       },
       primary: {
         background: "$primary",
-        color: "white",
+        "> *": {
+          color: "white",
+        },
         padding: "1rem 3rem",
 
         "svg path": {

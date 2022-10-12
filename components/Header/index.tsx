@@ -6,7 +6,7 @@ import {
 } from "components";
 
 import { useBooleanToggle } from "hooks";
-import { routePaths } from "constants/routes";
+import { paths, routePaths } from "constants/routes";
 
 import * as Styles from "./styles";
 
@@ -46,7 +46,14 @@ export function Header() {
             alignItems="center"
             gap={2.375}
           >
-            <Button variant="letter" icon={{ name: "outlineUser" }}>Minha conta</Button>
+            <Button
+              as="a"
+              href={paths.auth}
+              variant="letter"
+              icon={{ name: "outlineUser" }}
+            >
+              Minha conta
+            </Button>
             {renderCartButton()}
           </Box>
         </HiddenView>

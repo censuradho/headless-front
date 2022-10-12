@@ -1,3 +1,5 @@
+import { LinkProps } from "next/link";
+
 import { VariantProps } from "@stitches/react";
 import { Icon } from "components";
 import { ComponentProps, ButtonHTMLAttributes } from "react";
@@ -10,10 +12,17 @@ type RootButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>,
   | "type"
   | "disabled"
 >
+
+type NextLinkProps = Partial<Pick<LinkProps,
+"href"
+>>
+
 export interface ButtonProps extends
   VariantProps<typeof Button>,
-  RootButtonProps {
+  RootButtonProps,
+  NextLinkProps {
   children: string
   icon?: ComponentProps<typeof Icon>
   loading?: boolean
+  as?: any
 }
