@@ -2,7 +2,6 @@ import { ButtonIcon } from "components";
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {
-  position: "relative",
   overflow: "hidden",
   maxHeight: "70vh",
   width: "100%",

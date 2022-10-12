@@ -1,15 +1,20 @@
 import {
-  createContext, useContext, useState,
+  createContext, useContext, useMemo, useState,
 } from "react";
 import { baseProfileContext } from "./mock";
 import {
-  Favorite, ProfileContextProps, ProfileProviderProps, Wishlist,
+  Favorite,
+  ProfileContextProps,
+  ProfileProviderProps,
+  Wish,
+  WishProduct,
 } from "./types";
 
 const ProfileContext = createContext<ProfileContextProps>(baseProfileContext);
 
 export function ProfileProvider({ children }: ProfileProviderProps) {
   const [favorite, setFavorite] = useState(baseProfileContext.favorite);
+
   const [wishlist, setWishlist] = useState(baseProfileContext.wishlist);
 
   const handleLikeProduct = (data: Favorite) => {
@@ -27,29 +32,36 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
     ]));
   };
 
-  const handleAddWishlist = (data: Wishlist) => {
-    setWishlist((prevState) => ([
+  const handleAddWishlist = (data: Wish) => {
+    setWishlist((prevState) => ({
       ...prevState,
-      data,
-    ]));
+      [data.product.id]: {
+        product: data.product,
+        sizes: {
+          ...prevState?.[data.product.id]?.sizes,
+          [data.size.id]: {
+            data: data.size,
+            amount: (prevState?.[data.product.id]?.sizes?.[data.size.id]?.amount || 0) + 1,
+          },
+        },
+      },
+    }));
   };
 
-  const handleRemoveWishlist = (data: Favorite) => {
-    setWishlist((prevState) => ([
-      ...prevState.filter((value) => value.id !== data.id),
-    ]));
-  };
+  const wishlistProducts = Object
+    .entries(wishlist || {})
+    .map(([, value]) => value) as WishProduct[];
 
   return (
     <ProfileContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         favorite,
-        wishlist,
+        addWishlist: handleAddWishlist,
+        wishlistProducts,
+        wishlist: useMemo(() => wishlist, [wishlist]),
         likeProduct: handleLikeProduct,
         unlikeProduct: handleUnlikeProduct,
-        addWishlist: handleAddWishlist,
-        removeWishlist: handleRemoveWishlist,
       }}
     >
       {children}

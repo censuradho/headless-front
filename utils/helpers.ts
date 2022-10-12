@@ -23,3 +23,7 @@ export function parseUrlQuery(value: ReturnType<typeof useRouter>["query"]) {
   if (typeof value !== "string") return null;
   return value;
 }
+
+export function getPriceProduct(price: number, discount?: number) {
+  return discount ? getPercentValue(discount, price) : price;
+}

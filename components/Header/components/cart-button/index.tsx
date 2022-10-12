@@ -4,24 +4,38 @@ import { Icon } from "components";
 
 import { routePaths } from "constants/routes";
 import { uuid } from "utils";
+import { useProfileContext } from "context";
+
 import * as Styles from "./styles";
 import { CartButtonProps } from "./types";
-
 import { ProductPreview } from "./components";
 
 export function CartButton(props: CartButtonProps) {
   const { count } = props;
+  const profileContext = useProfileContext();
 
   const router = useRouter();
 
-  const itens = [1, 2, 3];
+  const renderProductItems = profileContext?.wishlistProducts?.map((product) => {
+    const sizes = Object
+      .entries(product.sizes)
+      .map(([, size]) => size);
 
-  const renderProductItems = itens.map((value) => (
-    <ProductPreview key={uuid()} />
-  ));
+    const renderCards = sizes.map((size) => (
+      <ProductPreview
+        key={uuid()}
+        amount={size.amount}
+        product={product.product}
+        size={size?.data}
+      />
+    ));
+
+    return renderCards;
+  });
 
   const renderCount = () => {
     if (!count) return null;
+
     return (
       <Styles.Count>{count}</Styles.Count>
     );

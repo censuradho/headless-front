@@ -17,7 +17,7 @@ export function Preview(props: PreviewProps) {
   const profileContext = useProfileContext();
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentSlidePreview, setCurrentSlidePreview] = useState(0);
+  const [, setCurrentSlidePreview] = useState(0);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: {

@@ -23,7 +23,6 @@ export function ProductPageLayout(props: ProductPageProps) {
   const {
     product: {
       attributes,
-      id,
     },
     product,
   } = props;
@@ -34,7 +33,10 @@ export function ProductPageLayout(props: ProductPageProps) {
     const handleAddWishlist = () => {
       if (!size) return setIsUnselected(true);
 
-      profileContext?.addWishlist?.({ id });
+      profileContext?.addWishlist?.({
+        product,
+        size,
+      });
     };
 
     return (
@@ -72,8 +74,8 @@ export function ProductPageLayout(props: ProductPageProps) {
         <Styles.ProductInfo>
           <ProductInfo {...attributes} />
           <ProductSizes
-            onSelectSize={(size) => {
-              setSize(size);
+            onSelectSize={(option) => {
+              setSize(option);
               setIsUnselected(false);
             }}
             errorMessage={isUnselected ? "Selecione uma opção" : ""}
