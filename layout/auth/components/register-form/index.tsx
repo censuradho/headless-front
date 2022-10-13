@@ -17,7 +17,14 @@ export function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>({
-    // resolver: yupResolver(registerSchemaValidation),
+    resolver: yupResolver(registerSchemaValidation),
+    defaultValues: {
+      email: "teste@teste.com",
+      lastName: "saasd",
+      password: "123456",
+      rePassword: "123456",
+      username: "teste",
+    },
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -48,23 +55,27 @@ export function RegisterForm() {
           type="email"
           errorMessage={errors.email?.message}
           register={register("email")}
+          id="email"
         />
         <Box gap={1}>
           <Input
             fullWidth
             label="Nome"
+            id="username"
             register={register("username")}
             errorMessage={errors.username?.message}
           />
           <Input
             fullWidth
             label="Sobrenome"
+            id="lastName"
             errorMessage={errors.lastName?.message}
             register={register("lastName")}
           />
         </Box>
         <InputPassword
           fullWidth
+          id="password"
           label="Senha"
           errorMessage={errors.password?.message}
           register={register("password")}
@@ -72,6 +83,7 @@ export function RegisterForm() {
         <InputPassword
           fullWidth
           label="Confirmar senha"
+          id="rePassword"
           register={register("rePassword")}
           errorMessage={errors.rePassword?.message}
         />

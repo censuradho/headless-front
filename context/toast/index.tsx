@@ -3,6 +3,7 @@ import {
 } from "react";
 
 import { Box, Typography } from "components";
+import { cmsApi } from "services/rest/cms";
 import { ToastContextProps, Notify, ToastProviderProps } from "./types";
 
 import * as Styles from "./styles";
@@ -37,6 +38,16 @@ export function ToastProvider({ children }: ToastProviderProps) {
 
     return <Styles.Action altText={notify.action}>{notify.action}</Styles.Action>;
   };
+
+  cmsApi.interceptors.response.use((response) => response, (error) => {
+    if (error.response.status === 400) {
+      onNotify({
+        title: "Ocorreu algum erro no servidor, tente novamente",
+      });
+    }
+
+    return error;
+  });
 
   return (
     <ToastContext.Provider
