@@ -2,6 +2,7 @@ import {
   createContext, useContext, useState,
 } from "react";
 
+import { Box, Typography } from "components";
 import { ToastContextProps, Notify, ToastProviderProps } from "./types";
 
 import * as Styles from "./styles";
@@ -26,6 +27,11 @@ export function ToastProvider({ children }: ToastProviderProps) {
     setIsOpen(true);
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+    setNotify(baseNotify);
+  };
+
   const renderAction = () => {
     if (!notify.action) return null;
 
@@ -39,13 +45,22 @@ export function ToastProvider({ children }: ToastProviderProps) {
         onNotify,
       }}
     >
-      <Styles.Provider>
+      <Styles.Provider swipeDirection="right">
         {children}
-        <Styles.Root open={isOpen}>
-          <Styles.Title>{notify.title}</Styles.Title>
-          <Styles.Description>{notify.description}</Styles.Description>
-          {renderAction()}
+        <Styles.Root
+          open={isOpen}
+          onOpenChange={handleClose}
+          onEscapeKeyDown={handleClose}
+        >
+          <Styles.Title asChild>
+            <Typography variant="sub-headline">{notify.title}</Typography>
+          </Styles.Title>
+          <Box fullWidth justifyContent="space-between" gap={1}>
+            <Styles.Description>{notify.description}</Styles.Description>
+            {renderAction()}
+          </Box>
         </Styles.Root>
+        <Styles.Viewport />
       </Styles.Provider>
     </ToastContext.Provider>
   );

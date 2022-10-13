@@ -17,7 +17,7 @@ export function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>({
-    resolver: yupResolver(registerSchemaValidation),
+    // resolver: yupResolver(registerSchemaValidation),
   });
 
   const [isLoading, setIsLoading] = useState(false);
