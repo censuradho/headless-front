@@ -1,4 +1,8 @@
-import { LoginForm } from "./components";
+import {
+  LoginForm,
+  RegisterForm,
+} from "./components";
+
 import * as Styles from "./styles";
 
 export function AuthLayout() {
@@ -7,7 +11,7 @@ export function AuthLayout() {
       <Styles.FormView>
         <LoginForm />
         <Styles.VerticalLine />
-        <LoginForm />
+        <RegisterForm />
       </Styles.FormView>
     </Styles.Container>
   );

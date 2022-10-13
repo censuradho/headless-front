@@ -11,6 +11,7 @@ export const FormView = styled("section", {
   display: "flex",
   flexDirection: "column",
   height: "max-content",
+  padding: "1.25rem",
 
   "@table-min": {
     flexDirection: "row",
