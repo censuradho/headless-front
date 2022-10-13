@@ -5,6 +5,14 @@ export const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
+
+  variants: {
+    fullWidth: {
+      true: {
+        width: "100%",
+      },
+    },
+  },
 });
 
 export const Input = styled("input", {
@@ -25,11 +33,6 @@ export const Input = styled("input", {
   },
 
   variants: {
-    fullWidth: {
-      true: {
-        width: "100%",
-      },
-    },
     hasError: {
       true: {
         borderColor: "$error",

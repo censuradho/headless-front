@@ -8,6 +8,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     label,
     errorMessage,
     register,
+    fullWidth,
     ...otherProps
   } = props;
   const hasError = !!errorMessage;
@@ -36,7 +37,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
   };
 
   return (
-    <Styles.Container>
+    <Styles.Container fullWidth={fullWidth}>
       {renderLabel()}
       <Styles.Input
         {...otherProps}

@@ -2,7 +2,7 @@ import { VariantProps } from "@stitches/react";
 import { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 
-import { Input } from "./styles";
+import { Container } from "./styles";
 
 type RootInputProps = Pick<InputHTMLAttributes<HTMLInputElement>,
   "onChange"
@@ -14,7 +14,7 @@ type RootInputProps = Pick<InputHTMLAttributes<HTMLInputElement>,
   | "defaultValue"
 >
 
-type InputStylesProps = Pick<VariantProps<typeof Input>,
+type InputStylesProps = Pick<VariantProps<typeof Container>,
   "fullWidth"
 >
 export interface InputProps extends
