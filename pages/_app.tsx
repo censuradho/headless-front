@@ -1,4 +1,4 @@
-import { ProfileProvider, ThemeProvider } from "context";
+import { ProfileProvider, ThemeProvider, ToastProvider } from "context";
 
 import type { AppProps } from "next/app";
 
@@ -6,7 +6,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ProfileProvider>
       <ThemeProvider>
-        <Component {...pageProps} />
+        <ToastProvider>
+          <Component {...pageProps} />
+        </ToastProvider>
       </ThemeProvider>
     </ProfileProvider>
   );
