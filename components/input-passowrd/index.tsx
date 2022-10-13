@@ -11,7 +11,7 @@ export function InputPassword(props: InputPasswordProps) {
     <Input
       {...props}
       onRightIconClick={() => setIsVisible((prevState) => !prevState)}
-      type={isVisible ? "password" : "text"}
+      type={!isVisible ? "password" : "text"}
       leftIcon={{
         name: "key",
       }}

@@ -18,11 +18,13 @@ import {
   IosKey,
   IosEye,
   IosEyeOff,
+  IosMail,
 } from "@meronex/icons/ios";
 
 export const icons = {
   menu: FiMenu,
   heart: AiFillHeart,
+  mail: IosMail,
   shoppingBag: BiShoppingBag,
   outlineUser: AiOutlineUser,
   outlineHeart: IosHeartEmpty,

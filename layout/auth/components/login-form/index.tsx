@@ -28,7 +28,11 @@ export function LoginForm() {
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
         <Input
           fullWidth
+          type="email"
           label="Email"
+          leftIcon={{
+            name: "mail",
+          }}
           register={register("email")}
           errorMessage={errors?.email?.message}
         />
