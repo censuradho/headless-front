@@ -5,6 +5,8 @@ import {
   Box, Button, Input, InputPassword, Typography,
 } from "components";
 
+import { createUserWithEmailPassword } from "services/rest/cms/auth";
+import { useState } from "react";
 import * as Styles from "./styles";
 import { registerSchemaValidation } from "./validations";
 import { RegisterFormData } from "./types";
@@ -18,8 +20,22 @@ export function RegisterForm() {
     resolver: yupResolver(registerSchemaValidation),
   });
 
-  const onSubmit = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
+  const onSubmit = async (data: RegisterFormData) => {
+    try {
+      setIsLoading(true);
+
+      const { email, password, username } = data;
+
+      await createUserWithEmailPassword({
+        email,
+        password,
+        username,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -62,6 +78,7 @@ export function RegisterForm() {
         <Button
           fullWidth
           type="submit"
+          loading={isLoading}
         >
           Prosseguir
         </Button>
