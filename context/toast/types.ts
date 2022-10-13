@@ -4,11 +4,11 @@ export interface ToastProviderProps {
   children: ReactNode
 }
 
-export interface ToastProps {
+export interface Notify {
   title: string
   action?: string
   description?: string
 }
 export interface ToastContextProps {
-  toast: (props: ToastProps) => void
+  onNotify: (props: Notify) => void
 }

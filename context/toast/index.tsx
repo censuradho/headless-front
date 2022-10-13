@@ -1,12 +1,17 @@
-import { createContext, useRef, useState } from "react";
+import {
+  createContext, useContext, useState,
+} from "react";
 
-import { ToastContextProps, ToastProps, ToastProviderProps } from "./types";
+import { ToastContextProps, Notify, ToastProviderProps } from "./types";
 
 import * as Styles from "./styles";
 
-const ToastContext = createContext<ToastContextProps>(null!);
+const ToastContext = createContext<ToastContextProps>({
+  // eslint-disable-next-line no-unused-vars
+  onNotify: (options: Notify) => {},
+});
 
-const baseNotify: ToastProps = {
+const baseNotify: Notify = {
   title: "",
   description: "",
   action: "",
@@ -16,7 +21,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [notify, setNotify] = useState(baseNotify);
 
-  const toast = (props: ToastProps) => {
+  const onNotify = (props: Notify) => {
     setNotify(props);
     setIsOpen(true);
   };
@@ -31,7 +36,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
     <ToastContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
-        toast,
+        onNotify,
       }}
     >
       <Styles.Provider>
@@ -45,3 +50,5 @@ export function ToastProvider({ children }: ToastProviderProps) {
     </ToastContext.Provider>
   );
 }
+
+export const useToast = () => useContext(ToastContext);
