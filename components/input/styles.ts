@@ -18,6 +18,7 @@ export const Container = styled("div", {
 export const Input = styled("input", {
   borderColor: "$highlight",
   borderWidth: "1px",
+  width: "100%",
   borderStyle: "solid",
   height: "3rem",
   outline: "none",
@@ -33,6 +34,16 @@ export const Input = styled("input", {
   },
 
   variants: {
+    hasLeftIcon: {
+      true: {
+        paddingLeft: "2.52rem",
+      },
+    },
+    hasRightIcon: {
+      true: {
+        paddingRight: "2.7rem",
+      },
+    },
     hasError: {
       true: {
         borderColor: "$error",
@@ -56,4 +67,21 @@ export const Label = styled(Typography, {
 
 export const ErrorMessage = styled(Typography, {
   color: "$error",
+});
+
+export const LeftIconView = styled("div", {
+  position: "absolute",
+  left: "1rem",
+});
+
+export const RightIconView = styled("div", {
+  position: "absolute",
+  right: "1rem",
+});
+
+export const IconView = styled("div", {
+  position: "relative",
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
 });

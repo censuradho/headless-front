@@ -1,3 +1,6 @@
+import { ButtonIcon } from "components/button-icon";
+import { Icon } from "components/icon";
+import { IconProps } from "components/icon/type";
 import { forwardRef, memo } from "react";
 
 import * as Styles from "./styles";
@@ -9,6 +12,10 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     errorMessage,
     register,
     fullWidth,
+    leftIcon,
+    rightIcon,
+    onLeftIconClick,
+    onRightIconClick,
     ...otherProps
   } = props;
   const hasError = !!errorMessage;
@@ -36,15 +43,57 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     );
   };
 
+  const renderIcon = (icon: IconProps, callback?: () => void) => {
+    if (callback) {
+      return (
+        <ButtonIcon
+          onClick={callback}
+          type="button"
+          icon={icon}
+        />
+      );
+    }
+
+    return (
+      <Icon {...icon} />
+    );
+  };
+
+  const renderLeftIcon = () => {
+    if (!leftIcon) return null;
+
+    return (
+      <Styles.LeftIconView>
+        {renderIcon(leftIcon, onLeftIconClick)}
+      </Styles.LeftIconView>
+    );
+  };
+
+  const renderRightIcon = () => {
+    if (!rightIcon) return null;
+
+    return (
+      <Styles.RightIconView>
+        {renderIcon(rightIcon, onRightIconClick)}
+      </Styles.RightIconView>
+    );
+  };
+
   return (
     <Styles.Container fullWidth={fullWidth}>
       {renderLabel()}
-      <Styles.Input
-        {...otherProps}
-        ref={ref}
-        {...register}
-        hasError={hasError}
-      />
+      <Styles.IconView>
+        {renderLeftIcon()}
+        <Styles.Input
+          {...otherProps}
+          ref={ref}
+          {...register}
+          hasError={hasError}
+          hasLeftIcon={!!leftIcon}
+          hasRightIcon={!!rightIcon}
+        />
+        {renderRightIcon()}
+      </Styles.IconView>
       {renderErrorMessage()}
     </Styles.Container>
   );

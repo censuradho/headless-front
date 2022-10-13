@@ -1,5 +1,10 @@
 import { FiMenu, FiTruck } from "@meronex/icons/fi";
-import { AiOutlineUser, AiFillHeart } from "@meronex/icons/ai";
+import {
+  AiOutlineUser,
+  AiFillHeart,
+  AiOutlineEyeInvisible,
+  AiOutlineEye,
+} from "@meronex/icons/ai";
 import { BiShoppingBag } from "@meronex/icons/bi";
 import { BsChevronDown, BsChevronUp } from "@meronex/icons/bs";
 import {
@@ -10,6 +15,9 @@ import {
   IosTrash,
   IosAdd,
   IosRemove,
+  IosKey,
+  IosEye,
+  IosEyeOff,
 } from "@meronex/icons/ios";
 
 export const icons = {
@@ -19,6 +27,10 @@ export const icons = {
   outlineUser: AiOutlineUser,
   outlineHeart: IosHeartEmpty,
   outlineTruck: FiTruck,
+  outlineEyeInvisible: AiOutlineEyeInvisible,
+  outlineEye: AiOutlineEye,
+  eye: IosEye,
+  eyeOff: IosEyeOff,
   chevronDown: BsChevronDown,
   chevronUp: BsChevronUp,
   arrowRoundBack: IosArrowRoundBack,
@@ -27,4 +39,5 @@ export const icons = {
   trash: IosTrash,
   add: IosAdd,
   remove: IosRemove,
+  key: IosKey,
 };

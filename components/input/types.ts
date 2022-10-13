@@ -1,4 +1,5 @@
 import { VariantProps } from "@stitches/react";
+import { IconProps } from "components/icon/type";
 import { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 
@@ -12,6 +13,7 @@ type RootInputProps = Pick<InputHTMLAttributes<HTMLInputElement>,
   | "id"
   | "placeholder"
   | "defaultValue"
+  | "type"
 >
 
 type InputStylesProps = Pick<VariantProps<typeof Container>,
@@ -23,4 +25,8 @@ export interface InputProps extends
   label?: string
   register?: UseFormRegisterReturn
   errorMessage?: string
+  leftIcon?: IconProps
+  rightIcon?: IconProps
+  onRightIconClick?: () => void;
+  onLeftIconClick?: () => void;
 }
