@@ -26,3 +26,10 @@ export interface CreateUserWithEmailPasswordResponse {
   jwt: string
   user: User
 }
+
+export interface LoginPayload {
+  identifier: string
+  password: string
+}
+
+export type LoginResponse = CreateUserWithEmailPasswordResponse

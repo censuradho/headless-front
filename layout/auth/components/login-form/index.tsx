@@ -7,6 +7,9 @@ import {
 
 import { LoginFormData } from "layout/auth/types";
 
+import { login } from "services/rest/cms/auth";
+import { useAuth } from "context";
+import { useState } from "react";
 import * as Styles from "./styles";
 
 import { loginValidationSchema } from "./validations";
@@ -20,7 +23,25 @@ export function LoginForm() {
     resolver: yupResolver(loginValidationSchema),
   });
 
-  const onSubmit = () => {};
+  const [isLoading, setIsLoading] = useState(false);
+
+  const auth = useAuth();
+
+  const onSubmit = async (payload: LoginFormData) => {
+    try {
+      setIsLoading(true);
+
+      const { data } = await login({
+        identifier: payload.email,
+        password: payload.password,
+      });
+
+      auth?.setJwt(data.jwt);
+      auth?.setUser(data.user);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Styles.Container>
@@ -28,7 +49,6 @@ export function LoginForm() {
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
         <Input
           fullWidth
-          type="email"
           label="Email"
           leftIcon={{
             name: "mail",
@@ -49,7 +69,10 @@ export function LoginForm() {
         >
           Esqueci minha senha
         </Button>
-        <Button fullWidth>
+        <Button
+          fullWidth
+          loading={isLoading}
+        >
           Acessar conta
         </Button>
       </Styles.Form>

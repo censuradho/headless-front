@@ -38,14 +38,14 @@ export function RegisterForm() {
 
       const { email, password, username } = data;
 
-      const { jwt, user } = await createUserWithEmailPassword({
+      const response = await createUserWithEmailPassword({
         email,
         password,
         username,
       });
 
-      auth?.setJwt(jwt);
-      auth?.setUser(user);
+      auth?.setJwt(response?.data?.jwt);
+      auth?.setUser(response?.data?.user);
     } finally {
       setIsLoading(false);
     }

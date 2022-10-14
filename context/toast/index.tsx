@@ -40,18 +40,18 @@ export function ToastProvider({ children }: ToastProviderProps) {
     return <Styles.Action altText={notify.action}>{notify.action}</Styles.Action>;
   };
 
-  cmsApi.interceptors.response.use((response: any) => {
-    console.log(response);
-    if (response?.status) return response;
+  // cmsApi.interceptors.response.use((response: any) => {
+  //   console.log(response);
+  //   if (response?.status) return response;
 
-    if (API_ERRORS?.[response?.response?.data?.error?.message as keyof typeof API_ERRORS]) {
-      onNotify({
-        title: API_ERRORS?.[response.response.data.error.message as keyof typeof API_ERRORS],
-      });
-    }
+  //   if (API_ERRORS?.[response?.response?.data?.error?.message as keyof typeof API_ERRORS]) {
+  //     onNotify({
+  //       title: API_ERRORS?.[response.response.data.error.message as keyof typeof API_ERRORS],
+  //     });
+  //   }
 
-    return response;
-  });
+  //   return response;
+  // });
 
   return (
     <ToastContext.Provider
