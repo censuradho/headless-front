@@ -28,6 +28,7 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
       </Box>
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
         <Input
+          autoFocus
           id="email"
           leftIcon={{
             name: "mail",

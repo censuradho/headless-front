@@ -36,7 +36,7 @@ export const Button = styled("button", {
           fill: "White",
         },
         "&:hover": {
-          background: "$primaryLight",
+          background: "$primaryDark",
           "svg path": {
             fill: "$primary",
           },
