@@ -1,11 +1,16 @@
 import { styled } from "stitches.config";
 
-export const Container = styled('div', {
+export const Container = styled("div", {
   variants: {
+    fullWidth: {
+      true: {
+        width: "100%",
+      },
+    },
     hidden: {
       true: {
-        display: 'none'
-      }
-    }
-  }
-})
+        display: "none",
+      },
+    },
+  },
+});

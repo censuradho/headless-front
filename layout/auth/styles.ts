@@ -25,4 +25,16 @@ export const VerticalLine = styled("div", {
   background: "$foreground",
   minHeight: "22.8125rem",
   margin: "0 7.65vw",
+
+  "@table-max": {
+    display: "none",
+  },
+});
+
+export const HorizontalLine = styled("div", {
+  height: "1px",
+  width: "100%",
+  background: "$foreground",
+
+  margin: "2rem 0",
 });

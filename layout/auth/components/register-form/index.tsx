@@ -98,7 +98,7 @@ export function RegisterForm() {
           type="submit"
           loading={isLoading}
         >
-          Prosseguir
+          Cadastre-se
         </Button>
       </Styles.Form>
     </Styles.Container>
