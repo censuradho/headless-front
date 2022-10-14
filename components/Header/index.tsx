@@ -10,7 +10,7 @@ import { paths, routePaths } from "constants/routes";
 
 import * as Styles from "./styles";
 
-import { CartButton, Navigation } from "./components";
+import { CartButton, MyAccountButton, Navigation } from "./components";
 
 const Logo = dynamic(() => import("public/icons/logo.svg"));
 
@@ -46,14 +46,7 @@ export function Header() {
             alignItems="center"
             gap={2.375}
           >
-            <Button
-              as="a"
-              href={paths.auth}
-              variant="letter"
-              icon={{ name: "outlineUser" }}
-            >
-              Minha conta
-            </Button>
+            <MyAccountButton />
             {renderCartButton()}
           </Box>
         </HiddenView>

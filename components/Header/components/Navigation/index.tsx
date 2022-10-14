@@ -10,6 +10,7 @@ import { uuid } from "utils";
 
 import { NavigationProps } from "./types";
 import * as Styles from "./styles";
+import { MyAccountButton } from "../my-account-button";
 
 function BaseNavigation(props: NavigationProps) {
   const { isOpen, toggleIsOpen } = props;
@@ -44,12 +45,7 @@ function BaseNavigation(props: NavigationProps) {
         onClick={(event) => event.stopPropagation()}
       >
         <Styles.MyAccount>
-          <Button
-            variant="letter"
-            icon={{ name: "outlineUser" }}
-          >
-            Minha conta
-          </Button>
+          <MyAccountButton />
         </Styles.MyAccount>
         <Styles.List>{renderList}</Styles.List>
         <HiddenView breakpoint="laptops-min">
