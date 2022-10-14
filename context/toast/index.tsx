@@ -4,6 +4,7 @@ import {
 
 import { Box, Typography } from "components";
 import { cmsApi } from "services/rest/cms";
+import { API_ERRORS } from "constants/validations";
 import { ToastContextProps, Notify, ToastProviderProps } from "./types";
 
 import * as Styles from "./styles";
@@ -39,15 +40,14 @@ export function ToastProvider({ children }: ToastProviderProps) {
     return <Styles.Action altText={notify.action}>{notify.action}</Styles.Action>;
   };
 
-  cmsApi.interceptors.response.use((response) => response, (error) => {
-    if (error.response.status === 400) {
+  cmsApi.interceptors.response.use((response: any) => {
+    if (API_ERRORS?.[response?.response?.data?.error?.message as keyof typeof API_ERRORS]) {
       onNotify({
-        title: "Ocorreu algum erro no servidor, tente novamente",
+        title: API_ERRORS?.[response.response.data.error.message as keyof typeof API_ERRORS],
       });
     }
-
-    return error;
-  });
+    return response;
+  }, (error) => error);
 
   return (
     <ToastContext.Provider
