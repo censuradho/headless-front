@@ -3,6 +3,7 @@ import { useLocalStorage } from "hooks";
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { cmsApi } from "services/rest/cms";
@@ -16,6 +17,18 @@ const AuthContext = createContext<AuthContextProps | null>(null);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [jwt, setJwt] = useLocalStorage<string | null>(JWT_KEY, null);
+
+  const handleJWT = () => {
+    if (jwt) {
+      cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
+      return;
+    }
+    delete cmsApi.defaults.headers.common.Authorization;
+  };
+
+  useEffect(() => {
+    handleJWT();
+  }, [jwt]);
 
   return (
     <AuthContext.Provider

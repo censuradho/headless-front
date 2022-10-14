@@ -41,6 +41,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
   };
 
   cmsApi.interceptors.response.use((response: any) => {
+    console.log(response);
     if (response?.status) return response;
 
     if (API_ERRORS?.[response?.response?.data?.error?.message as keyof typeof API_ERRORS]) {
@@ -50,7 +51,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
     }
 
     return response;
-  }, (error) => error);
+  });
 
   return (
     <ToastContext.Provider
