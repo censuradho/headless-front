@@ -1,8 +1,10 @@
 import { cmsApi } from "services/rest/cms";
-import { CreateUserWithEmailPasswordPayload } from "types/auth";
-/**
- * Creates a new user in the database with a default role as 'client'.
-*/
+import {
+  CreateUserWithEmailPasswordPayload,
+  CreateUserWithEmailPasswordResponse,
+} from "types/auth";
+
 export async function createUserWithEmailPassword(payload: CreateUserWithEmailPasswordPayload) {
-  const response = await cmsApi.post("/auth/local/register", payload);
+  const { data } = await cmsApi.post<CreateUserWithEmailPasswordResponse>("/auth/local/register", payload);
+  return data;
 }
