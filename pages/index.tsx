@@ -1,30 +1,30 @@
-import type { GetStaticProps, InferGetStaticPropsType,  } from 'next'
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 
-import { HomeLayout } from 'layout'
-import { getHome } from 'services/rest/cms/home'
-import { HomeProps } from 'layout/home/types'
+import { HomeLayout } from "layout";
+import { getHome } from "services/rest/cms/home";
+import { HomeProps } from "layout/home/types";
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
-    const { data } = await getHome()
+    const { data } = await getHome();
 
     return {
       props: {
-        ...data
+        ...data,
       },
       revalidate: 10,
-    }
+    };
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return {
       props: {},
-      notFound: true
-    }
+      notFound: true,
+    };
   }
+};
+
+function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  return <HomeLayout {...props} />;
 }
 
-function Home (props: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <HomeLayout {...props} />
-}
-
-export default Home
+export default Home;

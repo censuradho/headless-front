@@ -7,6 +7,7 @@ import {
 
 import { createUserWithEmailPassword } from "services/rest/cms/auth";
 import { useState } from "react";
+import { useAuth } from "context";
 import * as Styles from "./styles";
 import { registerSchemaValidation } from "./validations";
 import { RegisterFormData } from "./types";
@@ -27,6 +28,8 @@ export function RegisterForm() {
     },
   });
 
+  const auth = useAuth();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: RegisterFormData) => {
@@ -35,11 +38,14 @@ export function RegisterForm() {
 
       const { email, password, username } = data;
 
-      await createUserWithEmailPassword({
+      const { jwt, user } = await createUserWithEmailPassword({
         email,
         password,
         username,
       });
+
+      auth?.setJwt(jwt);
+      auth?.setUser(user);
     } finally {
       setIsLoading(false);
     }

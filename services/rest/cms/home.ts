@@ -25,8 +25,6 @@ export async function getHome() {
     ],
   });
 
-  console.log(query);
-
   const response = await cmsApi.get<ResponseDataType<Home>>(query);
 
   const { data: home, ...rest } = response;

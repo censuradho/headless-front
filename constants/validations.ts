@@ -6,5 +6,5 @@ export const MESSAGES = {
 };
 
 export const API_ERRORS = {
-  "Email or Username are already taken": "Email ou nome de usuário já existem",
+  "Email or Username are already taken": "Email ou nome de usuário já existe",
 };

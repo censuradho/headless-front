@@ -41,11 +41,14 @@ export function ToastProvider({ children }: ToastProviderProps) {
   };
 
   cmsApi.interceptors.response.use((response: any) => {
+    if (response?.status) return response;
+
     if (API_ERRORS?.[response?.response?.data?.error?.message as keyof typeof API_ERRORS]) {
       onNotify({
         title: API_ERRORS?.[response.response.data.error.message as keyof typeof API_ERRORS],
       });
     }
+
     return response;
   }, (error) => error);
 
