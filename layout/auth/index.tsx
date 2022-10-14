@@ -51,7 +51,6 @@ export function AuthLayout() {
   return (
     <>
       <Header />
-      <Dialog />
       <Styles.Container>
         <Styles.FormView>
           {renderLoginFormMobile()}

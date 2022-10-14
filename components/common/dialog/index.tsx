@@ -4,7 +4,11 @@ import * as Styles from "./styles";
 import { DialogProps } from "./types";
 
 export function Dialog(props: DialogProps) {
-  const { onOpenChange, open } = props;
+  const {
+    onOpenChange,
+    open,
+    children,
+  } = props;
 
   return (
     <Styles.Root open={open} onOpenChange={onOpenChange}>
@@ -18,7 +22,7 @@ export function Dialog(props: DialogProps) {
               }}
             />
           </Styles.Close>
-          <h1>Dialog</h1>
+          {children}
         </Styles.Content>
       </Styles.Portal>
     </Styles.Root>

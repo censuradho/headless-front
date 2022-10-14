@@ -10,9 +10,11 @@ import { LoginFormData } from "layout/auth/types";
 import { login } from "services/rest/cms/auth";
 import { useAuth } from "context";
 import { useState } from "react";
+import { Dialog } from "components/common";
 import * as Styles from "./styles";
 
 import { loginValidationSchema } from "./validations";
+import { RecoveryPassword } from "./components";
 
 export function LoginForm() {
   const {
@@ -24,6 +26,7 @@ export function LoginForm() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isRecoveryPasswordModalOpen, setIsRecoveryPasswordModalOpen] = useState(false);
 
   const auth = useAuth();
 
@@ -44,38 +47,45 @@ export function LoginForm() {
   };
 
   return (
-    <Styles.Container>
-      <Typography variant="title2">Já sou cliente</Typography>
-      <Styles.Form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          fullWidth
-          label="Email"
-          leftIcon={{
-            name: "mail",
-          }}
-          register={register("email")}
-          errorMessage={errors?.email?.message}
-        />
-        <InputPassword
-          fullWidth
-          label="Senha"
-          register={register("password")}
-          errorMessage={errors?.password?.message}
-        />
-        <Button
-          variant="letter-underline"
-          as="a"
-          href="/"
-        >
-          Esqueci minha senha
-        </Button>
-        <Button
-          fullWidth
-          loading={isLoading}
-        >
-          Acessar conta
-        </Button>
-      </Styles.Form>
-    </Styles.Container>
+    <>
+      <RecoveryPassword
+        open={isRecoveryPasswordModalOpen}
+        onOpenChange={setIsRecoveryPasswordModalOpen}
+      />
+      <Styles.Container>
+        <Typography variant="title2">Já sou cliente</Typography>
+        <Styles.Form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            fullWidth
+            label="Email"
+            leftIcon={{
+              name: "mail",
+            }}
+            register={register("email")}
+            errorMessage={errors?.email?.message}
+          />
+          <InputPassword
+            fullWidth
+            label="Senha"
+            register={register("password")}
+            errorMessage={errors?.password?.message}
+          />
+          <Button
+            onClick={() => setIsRecoveryPasswordModalOpen(true)}
+            type="button"
+            variant="letter-underline"
+          >
+            Esqueci minha senha
+          </Button>
+          <Button
+            fullWidth
+            loading={isLoading}
+          >
+            Acessar conta
+          </Button>
+        </Styles.Form>
+      </Styles.Container>
+    </>
+
   );
 }

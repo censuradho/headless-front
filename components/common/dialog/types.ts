@@ -1,4 +1,5 @@
 import { DialogProps as RadixDialogProps } from "@radix-ui/react-dialog";
+import { ReactNode } from "react";
 
 type RootDialogProps = Pick<RadixDialogProps,
   "onOpenChange"
@@ -6,5 +7,5 @@ type RootDialogProps = Pick<RadixDialogProps,
 >
 
 export interface DialogProps extends RootDialogProps {
-
+  children: ReactNode
 }

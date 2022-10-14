@@ -72,11 +72,17 @@ export const ErrorMessage = styled(Typography, {
 export const LeftIconView = styled("div", {
   position: "absolute",
   left: "1rem",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 export const RightIconView = styled("div", {
   position: "absolute",
   right: "1rem",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 export const IconView = styled("div", {
