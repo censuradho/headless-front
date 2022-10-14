@@ -10,6 +10,9 @@ export const Button = styled("button", {
 
   outline: "none",
 
+  "&:focus": {
+    background: "$foreground",
+  },
   variants: {
     isRipple: {
       true: {
