@@ -1,4 +1,5 @@
 import { Button, Header, HiddenView } from "components";
+import { Dialog } from "components/common";
 import { useBooleanToggle } from "hooks";
 import { isBrowser } from "utils";
 
@@ -50,6 +51,7 @@ export function AuthLayout() {
   return (
     <>
       <Header />
+      <Dialog />
       <Styles.Container>
         <Styles.FormView>
           {renderLoginFormMobile()}

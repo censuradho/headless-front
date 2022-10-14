@@ -19,6 +19,7 @@ import {
   IosEye,
   IosEyeOff,
   IosMail,
+  IosClose,
 } from "@meronex/icons/ios";
 
 export const icons = {
@@ -42,4 +43,5 @@ export const icons = {
   add: IosAdd,
   remove: IosRemove,
   key: IosKey,
+  close: IosClose,
 };
