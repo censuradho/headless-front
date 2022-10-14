@@ -2,11 +2,11 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import {
-  Button, Box, HiddenView, ButtonIcon,
+  Box, HiddenView, ButtonIcon,
 } from "components";
 
 import { useBooleanToggle } from "hooks";
-import { paths, routePaths } from "constants/routes";
+import { routePaths } from "constants/routes";
 
 import * as Styles from "./styles";
 

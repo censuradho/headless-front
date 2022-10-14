@@ -23,6 +23,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
       return;
     }
+
+    setUser(null);
     delete cmsApi.defaults.headers.common.Authorization;
   };
 
