@@ -11,7 +11,7 @@ export function Dialog(props: DialogProps) {
   } = props;
 
   return (
-    <Styles.Root open={open} onOpenChange={onOpenChange}>
+    <Styles.Root modal open={open} onOpenChange={onOpenChange}>
       <Styles.Portal>
         <Styles.Overlay />
         <Styles.Content>

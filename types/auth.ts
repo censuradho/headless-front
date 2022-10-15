@@ -33,3 +33,16 @@ export interface LoginPayload {
 }
 
 export type LoginResponse = CreateUserWithEmailPasswordResponse
+
+export interface ForgotPasswordPayload {
+  email: string
+}
+export interface ResetPasswordPayload {
+  code: string
+  password: string
+  passwordConfirmation: string
+}
+
+export interface EmailConfirmationPayload {
+  email: string
+}

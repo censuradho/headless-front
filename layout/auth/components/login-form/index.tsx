@@ -9,8 +9,9 @@ import { LoginFormData } from "layout/auth/types";
 
 import { login } from "services/rest/cms/auth";
 import { useAuth } from "context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "components/common";
+import { useRouter } from "next/router";
 import * as Styles from "./styles";
 
 import { loginValidationSchema } from "./validations";
@@ -24,6 +25,10 @@ export function LoginForm() {
   } = useForm<LoginFormData>({
     resolver: yupResolver(loginValidationSchema),
   });
+
+  const router = useRouter();
+
+  const currentStep = router?.query?.s as string | undefined;
 
   const [isLoading, setIsLoading] = useState(false);
   const [isRecoveryPasswordModalOpen, setIsRecoveryPasswordModalOpen] = useState(false);
@@ -45,6 +50,10 @@ export function LoginForm() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    setIsRecoveryPasswordModalOpen(!!currentStep);
+  }, [currentStep]);
 
   return (
     <>
