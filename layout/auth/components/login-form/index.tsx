@@ -10,8 +10,8 @@ import { LoginFormData } from "layout/auth/types";
 import { login } from "services/rest/cms/auth";
 import { useAuth } from "context";
 import { useEffect, useState } from "react";
-import { Dialog } from "components/common";
 import { useRouter } from "next/router";
+import { paths } from "constants/routes";
 import * as Styles from "./styles";
 
 import { loginValidationSchema } from "./validations";
@@ -46,6 +46,7 @@ export function LoginForm() {
 
       auth?.setJwt(data.jwt);
       auth?.setUser(data.user);
+      router.push(paths.home);
     } finally {
       setIsLoading(false);
     }

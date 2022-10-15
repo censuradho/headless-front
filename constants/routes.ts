@@ -1,6 +1,6 @@
 export const paths = {
   pdp: "/:slug/p/:id",
-  home: "/home",
+  home: "/",
   vibradores: "/vibradores",
   lingerie: "/lingerie",
   saudeIntima: "/saudeIntima",
