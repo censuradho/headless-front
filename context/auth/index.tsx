@@ -28,10 +28,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     delete cmsApi.defaults.headers.common.Authorization;
   };
 
-  cmsApi.interceptors.response.use((response) => {
-    if (response?.status === 404) setJwt(null);
-    return response;
-  }, (error) => Promise.reject(error));
+  useEffect(() => {
+    cmsApi.interceptors.response.use((response) => {
+      if (response?.status === 404) setJwt(null);
+      return response;
+    }, (error) => Promise.reject(error));
+  }, []);
 
   useEffect(() => {
     handleJWT();

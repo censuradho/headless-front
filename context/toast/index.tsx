@@ -1,5 +1,5 @@
 import {
-  createContext, useContext, useState,
+  createContext, useContext, useEffect, useState,
 } from "react";
 
 import { Box, Typography } from "components";
@@ -40,18 +40,23 @@ export function ToastProvider({ children }: ToastProviderProps) {
     return <Styles.Action altText={notify.action}>{notify.action}</Styles.Action>;
   };
 
-  // cmsApi.interceptors.response.use((response: any) => {
-  //   console.log(response);
-  //   if (response?.status) return response;
+  useEffect(() => {
+    cmsApi.interceptors.response.use((response) => response, (error) => {
+      if (error.response.data.error.status >= 400) {
+        const errorMessage = API_ERRORS?.[error.response.data.error.message as keyof typeof API_ERRORS] || "";
 
-  //   if (API_ERRORS?.[response?.response?.data?.error?.message as keyof typeof API_ERRORS]) {
-  //     onNotify({
-  //       title: API_ERRORS?.[response.response.data.error.message as keyof typeof API_ERRORS],
-  //     });
-  //   }
+        console.log(error.response.data.error.message);
 
-  //   return response;
-  // });
+        if (errorMessage) {
+          onNotify({
+            title: errorMessage,
+          });
+        }
+      }
+
+      Promise.reject(error);
+    });
+  }, []);
 
   return (
     <ToastContext.Provider
