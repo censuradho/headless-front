@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import { useState } from "react";
 
-import 'keen-slider/keen-slider.min.css'
-import { useKeenSlider } from 'keen-slider/react'
-import { HeroCarouselProps } from './types'
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
-import * as Styles from './styles'
-import { Image } from 'components'
-import useInterval from 'hooks/useInterval'
-import { breakpoints } from 'constants/breakpoints'
+import { Image } from "components";
+import useInterval from "hooks/useInterval";
+import { breakpoints } from "constants/breakpoints";
+import { uuid } from "utils";
+import * as Styles from "./styles";
+import { HeroCarouselProps } from "./types";
 
-export function HeroCarousel (props: HeroCarouselProps) {
-  const { data } = props
-  
-  const [currentSlide, setCurrentSlide] = useState(0)
+export function HeroCarousel(props: HeroCarouselProps) {
+  const { data } = props;
+
+  const hasData = data.length > 0;
+
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
@@ -20,45 +23,40 @@ export function HeroCarousel (props: HeroCarouselProps) {
       spacing: 0,
     },
     breakpoints: {
-      [breakpoints['smartphone-min']]: {
-        drag: true
+      [breakpoints["smartphone-min"]]: {
+        drag: true,
       },
-      [breakpoints['laptops-min']]: {
-        drag: false
-      }
+      [breakpoints["laptops-min"]]: {
+        drag: false,
+      },
     },
     slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel)
+      setCurrentSlide(slider.track.details.rel);
     },
-  })
+  });
 
-
-  const renderItem = data?.map((value, index) => {
-
-    return (
-      <div className="keen-slider__slide" key={index}>
-        <Image 
-          src={value.attributes?.formats?.large?.url}
-          alt={value.attributes?.alternativeText}
-          width={value.attributes?.formats?.large?.width}
-          height={value.attributes?.formats?.large?.height}
-          layout="responsive"
-        />
-      </div>
-    )
-  })
-
+  const renderItem = data?.map((value) => (
+    <div className="keen-slider__slide" key={uuid()}>
+      <Image
+        src={value.attributes?.formats?.large?.url}
+        alt={value.attributes?.alternativeText}
+        width={value.attributes?.formats?.large?.width}
+        height={value.attributes?.formats?.large?.height}
+        layout="responsive"
+      />
+    </div>
+  ));
 
   const renderDots = data?.map((value, index) => (
-    <li key={index}>
-      <Styles.Dot 
-        onClick={() => instanceRef.current?.moveToIdx(index)} 
-        active={currentSlide === index} 
+    <li key={uuid()}>
+      <Styles.Dot
+        onClick={() => instanceRef.current?.moveToIdx(index)}
+        active={currentSlide === index}
       />
     </li>
-  ))
+  ));
 
-  useInterval(() => instanceRef?.current?.next(), 5000)
+  useInterval(() => hasData && instanceRef?.current?.next(), 5000);
 
   return (
     <Styles.Container>
@@ -67,5 +65,5 @@ export function HeroCarousel (props: HeroCarouselProps) {
       </div>
       <Styles.DotContainer>{renderDots}</Styles.DotContainer>
     </Styles.Container>
-  )
+  );
 }

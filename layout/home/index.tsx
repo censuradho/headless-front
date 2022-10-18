@@ -20,7 +20,7 @@ export function HomeLayout(props: HomeProps) {
   return (
     <MainLayout>
       <Styles.Container>
-        <HeroCarousel data={hero.data} />
+        <HeroCarousel data={hero.data || []} />
         <ProductCategorySlide
           title={langerieCarousel?.title}
           data={langerieCarousel?.products?.data}
