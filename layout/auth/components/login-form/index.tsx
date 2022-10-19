@@ -47,7 +47,7 @@ export function LoginForm() {
       auth?.setJwt(data.jwt);
       auth?.setUser(data.user);
       router.push(paths.home);
-    } finally {
+    } catch (err) {} finally {
       setIsLoading(false);
     }
   };
