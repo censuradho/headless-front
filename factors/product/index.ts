@@ -80,7 +80,7 @@ export function productFactory(props: Partial<Product>): Product {
       price: attributes?.price || 0,
       publishedAt: attributes?.publishedAt || "",
       updatedAt: attributes?.updatedAt || "",
-      discount: attributes?.discount || 0,
+      discount: attributes?.discount || null,
       slug: attributes?.slug || "",
       sizes: sizeProductFactory(attributes?.sizes || []),
       image: {

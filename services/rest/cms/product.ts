@@ -28,6 +28,7 @@ export async function getProduct(options: { id: string, slug: string }) {
       "sizes",
       "sizes.size",
       "defaultImage",
+      "discount",
     ],
     filters: {
       slug: {

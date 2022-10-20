@@ -13,10 +13,6 @@ export const resolvePath = (path: string, obj: Record<string, any>) => {
   return tempPath;
 };
 
-export function getPercentValue(percent: number, value: number) {
-  return value - ((percent / 100) * value);
-}
-
 export const uuid = v4;
 
 export function parseUrlQuery(value: ReturnType<typeof useRouter>["query"]) {
@@ -25,5 +21,12 @@ export function parseUrlQuery(value: ReturnType<typeof useRouter>["query"]) {
 }
 
 export function getPriceProduct(price: number, discount?: number) {
-  return discount ? getPercentValue(discount, price) : price;
+  return discount ? price - discount : price;
+}
+
+/**
+ * Calculates the Percentage of One Value Relative to Another
+*/
+export function getRelatedPercentage(total: number, value: number) {
+  return ((value * 100) / total).toFixed(1);
 }

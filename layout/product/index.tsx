@@ -2,6 +2,7 @@ import { Button } from "components";
 import { useProfileContext } from "context";
 import { SizeOption } from "hooks/useProductSizes";
 import { useState } from "react";
+import { updateWishlist } from "services/rest/cms/wishlist";
 import {
   Preview,
   ProductInfo,
@@ -30,9 +31,12 @@ export function ProductPageLayout(props: ProductPageProps) {
   const renderSubmitButtons = () => {
     if (size?.unavailableSize) return null;
 
-    const handleAddWishlist = () => {
+    const handleAddWishlist = async () => {
       if (!size) return setIsUnselected(true);
 
+      // await updateWishlist({
+      //   products: []
+      // })
       profileContext?.addWishlist?.({
         product,
         size,

@@ -1,6 +1,6 @@
 import { Box, Discount, Typography } from "components";
 import { toLocaleDateString } from "lib/toLocaleDateString";
-import { getPercentValue } from "utils";
+import { getPriceProduct, getRelatedPercentage } from "utils";
 import * as Styles from "./styles";
 
 import { ProductInfoProps } from "./types";
@@ -13,14 +13,20 @@ export function ProductInfo(props: ProductInfoProps) {
     name,
   } = props;
 
-  const priceWithDiscount = discount ? getPercentValue(discount, price) : price;
+  const priceWithDiscount = discount
+    ? getPriceProduct(price, discount?.data?.attributes?.value)
+    : price;
+
+  const relativePercentage = discount
+    ? getRelatedPercentage(price, discount?.data?.attributes?.value)
+    : price;
 
   const renderValue = () => {
     if (!discount) return null;
 
     return (
       <Box alignItems="center" gap={1}>
-        <Discount>{`${discount}% OFF`}</Discount>
+        <Discount>{`${relativePercentage}% OFF`}</Discount>
         <Typography variant="caption1" lineThrough>{toLocaleDateString(price)}</Typography>
       </Box>
     );

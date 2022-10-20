@@ -30,7 +30,7 @@ export function ProductPreview(props: ProductPreviewProps) {
 
   const profileContext = useProfileContext();
 
-  const priceParsed = getPriceProduct(price, discount) * amount;
+  const priceParsed = getPriceProduct(price, discount?.value) * amount;
 
   const href = resolvePath(paths.pdp, {
     slug,
