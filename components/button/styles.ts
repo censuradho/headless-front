@@ -28,7 +28,7 @@ export const Button = styled("button", {
       primary: {
         background: "$primary",
         "> *": {
-          color: "white",
+          color: "white !important",
         },
         padding: "1rem 3rem",
 

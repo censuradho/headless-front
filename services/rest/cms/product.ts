@@ -29,6 +29,8 @@ export async function getProduct(options: { id: string, slug: string }) {
       "sizes.size",
       "defaultImage",
       "discount",
+      "inventories",
+      "inventories.size",
     ],
     filters: {
       slug: {

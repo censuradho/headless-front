@@ -57,6 +57,22 @@ interface DiscountAttr {
 }
 
 type Discount = Entity<DiscountAttr>
+
+export interface InventoryAttr {
+  amount: number
+  size: {
+    data: Size
+  }
+}
+
+export interface InventoryResponse {
+  data: Entity<InventoryAttr>[]
+}
+
+export interface Inventory extends InventoryAttr {
+  id: number
+}
+
 export interface ProductAttr {
   name: string
   description: string,
@@ -64,6 +80,7 @@ export interface ProductAttr {
   createdAt: string
   updatedAt: string
   publishedAt: string
+  inventories: Inventory[]
   discount: {
     data: Discount
   } | null;
