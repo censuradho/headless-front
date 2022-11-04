@@ -34,9 +34,6 @@ export function ProductPageLayout(props: ProductPageProps) {
     const handleAddWishlist = async () => {
       if (!size) return setIsUnselected(true);
 
-      // await updateWishlist({
-      //   products: []
-      // })
       profileContext?.addWishlist?.({
         product,
         size,
