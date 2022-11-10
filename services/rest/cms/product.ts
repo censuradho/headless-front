@@ -25,8 +25,6 @@ export async function getProduct(options: { id: string, slug: string }) {
   const query = strapiQuery.parse(`/products/${id}`, {
     populate: [
       "image",
-      "sizes",
-      "sizes.size",
       "defaultImage",
       "discount",
       "inventories",

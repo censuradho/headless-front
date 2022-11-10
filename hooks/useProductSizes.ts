@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { ProductAttr } from "types/product";
+import { Product } from "types/product";
 
 export interface SizeOption {
   stock: number,
@@ -11,39 +10,34 @@ export interface SizeOption {
   unavailableSize: boolean
 }
 
-export function useProductSizes(props: ProductAttr) {
-  const router = useRouter();
-  const { size: defaultSize } = router.query;
-
+export function useProductSizes(props: Product) {
   const [size, setSize] = useState<SizeOption>();
 
   const {
-    sizes: productSizes,
+    attributes: {
+      inventories: {
+        data: inventories,
+      },
+    },
   } = props;
 
-  const sizes = productSizes
-    ?.filter((value) => value.id)
-    ?.map((value) => ({
-      stock: value?.stock,
-      size: value?.size?.data?.attributes?.name,
-      id: value?.id,
-      // eslint-disable-next-line no-nested-ternary
-      remainingMessage: value.stock === 1 ? `Resta ${value.stock}` : value.stock > 0 && value.stock <= 3 ? `Restam ${value.stock}` : "",
-      unavailableSize: value?.stock === 0,
-    }));
+  const getRemainingMessage = (amount: number) => {
+    if (amount === 1) return `Resta ${amount}`;
+    if (amount > 0 && amount <= 3) return `Restam ${amount}`;
+    return "";
+  };
 
-  const isUniqueSize = sizes.length === 1;
-
-  useEffect(() => {
-    if (!defaultSize) return;
-
-    setSize(sizes.find((value) => value.size === defaultSize as string));
-  }, [defaultSize]);
+  const sizes: SizeOption[] = inventories.map((value) => ({
+    id: value.attributes.size.data.id,
+    size: value.attributes.size.data.attributes.name,
+    stock: value.attributes.amount,
+    unavailableSize: value.attributes.amount === 0,
+    remainingMessage: getRemainingMessage(value.attributes.amount),
+  }));
 
   return {
-    sizes,
-    isUniqueSize,
     size,
     setSize,
+    sizes,
   };
 }

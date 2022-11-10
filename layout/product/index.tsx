@@ -79,7 +79,7 @@ export function ProductPageLayout(props: ProductPageProps) {
               setIsUnselected(false);
             }}
             errorMessage={isUnselected ? "Selecione uma opção" : ""}
-            {...attributes}
+            product={product}
           />
           <ProductDescription product={product} />
           {renderFreight()}

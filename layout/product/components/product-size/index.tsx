@@ -11,7 +11,7 @@ export function ProductSizes(props: ProductSizeProps) {
   const {
     onSelectSize,
     errorMessage,
-    ...otherProps
+    product,
   } = props;
 
   const {
@@ -19,7 +19,7 @@ export function ProductSizes(props: ProductSizeProps) {
     setSize,
     size,
 
-  } = useProductSizes(otherProps);
+  } = useProductSizes(product);
 
   const handleSelectSize = (value: SizeOption) => {
     setSize(value);

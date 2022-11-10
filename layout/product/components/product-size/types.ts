@@ -1,8 +1,9 @@
 import { SizeOption } from "hooks/useProductSizes";
 
-import { ProductAttr } from "types/product";
+import { Product } from "types/product";
 
-export interface ProductSizeProps extends ProductAttr {
+export interface ProductSizeProps {
   onSelectSize?: (size: SizeOption) => void
-  errorMessage?: string
+  errorMessage?: string,
+  product: Product
 }
