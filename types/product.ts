@@ -65,12 +65,8 @@ export interface InventoryAttr {
   }
 }
 
-export interface InventoryResponse {
+export interface Inventory {
   data: Entity<InventoryAttr>[]
-}
-
-export interface Inventory extends InventoryAttr {
-  id: number
 }
 
 export interface ProductAttr {
@@ -80,7 +76,7 @@ export interface ProductAttr {
   createdAt: string
   updatedAt: string
   publishedAt: string
-  inventories: Inventory[]
+  inventories: Inventory,
   discount: {
     data: Discount
   } | null;

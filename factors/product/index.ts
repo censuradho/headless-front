@@ -1,5 +1,5 @@
 import type {
-  Image, ImageFormat, Inventory, InventoryResponse, Product, Size, SizeProduct,
+  Image, ImageFormat, Product, Size, SizeProduct,
 } from "types/product";
 
 function formatFactory(props?: ImageFormat) {
@@ -83,7 +83,9 @@ export function productFactory(props: Partial<Product>): Product {
       discount: attributes?.discount || null,
       slug: attributes?.slug || "",
       sizes: sizeProductFactory(attributes?.sizes || []),
-      inventories: attributes?.inventories || [],
+      inventories: {
+        data: attributes?.inventories?.data || [],
+      },
       image: {
         data: images,
       },

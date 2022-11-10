@@ -2,14 +2,13 @@ import { Button } from "components";
 import { useProfileContext } from "context";
 import { SizeOption } from "hooks/useProductSizes";
 import { useState } from "react";
-import { updateWishlist } from "services/rest/cms/wishlist";
+
 import {
   Preview,
   ProductInfo,
   ProductSizes,
   Freight,
   ProductDescription,
-  Color,
 } from "./components";
 import * as Styles from "./styles";
 
@@ -83,7 +82,6 @@ export function ProductPageLayout(props: ProductPageProps) {
             {...attributes}
           />
           <ProductDescription product={product} />
-          <Color product={product} />
           {renderFreight()}
           {renderSubmitButtons()}
         </Styles.ProductInfo>
