@@ -1,9 +1,8 @@
 import { ProductAttr } from "./product";
 
 export interface WishlistUpdatePayload {
-  products: number[],
+  inventories: number[],
   user: number,
-  sizes: number[]
 }
 
 export type WishlistProduct = Pick<ProductAttr,
@@ -13,7 +12,6 @@ export type WishlistProduct = Pick<ProductAttr,
   | "name"
   | "discount"
   | "slug"
-  | "id"
   | "installment"
   | "sizes"
 >
