@@ -5,3 +5,5 @@ export const cmsApi = axios.create({
 });
 
 export * from "./product";
+export * from "./home";
+export * from "./auth";

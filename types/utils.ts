@@ -8,3 +8,7 @@ export type Entity<T> = {
   id: number
   attributes: T
 }
+
+export type Data<T> = {
+  data: T
+}

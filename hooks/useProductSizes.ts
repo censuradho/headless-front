@@ -6,6 +6,7 @@ export interface SizeOption {
   stock: number,
   size: string,
   id: number,
+  inventoryId: number
   remainingMessage: string
   unavailableSize: boolean
 }
@@ -29,10 +30,11 @@ export function useProductSizes(props: Product) {
 
   const sizes: SizeOption[] = inventories.map((value) => ({
     id: value.attributes.size.data.id,
+    inventoryId: value.id,
     size: value.attributes.size.data.attributes.name,
-    stock: value.attributes.amount,
-    unavailableSize: value.attributes.amount === 0,
-    remainingMessage: getRemainingMessage(value.attributes.amount),
+    stock: value.attributes.stock,
+    unavailableSize: value.attributes.stock === 0,
+    remainingMessage: getRemainingMessage(value.attributes.stock),
   }));
 
   return {
