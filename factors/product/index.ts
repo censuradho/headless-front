@@ -46,7 +46,7 @@ export function imageFactory(props: Partial<Image>): Image {
   };
 }
 
-function sizeFactory(props: Partial<Size>): Size {
+export function sizeFactory(props: Partial<Size>): Size {
   return {
     id: props?.id || 0,
     attributes: {

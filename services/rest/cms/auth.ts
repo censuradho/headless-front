@@ -18,9 +18,7 @@ export async function createUserWithEmailPassword(payload: CreateUserWithEmailPa
   const response = await cmsApi.post<CreateUserWithEmailPasswordResponse>("/auth/local/register", payload);
   const { email } = payload;
 
-  try {
-    await emailConfirmation({ email });
-  } catch (err) {}
+  await emailConfirmation({ email });
 
   return response;
 }

@@ -58,7 +58,7 @@ export interface InventoryAttr {
   product: Data<Product>
 }
 
-export type Inventory = Data<Entity<InventoryAttr>[]>
+export type Inventory = Entity<InventoryAttr>
 
 export interface ProductAttr {
   name: string
@@ -67,7 +67,7 @@ export interface ProductAttr {
   createdAt: string
   updatedAt: string
   publishedAt: string
-  inventories: Inventory,
+  inventories: Data<Inventory[]>,
   discount: Data<Discount | null>;
   slug: string;
   installment: number;

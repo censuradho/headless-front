@@ -8,10 +8,15 @@ export interface CartItemAttr {
   inventory: Data<Entity<InventoryAttr>>
 }
 
+export type CartItem = Entity<CartItemAttr>
+
 export interface CartAttr {
   createdAt: string
   updatedAt: string
-  cartItems: Data<Entity<CartItemAttr>>
+  cartItems: Data<CartItem[]>
 }
 
-export type Cart = Data<Entity<CartAttr>[]>
+export type Cart = Entity<CartAttr>
+
+export type GetCartResponse = Data<Cart[]>
+export type GetCartByIdResponse = Data<Cart>
