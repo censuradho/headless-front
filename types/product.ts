@@ -54,6 +54,8 @@ type Discount = Entity<DiscountAttr>
 export interface InventoryAttr {
   stock: number
   size: Data<Size>
+  // eslint-disable-next-line no-use-before-define
+  product: Data<Product>
 }
 
 export type Inventory = Data<Entity<InventoryAttr>[]>
