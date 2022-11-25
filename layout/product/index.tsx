@@ -1,8 +1,6 @@
 import { Button } from "components";
-import { useAuth, useProfileContext } from "context";
 import { SizeOption } from "hooks/useProductSizes";
 import { useState } from "react";
-import { updateWishlist } from "services/rest/cms/wishlist";
 
 import {
   Preview,
@@ -16,8 +14,6 @@ import * as Styles from "./styles";
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
-  const auth = useAuth();
-
   const [isUnselected, setIsUnselected] = useState(false);
 
   const [size, setSize] = useState<SizeOption>();
@@ -34,11 +30,6 @@ export function ProductPageLayout(props: ProductPageProps) {
 
     const handleAddWishlist = async () => {
       if (!size) return setIsUnselected(true);
-
-      await updateWishlist({
-        inventories: [size.inventoryId],
-        user: auth?.user?.id,
-      });
     };
 
     return (

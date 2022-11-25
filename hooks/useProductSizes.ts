@@ -32,9 +32,9 @@ export function useProductSizes(props: Product) {
     id: value.attributes.size.data.id,
     inventoryId: value.id,
     size: value.attributes.size.data.attributes.name,
-    stock: value.attributes.amount,
-    unavailableSize: value.attributes.amount === 0,
-    remainingMessage: getRemainingMessage(value.attributes.amount),
+    stock: value.attributes.stock,
+    unavailableSize: value.attributes.stock === 0,
+    remainingMessage: getRemainingMessage(value.attributes.stock),
   }));
 
   return {

@@ -1,4 +1,4 @@
-import { Entity } from "./utils";
+import { Data, Entity } from "./utils";
 
 export interface ImageFormat {
   name: string
@@ -15,15 +15,8 @@ export interface ImageFormat {
 export interface SizeAttr {
   name: string
 }
-export type Size = Entity<SizeAttr>
 
-export interface SizeProduct {
-  id: number
-  size: {
-    data: Size
-  }
-  stock: number
-}
+export type Size = Entity<SizeAttr>
 
 export interface ImageAttr {
   name: string
@@ -59,15 +52,11 @@ interface DiscountAttr {
 type Discount = Entity<DiscountAttr>
 
 export interface InventoryAttr {
-  amount: number
-  size: {
-    data: Size
-  }
+  stock: number
+  size: Data<Size>
 }
 
-export interface Inventory {
-  data: Entity<InventoryAttr>[]
-}
+export type Inventory = Data<Entity<InventoryAttr>[]>
 
 export interface ProductAttr {
   name: string
@@ -77,22 +66,13 @@ export interface ProductAttr {
   updatedAt: string
   publishedAt: string
   inventories: Inventory,
-  discount: {
-    data: Discount
-  } | null;
+  discount: Data<Discount | null>;
   slug: string;
   installment: number;
   videoPreview?: string;
-  hoverImage: {
-    data: Image
-  },
-  image: {
-    data: Image[]
-  },
-  defaultImage: {
-    data: Image
-  }
-  sizes: SizeProduct[]
+  hoverImage: Data<Image>,
+  image: Data<Image>,
+  defaultImage: Data<Image>
 }
 
 export type Product = Entity<ProductAttr>

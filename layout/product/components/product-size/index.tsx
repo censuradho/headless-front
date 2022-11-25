@@ -28,7 +28,6 @@ export function ProductSizes(props: ProductSizeProps) {
 
   const renderSizes = sizes.map((value) => {
     const isSelected = value.size === size?.size;
-
     return (
       <li key={uuid()}>
         <Tooltip message={value.remainingMessage}>
