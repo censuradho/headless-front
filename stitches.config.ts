@@ -26,6 +26,7 @@ const {
       overlay: colors.OVERLAY,
       body: colors.SLATE_GRAY,
       black: colors.BLACK,
+      mauve3: colors.MAUVE3,
     },
     space: {
       xs: "0.75rem",
@@ -60,6 +61,9 @@ const {
       title1: "1.25rem",
       title2: "1.37500rem",
       largeTitle: "2.12500rem",
+    },
+    shadows: {
+      blackA7: "hsla(0, 0%, 0%, 0.141)",
     },
   },
   media: breakpoints,

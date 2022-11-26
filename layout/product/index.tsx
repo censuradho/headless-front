@@ -1,4 +1,4 @@
-import { Button } from "components";
+import { Button, Select } from "components";
 import { useAuth, useCart } from "context";
 import { InventoryCartItem } from "context/cart/types";
 import { SizeOption } from "hooks/useProductSizes";
@@ -98,6 +98,19 @@ export function ProductPageLayout(props: ProductPageProps) {
       <Styles.Content>
         <Preview {...product} />
         <Styles.ProductInfo>
+          <Select
+            placeholder="selecione um..."
+            data={[
+              {
+                label: "teste",
+                value: "teste",
+              },
+              {
+                label: "Lorem Ipsum",
+                value: "Lorem Ipsum",
+              },
+            ]}
+          />
           <ProductInfo {...attributes} />
           <ProductSizes
             onSelectSize={(option) => {

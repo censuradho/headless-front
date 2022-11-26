@@ -1,7 +1,9 @@
-import router from "next/router";
-
 import {
-  Box, Typography, ButtonIcon, Image,
+  Box,
+  Typography,
+  ButtonIcon,
+  Image,
+  Select,
 } from "components";
 import { paths } from "constants/routes";
 import { toLocaleDateString } from "lib/toLocaleDateString";
@@ -97,7 +99,10 @@ export function ProductPreview(props: ProductPreviewProps) {
             />
           </Box>
         </Box>
-        <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
+        <Box>
+          <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
+
+        </Box>
         <Box justifyContent="space-between">
           <Typography as="strong" semiBold>
             Tamanho:
