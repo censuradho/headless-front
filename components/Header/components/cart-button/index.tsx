@@ -44,14 +44,14 @@ export function CartButton() {
   const renderProductPreview = () => {
     const products = Object
       .entries(cart)
-      .map(([key, value]) => value);
+      .map(([, value]) => value);
 
     return products.map((product) => Object
       .entries(product.inventories)
-      .map(([key, value]) => (
+      .map(([, inventory]) => (
         <ProductPreview
           key={uuid()}
-          inventory={value}
+          inventory={inventory}
           product={product}
         />
       )));
