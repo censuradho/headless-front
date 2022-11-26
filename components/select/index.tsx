@@ -1,4 +1,5 @@
 import { uuid } from "utils";
+import { Icon } from "components/icon";
 import { SelectProps } from "./types";
 
 import * as Styles from "./styles";
@@ -26,6 +27,11 @@ export function Select(props: SelectProps) {
     <Styles.Root>
       <Styles.Trigger fullWidth={fullWidth}>
         {placeholder && <Styles.Value placeholder="Select a fruit..." />}
+        <Icon
+          name="arrowDown"
+          size={10}
+          color="body"
+        />
       </Styles.Trigger>
       <Styles.Content>
         <Styles.Viewport>

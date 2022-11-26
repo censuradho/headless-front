@@ -24,8 +24,7 @@ export const Trigger = styled(Select.Trigger, {
   lineHeight: 1,
   height: "35px",
   gap: "5px",
-  backgroundColor: "white",
-  color: "blue",
+  backgroundColor: "$background",
   boxShadow: "0 2px 10px $blackA7",
 
   "&:hover": {

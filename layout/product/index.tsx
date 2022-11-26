@@ -89,10 +89,6 @@ export function ProductPageLayout(props: ProductPageProps) {
     );
   };
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
   return (
     <Styles.Container>
       <Styles.Content>
