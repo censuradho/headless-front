@@ -94,7 +94,7 @@ export function ProductPreview(props: ProductPreviewProps) {
             />
           </Box>
         </Box>
-        <Typography variant="footnote" semiBold>{toLocaleDateString(122)}</Typography>
+        <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
         <Box justifyContent="space-between">
           <Typography as="strong" semiBold>
             Tamanho:
