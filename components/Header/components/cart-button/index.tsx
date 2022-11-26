@@ -12,11 +12,30 @@ export function CartButton() {
   const router = useRouter();
   const { cart } = useCart();
 
+  const getInventoryQuantity = () => {
+    const inventories = Object
+      .entries(cart)
+      .map(([key, value]) => value.inventories)
+      .reduce((prev, next) => ({
+        ...prev,
+        ...next,
+      }), {});
+
+    const quantity = Object
+      .entries(inventories || {})
+      .map(([key, value]) => value.quantity)
+      .reduce((prev, next) => prev + next, 0);
+
+    return quantity;
+  };
+
   const renderCount = () => {
-    if (!1) return null;
+    const quantity = getInventoryQuantity();
+
+    if (!quantity) return null;
 
     return (
-      <Styles.Count>{1}</Styles.Count>
+      <Styles.Count>{quantity}</Styles.Count>
     );
   };
 
