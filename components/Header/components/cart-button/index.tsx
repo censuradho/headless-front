@@ -4,12 +4,22 @@ import { Icon } from "components";
 
 import { routePaths } from "constants/routes";
 
+import { useCart } from "context";
+import { useMemo } from "react";
 import * as Styles from "./styles";
-import { CartButtonProps } from "./types";
 
-export function CartButton(props: CartButtonProps) {
-  const { count } = props;
+export function CartButton() {
   const router = useRouter();
+  const { cart } = useCart();
+
+  const count = useMemo(() => cart
+    .map((value) => value.inventories)
+    .reduce((prev, next) => ([
+      ...prev,
+      ...next,
+    ]))
+    .map((value) => value.quantity)
+    .reduce((prev, next) => prev + next), [cart]);
 
   const renderCount = () => {
     if (!count) return null;

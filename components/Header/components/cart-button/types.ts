@@ -1,3 +1,1 @@
-export interface CartButtonProps {
-  count?: number
-}
+export interface CartButtonProps {}
