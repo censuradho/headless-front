@@ -9,6 +9,7 @@ import type {
   CartContextProps,
   Cart,
   CartAttr,
+  InventoryCartItem,
 } from "./types";
 
 const CartContext = createContext({} as CartContextProps);
@@ -17,6 +18,11 @@ export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useLocalStorage<Cart>("cart", {});
 
   const handleAddCartItem = (payload: CartAttr) => {
+    // eslint-disable-next-line max-len
+    const getQuantity = (prev: InventoryCartItem, next: InventoryCartItem) => (prev.stock >= prev.quantity
+      ? prev.quantity + next.quantity
+      : prev.quantity);
+
     setCart((prevState) => {
       const product = prevState[payload.id];
 
@@ -33,7 +39,7 @@ export function CartProvider({ children }: CartProviderProps) {
           [key]: {
             ...value,
             ...(product.inventories[key] && ({
-              quantity: product.inventories[key].quantity + value.quantity,
+              quantity: getQuantity(product.inventories[key], value),
             })),
           },
         }))

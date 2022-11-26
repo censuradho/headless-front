@@ -1,4 +1,4 @@
-import Link from "next/link";
+import router from "next/router";
 
 import {
   Box, Typography, ButtonIcon, Image,
@@ -8,6 +8,7 @@ import { toLocaleDateString } from "lib/toLocaleDateString";
 import { resolvePath } from "utils";
 
 import { useCart } from "context";
+import Link from "next/link";
 import * as Styles from "./styles";
 
 import { ProductPreviewProps } from "./types";
@@ -28,6 +29,7 @@ export function ProductPreview(props: ProductPreviewProps) {
     id: inventoryId,
     quantity,
     size,
+    stock,
   } = inventory;
 
   const href = resolvePath(paths.pdp, {
@@ -42,72 +44,71 @@ export function ProductPreview(props: ProductPreviewProps) {
   } = useCart();
 
   return (
-    <Link href={href}>
-      <a>
-        <Styles.Container>
-
-          <Styles.ImagePreviewContainer>
-            <Image
-              src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-              width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
-              height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
-              alt={defaultImage?.data?.attributes?.alternativeText}
-              layout="responsive"
+    <Styles.Container>
+      <Link href={href}>
+        <Styles.ImagePreviewContainer>
+          <Image
+            src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
+            width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
+            height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
+            alt={defaultImage?.data?.attributes?.alternativeText}
+            layout="responsive"
+          />
+        </Styles.ImagePreviewContainer>
+      </Link>
+      <Box flexDirection="column" gap={1}>
+        <Box alignItems="center" gap={0.5}>
+          <Styles.Name variant="caption1">{name}</Styles.Name>
+          <Box gap={0.2}>
+            <ButtonIcon
+              onClick={() => decreaseCartItem(productId, inventoryId)}
+              icon={{
+                name: "remove",
+              }}
             />
-          </Styles.ImagePreviewContainer>
-          <Box flexDirection="column" gap={1}>
-            <Box alignItems="center" gap={0.5}>
-              <Styles.Name variant="caption1">{name}</Styles.Name>
-              <Box gap={0.2}>
-                <ButtonIcon
-                  onClick={() => decreaseCartItem(productId, inventoryId)}
-                  icon={{
-                    name: "remove",
-                  }}
-                />
-                <ButtonIcon
-                  onClick={() => removeCartItem(productId, inventoryId)}
-                  icon={{
-                    name: "trash",
-                  }}
-                />
-                <ButtonIcon
-                  onClick={() => addCartItem({
-                    defaultImage,
-                    id: productId,
-                    name,
-                    price,
-                    slug,
-                    inventories: {
-                      [inventoryId]: {
-                        id: inventoryId,
-                        quantity: 1,
-                        size,
-                      },
-                    },
-                  })}
-                  icon={{
-                    name: "add",
-                  }}
-                />
-              </Box>
-            </Box>
-            <Typography variant="footnote" semiBold>{toLocaleDateString(122)}</Typography>
-            <Box justifyContent="space-between">
-              <Typography as="strong" semiBold>
-                Tamanho:
-                {" "}
-                <Typography>{size}</Typography>
-              </Typography>
-              <Typography as="strong" semiBold>
-                Quantidade:
-                {" "}
-                <Typography>{quantity}</Typography>
-              </Typography>
-            </Box>
+            <ButtonIcon
+              onClick={() => removeCartItem(productId, inventoryId)}
+              icon={{
+                name: "trash",
+              }}
+            />
+            <ButtonIcon
+              onClick={() => addCartItem({
+                defaultImage,
+                id: productId,
+                name,
+                price,
+                slug,
+                inventories: {
+                  [inventoryId]: {
+                    id: inventoryId,
+                    quantity: 1,
+                    stock,
+                    size,
+                  },
+                },
+              })}
+              icon={{
+                name: "add",
+              }}
+            />
           </Box>
-        </Styles.Container>
-      </a>
-    </Link>
+        </Box>
+        <Typography variant="footnote" semiBold>{toLocaleDateString(122)}</Typography>
+        <Box justifyContent="space-between">
+          <Typography as="strong" semiBold>
+            Tamanho:
+            {" "}
+            <Typography>{size}</Typography>
+          </Typography>
+          <Typography as="strong" semiBold>
+            Quantidade:
+            {" "}
+            <Typography>{quantity}</Typography>
+          </Typography>
+        </Box>
+      </Box>
+    </Styles.Container>
+
   );
 }

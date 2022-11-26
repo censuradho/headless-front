@@ -47,6 +47,7 @@ export function ProductPageLayout(props: ProductPageProps) {
         id: selectedInventory.id,
         size: selectedInventory.attributes.size.data.attributes.name,
         quantity: 1,
+        stock: selectedInventory.attributes.stock,
       };
 
       addCartItem({
@@ -54,6 +55,7 @@ export function ProductPageLayout(props: ProductPageProps) {
         id,
         name: attributes?.name,
         price: attributes?.price,
+        slug: attributes?.slug,
         inventories: {
           [inventory.id]: inventory,
         },

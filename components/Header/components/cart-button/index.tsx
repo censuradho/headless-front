@@ -7,6 +7,7 @@ import { routePaths } from "constants/routes";
 import { useCart } from "context";
 
 import { uuid } from "utils";
+import { useMemo } from "react";
 import * as Styles from "./styles";
 import { ProductPreview } from "./components";
 
@@ -14,7 +15,7 @@ export function CartButton() {
   const router = useRouter();
   const { cart } = useCart();
 
-  const getInventoryQuantity = () => {
+  const quantity = useMemo(() => {
     const inventories = Object
       .entries(cart)
       .map(([key, value]) => value.inventories)
@@ -23,17 +24,13 @@ export function CartButton() {
         ...next,
       }), {});
 
-    const quantity = Object
+    return Object
       .entries(inventories || {})
       .map(([key, value]) => value.quantity)
       .reduce((prev, next) => prev + next, 0);
-
-    return quantity;
-  };
+  }, [cart]);
 
   const renderCount = () => {
-    const quantity = getInventoryQuantity();
-
     if (!quantity) return null;
 
     return (

@@ -8,6 +8,7 @@ export interface CartProviderProps {
 export interface InventoryCartItem {
   size: string
   id: number,
+  stock: number
   quantity: number
 }
 
