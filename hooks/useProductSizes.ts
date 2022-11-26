@@ -5,8 +5,8 @@ import { Product } from "types/product";
 export interface SizeOption {
   stock: number,
   size: string,
-  id: number,
   inventoryId: number
+  productId: number
   remainingMessage: string
   unavailableSize: boolean
 }
@@ -15,6 +15,7 @@ export function useProductSizes(props: Product) {
   const [size, setSize] = useState<SizeOption>();
 
   const {
+    id,
     attributes: {
       inventories: {
         data: inventories,
@@ -29,8 +30,8 @@ export function useProductSizes(props: Product) {
   };
 
   const sizes: SizeOption[] = inventories.map((value) => ({
-    id: value.attributes.size.data.id,
     inventoryId: value.id,
+    productId: id,
     size: value.attributes.size.data.attributes.name,
     stock: value.attributes.stock,
     unavailableSize: value.attributes.stock === 0,

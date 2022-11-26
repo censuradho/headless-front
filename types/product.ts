@@ -73,7 +73,7 @@ export interface ProductAttr {
   installment: number;
   videoPreview?: string;
   hoverImage: Data<Image>,
-  image: Data<Image>,
+  image: Data<Image[]>,
   defaultImage: Data<Image>
 }
 

@@ -1,5 +1,7 @@
 import type {
-  Image, ImageFormat, Product, Size, SizeProduct,
+  Image,
+  ImageFormat,
+  Product,
 } from "types/product";
 
 function formatFactory(props?: ImageFormat) {
@@ -46,25 +48,6 @@ export function imageFactory(props: Partial<Image>): Image {
   };
 }
 
-export function sizeFactory(props: Partial<Size>): Size {
-  return {
-    id: props?.id || 0,
-    attributes: {
-      name: props?.attributes?.name || "",
-    },
-  };
-}
-
-function sizeProductFactory(props: Partial<SizeProduct[]>): SizeProduct[] {
-  return props.map((value) => ({
-    id: value?.id || 0,
-    size: {
-      data: sizeFactory(value?.size.data || {}),
-    },
-    stock: value?.stock || 0,
-  }));
-}
-
 export function productFactory(props: Partial<Product>): Product {
   const { attributes, id } = props || {};
 
@@ -73,6 +56,8 @@ export function productFactory(props: Partial<Product>): Product {
   return {
     id: id || 0,
     attributes: {
+      discount: attributes?.discount | {},
+      videoPreview: attributes?.videoPreview || "",
       installment: attributes?.installment || 0,
       createdAt: attributes?.createdAt || "",
       description: attributes?.description || "",
@@ -80,9 +65,7 @@ export function productFactory(props: Partial<Product>): Product {
       price: attributes?.price || 0,
       publishedAt: attributes?.publishedAt || "",
       updatedAt: attributes?.updatedAt || "",
-      discount: attributes?.discount || null,
       slug: attributes?.slug || "",
-      sizes: sizeProductFactory(attributes?.sizes || []),
       inventories: {
         data: attributes?.inventories?.data || [],
       },
