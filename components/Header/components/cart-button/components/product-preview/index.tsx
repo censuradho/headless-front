@@ -14,25 +14,32 @@ import { ProductPreviewProps } from "./types";
 
 export function ProductPreview(props: ProductPreviewProps) {
   const {
-    inventory: {
-      size,
-      id: inventoryId,
-      quantity,
-    },
+    inventory,
     product: {
       defaultImage,
       id: productId,
       slug,
+      price,
       name,
     },
   } = props;
+
+  const {
+    id: inventoryId,
+    quantity,
+    size,
+  } = inventory;
 
   const href = resolvePath(paths.pdp, {
     slug,
     productId,
   });
 
-  const { decreaseCartItem } = useCart();
+  const {
+    decreaseCartItem,
+    removeCartItem,
+    addCartItem,
+  } = useCart();
 
   return (
     <Link href={href}>
@@ -59,11 +66,26 @@ export function ProductPreview(props: ProductPreviewProps) {
                   }}
                 />
                 <ButtonIcon
+                  onClick={() => removeCartItem(productId, inventoryId)}
                   icon={{
                     name: "trash",
                   }}
                 />
                 <ButtonIcon
+                  onClick={() => addCartItem({
+                    defaultImage,
+                    id: productId,
+                    name,
+                    price,
+                    slug,
+                    inventories: {
+                      [inventoryId]: {
+                        id: inventoryId,
+                        quantity: 1,
+                        size,
+                      },
+                    },
+                  })}
                   icon={{
                     name: "add",
                   }}

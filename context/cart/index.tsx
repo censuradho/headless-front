@@ -94,12 +94,28 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   };
 
+  const handleRemoveCartItem = (productId: number, inventoryId: number) => {
+    setCart((prevState) => {
+      const product = prevState[productId];
+
+      if (!product) return prevState;
+
+      delete product.inventories[inventoryId];
+
+      return {
+        ...prevState,
+        [productId]: product,
+      };
+    });
+  };
+
   return (
     <CartContext.Provider
       value={{
         cart,
         addCartItem: handleAddCartItem,
         decreaseCartItem: handleDecreaseCartItem,
+        removeCartItem: handleRemoveCartItem,
       }}
     >
       {children}
