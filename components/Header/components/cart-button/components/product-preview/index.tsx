@@ -13,16 +13,16 @@ import { ProductPreviewProps } from "./types";
 
 export function ProductPreview(props: ProductPreviewProps) {
   const {
-    product: {
-      id,
-      attributes: {
-        slug,
-        name,
-        defaultImage,
-      },
+    inventory: {
+      size,
+      quantity,
     },
-    size,
-    amount,
+    product: {
+      defaultImage,
+      id,
+      slug,
+      name,
+    },
   } = props;
 
   const href = resolvePath(paths.pdp, {
@@ -70,12 +70,12 @@ export function ProductPreview(props: ProductPreviewProps) {
               <Typography as="strong" semiBold>
                 Tamanho:
                 {" "}
-                <Typography>{size.size}</Typography>
+                <Typography>{size}</Typography>
               </Typography>
               <Typography as="strong" semiBold>
                 Quantidade:
                 {" "}
-                <Typography>{amount}</Typography>
+                <Typography>{quantity}</Typography>
               </Typography>
             </Box>
           </Box>

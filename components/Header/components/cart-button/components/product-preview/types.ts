@@ -1,9 +1,6 @@
-import { Wish } from "context/profile/types";
-import { SizeOption } from "hooks/useProductSizes";
-import { Product } from "types/product";
+import { InventoryCartItem, ProductCartItemAttr } from "context/cart/types";
 
-export interface ProductPreviewProps extends Wish {
-  product: Product;
-  size: SizeOption
-  amount: number
+export interface ProductPreviewProps {
+  product: ProductCartItemAttr
+  inventory: InventoryCartItem
 }

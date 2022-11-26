@@ -11,10 +11,11 @@ export interface InventoryCartItem {
   quantity: number
 }
 
-type ProductCartItemAttr = Pick<ProductAttr,
+export type ProductCartItemAttr = Pick<ProductAttr,
   "defaultImage"
   | "name"
   | "price"
+  | "slug"
 > & {
   id: number
 }

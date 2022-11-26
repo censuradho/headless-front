@@ -5,8 +5,10 @@ import { Icon } from "components";
 import { routePaths } from "constants/routes";
 
 import { useCart } from "context";
-import { useMemo } from "react";
+
+import { uuid } from "utils";
 import * as Styles from "./styles";
+import { ProductPreview } from "./components";
 
 export function CartButton() {
   const router = useRouter();
@@ -39,6 +41,22 @@ export function CartButton() {
     );
   };
 
+  const renderProductPreview = () => {
+    const products = Object
+      .entries(cart)
+      .map(([key, value]) => value);
+
+    return products.map((product) => Object
+      .entries(product.inventories)
+      .map(([key, value]) => (
+        <ProductPreview
+          key={uuid()}
+          inventory={value}
+          product={product}
+        />
+      )));
+  };
+
   return (
     <Styles.TooltipProvider>
       <Styles.TooltipRoot delayDuration={300}>
@@ -51,11 +69,8 @@ export function CartButton() {
           {renderCount()}
         </Styles.TooltipTrigger>
         <Styles.TooltipContent sideOffset={5}>
-          {/* <ProductPreview
-            amount={1}
-            product={product.product}
-            size={size?.data}
-          /> */}
+          {renderProductPreview()}
+
           <Styles.TooltipArrow />
         </Styles.TooltipContent>
       </Styles.TooltipRoot>
