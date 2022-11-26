@@ -7,6 +7,7 @@ import { paths } from "constants/routes";
 import { toLocaleDateString } from "lib/toLocaleDateString";
 import { resolvePath } from "utils";
 
+import { useCart } from "context";
 import * as Styles from "./styles";
 
 import { ProductPreviewProps } from "./types";
@@ -15,11 +16,12 @@ export function ProductPreview(props: ProductPreviewProps) {
   const {
     inventory: {
       size,
+      id: inventoryId,
       quantity,
     },
     product: {
       defaultImage,
-      id,
+      id: productId,
       slug,
       name,
     },
@@ -27,8 +29,10 @@ export function ProductPreview(props: ProductPreviewProps) {
 
   const href = resolvePath(paths.pdp, {
     slug,
-    id,
+    productId,
   });
+
+  const { decreaseCartItem } = useCart();
 
   return (
     <Link href={href}>
@@ -49,6 +53,7 @@ export function ProductPreview(props: ProductPreviewProps) {
               <Styles.Name variant="caption1">{name}</Styles.Name>
               <Box gap={0.2}>
                 <ButtonIcon
+                  onClick={() => decreaseCartItem(productId, inventoryId)}
                   icon={{
                     name: "remove",
                   }}

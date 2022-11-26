@@ -57,11 +57,49 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   };
 
+  const handleDecreaseCartItem = (productId: number, inventoryId: number) => {
+    setCart((prevState) => {
+      const product = prevState[productId];
+
+      if (!product) return prevState;
+
+      const inventory = product.inventories[inventoryId];
+
+      if (!inventory) return prevState;
+
+      if (inventory.quantity > 0) {
+        const parsedInventory = {
+          ...inventory,
+          quantity: inventory.quantity - 1,
+        };
+
+        return {
+          ...prevState,
+          [productId]: {
+            ...product,
+            inventories: {
+              ...product.inventories,
+              [inventoryId]: parsedInventory,
+            },
+          },
+        };
+      }
+
+      delete product.inventories[inventoryId];
+
+      return {
+        ...prevState,
+        [productId]: product,
+      };
+    });
+  };
+
   return (
     <CartContext.Provider
       value={{
         cart,
         addCartItem: handleAddCartItem,
+        decreaseCartItem: handleDecreaseCartItem,
       }}
     >
       {children}

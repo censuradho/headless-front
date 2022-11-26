@@ -28,4 +28,5 @@ export type Cart = Record<string | number, CartAttr>
 export interface CartContextProps {
   cart: Cart
   addCartItem: (payload: CartAttr) => void
+  handleDecreaseCartItem: (productId: number, inventoryId: number) => void
 }
