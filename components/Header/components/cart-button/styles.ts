@@ -6,7 +6,7 @@ export const Container = styled("div", {
 });
 
 export const Count = styled("div", {
-  fontSize: "0.5vw",
+  fontSize: "100%",
   fontWeight: 600,
   width: "1.2rem",
   height: "1.2rem",

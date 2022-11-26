@@ -10,6 +10,7 @@ type RootButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>,
   | "onTouchEnd"
   | "onTouchStart"
   | "type"
+  | "disabled"
 >
 
 export interface ButtonIconProps extends RootButtonProps {

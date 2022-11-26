@@ -43,6 +43,8 @@ export function ProductPreview(props: ProductPreviewProps) {
     addCartItem,
   } = useCart();
 
+  const canIncrease = quantity < stock;
+
   return (
     <Styles.Container>
       <Link href={href}>
@@ -73,6 +75,7 @@ export function ProductPreview(props: ProductPreviewProps) {
               }}
             />
             <ButtonIcon
+              disabled={canIncrease}
               onClick={() => addCartItem({
                 defaultImage,
                 id: productId,
