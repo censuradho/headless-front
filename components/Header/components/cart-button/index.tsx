@@ -12,20 +12,11 @@ export function CartButton() {
   const router = useRouter();
   const { cart } = useCart();
 
-  const count = useMemo(() => cart
-    .map((value) => value.inventories)
-    .reduce((prev, next) => ([
-      ...prev,
-      ...next,
-    ]))
-    .map((value) => value.quantity)
-    .reduce((prev, next) => prev + next), [cart]);
-
   const renderCount = () => {
-    if (!count) return null;
+    if (!1) return null;
 
     return (
-      <Styles.Count>{count}</Styles.Count>
+      <Styles.Count>{1}</Styles.Count>
     );
   };
 

@@ -19,11 +19,12 @@ type ProductCartItemAttr = Pick<ProductAttr,
   id: number
 }
 
-export interface Cart extends ProductCartItemAttr {
-  inventories: InventoryCartItem[]
+export interface CartAttr extends ProductCartItemAttr {
+  inventories: Record<string | number, InventoryCartItem>
 }
 
+export type Cart = Record<string | number, CartAttr>
 export interface CartContextProps {
-  cart: Cart[]
-  addCartItem: (payload: Cart) => void
+  cart: Cart
+  addCartItem: (payload: CartAttr) => void
 }

@@ -1,51 +1,61 @@
 import { useLocalStorage } from "hooks";
 import {
   createContext,
+  useCallback,
   useContext,
+  useState,
 } from "react";
 
 import type {
   CartProviderProps,
   CartContextProps,
   Cart,
+  CartAttr,
 } from "./types";
 
 const CartContext = createContext({} as CartContextProps);
 
 export function CartProvider({ children }: CartProviderProps) {
-  const [cart, setCart] = useLocalStorage<Cart[]>("cart", []);
+  const [cart, setCart] = useLocalStorage<Cart>("cart", {});
 
-  const handleAddCartItem = (payload: Cart) => {
+  const handleAddCartItem = (payload: CartAttr) => {
     setCart((prevState) => {
-      const product = prevState.find((item) => item.id === payload.id);
+      const product = prevState[payload.id];
 
       if (!product) {
-        return ([
+        return ({
           ...prevState,
-          payload,
-        ]);
+          [payload.id]: payload,
+        });
       }
 
-      const inventories = product.inventories.map((value) => {
-        const inventory = payload.inventories.find((item) => item.id === value.id);
+      const parsedInventories = Object
+        .entries(payload.inventories)
+        .map(([key, value]) => ({
+          [key]: {
+            ...value,
+            ...(product.inventories[key] && ({
+              quantity: product.inventories[key].quantity + value.quantity,
+            })),
+          },
+        }))
+        .reduce((prev, next) => ({
+          ...prev,
+          ...next,
+        }), {});
 
-        if (!inventory) return value;
-
-        return {
-          ...value,
-          quantity: inventory.quantity + value.quantity,
-        };
-      });
-
-      const updatedProduct: Cart = {
-        ...product,
-        inventories,
+      const inventories = {
+        ...product.inventories,
+        ...parsedInventories,
       };
 
-      return ([
-        ...prevState.filter((value) => value.id !== product.id),
-        updatedProduct,
-      ]);
+      return ({
+        ...prevState,
+        [product.id]: {
+          ...product,
+          inventories,
+        },
+      });
     });
   };
 

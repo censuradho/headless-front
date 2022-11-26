@@ -55,7 +55,9 @@ export function ProductPageLayout(props: ProductPageProps) {
         id,
         name: attributes?.name,
         price: attributes?.price,
-        inventories: [inventory],
+        inventories: {
+          [inventory.id]: inventory,
+        },
       });
     };
 
