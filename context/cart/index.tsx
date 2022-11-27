@@ -17,11 +17,18 @@ const CartContext = createContext({} as CartContextProps);
 export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useLocalStorage<Cart>("cart", {});
 
-  const handleAddCartItem = (payload: CartAttr) => {
+  const handleAddCartItem = (payload: CartAttr, type: "increase" | "set" = "increase") => {
     // eslint-disable-next-line max-len
-    const getQuantity = (prev: InventoryCartItem, next: InventoryCartItem) => (prev.stock >= prev.quantity
-      ? prev.quantity + next.quantity
-      : prev.quantity);
+    const getQuantity = (prev: InventoryCartItem, next: InventoryCartItem) => {
+      const mapFunctions = {
+        increase: () => (prev.stock >= prev.quantity
+          ? prev.quantity + next.quantity
+          : prev.quantity),
+        set: () => next.quantity,
+      };
+
+      return mapFunctions[type]();
+    };
 
     setCart((prevState) => {
       const product = prevState[payload.id];

@@ -49,7 +49,9 @@ export const Trigger = styled(Select.Trigger, {
 
 });
 
-export const Portal = styled(Select.Portal, {});
+export const Portal = styled(Select.Portal, {
+  zIndex: 11,
+});
 
 export const Viewport = styled(Select.Viewport, {
   padding: "5px",

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   Box,
   Typography,
@@ -10,9 +12,8 @@ import { toLocaleDateString } from "lib/toLocaleDateString";
 import { resolvePath } from "utils";
 
 import { useCart } from "context";
-import Link from "next/link";
-import * as Styles from "./styles";
 
+import * as Styles from "./styles";
 import { ProductPreviewProps } from "./types";
 
 export function ProductPreview(props: ProductPreviewProps) {
@@ -40,12 +41,17 @@ export function ProductPreview(props: ProductPreviewProps) {
   });
 
   const {
-    decreaseCartItem,
     removeCartItem,
     addCartItem,
   } = useCart();
 
-  const canIncrease = quantity < stock;
+  const sizeOptions = Array(stock)
+    .fill(1)
+    .map((value, index) => index + 1)
+    .map((value) => ({
+      label: String(value),
+      value: String(value),
+    }));
 
   return (
     <Styles.Container>
@@ -65,20 +71,16 @@ export function ProductPreview(props: ProductPreviewProps) {
           <Styles.Name variant="caption1">{name}</Styles.Name>
           <Box gap={0.2}>
             <ButtonIcon
-              onClick={() => decreaseCartItem(productId, inventoryId)}
-              icon={{
-                name: "remove",
-              }}
-            />
-            <ButtonIcon
               onClick={() => removeCartItem(productId, inventoryId)}
               icon={{
                 name: "trash",
               }}
             />
-            <ButtonIcon
-              disabled={canIncrease}
-              onClick={() => addCartItem({
+            <Select
+              data={sizeOptions}
+              placeholder="tamanho"
+              value={String(quantity)}
+              onValueChange={(value) => addCartItem({
                 defaultImage,
                 id: productId,
                 name,
@@ -87,22 +89,16 @@ export function ProductPreview(props: ProductPreviewProps) {
                 inventories: {
                   [inventoryId]: {
                     id: inventoryId,
-                    quantity: 1,
+                    quantity: Number(value),
                     stock,
                     size,
                   },
                 },
-              })}
-              icon={{
-                name: "add",
-              }}
+              }, "set")}
             />
           </Box>
         </Box>
-        <Box>
-          <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
-
-        </Box>
+        <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
         <Box justifyContent="space-between">
           <Typography as="strong" semiBold>
             Tamanho:

@@ -28,7 +28,7 @@ export interface CartAttr extends ProductCartItemAttr {
 export type Cart = Record<string | number, CartAttr>
 export interface CartContextProps {
   cart: Cart
-  addCartItem: (payload: CartAttr) => void
+  addCartItem: (payload: CartAttr, type?: "increase" | "set") => void
   decreaseCartItem: (productId: number, inventoryId: number) => void
   removeCartItem: (productId: number, inventoryId: number) => void
 }

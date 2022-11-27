@@ -9,7 +9,7 @@ import { useCart } from "context";
 import { uuid } from "utils";
 import { useMemo } from "react";
 import * as Styles from "./styles";
-import { ProductPreview } from "./components";
+import { ProductPreview } from "../product-preview";
 
 export function CartButton() {
   const router = useRouter();
@@ -65,11 +65,12 @@ export function CartButton() {
           />
           {renderCount()}
         </Styles.TooltipTrigger>
-        <Styles.TooltipContent sideOffset={5}>
-          {renderProductPreview()}
-
-          <Styles.TooltipArrow />
-        </Styles.TooltipContent>
+        <Styles.TooltipPortal>
+          <Styles.TooltipContent sideOffset={5}>
+            {renderProductPreview()}
+            <Styles.TooltipArrow />
+          </Styles.TooltipContent>
+        </Styles.TooltipPortal>
       </Styles.TooltipRoot>
     </Styles.TooltipProvider>
   );

@@ -9,6 +9,8 @@ export function Select(props: SelectProps) {
     data,
     placeholder,
     fullWidth,
+    id,
+    ...otherProps
   } = props;
 
   const renderOptions = data.map((option) => (
@@ -24,20 +26,25 @@ export function Select(props: SelectProps) {
   ));
 
   return (
-    <Styles.Root>
-      <Styles.Trigger fullWidth={fullWidth}>
-        {placeholder && <Styles.Value placeholder="Select a fruit..." />}
+    <Styles.Root {...otherProps}>
+      <Styles.Trigger
+        id={id}
+        fullWidth={fullWidth}
+      >
+        <Styles.Value aria-label={otherProps.value} placeholder={placeholder} />
         <Icon
           name="arrowDown"
           size={10}
           color="body"
         />
       </Styles.Trigger>
-      <Styles.Content>
-        <Styles.Viewport>
-          <Styles.Group>{renderOptions}</Styles.Group>
-        </Styles.Viewport>
-      </Styles.Content>
+      <Styles.Portal>
+        <Styles.Content>
+          <Styles.Viewport>
+            <Styles.Group>{renderOptions}</Styles.Group>
+          </Styles.Viewport>
+        </Styles.Content>
+      </Styles.Portal>
     </Styles.Root>
   );
 }
