@@ -45,6 +45,28 @@ export function CartResume() {
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 
+  const renderProductsPreview = () => {
+    if (!price) {
+      return (
+        <Box flexDirection="column">
+          <Typography variant="sub-headline">Sua sacola está vazia!</Typography>
+          <Typography>
+            Para inserir produtos em sua sacola, basta navegar pela webstore ou utilizar a busca,
+            e ao encontrar os produtos desejados, clique no botão 'Adicionar à sacola'.
+
+          </Typography>
+        </Box>
+      );
+    }
+    return (
+      <Styles.ScrollView>
+        <Box flexDirection="column">
+          {renderProductPreview()}
+        </Box>
+      </Styles.ScrollView>
+    );
+  };
+
   return (
     <Styles.Root modal open={isOpenResumeCart} onOpenChange={setIsOpenResumeCart}>
       <Styles.Portal>
@@ -63,11 +85,7 @@ export function CartResume() {
               />
             </Styles.Close>
           </Styles.Header>
-          <Styles.ScrollView>
-            <Box flexDirection="column">
-              {renderProductPreview()}
-            </Box>
-          </Styles.ScrollView>
+          {renderProductsPreview()}
           <Styles.SubtotalContainer>
             <Typography>Subtotal</Typography>
             <Typography>{toLocaleMonetize(price)}</Typography>
