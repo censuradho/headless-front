@@ -66,16 +66,33 @@ export function ProductPreview(props: ProductPreviewProps) {
           />
         </Styles.ImagePreviewContainer>
       </Link>
-      <Box flexDirection="column" gap={1}>
-        <Box alignItems="center" gap={0.5}>
-          <Styles.Name variant="caption1">{name}</Styles.Name>
-          <Box gap={0.2}>
+      <Box alignItems="flex-start">
+        <Box flexDirection="column" gap={1}>
+          <Styles.Name variant="caption2">{name}</Styles.Name>
+          <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
+          <Box justifyContent="space-between">
+            <Typography as="strong" variant="caption2" semiBold>
+              Tamanho:
+              {" "}
+              <Typography semiBold>{size}</Typography>
+            </Typography>
+          </Box>
+        </Box>
+        <Box flexDirection="column" justifyContent="space-between">
+          <Box flex={1} justifyContent="flex-end">
             <ButtonIcon
               onClick={() => removeCartItem(productId, inventoryId)}
               icon={{
                 name: "trash",
               }}
             />
+          </Box>
+          <Box flexDirection="column" gap={0.5} flex={1}>
+            <Typography as="strong" semiBold>
+              Quantidade:
+              {" "}
+
+            </Typography>
             <Select
               data={sizeOptions}
               placeholder="tamanho"
@@ -98,20 +115,8 @@ export function ProductPreview(props: ProductPreviewProps) {
             />
           </Box>
         </Box>
-        <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
-        <Box justifyContent="space-between">
-          <Typography as="strong" semiBold>
-            Tamanho:
-            {" "}
-            <Typography>{size}</Typography>
-          </Typography>
-          <Typography as="strong" semiBold>
-            Quantidade:
-            {" "}
-            <Typography>{quantity}</Typography>
-          </Typography>
-        </Box>
       </Box>
+
     </Styles.Container>
 
   );

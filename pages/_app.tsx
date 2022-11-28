@@ -10,13 +10,13 @@ import type { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <CartProvider>
-        <ThemeProvider>
+      <ThemeProvider>
+        <CartProvider>
           <ToastProvider>
             <Component {...pageProps} />
           </ToastProvider>
-        </ThemeProvider>
-      </CartProvider>
+        </CartProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

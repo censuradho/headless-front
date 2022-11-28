@@ -1,7 +1,9 @@
-import { useLocalStorage } from "hooks";
+import { CartResume } from "components/cart-resume";
+import { useBooleanToggle, useLocalStorage } from "hooks";
 import {
   createContext,
   useContext,
+  useState,
 } from "react";
 
 import type {
@@ -15,6 +17,8 @@ import type {
 const CartContext = createContext({} as CartContextProps);
 
 export function CartProvider({ children }: CartProviderProps) {
+  const [isOpenResumeCart, setIsOpenResumeCart] = useState(false);
+
   const [cart, setCart] = useLocalStorage<Cart>("cart", {});
 
   const handleAddCartItem = (payload: CartAttr, type: "increase" | "set" = "increase") => {
@@ -126,11 +130,14 @@ export function CartProvider({ children }: CartProviderProps) {
     <CartContext.Provider
       value={{
         cart,
+        isOpenResumeCart,
+        setIsOpenResumeCart,
         addCartItem: handleAddCartItem,
         decreaseCartItem: handleDecreaseCartItem,
         removeCartItem: handleRemoveCartItem,
       }}
     >
+      <CartResume />
       {children}
     </CartContext.Provider>
   );

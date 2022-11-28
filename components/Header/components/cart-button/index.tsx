@@ -1,19 +1,13 @@
-import { useRouter } from "next/router";
+import { useMemo } from "react";
 
 import { Icon } from "components";
 
-import { routePaths } from "constants/routes";
-
 import { useCart } from "context";
 
-import { uuid } from "utils";
-import { useMemo } from "react";
 import * as Styles from "./styles";
-import { ProductPreview } from "../product-preview";
 
 export function CartButton() {
-  const router = useRouter();
-  const { cart } = useCart();
+  const { cart, setIsOpenResumeCart } = useCart();
 
   const quantity = useMemo(() => {
     const inventories = Object
@@ -38,40 +32,14 @@ export function CartButton() {
     );
   };
 
-  const renderProductPreview = () => {
-    const products = Object
-      .entries(cart)
-      .map(([, value]) => value);
-
-    return products.map((product) => Object
-      .entries(product.inventories)
-      .map(([, inventory]) => (
-        <ProductPreview
-          key={uuid()}
-          inventory={inventory}
-          product={product}
-        />
-      )));
-  };
-
   return (
-    <Styles.TooltipProvider>
-      <Styles.TooltipRoot delayDuration={300}>
-        <Styles.TooltipTrigger onClick={() => router.push(routePaths.cart.link)}>
-          <Icon
-            name="shoppingBag"
-            color="primaryDark"
-            size={30}
-          />
-          {renderCount()}
-        </Styles.TooltipTrigger>
-        <Styles.TooltipPortal>
-          <Styles.TooltipContent sideOffset={5}>
-            {renderProductPreview()}
-            <Styles.TooltipArrow />
-          </Styles.TooltipContent>
-        </Styles.TooltipPortal>
-      </Styles.TooltipRoot>
-    </Styles.TooltipProvider>
+    <Styles.Container onClick={() => setIsOpenResumeCart(true)}>
+      <Icon
+        name="shoppingBag"
+        color="primaryDark"
+        size={30}
+      />
+      {renderCount()}
+    </Styles.Container>
   );
 }
