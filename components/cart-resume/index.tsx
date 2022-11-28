@@ -7,6 +7,8 @@ import { Typography } from "components/typography";
 import { useCart } from "context";
 import { toLocaleMonetize, uuid } from "utils";
 
+import { Icon } from "components/icon";
+import { paths } from "constants/routes";
 import { ProductPreview } from "./components";
 
 import * as Styles from "./styles";
@@ -48,22 +50,34 @@ export function CartResume() {
   const renderProductsPreview = () => {
     if (!price) {
       return (
-        <Box flexDirection="column">
-          <Typography variant="sub-headline">Sua sacola está vazia!</Typography>
-          <Typography>
+        <Box flexDirection="column" gap={2} flex={1} justifyContent="center" alignItems="center">
+          <Icon name="shoppingBag" size={50} />
+          <Typography as="strong" textAlign="center" variant="sub-headline">Sua sacola está vazia!</Typography>
+          <Typography as="p" textAlign="center">
             Para inserir produtos em sua sacola, basta navegar pela webstore ou utilizar a busca,
-            e ao encontrar os produtos desejados, clique no botão 'Adicionar à sacola'.
-
+            e ao encontrar os produtos desejados, clique no botão Adicionar à sacola.
           </Typography>
+          <Button onClick={() => setIsOpenResumeCart(false)} as="a" href={paths.home}>Escolher produto</Button>
         </Box>
       );
     }
     return (
-      <Styles.ScrollView>
-        <Box flexDirection="column">
-          {renderProductPreview()}
-        </Box>
-      </Styles.ScrollView>
+      <>
+        <Styles.ScrollView>
+          <Box flexDirection="column">
+            {renderProductPreview()}
+          </Box>
+        </Styles.ScrollView>
+        <Styles.SubtotalContainer>
+          <Typography>Subtotal</Typography>
+          <Typography>{toLocaleMonetize(price)}</Typography>
+        </Styles.SubtotalContainer>
+
+        <Styles.SubmitContainer>
+          <Button fullWidth variant="letter">Ver sacola</Button>
+          <Button fullWidth>Finalizar compra</Button>
+        </Styles.SubmitContainer>
+      </>
     );
   };
 
@@ -86,15 +100,7 @@ export function CartResume() {
             </Styles.Close>
           </Styles.Header>
           {renderProductsPreview()}
-          <Styles.SubtotalContainer>
-            <Typography>Subtotal</Typography>
-            <Typography>{toLocaleMonetize(price)}</Typography>
-          </Styles.SubtotalContainer>
 
-          <Styles.SubmitContainer>
-            <Button fullWidth variant="letter">Ver sacola</Button>
-            <Button fullWidth>Finalizar compra</Button>
-          </Styles.SubmitContainer>
         </Styles.Content>
 
       </Styles.Portal>

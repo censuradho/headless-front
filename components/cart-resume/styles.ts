@@ -46,12 +46,12 @@ export const Header = styled("div", {
   justifyContent: "space-between",
   alignItems: "center",
   padding: "1rem",
+  border: "1px solid $highlight",
 });
 
 export const ScrollView = styled("div", {
   flex: 1,
   overflow: "auto",
-  border: "1px solid $highlight",
 });
 
 export const SubtotalContainer = styled("div", {
