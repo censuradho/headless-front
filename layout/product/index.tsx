@@ -16,7 +16,7 @@ import * as Styles from "./styles";
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
-  const { addCartItem, cart } = useCart();
+  const { addCartItem, setIsOpenResumeCart } = useCart();
 
   const [isUnselected, setIsUnselected] = useState(false);
 
@@ -60,6 +60,8 @@ export function ProductPageLayout(props: ProductPageProps) {
           [inventory.id]: inventory,
         },
       });
+
+      setIsOpenResumeCart(true);
     };
 
     return (
@@ -73,7 +75,6 @@ export function ProductPageLayout(props: ProductPageProps) {
         </Button>
         <Button
           fullWidth
-          onClick={handleAddCart}
         >
           Comprar
         </Button>

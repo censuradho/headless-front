@@ -96,7 +96,7 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
             </Typography>
             <Select
               data={sizeOptions}
-              defaultValue={size}
+              defaultValue={String(size)}
               placeholder="tamanho"
               value={String(quantity)}
               onValueChange={(value) => addCartItem({
