@@ -13,7 +13,6 @@ export function Select(props: SelectProps) {
     ...otherProps
   } = props;
 
-  console.log(otherProps);
   const renderOptions = data.map((option) => (
     <Styles.Item
       key={uuid()}
@@ -39,13 +38,11 @@ export function Select(props: SelectProps) {
           color="body"
         />
       </Styles.Trigger>
-      <Styles.Portal>
-        <Styles.Content>
-          <Styles.Viewport>
-            <Styles.Group>{renderOptions}</Styles.Group>
-          </Styles.Viewport>
-        </Styles.Content>
-      </Styles.Portal>
+      <Styles.Content>
+        <Styles.Viewport>
+          <Styles.Group>{renderOptions}</Styles.Group>
+        </Styles.Viewport>
+      </Styles.Content>
     </Styles.Root>
   );
 }
