@@ -7,8 +7,8 @@ const overlayShow = keyframes({
 });
 
 const contentShow = keyframes({
-  "0%": { transformX: "translate(-100%)" },
-  "100%": { transformX: "translate(100%)" },
+  "0%": { opacity: 0, transform: "translate(-50%, -48%) scale(.96)" },
+  "100%": { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
 });
 
 export const Overlay = styled(Dialog.Overlay, {
@@ -18,7 +18,7 @@ export const Overlay = styled(Dialog.Overlay, {
   top: 0,
   inset: 0,
   left: 0,
-  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
+  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1) forward`,
   zIndex: 10,
 });
 
@@ -31,7 +31,7 @@ export const Content = styled(Dialog.Content, {
   top: 0,
   left: 0,
   height: "100vh",
-  animation: `${contentShow} 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+  animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1) forward`,
   "&:focus": { outline: "none" },
   zIndex: 10,
   display: "flex",

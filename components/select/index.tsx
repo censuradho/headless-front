@@ -13,6 +13,7 @@ export function Select(props: SelectProps) {
     ...otherProps
   } = props;
 
+  console.log(otherProps);
   const renderOptions = data.map((option) => (
     <Styles.Item
       key={uuid()}

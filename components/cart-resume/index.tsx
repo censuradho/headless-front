@@ -37,16 +37,16 @@ export function CartResume() {
 
     return products.map((product) => {
       const entriesPrice = Object
-        .entries(product.inventories)
+        .entries(product?.inventories || {})
         .map(([, value]) => value.quantity * product.price);
 
-      return entriesPrice.reduce((prev, next) => prev + next);
+      return entriesPrice?.reduce((prev, next) => prev + next, 0);
     })
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 
   return (
-    <Styles.Root open={isOpenResumeCart} onOpenChange={setIsOpenResumeCart}>
+    <Styles.Root modal open={isOpenResumeCart} onOpenChange={setIsOpenResumeCart}>
       <Styles.Portal>
         <Styles.Overlay />
         <Styles.Content>

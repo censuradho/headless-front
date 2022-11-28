@@ -95,6 +95,7 @@ export function ProductPreview(props: ProductPreviewProps) {
             </Typography>
             <Select
               data={sizeOptions}
+              defaultValue={size}
               placeholder="tamanho"
               value={String(quantity)}
               onValueChange={(value) => addCartItem({
