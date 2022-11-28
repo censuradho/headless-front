@@ -13,10 +13,11 @@ import { resolvePath } from "utils";
 
 import { useCart } from "context";
 
+import { memo } from "react";
 import * as Styles from "./styles";
 import { ProductPreviewProps } from "./types";
 
-export function ProductPreview(props: ProductPreviewProps) {
+export const ProductPreview = memo((props: ProductPreviewProps) => {
   const {
     inventory,
     product: {
@@ -121,4 +122,4 @@ export function ProductPreview(props: ProductPreviewProps) {
     </Styles.Container>
 
   );
-}
+});

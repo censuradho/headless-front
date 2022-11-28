@@ -74,8 +74,25 @@ export function CartResume() {
         </Styles.SubtotalContainer>
 
         <Styles.SubmitContainer>
-          <Button fullWidth variant="letter">Ver sacola</Button>
-          <Button fullWidth>Finalizar compra</Button>
+          <Button
+            as="a"
+            href="/"
+            fullWidth
+            variant="letter"
+            onClick={() => setIsOpenResumeCart(false)}
+          >
+            Ver sacola
+
+          </Button>
+          <Button
+            as="a"
+            href="/"
+            fullWidth
+            onClick={() => setIsOpenResumeCart(false)}
+          >
+            Finalizar compra
+
+          </Button>
         </Styles.SubmitContainer>
       </>
     );
@@ -102,7 +119,6 @@ export function CartResume() {
           {renderProductsPreview()}
 
         </Styles.Content>
-
       </Styles.Portal>
     </Styles.Root>
   );

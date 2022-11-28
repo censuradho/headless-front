@@ -1,9 +1,8 @@
-import NextImage from 'next/image'
+import NextImage from "next/image";
+import { memo } from "react";
 
-import { ImageProps } from './types'
+import { ImageProps } from "./types";
 
-export function Image (props: ImageProps) {
-  return (
-    <NextImage {...props} placeholder="blur" blurDataURL={props?.src as string} />
-  )
-}
+export const Image = memo((props: ImageProps) => (
+  <NextImage {...props} placeholder="blur" blurDataURL={props?.src as string} />
+));
