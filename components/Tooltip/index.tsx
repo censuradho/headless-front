@@ -11,7 +11,7 @@ export function Tooltip(props: TooltipProps) {
     if (!message) return null;
     return (
       <Styles.Portal>
-        <Styles.Content sideOffset={5}>
+        <Styles.Content sticky="always" sideOffset={5}>
           {message}
           <Styles.Arrow />
         </Styles.Content>

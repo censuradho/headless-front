@@ -1,5 +1,8 @@
 import {
-  AuthProvider, ProfileProvider, ThemeProvider, ToastProvider,
+  AuthProvider,
+  ThemeProvider,
+  ToastProvider,
+  CartProvider,
 } from "context";
 
 import type { AppProps } from "next/app";
@@ -7,13 +10,13 @@ import type { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <ProfileProvider>
-        <ThemeProvider>
+      <ThemeProvider>
+        <CartProvider>
           <ToastProvider>
             <Component {...pageProps} />
           </ToastProvider>
-        </ThemeProvider>
-      </ProfileProvider>
+        </CartProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

@@ -11,4 +11,5 @@ export * from "./typography";
 export * from "./size-button";
 export * from "./Tooltip";
 export * from "./input";
-export * from "./input-passowrd";
+export * from "./input-password";
+export * from "./select";

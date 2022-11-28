@@ -30,3 +30,10 @@ export function getPriceProduct(price: number, discount?: number) {
 export function getRelatedPercentage(total: number, value: number) {
   return ((value * 100) / total).toFixed(1);
 }
+
+export function toLocaleMonetize(value: number) {
+  return value.toLocaleString("pt-BR", {
+    currency: "BRL",
+    style: "currency",
+  });
+}

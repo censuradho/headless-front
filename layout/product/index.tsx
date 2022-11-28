@@ -1,6 +1,8 @@
-import { Button } from "components";
+import { Button, Select } from "components";
+import { useAuth, useCart } from "context";
+import { InventoryCartItem } from "context/cart/types";
 import { SizeOption } from "hooks/useProductSizes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Preview,
@@ -14,12 +16,15 @@ import * as Styles from "./styles";
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
+  const { addCartItem, setIsOpenResumeCart } = useCart();
+
   const [isUnselected, setIsUnselected] = useState(false);
 
   const [size, setSize] = useState<SizeOption>();
 
   const {
     product: {
+      id,
       attributes,
     },
     product,
@@ -28,8 +33,35 @@ export function ProductPageLayout(props: ProductPageProps) {
   const renderSubmitButtons = () => {
     if (size?.unavailableSize) return null;
 
-    const handleAddWishlist = async () => {
+    const handleAddCart = async () => {
       if (!size) return setIsUnselected(true);
+
+      const selectedInventory = attributes
+        ?.inventories
+        .data
+        .find((value) => value.id === size.inventoryId);
+
+      if (!selectedInventory) return;
+
+      const inventory: InventoryCartItem = {
+        id: selectedInventory.id,
+        size: selectedInventory.attributes.size.data.attributes.name,
+        quantity: 1,
+        stock: selectedInventory.attributes.stock,
+      };
+
+      addCartItem({
+        defaultImage: attributes.defaultImage,
+        id,
+        name: attributes?.name,
+        price: attributes?.price,
+        slug: attributes?.slug,
+        inventories: {
+          [inventory.id]: inventory,
+        },
+      });
+
+      setIsOpenResumeCart(true);
     };
 
     return (
@@ -37,16 +69,14 @@ export function ProductPageLayout(props: ProductPageProps) {
         <Button
           fullWidth
           variant="letter"
-          onClick={handleAddWishlist}
+          onClick={handleAddCart}
         >
           Adicionar à sacola
         </Button>
         <Button
           fullWidth
-          onClick={handleAddWishlist}
         >
           Comprar
-
         </Button>
       </Styles.BuyButtons>
     );
@@ -65,6 +95,19 @@ export function ProductPageLayout(props: ProductPageProps) {
       <Styles.Content>
         <Preview {...product} />
         <Styles.ProductInfo>
+          <Select
+            placeholder="selecione um..."
+            data={[
+              {
+                label: "teste",
+                value: "teste",
+              },
+              {
+                label: "Lorem Ipsum",
+                value: "Lorem Ipsum",
+              },
+            ]}
+          />
           <ProductInfo {...attributes} />
           <ProductSizes
             onSelectSize={(option) => {

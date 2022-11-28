@@ -9,6 +9,11 @@ export const Typography = styled("span", {
         fontWeight: 600,
       },
     },
+    textAlign: {
+      center: {
+        textAlign: "center",
+      },
+    },
     variant: {
       caption2: {
         fontSize: "0.6875rem",

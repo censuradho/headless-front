@@ -30,7 +30,7 @@ export const Button = styled("button", {
         "> *": {
           color: "white !important",
         },
-        padding: "1rem 3rem",
+        padding: "1rem",
 
         "svg path": {
           fill: "White",

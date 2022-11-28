@@ -1,7 +1,7 @@
 import {
   Dispatch, SetStateAction, useCallback, useEffect, useState,
 } from "react";
-import { isBrowser } from "utils";
+import { isBrowser } from "utils/helpers";
 import { useEventListener } from "./useEventListener";
 
 type SetValue<T> = Dispatch<SetStateAction<T>>
@@ -51,7 +51,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T
     } catch (error) {
       console.warn(`Error setting localStorage key “${key}”:`, error);
     }
-  }, []);
+  }, [storedValue]);
 
   useEffect(() => {
     setStoredValue(readValue());

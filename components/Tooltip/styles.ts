@@ -48,6 +48,13 @@ export const Arrow = styled(TooltipPrimitive.Arrow, {
   fill: "black",
 });
 
+export const Root = styled(TooltipPrimitive.Root, {
+});
+
+export const Portal = styled(TooltipPrimitive.Portal, {
+  zIndex: 11,
+});
+
 export const {
-  Provider, Root, Trigger, Portal,
+  Provider, Trigger,
 } = TooltipPrimitive;

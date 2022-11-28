@@ -7,6 +7,7 @@ import {
 } from "@meronex/icons/ai";
 import { BiShoppingBag } from "@meronex/icons/bi";
 import { BsChevronDown, BsChevronUp } from "@meronex/icons/bs";
+
 import {
   IosArrowRoundBack,
   IosHeartEmpty,

@@ -10,7 +10,11 @@ import { routePaths } from "constants/routes";
 
 import * as Styles from "./styles";
 
-import { CartButton, MyAccountButton, Navigation } from "./components";
+import {
+  CartButton,
+  MyAccountButton,
+  Navigation,
+} from "./components";
 
 const Logo = dynamic(() => import("public/icons/logo.svg"));
 
@@ -18,7 +22,7 @@ export function Header() {
   const [isOpen, toggleIsOpen] = useBooleanToggle();
 
   const renderCartButton = () => (
-    <CartButton count={0} />
+    <CartButton />
   );
 
   return (

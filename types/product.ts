@@ -54,9 +54,11 @@ type Discount = Entity<DiscountAttr>
 export interface InventoryAttr {
   stock: number
   size: Data<Size>
+  // eslint-disable-next-line no-use-before-define
+  product: Data<Product>
 }
 
-export type Inventory = Data<Entity<InventoryAttr>[]>
+export type Inventory = Entity<InventoryAttr>
 
 export interface ProductAttr {
   name: string
@@ -65,13 +67,13 @@ export interface ProductAttr {
   createdAt: string
   updatedAt: string
   publishedAt: string
-  inventories: Inventory,
+  inventories: Data<Inventory[]>,
   discount: Data<Discount | null>;
   slug: string;
   installment: number;
   videoPreview?: string;
   hoverImage: Data<Image>,
-  image: Data<Image>,
+  image: Data<Image[]>,
   defaultImage: Data<Image>
 }
 

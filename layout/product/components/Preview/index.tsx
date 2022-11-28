@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 
-import { ButtonIcon, Image } from "components";
+import { Image } from "components";
 import { useKeenSlider } from "keen-slider/react";
-import { useProfileContext } from "context";
 import * as Styles from "./styles";
 import { PreviewProps } from "./types";
 
@@ -13,8 +12,6 @@ export function Preview(props: PreviewProps) {
       image,
     },
   } = props;
-
-  const profileContext = useProfileContext();
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [, setCurrentSlidePreview] = useState(0);
@@ -39,8 +36,6 @@ export function Preview(props: PreviewProps) {
       setCurrentSlidePreview(slider.track.details.rel);
     },
   });
-
-  const isProductLiked = profileContext?.favorite?.map((value) => value.id).includes(id);
 
   const renderPhotos = useMemo(() => (
     image?.data?.map((value) => (
@@ -91,23 +86,7 @@ export function Preview(props: PreviewProps) {
         </div>
       </Styles.Preview>
       <Styles.Thumb>
-        <Styles.LikeMobile>
-          <ButtonIcon
-            onClick={() => {
-              if (isProductLiked) {
-                profileContext?.unlikeProduct?.({ id });
-                return;
-              }
-              profileContext?.likeProduct?.({ id });
-            }}
-            icon={{
-              name: isProductLiked ? "heart" : "outlineHeart",
-            }}
-          />
-          <ButtonIcon
-            icon={{ name: "shoppingBag" }}
-          />
-        </Styles.LikeMobile>
+        <Styles.LikeMobile />
         <div ref={sliderRef} className="keen-slider">
           {renderPhotos}
         </div>
