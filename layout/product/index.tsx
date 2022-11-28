@@ -1,8 +1,8 @@
-import { Button, Select } from "components";
-import { useAuth, useCart } from "context";
+import { Button } from "components";
+import { useCart } from "context";
 import { InventoryCartItem } from "context/cart/types";
 import { SizeOption } from "hooks/useProductSizes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   Preview,
@@ -95,19 +95,6 @@ export function ProductPageLayout(props: ProductPageProps) {
       <Styles.Content>
         <Preview {...product} />
         <Styles.ProductInfo>
-          <Select
-            placeholder="selecione um..."
-            data={[
-              {
-                label: "teste",
-                value: "teste",
-              },
-              {
-                label: "Lorem Ipsum",
-                value: "Lorem Ipsum",
-              },
-            ]}
-          />
           <ProductInfo {...attributes} />
           <ProductSizes
             onSelectSize={(option) => {
