@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import router from "next/router";
+import qs from "querystring";
 
 import { Box, Button, Typography } from "components";
 import { paths } from "constants/routes";
@@ -48,7 +49,15 @@ export function CartPageLayout() {
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 
-  const goToCheckoutPath = auth?.isSigned ? paths.home : paths.auth;
+  const goToCheckoutPath = useMemo(() => {
+    if (auth?.isSigned) return paths.home;
+
+    const query = qs.stringify({
+      redirectPath: paths?.cart,
+    });
+
+    return `${paths.auth}?${query}`;
+  }, [auth?.isSigned]);
 
   return (
     <CheckoutLayout>

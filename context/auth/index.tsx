@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { JWT_KEY } from "constants/localStorage";
 import { useLocalStorage } from "hooks";
 import {
@@ -27,14 +28,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     setUser(null);
-    delete cmsApi.defaults.headers.common.Authorization;
   };
 
   useEffect(() => {
-    cmsApi.interceptors.response.use((response) => {
-      if (response?.status === 404) setJwt(null);
-      return response;
-    }, (error) => Promise.reject(error));
+    cmsApi.interceptors.request.use(undefined, async (data: AxiosError) => {
+      const { response } = data;
+
+      if (response?.status === 404) {
+        delete cmsApi.defaults.headers.common.Authorization;
+        setJwt(null);
+      }
+    });
   }, []);
 
   useEffect(() => {

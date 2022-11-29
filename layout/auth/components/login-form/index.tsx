@@ -12,6 +12,7 @@ import { useAuth } from "context";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { paths } from "constants/routes";
+import { cmsApi } from "services/rest/cms";
 import * as Styles from "./styles";
 
 import { loginValidationSchema } from "./validations";
@@ -28,6 +29,8 @@ export function LoginForm() {
 
   const router = useRouter();
 
+  const { redirectPath } = router.query;
+
   const currentStep = router?.query?.s as string | undefined;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -35,9 +38,18 @@ export function LoginForm() {
 
   const auth = useAuth();
 
+  const redirects = (query?: string) => {
+    const dictionary = {
+      [paths?.cart]: paths?.checkout,
+    };
+
+    return dictionary?.[query as keyof typeof dictionary] || paths.home;
+  };
+
   const onSubmit = async (payload: LoginFormData) => {
     try {
       setIsLoading(true);
+      delete cmsApi.defaults.headers.common.Authorization;
 
       const { data } = await login({
         identifier: payload.email,
@@ -46,7 +58,8 @@ export function LoginForm() {
 
       auth?.setJwt(data.jwt);
       auth?.setUser(data.user);
-      router.push(paths.home);
+
+      router.push(redirects(redirectPath as string));
     } catch (err) {} finally {
       setIsLoading(false);
     }
