@@ -84,7 +84,7 @@ export function CartResume() {
           </Button>
           <Button
             as="a"
-            href="/"
+            href={paths.cart}
             fullWidth
             onClick={() => setIsOpenResumeCart(false)}
           >
