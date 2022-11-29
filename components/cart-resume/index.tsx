@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Box } from "components/box";
 
 import { Button } from "components/button";
@@ -9,11 +9,14 @@ import { toLocaleMonetize, uuid } from "utils";
 
 import { Icon } from "components/icon";
 import { paths } from "constants/routes";
+import { useRouter } from "next/router";
 import { ProductPreview } from "./components";
 
 import * as Styles from "./styles";
 
 export function CartResume() {
+  const router = useRouter();
+
   const { cart, setIsOpenResumeCart, isOpenResumeCart } = useCart();
 
   const renderProductPreview = () => {
@@ -32,7 +35,7 @@ export function CartResume() {
       )));
   };
 
-  const price = useMemo(() => {
+  const total = useMemo(() => {
     const products = Object
       .entries(cart)
       .map(([key, value]) => value);
@@ -48,7 +51,7 @@ export function CartResume() {
   }, [cart]);
 
   const renderProductsPreview = () => {
-    if (!price) {
+    if (!total) {
       return (
         <Box flexDirection="column" gap={2} flex={1} justifyContent="center" alignItems="center">
           <Icon name="shoppingBag" size={50} />
@@ -61,6 +64,7 @@ export function CartResume() {
         </Box>
       );
     }
+
     return (
       <>
         <Styles.ScrollView>
@@ -68,25 +72,22 @@ export function CartResume() {
         </Styles.ScrollView>
         <Styles.SubtotalContainer>
           <Typography>Subtotal</Typography>
-          <Typography>{toLocaleMonetize(price)}</Typography>
+          <Typography>{toLocaleMonetize(total)}</Typography>
         </Styles.SubtotalContainer>
 
         <Styles.SubmitContainer>
           <Button
             as="a"
-            href="/"
+            href={paths.cart}
             fullWidth
             variant="letter"
-            onClick={() => setIsOpenResumeCart(false)}
           >
             Ver sacola
 
           </Button>
           <Button
             as="a"
-            href="/"
             fullWidth
-            onClick={() => setIsOpenResumeCart(false)}
           >
             Finalizar compra
           </Button>
@@ -94,6 +95,12 @@ export function CartResume() {
       </>
     );
   };
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => setIsOpenResumeCart(false));
+
+    return router.events.off("routeChangeStart", () => setIsOpenResumeCart(false));
+  }, []);
 
   return (
     <Styles.Root modal open={isOpenResumeCart} onOpenChange={setIsOpenResumeCart}>
@@ -114,7 +121,6 @@ export function CartResume() {
             </Styles.Close>
           </Styles.Header>
           {renderProductsPreview()}
-
         </Styles.Content>
       </Styles.Portal>
     </Styles.Root>

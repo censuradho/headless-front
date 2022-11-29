@@ -18,6 +18,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [jwt, setJwt] = useLocalStorage<string | null>(JWT_KEY, null);
 
+  const isSigned = !!user;
+
   const handleJWT = () => {
     if (jwt) {
       cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
@@ -46,6 +48,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUser,
         jwt,
         setJwt,
+        isSigned,
       }}
     >
       {children}

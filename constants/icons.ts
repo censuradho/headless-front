@@ -21,11 +21,13 @@ import {
   IosEyeOff,
   IosMail,
   IosClose,
+  IosLock,
 } from "@meronex/icons/ios";
 
 export const icons = {
   menu: FiMenu,
   heart: AiFillHeart,
+  lock: IosLock,
   mail: IosMail,
   shoppingBag: BiShoppingBag,
   outlineUser: AiOutlineUser,
