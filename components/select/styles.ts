@@ -5,6 +5,14 @@ export const Root = styled(Select.Root, {
   button: {
     all: "unset",
   },
+
+  variants: {
+    fullWidth: {
+      true: {
+        width: "100%",
+      },
+    },
+  },
 });
 
 export const Content = styled(Select.Content, {
@@ -17,7 +25,7 @@ export const Content = styled(Select.Content, {
 export const Trigger = styled(Select.Trigger, {
   display: "inline-flex",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "space-between",
   borderRadius: "4px",
   padding: "0 15px",
   fonSize: "13px",

@@ -5,7 +5,7 @@ import qs from "querystring";
 import { Box, Button, Typography } from "components";
 import { paths } from "constants/routes";
 import { useAuth, useCart } from "context";
-import { CheckoutLayout } from "layout/checkout";
+import { CheckoutLayout } from "layout/checkout/components";
 
 import { toLocaleMonetize, uuid } from "utils";
 import { ProductPreview } from "./components";
@@ -62,7 +62,7 @@ export function CartPageLayout() {
   return (
     <CheckoutLayout>
       <Styles.Container>
-        <Typography uppercase variant="callout">Minha sacola</Typography>
+        <Typography uppercase variant="callout" as="h1">Minha sacola</Typography>
         <Styles.Wrapper>
           <Styles.ProductPreviewList>
             {renderProductPreview()}

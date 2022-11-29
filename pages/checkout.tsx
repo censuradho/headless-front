@@ -1,7 +1,7 @@
+import { CheckoutPageLayout } from "layout/checkout";
+
 export default function Checkout() {
   return (
-    <div>
-      <h1>Checkout</h1>
-    </div>
+    <CheckoutPageLayout />
   );
 }
