@@ -58,7 +58,7 @@ export function ProductPreview(props: ProductPreviewProps) {
           />
         </Styles.ImagePreviewView>
         <Box flexDirection="column" gap={1.3} flex={1}>
-          <Box justifyContent="space-between" fullWidth>
+          <Box justifyContent="space-between" gap={1.3} fullWidth>
             <Link href={href}>
               <Styles.Name>
                 {name}

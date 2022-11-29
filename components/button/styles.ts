@@ -7,6 +7,7 @@ export const Button = styled("button", {
   transition: ".2s",
   justifyContent: "center",
   position: "relative",
+  whiteSpace: "nowrap",
 
   "&:disabled": {
     background: "$primaryDark",

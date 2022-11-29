@@ -32,7 +32,7 @@ export function CartResume() {
       )));
   };
 
-  const price = useMemo(() => {
+  const total = useMemo(() => {
     const products = Object
       .entries(cart)
       .map(([key, value]) => value);
@@ -48,7 +48,7 @@ export function CartResume() {
   }, [cart]);
 
   const renderProductsPreview = () => {
-    if (!price) {
+    if (!total) {
       return (
         <Box flexDirection="column" gap={2} flex={1} justifyContent="center" alignItems="center">
           <Icon name="shoppingBag" size={50} />
@@ -68,13 +68,13 @@ export function CartResume() {
         </Styles.ScrollView>
         <Styles.SubtotalContainer>
           <Typography>Subtotal</Typography>
-          <Typography>{toLocaleMonetize(price)}</Typography>
+          <Typography>{toLocaleMonetize(total)}</Typography>
         </Styles.SubtotalContainer>
 
         <Styles.SubmitContainer>
           <Button
             as="a"
-            href="/"
+            href={paths.cart}
             fullWidth
             variant="letter"
             onClick={() => setIsOpenResumeCart(false)}
@@ -84,7 +84,6 @@ export function CartResume() {
           </Button>
           <Button
             as="a"
-            href={paths.cart}
             fullWidth
             onClick={() => setIsOpenResumeCart(false)}
           >
@@ -114,7 +113,6 @@ export function CartResume() {
             </Styles.Close>
           </Styles.Header>
           {renderProductsPreview()}
-
         </Styles.Content>
       </Styles.Portal>
     </Styles.Root>
