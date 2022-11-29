@@ -1,6 +1,7 @@
 import {
-  Box, Button, Icon, Input, Select, Typography,
+  Box, Button, Icon, Input, Typography,
 } from "components";
+import { SelectForm } from "components/hook-form";
 import { useForm } from "react-hook-form";
 import * as Styles from "./styles";
 import { PersonalInfoFormData } from "./types";
@@ -8,12 +9,14 @@ import { PersonalInfoFormData } from "./types";
 export function PersonalInfo() {
   const {
     register,
+    setValue,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<PersonalInfoFormData>();
 
   const onSubmit = async (payload: PersonalInfoFormData) => {
-
+    console.log(payload);
   };
 
   return (
@@ -45,9 +48,12 @@ export function PersonalInfo() {
             />
           </Box>
           <Box gap={1} fullWidth>
-            <Select
+            <SelectForm
+              name="gender"
               label="Gênero"
               fullWidth
+              watch={watch}
+              setValue={setValue}
               data={[
                 {
                   label: "Masculino",
@@ -58,6 +64,8 @@ export function PersonalInfo() {
                   value: "female",
                 },
               ]}
+              register={register}
+              errorMessage={errors?.gender?.message}
             />
             <Input
               label="Data de nascimento"

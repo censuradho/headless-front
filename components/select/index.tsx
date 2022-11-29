@@ -1,7 +1,6 @@
 import { uuid } from "utils";
 import { Icon } from "components/icon";
 import { Box } from "components/box";
-import { Typography } from "components/typography";
 import { SelectProps } from "./types";
 
 import * as Styles from "./styles";
@@ -12,10 +11,12 @@ export function Select(props: SelectProps) {
     placeholder,
     fullWidth,
     label,
-    hasError,
+    errorMessage,
     id,
     ...otherProps
   } = props;
+
+  const hasError = !!errorMessage;
 
   const renderOptions = data.map((option) => (
     <Styles.Item
