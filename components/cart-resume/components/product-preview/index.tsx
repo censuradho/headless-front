@@ -38,7 +38,7 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
 
   const href = resolvePath(paths.pdp, {
     slug,
-    productId,
+    id: productId,
   });
 
   const {

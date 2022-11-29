@@ -42,12 +42,12 @@ export function ProductPreview(props: ProductPreviewProps) {
 
   const href = resolvePath(paths.pdp, {
     slug,
-    productId,
+    id: productId,
   });
 
   return (
     <Styles.Container>
-      <Box gap={1} alignItems="center">
+      <Box gap={1} alignItems="flex-start">
         <Styles.ImagePreviewView>
           <Image
             src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Box } from "components/box";
 
 import { Button } from "components/button";
@@ -9,11 +9,14 @@ import { toLocaleMonetize, uuid } from "utils";
 
 import { Icon } from "components/icon";
 import { paths } from "constants/routes";
+import { useRouter } from "next/router";
 import { ProductPreview } from "./components";
 
 import * as Styles from "./styles";
 
 export function CartResume() {
+  const router = useRouter();
+
   const { cart, setIsOpenResumeCart, isOpenResumeCart } = useCart();
 
   const renderProductPreview = () => {
@@ -61,6 +64,7 @@ export function CartResume() {
         </Box>
       );
     }
+
     return (
       <>
         <Styles.ScrollView>
@@ -77,7 +81,6 @@ export function CartResume() {
             href={paths.cart}
             fullWidth
             variant="letter"
-            onClick={() => setIsOpenResumeCart(false)}
           >
             Ver sacola
 
@@ -85,7 +88,6 @@ export function CartResume() {
           <Button
             as="a"
             fullWidth
-            onClick={() => setIsOpenResumeCart(false)}
           >
             Finalizar compra
           </Button>
@@ -93,6 +95,12 @@ export function CartResume() {
       </>
     );
   };
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => setIsOpenResumeCart(false));
+
+    return router.events.off("routeChangeStart", () => setIsOpenResumeCart(false));
+  }, []);
 
   return (
     <Styles.Root modal open={isOpenResumeCart} onOpenChange={setIsOpenResumeCart}>
