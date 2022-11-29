@@ -40,9 +40,6 @@ export const Trigger = styled(Select.Trigger, {
   gap: "5px",
   backgroundColor: "$background",
   border: "1px solid $highlight",
-  "&:hover": {
-    backgroundColor: "$mauve3",
-  },
 
   "&:focus": {
     boxShadow: "0 0 0 2px black",

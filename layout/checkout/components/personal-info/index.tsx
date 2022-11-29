@@ -1,9 +1,17 @@
 import {
   Box, Button, Icon, Input, Select, Typography,
 } from "components";
+import { useForm } from "react-hook-form";
 import * as Styles from "./styles";
+import { PersonalInfoFormData } from "./types";
 
 export function PersonalInfo() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PersonalInfoFormData>();
+
   return (
     <Styles.Container>
       <Box flexDirection="column" gap={0.8}>
@@ -13,10 +21,24 @@ export function PersonalInfo() {
         </Box>
         <Typography>Solicitamos apenas informações essenciais.</Typography>
         <Styles.Form>
-          <Input label="E-mail" />
+          <Input
+            label="E-mail"
+            register={register("email")}
+            errorMessage={errors?.email?.message}
+          />
           <Box gap={1}>
-            <Input label="Primeiro Nome" fullWidth />
-            <Input label="Último nome" fullWidth />
+            <Input
+              label="Primeiro Nome"
+              fullWidth
+              register={register("firstName")}
+              errorMessage={errors?.firstName?.message}
+            />
+            <Input
+              label="Último nome"
+              fullWidth
+              register={register("lastName")}
+              errorMessage={errors?.lastName?.message}
+            />
           </Box>
           <Box gap={1} fullWidth>
             <Select
@@ -36,19 +58,27 @@ export function PersonalInfo() {
             <Input
               label="Data de nascimento"
               fullWidth
+              register={register("birthDate")}
+              errorMessage={errors?.birthDate?.message}
             />
           </Box>
           <Box gap={1}>
             <Input
               label="CPF"
               fullWidth
+              register={register("clientDocument")}
+              errorMessage={errors?.clientDocument?.message}
             />
             <Input
               label="Telefone"
               fullWidth
+              register={register("phone")}
+              errorMessage={errors?.phone?.message}
             />
           </Box>
-          <Button fullWidth>Ir para entrega</Button>
+          <Box marginTop={2}>
+            <Button fullWidth>Ir para entrega</Button>
+          </Box>
         </Styles.Form>
       </Box>
     </Styles.Container>
