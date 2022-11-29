@@ -1,54 +1,52 @@
-import { useState } from 'react'
-import 'keen-slider/keen-slider.min.css'
+import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
-import { Box, ProductItem } from "components";
+import { ProductItem } from "components";
 import { breakpoints } from "constants/breakpoints";
 
-import* as Styles from './styles'
+import * as Styles from "./styles";
 
 import { ProductCategorySlideProps } from "./types";
 
-export function ProductCategorySlide (props: ProductCategorySlideProps) {
+export function ProductCategorySlide(props: ProductCategorySlideProps) {
+  const { data, title } = props;
 
-  const { data, title } = props
-
-  const [sliderRef, instanceRef] = useKeenSlider({
+  const [sliderRef] = useKeenSlider({
     loop: false,
-    mode: 'snap',
+    mode: "snap",
     slides: {
       perView: 1.8,
-      spacing: 20
+      spacing: 20,
     },
     breakpoints: {
       [breakpoints?.["table-min"]]: {
         slides: {
           perView: 3.5,
-          spacing: 20
+          spacing: 20,
         },
       },
       [breakpoints?.["laptops-min"]]: {
         slides: {
           perView: 4.2,
-          spacing: 35
+          spacing: 35,
         },
       },
       [breakpoints?.["desktop-min"]]: {
         slides: {
-          perView: 'auto',
-          spacing: 30
+          perView: "auto",
+          spacing: 30,
         },
       },
-    }
-  })
+    },
+  });
 
-  const renderProducts = data?.map(value => (
+  const renderProducts = data?.map((value) => (
     <div className="keen-slider__slide" key={value.id}>
-      <ProductItem  {...value} />
+      <ProductItem {...value} />
     </div>
-  ))
+  ));
 
-  if (data?.length === 0) return null
+  if (data?.length === 0) return null;
 
   return (
     <Styles.Container>
@@ -58,5 +56,5 @@ export function ProductCategorySlide (props: ProductCategorySlideProps) {
       </Styles.Header>
       <div ref={sliderRef} className="keen-slider">{renderProducts}</div>
     </Styles.Container>
-  )
+  );
 }

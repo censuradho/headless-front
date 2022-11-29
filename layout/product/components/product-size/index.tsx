@@ -53,7 +53,7 @@ export function ProductSizes(props: ProductSizeProps) {
   return (
     <Styles.Container>
       <Typography variant="callout">Tamanho</Typography>
-      {errorMessage && <Styles.ErrorMessage uppercase>Selecione Uma Opção</Styles.ErrorMessage>}
+      {errorMessage && <Styles.ErrorMessage color="error" uppercase>Selecione Uma Opção</Styles.ErrorMessage>}
       <Styles.SizeList>
         {renderSizes}
       </Styles.SizeList>

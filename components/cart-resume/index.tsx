@@ -64,9 +64,7 @@ export function CartResume() {
     return (
       <>
         <Styles.ScrollView>
-          <Box flexDirection="column">
-            {renderProductPreview()}
-          </Box>
+          {renderProductPreview()}
         </Styles.ScrollView>
         <Styles.SubtotalContainer>
           <Typography>Subtotal</Typography>
@@ -91,7 +89,6 @@ export function CartResume() {
             onClick={() => setIsOpenResumeCart(false)}
           >
             Finalizar compra
-
           </Button>
         </Styles.SubmitContainer>
       </>

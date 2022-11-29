@@ -26,16 +26,19 @@ export const Content = styled(Dialog.Content, {
   backgroundColor: "$background",
   boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
   position: "fixed",
-  width: "100vw",
-  maxWidth: "23rem",
+  width: "100%",
   top: 0,
   right: 0,
-  height: "100vh",
+  height: "100%",
   animation: `${contentShow} 0.15s cubic-bezier(0.16, 1, 0.3, 1)`,
   "&:focus": { outline: "none" },
   zIndex: 10,
   display: "flex",
   flexDirection: "column",
+
+  "@smartphone-min": {
+    maxWidth: "25rem",
+  },
 });
 
 export const Portal = styled(Dialog.Portal, {
@@ -52,7 +55,7 @@ export const Header = styled("div", {
 
 export const ScrollView = styled("div", {
   flex: 1,
-  overflow: "auto",
+  overflowY: "auto",
 });
 
 export const SubtotalContainer = styled("div", {
