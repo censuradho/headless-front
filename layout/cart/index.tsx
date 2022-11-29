@@ -50,7 +50,7 @@ export function CartPageLayout() {
   }, [cart]);
 
   const goToCheckoutPath = useMemo(() => {
-    if (auth?.isSigned) return paths.home;
+    if (auth?.isSigned) return paths.checkout;
 
     const query = qs.stringify({
       redirectPath: paths?.cart,
