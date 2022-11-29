@@ -20,6 +20,7 @@ export function PersonalInfo() {
           </Box>
           <Box gap={1} fullWidth>
             <Select
+              label="Gênero"
               fullWidth
               data={[
                 {

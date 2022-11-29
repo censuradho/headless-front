@@ -1,5 +1,7 @@
 import { uuid } from "utils";
 import { Icon } from "components/icon";
+import { Box } from "components/box";
+import { Typography } from "components/typography";
 import { SelectProps } from "./types";
 
 import * as Styles from "./styles";
@@ -9,6 +11,8 @@ export function Select(props: SelectProps) {
     data,
     placeholder,
     fullWidth,
+    label,
+    hasError,
     id,
     ...otherProps
   } = props;
@@ -25,24 +29,42 @@ export function Select(props: SelectProps) {
     </Styles.Item>
   ));
 
-  return (
-    <Styles.Root {...otherProps}>
-      <Styles.Trigger
-        id={id}
-        fullWidth={fullWidth}
+  const renderLabel = () => {
+    if (!label) return null;
+    return (
+      <Styles.Label
+        htmlFor={id}
+        hasError={hasError}
       >
-        <Styles.Value aria-label={otherProps.value} placeholder={placeholder} />
-        <Icon
-          name="arrowDown"
-          size={10}
-          color="body"
-        />
-      </Styles.Trigger>
-      <Styles.Content>
-        <Styles.Viewport>
-          <Styles.Group>{renderOptions}</Styles.Group>
-        </Styles.Viewport>
-      </Styles.Content>
-    </Styles.Root>
+        {label}
+      </Styles.Label>
+    );
+  };
+
+  return (
+    <Box
+      gap={1}
+      fullWidth={fullWidth}
+      flexDirection="column"
+    >
+      {renderLabel()}
+      <Styles.Root {...otherProps}>
+        <Styles.Trigger
+          id={id}
+        >
+          <Styles.Value aria-label={otherProps.value} placeholder={placeholder} />
+          <Icon
+            name="arrowDown"
+            size={10}
+            color="body"
+          />
+        </Styles.Trigger>
+        <Styles.Content>
+          <Styles.Viewport>
+            <Styles.Group>{renderOptions}</Styles.Group>
+          </Styles.Viewport>
+        </Styles.Content>
+      </Styles.Root>
+    </Box>
   );
 }

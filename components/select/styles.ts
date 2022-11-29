@@ -1,15 +1,22 @@
 import * as Select from "@radix-ui/react-select";
+import { Typography } from "components/typography";
 import { styled } from "stitches.config";
 
 export const Root = styled(Select.Root, {
   button: {
     all: "unset",
   },
+  width: "100%",
+});
+
+export const Label = styled("label", {
+  cursor: "pointer",
+  fontSize: "$footnote",
 
   variants: {
-    fullWidth: {
+    hasError: {
       true: {
-        width: "100%",
+        color: "$error",
       },
     },
   },
@@ -26,15 +33,13 @@ export const Trigger = styled(Select.Trigger, {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "space-between",
-  borderRadius: "4px",
   padding: "0 15px",
   fonSize: "13px",
+  height: "3rem",
   lineHeight: 1,
-  height: "35px",
   gap: "5px",
   backgroundColor: "$background",
-  boxShadow: "0 2px 10px $blackA7",
-
+  border: "1px solid $highlight",
   "&:hover": {
     backgroundColor: "$mauve3",
   },
@@ -68,8 +73,6 @@ export const Viewport = styled(Select.Viewport, {
 export const Value = styled(Select.Value, {});
 
 export const Group = styled(Select.Group, {});
-
-export const Label = styled(Select.Label, {});
 
 export const Item = styled(Select.Item, {
   fontSize: "13px",
