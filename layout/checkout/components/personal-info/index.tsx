@@ -22,7 +22,7 @@ export function PersonalInfo() {
   return (
     <Styles.Container>
       <Box flexDirection="column" gap={0.8}>
-        <Box gap={1.2} alignItems="center">
+        <Box gap={1} alignItems="center">
           <Icon name="outlineUser" />
           <Typography variant="sub-headline">Informações pessoais</Typography>
         </Box>

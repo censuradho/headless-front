@@ -1,5 +1,5 @@
 import * as Select from "@radix-ui/react-select";
-import { Typography } from "components/typography";
+
 import { styled } from "stitches.config";
 
 export const Root = styled(Select.Root, {
@@ -40,9 +40,10 @@ export const Trigger = styled(Select.Trigger, {
   gap: "5px",
   backgroundColor: "$background",
   border: "1px solid $highlight",
+  outline: "none",
 
   "&:focus": {
-    boxShadow: "0 0 0 2px black",
+    borderColor: "$primary",
   },
 
   "&[data-placeholder]": {
