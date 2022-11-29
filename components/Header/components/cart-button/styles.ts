@@ -1,6 +1,6 @@
 import { styled } from "stitches.config";
 
-export const Count = styled("div", {
+export const Count = styled("span", {
   fontSize: "100%",
   fontWeight: 600,
   width: "1.2rem",
@@ -16,7 +16,7 @@ export const Count = styled("div", {
   position: "absolute",
 });
 
-export const Container = styled("button", {
+export const Button = styled("button", {
   width: "3.375rem",
   height: "3.375rem",
   borderRadius: "50%",

@@ -57,18 +57,20 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
   return (
     <Styles.Container>
       <Link href={href}>
-        <Styles.ImagePreviewContainer>
-          <Image
-            src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-            width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
-            height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
-            alt={defaultImage?.data?.attributes?.alternativeText}
-            layout="responsive"
-          />
-        </Styles.ImagePreviewContainer>
+        <a>
+          <Styles.ImagePreviewContainer>
+            <Image
+              src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
+              width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
+              height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
+              alt={defaultImage?.data?.attributes?.alternativeText}
+              layout="responsive"
+            />
+          </Styles.ImagePreviewContainer>
+        </a>
       </Link>
-      <Box alignItems="flex-start">
-        <Box flexDirection="column" gap={1}>
+      <Box alignItems="flex-start" gap={1} flex={1}>
+        <Styles.InfoView>
           <Styles.Name variant="caption2">{name}</Styles.Name>
           <Typography variant="footnote" semiBold>{toLocaleDateString(price)}</Typography>
           <Box justifyContent="space-between">
@@ -78,7 +80,7 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
               <Typography semiBold>{size}</Typography>
             </Typography>
           </Box>
-        </Box>
+        </Styles.InfoView>
         <Box flexDirection="column" justifyContent="space-between">
           <Box flex={1} justifyContent="flex-end">
             <ButtonIcon
@@ -118,7 +120,6 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
           </Box>
         </Box>
       </Box>
-
     </Styles.Container>
 
   );

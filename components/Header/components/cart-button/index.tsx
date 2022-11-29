@@ -12,7 +12,7 @@ export function CartButton() {
   const quantity = useMemo(() => {
     const inventories = Object
       .entries(cart)
-      .map(([key, value]) => value.inventories)
+      .map(([, value]) => value.inventories)
       .reduce((prev, next) => ({
         ...prev,
         ...next,
@@ -20,7 +20,7 @@ export function CartButton() {
 
     return Object
       .entries(inventories || {})
-      .map(([key, value]) => value.quantity)
+      .map(([, value]) => value.quantity)
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 
@@ -33,13 +33,13 @@ export function CartButton() {
   };
 
   return (
-    <Styles.Container onClick={() => setIsOpenResumeCart(true)}>
+    <Styles.Button onClick={() => setIsOpenResumeCart(true)}>
       <Icon
         name="shoppingBag"
         color="primaryDark"
         size={30}
       />
       {renderCount()}
-    </Styles.Container>
+    </Styles.Button>
   );
 }
