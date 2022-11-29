@@ -80,7 +80,7 @@ export const Item = styled(Select.Item, {
   display: "flex",
   alignItems: "center",
   height: "25px",
-  padding: "0 35px 0 25px",
+  padding: "1rem 35px 1rem 25px",
   position: "relative",
   userSelect: "none",
 
