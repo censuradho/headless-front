@@ -10,4 +10,5 @@ export interface AuthContextProps {
   setUser: Dispatch<SetStateAction<User | null>>
   jwt?: string | null,
   setJwt: Dispatch<SetStateAction<string | null>>
+  isSigned?: boolean
 }

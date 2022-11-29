@@ -4,7 +4,7 @@ import {
 import { paths } from "constants/routes";
 import { useCart } from "context";
 import Link from "next/link";
-import { resolvePath } from "utils";
+import { resolvePath, toLocaleMonetize } from "utils";
 import * as Styles from "./styles";
 import { ProductPreviewProps } from "./types";
 
@@ -57,7 +57,7 @@ export function ProductPreview(props: ProductPreviewProps) {
             layout="responsive"
           />
         </Styles.ImagePreviewView>
-        <Box flexDirection="column" gap={1.3} flex={1}>
+        <Box flexDirection="column" gap={1} flex={1}>
           <Box justifyContent="space-between" gap={1.3} fullWidth>
             <Link href={href}>
               <Styles.Name>
@@ -75,6 +75,11 @@ export function ProductPreview(props: ProductPreviewProps) {
             Tamanho:
             {" "}
             <Typography>{size}</Typography>
+          </Typography>
+          <Typography>
+            Preço:
+            {" "}
+            <Typography>{toLocaleMonetize(price)}</Typography>
           </Typography>
           <Box alignItems="center" gap={1}>
             <Typography>

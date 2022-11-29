@@ -1,14 +1,18 @@
+import { useMemo } from "react";
+import router from "next/router";
+
 import { Box, Button, Typography } from "components";
 import { paths } from "constants/routes";
-import { useCart } from "context";
+import { useAuth, useCart } from "context";
 import { CheckoutLayout } from "layout/checkout";
-import { useMemo } from "react";
+
 import { toLocaleMonetize, uuid } from "utils";
 import { ProductPreview } from "./components";
 import * as Styles from "./styles";
 
 export function CartPageLayout() {
   const { cart } = useCart();
+  const auth = useAuth();
 
   const renderProductPreview = () => {
     const products = Object
@@ -44,6 +48,8 @@ export function CartPageLayout() {
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 
+  const goToCheckoutPath = auth?.isSigned ? paths.home : paths.auth;
+
   return (
     <CheckoutLayout>
       <Styles.Container>
@@ -60,7 +66,12 @@ export function CartPageLayout() {
                 <Typography semiBold variant="footnote">{toLocaleMonetize(total)}</Typography>
               </Box>
               <Styles.ResumeGoToCheckoutView>
-                <Button fullWidth>Avançar para o checkout</Button>
+                <Button
+                  fullWidth
+                  onClick={() => router.push(goToCheckoutPath)}
+                >
+                  Avançar para o checkout
+                </Button>
                 <Button fullWidth variant="letter" as="a" href={paths.home}>Continuar comprando</Button>
               </Styles.ResumeGoToCheckoutView>
             </Styles.Resume>
