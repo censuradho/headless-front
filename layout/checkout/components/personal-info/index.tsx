@@ -12,6 +12,10 @@ export function PersonalInfo() {
     formState: { errors },
   } = useForm<PersonalInfoFormData>();
 
+  const onSubmit = async (payload: PersonalInfoFormData) => {
+
+  };
+
   return (
     <Styles.Container>
       <Box flexDirection="column" gap={0.8}>
@@ -20,7 +24,7 @@ export function PersonalInfo() {
           <Typography variant="sub-headline">Informações pessoais</Typography>
         </Box>
         <Typography>Solicitamos apenas informações essenciais.</Typography>
-        <Styles.Form>
+        <Styles.Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="E-mail"
             register={register("email")}
