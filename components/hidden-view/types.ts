@@ -6,4 +6,5 @@ export interface HiddenViewProps {
   breakpoint?: KeyBreakpoints,
   children?: ReactNode
   fullWidth?: boolean
+  hidden?: boolean
 }

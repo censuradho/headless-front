@@ -11,7 +11,7 @@ export function SelectForm(props: SelectFormProps) {
     ...otherProps
   } = props;
 
-  const selectValue = watch("select");
+  const selectValue = watch(name);
 
   useEffect(() => {
     register(name);
@@ -25,6 +25,7 @@ export function SelectForm(props: SelectFormProps) {
     <Select
       onValueChange={handleChange}
       value={selectValue}
+      defaultValue={selectValue}
       {...otherProps}
     />
   );

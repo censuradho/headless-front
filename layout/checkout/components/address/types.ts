@@ -5,4 +5,5 @@ export interface AddressFormData {
   complemento?: string
   localidade: string
   uf: string
+  numero: number
 }

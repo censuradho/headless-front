@@ -19,6 +19,7 @@ export const Content = styled(Select.Content, {
   backgroundColor: "$background",
   borderRadius: "6px",
   boxShadow: "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
+  zIndex: 10,
 });
 
 export const Trigger = styled(Select.Trigger, {
@@ -58,6 +59,7 @@ export const Portal = styled(Select.Portal, {
 
 export const Viewport = styled(Select.Viewport, {
   padding: "5px",
+  maxHeight: "14rem",
 });
 
 export const Value = styled(Select.Value, {});
@@ -87,6 +89,20 @@ export const Item = styled(Select.Item, {
   },
 });
 
+const scrollButtonStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: 25,
+  backgroundColor: "white",
+  color: "$primary",
+  cursor: "default",
+};
+
 export const ItemText = styled(Select.ItemText, {});
 
 export const ItemIndicator = styled(Select.ItemIndicator, {});
+
+export const ScrollDownButton = styled(Select.ScrollDownButton, scrollButtonStyles);
+
+export const ScrollUpButton = styled(Select.ScrollUpButton, scrollButtonStyles);

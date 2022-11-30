@@ -39,6 +39,8 @@ export function Select(props: SelectProps) {
     );
   };
 
+  console.log(props);
+
   return (
     <Box
       gap={0.5}
@@ -50,7 +52,9 @@ export function Select(props: SelectProps) {
         <Styles.Trigger
           id={id}
         >
-          <Styles.Value aria-label={otherProps.value} placeholder={placeholder} />
+          <Styles.Value
+            placeholder={placeholder}
+          />
           <Icon
             name="arrowDown"
             size={10}
@@ -58,9 +62,11 @@ export function Select(props: SelectProps) {
           />
         </Styles.Trigger>
         <Styles.Content>
+          <Styles.ScrollUpButton>U</Styles.ScrollUpButton>
           <Styles.Viewport>
             <Styles.Group>{renderOptions}</Styles.Group>
           </Styles.Viewport>
+          <Styles.ScrollDownButton>d</Styles.ScrollDownButton>
         </Styles.Content>
       </Styles.Root>
     </Box>
