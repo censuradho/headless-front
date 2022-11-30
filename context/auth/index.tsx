@@ -7,16 +7,13 @@ import {
   useEffect,
   useState,
 } from "react";
-import { cmsApi } from "services/rest/cms";
-
-import router from "next/router";
+import { cmsApi, getMe } from "services/rest/cms";
 
 import { User } from "types/auth";
 
-import { paths } from "constants/routes";
 import { AuthContextProps, AuthProviderProps } from "./types";
 
-const AuthContext = createContext<AuthContextProps | null>(null);
+export const AuthContext = createContext({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
@@ -24,13 +21,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const isSigned = !!user;
 
-  const handleJWT = () => {
-    if (jwt) {
-      cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
-      return;
-    }
+  const handleJWT = async () => {
+    try {
+      if (jwt) {
+        cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
+        const { data: me } = await getMe();
 
-    setUser(null);
+        setUser(me);
+        return;
+      }
+
+      setUser(null);
+      delete cmsApi.defaults.headers.common.Authorization;
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -64,12 +67,3 @@ export function AuthProvider({ children }: AuthProviderProps) {
 }
 
 export const useAuth = () => useContext(AuthContext);
-
-export function ProtectRoute({ children }: any) {
-  const auth = useAuth();
-  if (!auth?.isSigned && window.location.pathname !== "/login") {
-    router.push(paths.auth);
-    return null;
-  }
-  return children;
-}
