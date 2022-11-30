@@ -18,6 +18,7 @@ export const AuthContext = createContext({} as AuthContextProps);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [jwt, setJwt] = useLocalStorage<string | null>(JWT_KEY, null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isSigned = !!user;
 
@@ -26,14 +27,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (jwt) {
         cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
         const { data: me } = await getMe();
-
         setUser(me);
         return;
       }
 
       setUser(null);
       delete cmsApi.defaults.headers.common.Authorization;
-    } catch (err) {}
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -59,6 +61,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         jwt,
         setJwt,
         isSigned,
+        isLoading,
       }}
     >
       {children}

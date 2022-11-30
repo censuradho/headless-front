@@ -1,7 +1,10 @@
+import { withAuthorization } from "hoc";
 import { CheckoutPageLayout } from "layout/checkout";
 
-export default function Checkout() {
+function Checkout() {
   return (
     <CheckoutPageLayout />
   );
 }
+
+export default withAuthorization(Checkout);
