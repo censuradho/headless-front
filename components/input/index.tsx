@@ -40,7 +40,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     if (!hasError) return null;
 
     return (
-      <Styles.ErrorMessage variant="caption2">{errorMessage}</Styles.ErrorMessage>
+      <Styles.ErrorMessage color="error" variant="caption2">{errorMessage}</Styles.ErrorMessage>
 
     );
   };
