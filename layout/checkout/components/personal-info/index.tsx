@@ -9,9 +9,12 @@ import { CPF_MASK, DATE_MASK, PHONE_MASK } from "constants/masks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { checkoutStepsPaths, checkoutStepsQuery } from "constants/checkout";
 import { paths } from "constants/routes";
+import { Perfil } from "types/checkout";
+import { getPerfilByUserId, postPerfil, putPerfil } from "services/rest/cms/checkout";
+import { useAuth } from "context";
 import * as Styles from "./styles";
 import { PersonalInfoFormData, PersonalInfoProps } from "./types";
 import { personalInfoSchemaValidations } from "./validations";
@@ -27,6 +30,7 @@ const mock = {
 };
 export function PersonalInfo(props: PersonalInfoProps) {
   const { isActive } = props;
+  const auth = useAuth();
 
   const {
     register,
@@ -34,14 +38,46 @@ export function PersonalInfo(props: PersonalInfoProps) {
     setValue,
     watch,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<PersonalInfoFormData>({
     resolver: yupResolver(personalInfoSchemaValidations),
     defaultValues: mock,
   });
 
+  const [defaultInfo, setDefaultInfo] = useState<Perfil | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (payload: PersonalInfoFormData) => {
-    router.push(checkoutStepsPaths.address);
+    try {
+      setIsLoading(true);
+      if (!auth?.user) return;
+
+      if (defaultInfo) {
+        await putPerfil(defaultInfo.id, {
+          ...payload,
+          user: auth.user.id,
+        });
+        router.push(checkoutStepsPaths.address);
+        return;
+      }
+      await postPerfil({
+        ...payload,
+        user: auth.user.id,
+      });
+
+      router.push(checkoutStepsPaths.address);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGetDefaultAddress = async (userId: number) => {
+    try {
+      const { data: personalInfo } = await getPerfilByUserId(userId);
+
+      setDefaultInfo(personalInfo.data);
+    } catch (err) {}
   };
 
   const renderInfo = () => {
@@ -140,7 +176,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
           />
         </Box>
         <Box marginTop={2}>
-          <Button fullWidth>Ir para entrega</Button>
+          <Button loading={isLoading} fullWidth>Ir para entrega</Button>
         </Box>
       </Styles.Form>
     );
@@ -154,6 +190,20 @@ export function PersonalInfo(props: PersonalInfoProps) {
       onClick={() => router.push(checkoutStepsPaths.profile)}
     />
   );
+
+  useEffect(() => {
+    if (!defaultInfo) return;
+    reset({
+      ...defaultInfo.attributes,
+      email: auth?.user?.email,
+    });
+  }, [defaultInfo]);
+
+  useEffect(() => {
+    if (!auth?.user) return;
+
+    handleGetDefaultAddress(auth?.user?.id);
+  }, [auth?.user]);
 
   return (
     <Styles.Container>

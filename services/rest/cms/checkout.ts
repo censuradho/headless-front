@@ -1,8 +1,10 @@
 import { responseFactory } from "factors/meta";
 import { ResponseDataType } from "factors/types";
 import strapiQuery from "lib/strapi-query";
-import { Address, AddressAttr } from "types/checkout";
-import { Data } from "types/utils";
+import {
+  Address, AddressAttr, Perfil, PerfilAttr, PostPerfilRequest, PutPerfilRequest,
+} from "types/checkout";
+
 import { cmsApi } from ".";
 
 export async function postAddress(payload: AddressAttr) {
@@ -73,6 +75,81 @@ export async function getAddressByUserId(userId: number) {
   const data = responseFactory({
     meta: address?.meta,
     data: mainAddress || firstAddress,
+  });
+
+  return {
+    data,
+    ...rest,
+  };
+}
+
+export async function postPerfil(payload: PostPerfilRequest) {
+  const response = await cmsApi.post<ResponseDataType<Perfil>>("/perfils", {
+    data: {
+      ...payload,
+    },
+  });
+
+  const {
+    data: perfil,
+    ...rest
+  } = response;
+
+  const data = responseFactory({
+    meta: perfil?.meta,
+    data: perfil.data,
+  });
+
+  return {
+    data,
+    ...rest,
+  };
+}
+
+export async function putPerfil(id: number, payload: PutPerfilRequest) {
+  const response = await cmsApi.put<ResponseDataType<Perfil>>(`/perfils/${id}`, {
+    data: {
+      ...payload,
+    },
+  });
+
+  const {
+    data: perfil,
+    ...rest
+  } = response;
+
+  const data = responseFactory({
+    meta: perfil?.meta,
+    data: perfil.data,
+  });
+
+  return {
+    data,
+    ...rest,
+  };
+}
+
+export async function getPerfilByUserId(userId: number) {
+  const query = strapiQuery.parse("/perfils", {
+    filters: {
+      user: {
+        id: userId,
+      },
+    },
+  });
+
+  const response = await cmsApi.get<ResponseDataType<Perfil[]>>(query);
+
+  const {
+    data: perfil,
+    ...rest
+  } = response;
+
+  const [currentPerfil] = perfil.data;
+
+  const data = responseFactory({
+    meta: perfil?.meta,
+    data: currentPerfil,
   });
 
   return {

@@ -31,6 +31,7 @@ export function Address(props: AddressProps) {
   const auth = useAuth();
 
   const [defaultAddress, setDefaultAddress] = useState<IAddress | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -62,19 +63,24 @@ export function Address(props: AddressProps) {
   };
 
   const onSubmit = async (data: AddressFormData) => {
-    if (!auth?.user) return;
+    try {
+      if (!auth?.user) return;
+      setIsLoading(true);
 
-    if (defaultAddress) {
-      await putAddress(defaultAddress.id, {
+      if (defaultAddress) {
+        await putAddress(defaultAddress.id, {
+          ...data,
+          user: auth.user.id,
+        });
+        return;
+      }
+      await postAddress({
         ...data,
         user: auth.user.id,
       });
-      return;
+    } finally {
+      setIsLoading(false);
     }
-    await postAddress({
-      ...data,
-      user: auth.user.id,
-    });
   };
 
   const handleGetDefaultAddress = async (userId: number) => {
@@ -175,7 +181,7 @@ export function Address(props: AddressProps) {
                 />
               </Box>
               <Box marginTop={2}>
-                <Button fullWidth>Ir para o pagamento</Button>
+                <Button loading={isLoading} fullWidth>Ir para o pagamento</Button>
               </Box>
             </Box>
           </HiddenView>

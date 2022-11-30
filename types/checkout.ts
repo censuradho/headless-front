@@ -11,5 +11,21 @@ export interface AddressAttr {
   user: number
   isMain?: boolean
 }
-
 export type Address = Entity<AddressAttr>
+
+export interface PerfilAttr {
+  firstName: string
+  lastName: string
+  phone: string
+  clientDocument: string
+  gender: string
+  birthDate: string
+}
+
+export interface PostPerfilRequest extends PerfilAttr {
+  user: number
+}
+
+export type PutPerfilRequest = PostPerfilRequest
+
+export type Perfil = Entity<PerfilAttr>
