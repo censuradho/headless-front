@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import router from "next/router";
 
 import estadosOptions from "public/estados.json";
 
 import {
   Box,
   Button,
+  ButtonIcon,
   HiddenView,
   Icon,
   Input,
@@ -22,6 +24,7 @@ import {
 } from "types/checkout";
 import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
 import { useAuth } from "context";
+import { checkoutStepsPaths } from "constants/checkout";
 import * as Styles from "./styles";
 import { AddressFormData, AddressProps } from "./types";
 import { addressSchemaValidation } from "./validations";
@@ -211,6 +214,16 @@ export function Address(props: AddressProps) {
       </Typography>
     );
   };
+
+  const renderEditButton = () => !isActive && (
+    <ButtonIcon
+      icon={{
+        name: "edit",
+      }}
+      onClick={() => router.push(checkoutStepsPaths.address)}
+    />
+  );
+
   return (
     <Styles.Container>
       <Box flexDirection="column" gap={0.8}>
@@ -219,7 +232,7 @@ export function Address(props: AddressProps) {
             <Icon name="outlineUser" />
             <Typography variant="sub-headline">Entrega</Typography>
           </Box>
-          {/* {renderEditButton()} */}
+          {renderEditButton()}
         </Box>
         {renderForm()}
         {renderInfo()}

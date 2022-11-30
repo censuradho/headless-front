@@ -7,6 +7,7 @@ import {
   CheckoutLayout,
   PersonalInfo,
   Address,
+  OrderResume,
 } from "./components";
 
 export function CheckoutPageLayout() {
@@ -21,10 +22,12 @@ export function CheckoutPageLayout() {
   return (
     <CheckoutLayout>
       <Typography uppercase variant="callout" as="h1">Checkout</Typography>
-
-      <Box flex={1} gap={2} alignItems="flex-start">
-        <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
-        <Address isActive={query === checkoutStepsQuery.address} />
+      <Box gap={2}>
+        <Box flex={1} gap={2} alignItems="flex-start">
+          <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
+          <Address isActive={query === checkoutStepsQuery.address} />
+        </Box>
+        <OrderResume />
       </Box>
     </CheckoutLayout>
   );
