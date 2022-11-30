@@ -56,14 +56,6 @@ export const Input = styled("input", {
 export const Label = styled("label", {
   cursor: "pointer",
   fontSize: "$footnote",
-
-  variants: {
-    hasError: {
-      true: {
-        color: "$error",
-      },
-    },
-  },
 });
 
 export const ErrorMessage = styled(Typography, {

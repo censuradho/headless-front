@@ -6,7 +6,7 @@ export const colors = {
   RAZZMATAZZ: "#D51660",
   ROSE_BUD_CHERRY: "#7D0C40",
   CHERUB: "#FBE4EC",
-  CINNABAR: "#E74C3C",
+  CINNABAR: "#ff4c4c",
   WHITE: "#FFF",
   OVERLAY: "rgba(0, 0, 0, 0.3)",
   PLACEHOLDERS: "rgba(0, 0, 0, 0.3)",

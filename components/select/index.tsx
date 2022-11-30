@@ -16,8 +16,6 @@ export function Select(props: SelectProps) {
     ...otherProps
   } = props;
 
-  const hasError = !!errorMessage;
-
   const renderOptions = data.map((option) => (
     <Styles.Item
       key={uuid()}
@@ -35,7 +33,6 @@ export function Select(props: SelectProps) {
     return (
       <Styles.Label
         htmlFor={id}
-        hasError={hasError}
       >
         {label}
       </Styles.Label>

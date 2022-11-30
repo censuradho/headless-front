@@ -12,14 +12,6 @@ export const Root = styled(Select.Root, {
 export const Label = styled("label", {
   cursor: "pointer",
   fontSize: "$footnote",
-
-  variants: {
-    hasError: {
-      true: {
-        color: "$error",
-      },
-    },
-  },
 });
 
 export const Content = styled(Select.Content, {
