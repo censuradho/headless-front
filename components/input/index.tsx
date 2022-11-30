@@ -2,6 +2,7 @@ import { ButtonIcon } from "components/button-icon";
 import { Icon } from "components/icon";
 import { IconProps } from "components/icon/type";
 import { forwardRef, memo } from "react";
+import { setMask } from "utils";
 
 import * as Styles from "./styles";
 import { InputProps } from "./types";
@@ -16,6 +17,9 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     rightIcon,
     onLeftIconClick,
     onRightIconClick,
+    defaultValue,
+    value,
+    mask,
     ...otherProps
   } = props;
   const hasError = !!errorMessage;
@@ -89,6 +93,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
           hasError={hasError}
           hasLeftIcon={!!leftIcon}
           hasRightIcon={!!rightIcon}
+          value={mask && value ? setMask(value, mask) : value}
         />
         {renderRightIcon()}
       </Styles.IconView>

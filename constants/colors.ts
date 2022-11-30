@@ -9,6 +9,7 @@ export const colors = {
   CINNABAR: "#E74C3C",
   WHITE: "#FFF",
   OVERLAY: "rgba(0, 0, 0, 0.3)",
+  PLACEHOLDERS: "rgba(0, 0, 0, 0.3)",
   SLATE_GRAY: "#718096",
   MINE_SHAFT: "#333333",
   SILVER: "#CCCCCC",
