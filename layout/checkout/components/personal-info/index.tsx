@@ -1,5 +1,4 @@
 import router from "next/router";
-import queryString from "querystring";
 
 import {
   Box, Button, ButtonIcon, Icon, Input, Typography,
@@ -9,9 +8,8 @@ import { CPF_MASK, DATE_MASK, PHONE_MASK } from "constants/masks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useEffect, useMemo, useState } from "react";
-import { checkoutStepsPaths, checkoutStepsQuery } from "constants/checkout";
-import { paths } from "constants/routes";
+import { useEffect, useState } from "react";
+import { checkoutStepsPaths } from "constants/checkout";
 import { Perfil } from "types/checkout";
 import { getPerfilByUserId, postPerfil, putPerfil } from "services/rest/cms/checkout";
 import { useAuth } from "context";
@@ -19,15 +17,6 @@ import * as Styles from "./styles";
 import { PersonalInfoFormData, PersonalInfoProps } from "./types";
 import { personalInfoSchemaValidations } from "./validations";
 
-const mock = {
-  email: "gustavoleiteoliveira800@gmail.com",
-  firstName: "Gustavo",
-  lastName: "Leite",
-  birthDate: "12/02/1500",
-  gender: "male",
-  clientDocument: "999.999.999-99",
-  phone: "(99) 99999-9999",
-};
 export function PersonalInfo(props: PersonalInfoProps) {
   const { isActive } = props;
   const auth = useAuth();
@@ -42,7 +31,6 @@ export function PersonalInfo(props: PersonalInfoProps) {
     formState: { errors },
   } = useForm<PersonalInfoFormData>({
     resolver: yupResolver(personalInfoSchemaValidations),
-    defaultValues: mock,
   });
 
   const [defaultInfo, setDefaultInfo] = useState<Perfil | null>(null);
