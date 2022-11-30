@@ -7,6 +7,7 @@ import {
   LoginPayload,
   LoginResponse,
   ResetPasswordPayload,
+  User,
 } from "types/auth";
 
 export async function emailConfirmation(payload: EmailConfirmationPayload) {
@@ -37,4 +38,8 @@ export async function forgotPassword(payload: ForgotPasswordPayload) {
 export async function resetPassword(payload: ResetPasswordPayload) {
   const response = await cmsApi.post("/auth/forgot-password", payload);
   return response;
+}
+
+export async function getMe() {
+  return cmsApi.get<User>("/users/me");
 }

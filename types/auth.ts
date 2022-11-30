@@ -1,11 +1,3 @@
-interface Address {
-  cep: string
-  logradouro: string
-  complemento?: string
-  bairro: string
-  localidade: string
-  uf: string
-}
 export interface Role {
   id: number
   description: string
@@ -24,7 +16,6 @@ export interface User {
   provider: string
   updatedAt: string
   username: string
-  userAddresses?: Address[]
   role: Role
 }
 export interface CreateUserWithEmailPasswordPayload {
