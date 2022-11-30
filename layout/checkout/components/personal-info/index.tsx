@@ -50,9 +50,9 @@ export function PersonalInfo(props: PersonalInfoProps) {
 
     return (
       <Box flexDirection="column" gap={0.2}>
-        <Typography color="placeholders">{values.email}</Typography>
-        <Typography color="placeholders">{`${values.firstName} ${values.lastName}`}</Typography>
-        <Typography color="placeholders">{values.phone}</Typography>
+        <Typography>{values.email}</Typography>
+        <Typography>{`${values.firstName} ${values.lastName}`}</Typography>
+        <Typography>{values.phone}</Typography>
       </Box>
     );
   };

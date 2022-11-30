@@ -1,6 +1,6 @@
 import { Box, Typography } from "components";
 import { checkoutStepsQuery } from "constants/checkout";
-import router, { useRouter } from "next/router";
+import router from "next/router";
 import { useEffect, useState } from "react";
 import { getQueryFromUrl } from "utils";
 import {
@@ -18,13 +18,12 @@ export function CheckoutPageLayout() {
     });
   }, []);
 
-  console.log(query === checkoutStepsQuery.address);
   return (
     <CheckoutLayout>
       <Typography uppercase variant="callout" as="h1">Checkout</Typography>
 
       <Box flex={1} gap={2} alignItems="flex-start">
-        <PersonalInfo isActive={query === checkoutStepsQuery.profile} />
+        <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
         <Address isActive={query === checkoutStepsQuery.address} />
       </Box>
     </CheckoutLayout>

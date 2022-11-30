@@ -191,7 +191,7 @@ export function Address(props: AddressProps) {
 
     if (currentAddress?.cep) {
       return (
-        <Box>
+        <Box flexDirection="column" gap={0.2}>
           <Typography>{`${currentAddress.logradouro} ${currentAddress.numero}`}</Typography>
           <Typography>{`${currentAddress.bairro} - ${currentAddress.localidade} - ${currentAddress.uf}`}</Typography>
           <Typography>{currentAddress.cep}</Typography>
