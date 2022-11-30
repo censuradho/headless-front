@@ -4,8 +4,11 @@ import {
 import { SelectForm } from "components/hook-form";
 import { CPF_MASK, DATE_MASK, PHONE_MASK } from "constants/masks";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import * as Styles from "./styles";
 import { PersonalInfoFormData } from "./types";
+import { personalInfoSchemaValidations } from "./validations";
 
 export function PersonalInfo() {
   const {
@@ -14,7 +17,9 @@ export function PersonalInfo() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<PersonalInfoFormData>();
+  } = useForm<PersonalInfoFormData>({
+    resolver: yupResolver(personalInfoSchemaValidations),
+  });
 
   const onSubmit = async (payload: PersonalInfoFormData) => {
     console.log(payload);

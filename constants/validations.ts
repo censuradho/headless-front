@@ -3,6 +3,7 @@ export const MESSAGES = {
   MAIL_VALID: "Insira um e-mail válido",
   PASSWORD_MATCH: "As senhas não são correspondentes",
   PASSWORD_MUST_BE_AT: "Deve conter ao menos 6 caracteres",
+  INCORRECT_FORMAT: "Formato incorreto",
 };
 
 export const API_ERRORS = {
