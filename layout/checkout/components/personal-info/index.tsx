@@ -1,3 +1,6 @@
+import router from "next/router";
+import queryString from "querystring";
+
 import {
   Box, Button, ButtonIcon, Icon, Input, Typography,
 } from "components";
@@ -6,9 +9,11 @@ import { CPF_MASK, DATE_MASK, PHONE_MASK } from "constants/masks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { checkoutStepsPaths, checkoutStepsQuery } from "constants/checkout";
+import { paths } from "constants/routes";
 import * as Styles from "./styles";
-import { PersonalInfoFormData } from "./types";
+import { PersonalInfoFormData, PersonalInfoProps } from "./types";
 import { personalInfoSchemaValidations } from "./validations";
 
 const mock = {
@@ -20,7 +25,9 @@ const mock = {
   clientDocument: "999.999.999-99",
   phone: "(99) 99999-9999",
 };
-export function PersonalInfo() {
+export function PersonalInfo(props: PersonalInfoProps) {
+  const { isActive } = props;
+
   const {
     register,
     getValues,
@@ -33,14 +40,12 @@ export function PersonalInfo() {
     defaultValues: mock,
   });
 
-  const [isEditing, setIsEditing] = useState(true);
-
   const onSubmit = async (payload: PersonalInfoFormData) => {
-    setIsEditing(false);
+    router.push(checkoutStepsPaths.address);
   };
 
   const renderInfo = () => {
-    if (isEditing) return null;
+    if (isActive) return null;
     const values = getValues();
 
     return (
@@ -53,7 +58,7 @@ export function PersonalInfo() {
   };
 
   const renderForm = () => {
-    if (!isEditing) return null;
+    if (!isActive) return null;
 
     return (
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
@@ -141,12 +146,12 @@ export function PersonalInfo() {
     );
   };
 
-  const renderEditButton = () => !isEditing && (
+  const renderEditButton = () => !isActive && (
     <ButtonIcon
       icon={{
         name: "edit",
       }}
-      onClick={() => setIsEditing(true)}
+      onClick={() => router.push(checkoutStepsPaths.profile)}
     />
   );
 

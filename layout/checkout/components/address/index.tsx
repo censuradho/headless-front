@@ -19,25 +19,25 @@ import { SelectForm } from "components/hook-form";
 
 import {
   Address as IAddress,
-  AddressAttr,
 } from "types/checkout";
 import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
 import { useAuth } from "context";
 import * as Styles from "./styles";
-import { AddressFormData } from "./types";
+import { AddressFormData, AddressProps } from "./types";
 import { addressSchemaValidation } from "./validations";
 
-export function Address() {
+export function Address(props: AddressProps) {
+  const { isActive } = props;
   const auth = useAuth();
 
-  const [isEditing, setIsEditing] = useState(true);
-  const [defaultAddress, setDefaultAddress] = useState<IAddress>(null);
+  const [defaultAddress, setDefaultAddress] = useState<IAddress | null>(null);
 
   const {
     register,
     setValue,
     watch,
     handleSubmit,
+    getValues,
     reset,
     formState: { errors },
   } = useForm<AddressFormData>({
@@ -55,6 +55,11 @@ export function Address() {
     })),
     [estadosOptions],
   );
+
+  const getAddress = () => {
+    if (defaultAddress) return defaultAddress.attributes;
+    return getValues();
+  };
 
   const onSubmit = async (data: AddressFormData) => {
     if (!auth?.user) return;
@@ -97,7 +102,7 @@ export function Address() {
   }, [auth?.user]);
 
   const renderForm = () => {
-    if (!isEditing) return null;
+    if (!isActive) return null;
 
     return (
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
@@ -178,6 +183,28 @@ export function Address() {
       </Styles.Form>
     );
   };
+
+  const renderInfo = () => {
+    if (isActive) return null;
+
+    const currentAddress = getAddress();
+
+    if (currentAddress?.cep) {
+      return (
+        <Box>
+          <Typography>{`${currentAddress.logradouro} ${currentAddress.numero}`}</Typography>
+          <Typography>{`${currentAddress.bairro} - ${currentAddress.localidade} - ${currentAddress.uf}`}</Typography>
+          <Typography>{currentAddress.cep}</Typography>
+        </Box>
+      );
+    }
+
+    return (
+      <Typography>
+        Aguardando o preenchimento dos dados
+      </Typography>
+    );
+  };
   return (
     <Styles.Container>
       <Box flexDirection="column" gap={0.8}>
@@ -189,7 +216,7 @@ export function Address() {
           {/* {renderEditButton()} */}
         </Box>
         {renderForm()}
-        {/* {renderInfo()} */}
+        {renderInfo()}
       </Box>
     </Styles.Container>
   );

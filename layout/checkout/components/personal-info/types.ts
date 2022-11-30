@@ -7,3 +7,7 @@ export interface PersonalInfoFormData {
   clientDocument: string
   phone: string
 }
+
+export interface PersonalInfoProps {
+  isActive?: boolean
+}
