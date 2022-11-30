@@ -41,7 +41,7 @@ export function Select(props: SelectProps) {
 
   return (
     <Box
-      gap={1}
+      gap={0.5}
       fullWidth={fullWidth}
       flexDirection="column"
     >
