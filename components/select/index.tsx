@@ -39,8 +39,6 @@ export function Select(props: SelectProps) {
     );
   };
 
-  console.log(props);
-
   return (
     <Box
       gap={0.5}

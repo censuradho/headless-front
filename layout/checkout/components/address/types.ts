@@ -1,9 +1,3 @@
-export interface AddressFormData {
-  cep: string
-  logradouro: string
-  bairro: string
-  complemento?: string
-  localidade: string
-  uf: string
-  numero: number
-}
+import { AddressAttr } from "types/checkout";
+
+export type AddressFormData = Omit<AddressAttr, "user">

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import estadosOptions from "public/estados.json";
 
@@ -9,30 +10,38 @@ import {
   HiddenView,
   Icon,
   Input,
-  Select,
   Typography,
 } from "components";
 
-import { useDebounceCallback } from "hooks";
 import useDebounce from "hooks/useDebounce";
 import { useAddress } from "hooks/services";
-import { GetCepResponse } from "types/viaCep";
 import { SelectForm } from "components/hook-form";
+
+import {
+  Address as IAddress,
+  AddressAttr,
+} from "types/checkout";
+import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
+import { useAuth } from "context";
 import * as Styles from "./styles";
 import { AddressFormData } from "./types";
+import { addressSchemaValidation } from "./validations";
 
 export function Address() {
+  const auth = useAuth();
+
   const [isEditing, setIsEditing] = useState(true);
+  const [defaultAddress, setDefaultAddress] = useState<IAddress>(null);
 
   const {
     register,
-    getValues,
     setValue,
     watch,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<AddressFormData>({
+    resolver: yupResolver(addressSchemaValidation),
 
   });
   const cep = useDebounce(watch("cep"), 1000);
@@ -47,16 +56,51 @@ export function Address() {
     [estadosOptions],
   );
 
+  const onSubmit = async (data: AddressFormData) => {
+    if (!auth?.user) return;
+
+    if (defaultAddress) {
+      await putAddress(defaultAddress.id, {
+        ...data,
+        user: auth.user.id,
+      });
+      return;
+    }
+    await postAddress({
+      ...data,
+      user: auth.user.id,
+    });
+  };
+
+  const handleGetDefaultAddress = async (userId: number) => {
+    try {
+      const { data: addressResponse } = await getAddressByUserId(userId);
+
+      setDefaultAddress(addressResponse.data);
+    } catch (err) {}
+  };
+
   useEffect(() => {
     if (!address) return;
     reset(address);
   }, [address]);
 
+  useEffect(() => {
+    if (!defaultAddress) return;
+    reset(defaultAddress.attributes);
+  }, [defaultAddress]);
+
+  useEffect(() => {
+    if (!auth?.user) return;
+
+    handleGetDefaultAddress(auth?.user?.id);
+  }, [auth?.user]);
+
   const renderForm = () => {
     if (!isEditing) return null;
 
     return (
-      <Styles.Form>
+      <Styles.Form onSubmit={handleSubmit(onSubmit)}>
         <Box flexDirection="column" gap={1}>
           <Box flexDirection="column" alignItems="flex-start">
             <Input
@@ -112,7 +156,7 @@ export function Address() {
                   label="Cidade"
                   register={register("localidade")}
                   fullWidth
-                  errorMessage={errors?.bairro?.message}
+                  errorMessage={errors?.localidade?.message}
                 />
                 <SelectForm
                   id="uf"
