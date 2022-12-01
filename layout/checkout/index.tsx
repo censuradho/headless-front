@@ -14,11 +14,11 @@ export function CheckoutPageLayout() {
   const [query, setQuery] = useState(getQueryFromUrl("q") || "");
 
   useEffect(() => {
-    router.events.on("routeChangeComplete", (url, options) => {
+    router.events.on("routeChangeComplete", () => {
       setQuery(getQueryFromUrl("q"));
     });
 
-    return () => router.events.off("routeChangeComplete", (url, options) => {
+    return () => router.events.off("routeChangeComplete", () => {
       setQuery(getQueryFromUrl("q"));
     });
   }, []);
