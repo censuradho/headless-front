@@ -150,7 +150,7 @@ export function Address(props: AddressProps) {
                 />
                 <Input
                   id="complemento"
-                  label="Complemento e referencia"
+                  label="Complemento"
                   register={register("complemento")}
                   fullWidth
                   errorMessage={errors?.complemento?.message}

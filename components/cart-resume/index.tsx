@@ -88,6 +88,7 @@ export function CartResume() {
           <Button
             as="a"
             fullWidth
+            href={paths.checkout}
           >
             Finalizar compra
           </Button>

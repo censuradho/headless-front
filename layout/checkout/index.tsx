@@ -11,7 +11,7 @@ import {
 } from "./components";
 
 export function CheckoutPageLayout() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(getQueryFromUrl("q") || "");
 
   useEffect(() => {
     router.events.on("routeChangeComplete", (url, options) => {
@@ -22,8 +22,20 @@ export function CheckoutPageLayout() {
   return (
     <CheckoutLayout>
       <Typography uppercase variant="callout" as="h1">Checkout</Typography>
-      <Box gap={2}>
-        <Box flex={1} gap={2} alignItems="flex-start">
+      <Box
+        gap={2}
+        flexDirection={{
+          "@laptops-max": "column",
+        }}
+      >
+        <Box
+          flex={1}
+          gap={2}
+          alignItems="flex-start"
+          flexDirection={{
+            "@laptops-max": "column",
+          }}
+        >
           <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
           <Address isActive={query === checkoutStepsQuery.address} />
         </Box>

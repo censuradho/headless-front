@@ -5,7 +5,10 @@ export const Container = styled("div", {
   padding: "1rem",
   width: "100%",
   height: "max-content",
-  maxWidth: "25rem",
+
+  "@laptops-min": {
+    maxWidth: "25rem",
+  },
 });
 
 export const Form = styled("form", {

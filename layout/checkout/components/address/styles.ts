@@ -4,7 +4,10 @@ export const Container = styled("div", {
   border: "1px solid $highlight",
   padding: "1rem",
   width: "100%",
-  maxWidth: "25rem",
+
+  "@laptops-min": {
+    maxWidth: "25rem",
+  },
 });
 
 export const Form = styled("form", {
