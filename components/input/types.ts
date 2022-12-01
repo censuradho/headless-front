@@ -1,8 +1,9 @@
 import { VariantProps } from "@stitches/react";
 import { IconProps } from "components/icon/type";
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, KeyboardEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 
+import { setMask } from "utils/helpers";
 import { Container } from "./styles";
 
 type RootInputProps = Pick<InputHTMLAttributes<HTMLInputElement>,
@@ -30,4 +31,6 @@ export interface InputProps extends
   rightIcon?: IconProps
   onRightIconClick?: () => void;
   onLeftIconClick?: () => void;
+  value?: string
+  mask?: (event: KeyboardEvent<HTMLInputElement>) => void
 }

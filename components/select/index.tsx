@@ -1,5 +1,6 @@
 import { uuid } from "utils";
 import { Icon } from "components/icon";
+import { Box } from "components/box";
 import { SelectProps } from "./types";
 
 import * as Styles from "./styles";
@@ -9,6 +10,8 @@ export function Select(props: SelectProps) {
     data,
     placeholder,
     fullWidth,
+    label,
+    errorMessage,
     id,
     ...otherProps
   } = props;
@@ -25,24 +28,45 @@ export function Select(props: SelectProps) {
     </Styles.Item>
   ));
 
-  return (
-    <Styles.Root {...otherProps}>
-      <Styles.Trigger
-        id={id}
-        fullWidth={fullWidth}
+  const renderLabel = () => {
+    if (!label) return null;
+    return (
+      <Styles.Label
+        htmlFor={id}
       >
-        <Styles.Value aria-label={otherProps.value} placeholder={placeholder} />
-        <Icon
-          name="arrowDown"
-          size={10}
-          color="body"
-        />
-      </Styles.Trigger>
-      <Styles.Content>
-        <Styles.Viewport>
-          <Styles.Group>{renderOptions}</Styles.Group>
-        </Styles.Viewport>
-      </Styles.Content>
-    </Styles.Root>
+        {label}
+      </Styles.Label>
+    );
+  };
+
+  return (
+    <Box
+      gap={0.5}
+      fullWidth={fullWidth}
+      flexDirection="column"
+    >
+      {renderLabel()}
+      <Styles.Root {...otherProps}>
+        <Styles.Trigger
+          id={id}
+        >
+          <Styles.Value
+            placeholder={placeholder}
+          />
+          <Icon
+            name="arrowDown"
+            size={10}
+            color="body"
+          />
+        </Styles.Trigger>
+        <Styles.Content>
+          <Styles.ScrollUpButton>U</Styles.ScrollUpButton>
+          <Styles.Viewport>
+            <Styles.Group>{renderOptions}</Styles.Group>
+          </Styles.Viewport>
+          <Styles.ScrollDownButton>d</Styles.ScrollDownButton>
+        </Styles.Content>
+      </Styles.Root>
+    </Box>
   );
 }

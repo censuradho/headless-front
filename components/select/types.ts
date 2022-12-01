@@ -20,4 +20,6 @@ export interface SelectProps extends RootSelect {
   placeholder?: string,
   fullWidth?: boolean
   id?: string
+  label?: string
+  errorMessage?: string
 }

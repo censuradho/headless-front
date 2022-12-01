@@ -11,4 +11,5 @@ export interface AuthContextProps {
   jwt?: string | null,
   setJwt: Dispatch<SetStateAction<string | null>>
   isSigned?: boolean
+  isLoading?: boolean
 }

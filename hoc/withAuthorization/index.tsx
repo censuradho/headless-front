@@ -9,11 +9,13 @@ export const withAuthorization = <P extends object>(Component: ComponentType<P>)
 
   const router = useRouter();
 
+  if (auth?.isLoading) return null;
+
   useEffect(() => {
-    if (!auth?.isSigned) {
+    if (!auth?.isSigned && !auth?.isLoading) {
       router.push(paths.auth);
     }
-  }, []);
+  }, [auth]);
 
   return <Component {...props} />;
 };

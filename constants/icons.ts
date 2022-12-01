@@ -1,4 +1,7 @@
-import { FiMenu, FiTruck } from "@meronex/icons/fi";
+import {
+  FiMenu,
+  FiTruck,
+} from "@meronex/icons/fi";
 import {
   AiOutlineUser,
   AiFillHeart,
@@ -7,6 +10,7 @@ import {
 } from "@meronex/icons/ai";
 import { BiShoppingBag } from "@meronex/icons/bi";
 import { BsChevronDown, BsChevronUp } from "@meronex/icons/bs";
+import { MdModeEdit } from "@meronex/icons/md";
 
 import {
   IosArrowRoundBack,
@@ -28,6 +32,7 @@ export const icons = {
   menu: FiMenu,
   heart: AiFillHeart,
   lock: IosLock,
+  edit: MdModeEdit,
   mail: IosMail,
   shoppingBag: BiShoppingBag,
   outlineUser: AiOutlineUser,

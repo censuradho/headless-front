@@ -27,6 +27,7 @@ const {
       body: colors.SLATE_GRAY,
       black: colors.BLACK,
       mauve3: colors.MAUVE3,
+      placeholders: colors.PLACEHOLDERS,
     },
     space: {
       xs: "0.75rem",

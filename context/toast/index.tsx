@@ -5,6 +5,7 @@ import {
 import { Box, Typography } from "components";
 import { cmsApi } from "services/rest/cms";
 import { API_ERRORS } from "constants/validations";
+import { AxiosError } from "axios";
 import { ToastContextProps, Notify, ToastProviderProps } from "./types";
 
 import * as Styles from "./styles";
@@ -41,20 +42,24 @@ export function ToastProvider({ children }: ToastProviderProps) {
   };
 
   useEffect(() => {
-    cmsApi.interceptors.response.use((response) => response, (error) => {
-      if (error.response.data.error.status >= 400) {
-        const errorMessage = API_ERRORS?.[error.response.data.error.message as keyof typeof API_ERRORS] || "";
+    cmsApi.interceptors.response.use((response) => response, async (data: AxiosError) => {
+      const { response } = data;
 
-        console.log(error.response.data.error.message);
+      const responseParsed = response as any;
 
+      const isError = responseParsed?.data?.error
+        && responseParsed.data.error.status >= 400
+        && responseParsed.data.error.status < 500;
+
+      if (isError) {
+        const errorMessage = API_ERRORS?.[responseParsed?.data?.error?.message as keyof typeof API_ERRORS] || "";
         if (errorMessage) {
           onNotify({
             title: errorMessage,
           });
         }
       }
-
-      Promise.reject(error);
+      Promise.reject(data);
     });
   }, []);
 

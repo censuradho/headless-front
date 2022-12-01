@@ -1,10 +1,17 @@
 import * as Select from "@radix-ui/react-select";
+
 import { styled } from "stitches.config";
 
 export const Root = styled(Select.Root, {
   button: {
     all: "unset",
   },
+  width: "100%",
+});
+
+export const Label = styled("label", {
+  cursor: "pointer",
+  fontSize: "$footnote",
 });
 
 export const Content = styled(Select.Content, {
@@ -12,27 +19,24 @@ export const Content = styled(Select.Content, {
   backgroundColor: "$background",
   borderRadius: "6px",
   boxShadow: "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
+  zIndex: 10,
 });
 
 export const Trigger = styled(Select.Trigger, {
   display: "inline-flex",
   alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "4px",
+  justifyContent: "space-between",
   padding: "0 15px",
   fonSize: "13px",
+  height: "3rem",
   lineHeight: 1,
-  height: "35px",
   gap: "5px",
   backgroundColor: "$background",
-  boxShadow: "0 2px 10px $blackA7",
-
-  "&:hover": {
-    backgroundColor: "$mauve3",
-  },
+  border: "1px solid $highlight",
+  outline: "none",
 
   "&:focus": {
-    boxShadow: "0 0 0 2px black",
+    borderColor: "$primary",
   },
 
   "&[data-placeholder]": {
@@ -55,13 +59,12 @@ export const Portal = styled(Select.Portal, {
 
 export const Viewport = styled(Select.Viewport, {
   padding: "5px",
+  maxHeight: "14rem",
 });
 
 export const Value = styled(Select.Value, {});
 
 export const Group = styled(Select.Group, {});
-
-export const Label = styled(Select.Label, {});
 
 export const Item = styled(Select.Item, {
   fontSize: "13px",
@@ -71,7 +74,7 @@ export const Item = styled(Select.Item, {
   display: "flex",
   alignItems: "center",
   height: "25px",
-  padding: "0 35px 0 25px",
+  padding: "1rem 35px 1rem 25px",
   position: "relative",
   userSelect: "none",
 
@@ -86,6 +89,20 @@ export const Item = styled(Select.Item, {
   },
 });
 
+const scrollButtonStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: 25,
+  backgroundColor: "white",
+  color: "$primary",
+  cursor: "default",
+};
+
 export const ItemText = styled(Select.ItemText, {});
 
 export const ItemIndicator = styled(Select.ItemIndicator, {});
+
+export const ScrollDownButton = styled(Select.ScrollDownButton, scrollButtonStyles);
+
+export const ScrollUpButton = styled(Select.ScrollUpButton, scrollButtonStyles);

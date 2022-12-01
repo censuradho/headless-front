@@ -6,6 +6,7 @@ export const paths = {
   saudeIntima: "/saudeIntima",
   cart: "/cart",
   auth: "/auth",
+  checkout: "/checkout",
 };
 
 export const routePaths = {

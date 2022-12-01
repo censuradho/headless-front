@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { JWT_KEY } from "constants/localStorage";
 import { useLocalStorage } from "hooks";
 import {
@@ -17,6 +18,7 @@ export const AuthContext = createContext({} as AuthContextProps);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [jwt, setJwt] = useLocalStorage<string | null>(JWT_KEY, null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isSigned = !!user;
 
@@ -25,21 +27,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (jwt) {
         cmsApi.defaults.headers.common.Authorization = `Bearer ${jwt}`;
         const { data: me } = await getMe();
-
         setUser(me);
         return;
       }
 
       setUser(null);
       delete cmsApi.defaults.headers.common.Authorization;
-    } catch (err) {}
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    cmsApi.interceptors.response.use((response) => {
-      if (response?.status === 404) setJwt(null);
-      return response;
-    }, (error) => Promise.reject(error));
+    cmsApi.interceptors.request.use(undefined, async (data: AxiosError) => {
+      const { response } = data;
+
+      if (response?.status === 404) {
+        delete cmsApi.defaults.headers.common.Authorization;
+        setJwt(null);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -54,6 +61,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         jwt,
         setJwt,
         isSigned,
+        isLoading,
       }}
     >
       {children}

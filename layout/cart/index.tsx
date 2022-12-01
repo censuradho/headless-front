@@ -1,10 +1,13 @@
 import { useMemo } from "react";
 import router from "next/router";
+import qs from "querystring";
 
-import { Box, Button, Typography } from "components";
+import {
+  Box, Button, Icon, Typography,
+} from "components";
 import { paths } from "constants/routes";
 import { useAuth, useCart } from "context";
-import { CheckoutLayout } from "layout/checkout";
+import { CheckoutLayout } from "layout/checkout/components";
 
 import { toLocaleMonetize, uuid } from "utils";
 import { ProductPreview } from "./components";
@@ -48,34 +51,69 @@ export function CartPageLayout() {
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 
-  const goToCheckoutPath = auth?.isSigned ? paths.home : paths.auth;
+  const goToCheckoutPath = useMemo(() => {
+    if (auth?.isSigned) return paths.checkout;
+
+    const query = qs.stringify({
+      redirectPath: paths?.cart,
+    });
+
+    return `${paths.auth}?${query}`;
+  }, [auth?.isSigned]);
+
+  const renderProductsPreview = () => {
+    if (!total) {
+      return (
+        <Box flexDirection="column" gap={2} flex={1} justifyContent="center" alignItems="center">
+          <Icon name="shoppingBag" size={50} />
+          <Typography as="strong" textAlign="center" variant="sub-headline">Sua sacola está vazia!</Typography>
+          <Typography as="p" textAlign="center">
+            Para inserir produtos em sua sacola, basta navegar pela webstore ou utilizar a busca,
+            e ao encontrar os produtos desejados, clique no botão Adicionar à sacola.
+          </Typography>
+          <Button as="a" href={paths.home}>Escolher produto</Button>
+        </Box>
+      );
+    }
+  };
+
+  const renderContent = () => {
+    if (!total) return null;
+
+    return (
+      <>
+        <Styles.ProductPreviewList>
+          {renderProductPreview()}
+        </Styles.ProductPreviewList>
+        <Styles.ResumeView>
+          <Typography variant="sub-headline" as="strong">Resumo do carrinho</Typography>
+          <Styles.Resume>
+            <Box justifyContent="space-between">
+              <Typography semiBold variant="footnote">Total:</Typography>
+              <Typography semiBold variant="footnote">{toLocaleMonetize(total)}</Typography>
+            </Box>
+            <Styles.ResumeGoToCheckoutView>
+              <Button
+                fullWidth
+                onClick={() => router.push(goToCheckoutPath)}
+              >
+                Avançar para o checkout
+              </Button>
+              <Button fullWidth variant="letter" as="a" href={paths.home}>Continuar comprando</Button>
+            </Styles.ResumeGoToCheckoutView>
+          </Styles.Resume>
+        </Styles.ResumeView>
+      </>
+    );
+  };
 
   return (
     <CheckoutLayout>
       <Styles.Container>
-        <Typography uppercase variant="callout">Minha sacola</Typography>
+        <Typography uppercase variant="callout" as="h1">Minha sacola</Typography>
         <Styles.Wrapper>
-          <Styles.ProductPreviewList>
-            {renderProductPreview()}
-          </Styles.ProductPreviewList>
-          <Styles.ResumeView>
-            <Typography variant="sub-headline" as="strong">Resumo do carrinho</Typography>
-            <Styles.Resume>
-              <Box justifyContent="space-between">
-                <Typography semiBold variant="footnote">Total:</Typography>
-                <Typography semiBold variant="footnote">{toLocaleMonetize(total)}</Typography>
-              </Box>
-              <Styles.ResumeGoToCheckoutView>
-                <Button
-                  fullWidth
-                  onClick={() => router.push(goToCheckoutPath)}
-                >
-                  Avançar para o checkout
-                </Button>
-                <Button fullWidth variant="letter" as="a" href={paths.home}>Continuar comprando</Button>
-              </Styles.ResumeGoToCheckoutView>
-            </Styles.Resume>
-          </Styles.ResumeView>
+          {renderContent()}
+          {renderProductsPreview()}
         </Styles.Wrapper>
       </Styles.Container>
     </CheckoutLayout>

@@ -1,4 +1,6 @@
-import { CSSProperties, memo, ReactNode } from "react";
+import { ComponentProps, CSSProperties, ReactNode } from "react";
+
+import { Container } from "./styles";
 
 type ViewStyle = Pick<CSSProperties,
   "alignItems"
@@ -10,11 +12,12 @@ type ViewStyle = Pick<CSSProperties,
   | "marginRight"
   | "marginLeft"
   | "marginTop"
-  | "flexDirection"
   | "backgroundColor"
 >
 
-interface BoxProps extends ViewStyle {
+interface BoxProps extends
+  ViewStyle,
+  ComponentProps<typeof Container> {
   children: ReactNode;
   fullWidth?: boolean;
   gap?: number
@@ -26,19 +29,22 @@ export function Box(props: BoxProps) {
     fullWidth,
     gap,
     marginTop,
+    flexDirection,
     ...otherProps
   } = props;
 
   return (
-    <div style={{
-      ...otherProps,
-      display: "flex",
-      width: fullWidth ? "100%" : "auto",
-      ...(gap && { gap: `${gap}rem` }),
-      ...(marginTop && { marginTop: `${marginTop}rem` }),
-    }}
+    <Container
+      flexDirection={flexDirection}
+      style={{
+        ...otherProps,
+        display: "flex",
+        width: fullWidth ? "100%" : "auto",
+        ...(gap && { gap: `${gap}rem` }),
+        ...(marginTop && { marginTop: `${marginTop}rem` }),
+      }}
     >
       {children}
-    </div>
+    </Container>
   );
 }

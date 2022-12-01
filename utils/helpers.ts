@@ -37,3 +37,19 @@ export function toLocaleMonetize(value: number) {
     style: "currency",
   });
 }
+
+export function setMask(value: string | number, pattern: string) {
+  let i = 0;
+  const valueInString = String(value).replace(/\D/g, "");
+
+  // eslint-disable-next-line no-plusplus
+  return pattern.replace(/#/g, () => valueInString[i++] || "");
+}
+
+export function getQueryFromUrl(key: string) {
+  const result: any = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop as string),
+  });
+
+  return result?.[key] as any as string;
+}

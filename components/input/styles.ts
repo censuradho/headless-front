@@ -4,7 +4,7 @@ import { styled } from "stitches.config";
 export const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "1rem",
+  gap: "0.5rem",
 
   variants: {
     fullWidth: {
@@ -24,9 +24,9 @@ export const Input = styled("input", {
   outline: "none",
   padding: "0 1rem",
   "&::placeholder": {
-    color: "$highlight",
+    color: "$placeholders",
     fontSize: "0.8rem",
-    fontWeight: 400,
+    fontWeight: "400",
   },
 
   "&:focus": {
@@ -53,16 +53,9 @@ export const Input = styled("input", {
   },
 });
 
-export const Label = styled(Typography, {
+export const Label = styled("label", {
   cursor: "pointer",
-
-  variants: {
-    hasError: {
-      true: {
-        color: "$error",
-      },
-    },
-  },
+  fontSize: "$footnote",
 });
 
 export const ErrorMessage = styled(Typography, {
