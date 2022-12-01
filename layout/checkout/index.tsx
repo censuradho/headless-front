@@ -17,6 +17,10 @@ export function CheckoutPageLayout() {
     router.events.on("routeChangeComplete", (url, options) => {
       setQuery(getQueryFromUrl("q"));
     });
+
+    return () => router.events.off("routeChangeComplete", (url, options) => {
+      setQuery(getQueryFromUrl("q"));
+    });
   }, []);
 
   return (
