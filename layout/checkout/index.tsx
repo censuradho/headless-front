@@ -1,4 +1,4 @@
-import { Box, Typography } from "components";
+import { Box, Button, Typography } from "components";
 import { checkoutStepsQuery } from "constants/checkout";
 import { paths } from "constants/routes";
 import { useCart } from "context";
@@ -42,7 +42,20 @@ export function CheckoutPageLayout() {
 
   return (
     <CheckoutLayout>
-      <Typography uppercase variant="callout" as="h1">Checkout</Typography>
+      <Box justifyContent="space-between" alignItems="center">
+        <Typography uppercase variant="callout" as="h1">Checkout</Typography>
+        <Button
+          variant="letter"
+          icon={{
+            name: "arrowRoundBack",
+          }}
+          as="a"
+          href={paths.home}
+        >
+          Continuar comprando
+
+        </Button>
+      </Box>
       <Box
         gap={2}
         flexDirection={{

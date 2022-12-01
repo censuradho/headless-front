@@ -50,7 +50,7 @@ export function Address(props: AddressProps) {
   });
   const cep = useDebounce(watch("cep"), 1000);
 
-  const { address } = useAddress(useDebounce(cep, 1000), true);
+  const { address } = useAddress(useDebounce(cep, 1000), !defaultAddress);
 
   const ufOptions = useMemo(
     () => estadosOptions.map((option) => ({
