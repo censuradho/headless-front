@@ -119,6 +119,19 @@ export function CartProvider({ children }: CartProviderProps) {
 
       delete product.inventories[inventoryId];
 
+      const hasInventories = Object.keys(product.inventories).length > 0;
+
+      if (!hasInventories) {
+        const currentState = {
+          ...prevState,
+        };
+
+        delete currentState[productId];
+        return {
+          ...currentState,
+        };
+      }
+
       return {
         ...prevState,
         [productId]: product,
