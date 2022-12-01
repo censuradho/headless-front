@@ -25,6 +25,7 @@ import {
 import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
 import { useAuth } from "context";
 import { checkoutStepsPaths } from "constants/checkout";
+import { cepMask, CEP_MASK } from "constants/masks";
 import * as Styles from "./styles";
 import { AddressFormData, AddressProps } from "./types";
 import { addressSchemaValidation } from "./validations";
@@ -123,6 +124,7 @@ export function Address(props: AddressProps) {
               autoFocus
               placeholder="Digite seu CEP"
               register={register("cep")}
+              mask={cepMask}
             />
             <Styles.AnchorUnderline
               target="_blank"
@@ -185,7 +187,7 @@ export function Address(props: AddressProps) {
                 />
               </Box>
               <Box marginTop={2}>
-                <Button loading={isLoading} fullWidth>Ir para o pagamento</Button>
+                <Button loading={isLoading} fullWidth>Salvar</Button>
               </Box>
             </Box>
           </HiddenView>

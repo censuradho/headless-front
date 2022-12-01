@@ -1,7 +1,9 @@
 import { ButtonIcon } from "components/button-icon";
 import { Icon } from "components/icon";
 import { IconProps } from "components/icon/type";
-import { forwardRef, memo } from "react";
+import {
+  FormEvent, forwardRef, KeyboardEvent, memo,
+} from "react";
 import { setMask } from "utils";
 
 import * as Styles from "./styles";
@@ -18,7 +20,6 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     onLeftIconClick,
     onRightIconClick,
     defaultValue,
-    value,
     mask,
     ...otherProps
   } = props;
@@ -80,6 +81,11 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     );
   };
 
+  const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (!mask) return;
+    return mask(event);
+  };
+
   return (
     <Styles.Container fullWidth={fullWidth}>
       {renderLabel()}
@@ -92,7 +98,7 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
           hasError={hasError}
           hasLeftIcon={!!leftIcon}
           hasRightIcon={!!rightIcon}
-          value={mask && value ? setMask(value, mask) : value}
+          onKeyUp={handleKeyUp}
         />
         {renderRightIcon()}
       </Styles.IconView>

@@ -4,7 +4,9 @@ import {
   Box, Button, ButtonIcon, Icon, Input, Typography,
 } from "components";
 import { SelectForm } from "components/hook-form";
-import { CPF_MASK, DATE_MASK, PHONE_MASK } from "constants/masks";
+import {
+  cpfMask, CPF_MASK, DATE_MASK, PHONE_MASK,
+} from "constants/masks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -148,7 +150,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
             fullWidth
             register={register("clientDocument")}
             value={watch("clientDocument")}
-            mask={CPF_MASK}
+            mask={cpfMask}
             placeholder="999.999.999-99"
             errorMessage={errors?.clientDocument?.message}
           />
