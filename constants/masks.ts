@@ -6,6 +6,7 @@ export const CPF_MASK = "###.###.###-##";
 export const DATE_MASK = "##/##/####";
 export const CEP_MASK = "######-##";
 
+/** exemple: 99999-999 */
 export const cepMask = (event: any) => {
   const target = event.target as HTMLInputElement;
   target.maxLength = 9;
@@ -22,6 +23,7 @@ export const cepMask = (event: any) => {
   return event;
 };
 
+/** exemple: 999.999.999-99 */
 export const cpfMask = (event: any) => {
   const target = event.target as HTMLInputElement;
   target.maxLength = 14;
@@ -37,5 +39,37 @@ export const cpfMask = (event: any) => {
 
   event.target.value = cpf;
 
+  return event;
+};
+
+/** exemple: dd/mm/yyyy */
+export const dateMask = (event: any) => {
+  const target = event.target as HTMLInputElement;
+  target.maxLength = 10;
+
+  let date = target.value;
+
+  date = date
+    .replace(/\D/g, "")
+    .replace(/^(\d{2})/, "$1/")
+    .replace(/^(\d{2})\/(\d{2})/, "$1/$2/")
+    .replace(/^(\d{2})\/(\d{2})\/(\d)/, "$1/$2/$3");
+
+  event.target.value = date;
+  return event;
+};
+
+/** exemple: (99) 99999-9999 */
+export const phoneMask = (event: any) => {
+  const target = event.target as HTMLInputElement;
+  target.maxLength = 15;
+
+  let date = target.value;
+
+  date = date
+    .replace(/\D/g, "")
+    .replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, "($1) $2 $3-$4");
+
+  event.target.value = date;
   return event;
 };

@@ -5,7 +5,7 @@ import {
 } from "components";
 import { SelectForm } from "components/hook-form";
 import {
-  cpfMask, CPF_MASK, DATE_MASK, PHONE_MASK,
+  cpfMask, CPF_MASK, dateMask, DATE_MASK, phoneMask, PHONE_MASK,
 } from "constants/masks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -137,7 +137,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
             label="Data de nascimento"
             fullWidth
             value={watch("birthDate")}
-            mask={DATE_MASK}
+            mask={dateMask}
             placeholder="dd/mm/yyyy"
             register={register("birthDate")}
             errorMessage={errors?.birthDate?.message}
@@ -158,7 +158,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
             id="phone"
             label="Telefone"
             fullWidth
-            mask={PHONE_MASK}
+            mask={phoneMask}
             value={watch("phone")}
             placeholder="11 99999-9999"
             register={register("phone")}
