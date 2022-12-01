@@ -3,7 +3,7 @@ import {
 } from "components";
 import { useCart } from "context";
 import { memo, useMemo } from "react";
-import { uuid } from "utils";
+import { toLocaleMonetize, uuid } from "utils";
 import { ProductPreview } from "./components";
 import * as Styles from "./styles";
 
@@ -57,11 +57,11 @@ export const OrderResume = memo(() => {
       </Box>
       <Styles.SummaryItem>
         <Typography>Subtotal:</Typography>
-        <Typography>{subTotal}</Typography>
+        <Typography>{toLocaleMonetize(subTotal)}</Typography>
       </Styles.SummaryItem>
       <Styles.SummaryItem>
         <Typography semiBold>Total:</Typography>
-        <Typography semiBold>{total}</Typography>
+        <Typography semiBold>{toLocaleMonetize(total)}</Typography>
       </Styles.SummaryItem>
       <Box marginTop={2}>
         <Button fullWidth>Finalizar compra</Button>
