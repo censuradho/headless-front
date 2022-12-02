@@ -22,9 +22,7 @@ export interface PerfilAttr {
   birthDate: string
 }
 
-export interface PostPerfilRequest extends PerfilAttr {
-  user: number
-}
+export type PostPerfilRequest = PerfilAttr
 
 export type PutPerfilRequest = PostPerfilRequest
 

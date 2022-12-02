@@ -1,11 +1,7 @@
-export interface PersonalInfoFormData {
+import { PerfilAttr } from "types/checkout";
+
+export interface PersonalInfoFormData extends PerfilAttr {
   email: string
-  firstName: string
-  lastName: string
-  gender: string,
-  birthDate: string
-  clientDocument: string
-  phone: string
 }
 
 export interface PersonalInfoProps {

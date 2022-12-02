@@ -13,7 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { checkoutStepsPaths } from "constants/checkout";
 import { Perfil } from "types/checkout";
-import { getPerfilByUserId, postPerfil, putPerfil } from "services/rest/cms/checkout";
+import { getPerfil, postPerfil, putPerfil } from "services/rest/cms/checkout";
 import { useAuth } from "context";
 import * as Styles from "./styles";
 import { PersonalInfoFormData, PersonalInfoProps } from "./types";
@@ -46,14 +46,12 @@ export function PersonalInfo(props: PersonalInfoProps) {
       if (defaultInfo) {
         await putPerfil(defaultInfo.id, {
           ...payload,
-          user: auth.user.id,
         });
         router.push(checkoutStepsPaths.address);
         return;
       }
       await postPerfil({
         ...payload,
-        user: auth.user.id,
       });
 
       router.push(checkoutStepsPaths.address);
@@ -62,9 +60,9 @@ export function PersonalInfo(props: PersonalInfoProps) {
     }
   };
 
-  const handleGetDefaultAddress = async (userId: number) => {
+  const getDefaultPerfil = async () => {
     try {
-      const { data: personalInfo } = await getPerfilByUserId(userId);
+      const { data: personalInfo } = await getPerfil();
 
       setDefaultInfo(personalInfo.data);
     } catch (err) {}
@@ -191,8 +189,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
 
   useEffect(() => {
     if (!auth?.user) return;
-
-    handleGetDefaultAddress(auth?.user?.id);
+    getDefaultPerfil();
   }, [auth?.user]);
 
   return (

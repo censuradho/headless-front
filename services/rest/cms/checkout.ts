@@ -129,16 +129,8 @@ export async function putPerfil(id: number, payload: PutPerfilRequest) {
   };
 }
 
-export async function getPerfilByUserId(userId: number) {
-  const query = strapiQuery.parse("/perfils", {
-    filters: {
-      user: {
-        id: userId,
-      },
-    },
-  });
-
-  const response = await cmsApi.get<ResponseDataType<Perfil[]>>(query);
+export async function getPerfil() {
+  const response = await cmsApi.get<ResponseDataType<Perfil[]>>("/perfils");
 
   const {
     data: perfil,
