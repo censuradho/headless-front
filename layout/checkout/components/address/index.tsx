@@ -22,10 +22,10 @@ import { SelectForm } from "components/hook-form";
 import {
   Address as IAddress,
 } from "types/checkout";
-import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
+import { getAddress as getAddressApi, postAddress, putAddress } from "services/rest/cms/checkout";
 import { useAuth } from "context";
 import { checkoutStepsPaths } from "constants/checkout";
-import { cepMask, CEP_MASK } from "constants/masks";
+import { cepMask } from "constants/masks";
 import * as Styles from "./styles";
 import { AddressFormData, AddressProps } from "./types";
 import { addressSchemaValidation } from "./validations";
@@ -89,7 +89,7 @@ export function Address(props: AddressProps) {
 
   const handleGetDefaultAddress = async (userId: number) => {
     try {
-      const { data: addressResponse } = await getAddressByUserId(userId);
+      const { data: addressResponse } = await getAddressApi();
 
       setDefaultAddress(addressResponse.data);
     } catch (err) {}

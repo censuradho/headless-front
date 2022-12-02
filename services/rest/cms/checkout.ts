@@ -53,16 +53,8 @@ export async function putAddress(id: number, payload: AddressAttr) {
   };
 }
 
-export async function getAddressByUserId(userId: number) {
-  const query = strapiQuery.parse("/user-addresses", {
-    filters: {
-      user: {
-        id: userId,
-      },
-    },
-  });
-
-  const response = await cmsApi.get<ResponseDataType<Address[]>>(query);
+export async function getAddress() {
+  const response = await cmsApi.get<ResponseDataType<Address[]>>("/user-addresses");
 
   const {
     data: address,
