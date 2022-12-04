@@ -11,7 +11,6 @@ import {
 import { BiShoppingBag } from "@meronex/icons/bi";
 import { BsChevronDown, BsChevronUp } from "@meronex/icons/bs";
 import { MdModeEdit } from "@meronex/icons/md";
-
 import {
   IosArrowRoundBack,
   IosHeartEmpty,
@@ -26,6 +25,7 @@ import {
   IosMail,
   IosClose,
   IosLock,
+  IosArrowForward,
 } from "@meronex/icons/ios";
 
 export const icons = {
@@ -44,6 +44,7 @@ export const icons = {
   eyeOff: IosEyeOff,
   chevronDown: BsChevronDown,
   chevronUp: BsChevronUp,
+  arrowForward: IosArrowForward,
   arrowRoundBack: IosArrowRoundBack,
   arrowDown: IosArrowDown,
   arrowUp: IosArrowUp,

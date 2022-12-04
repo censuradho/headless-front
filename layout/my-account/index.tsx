@@ -4,22 +4,6 @@ import { useAuth } from "context";
 import { Navigation } from "./components";
 import * as Styles from "./styles";
 
-const navigationPaths = {
-  perfil: "/my-account/perfil",
-  address: "/my-account/address",
-};
-
-const myAccountNavigation = [
-  {
-    label: "Dados pessoais",
-    path: navigationPaths.perfil,
-  },
-  {
-    label: "Endereço",
-    path: navigationPaths.address,
-  },
-];
-
 export function MyAccountPageLayout() {
   const auth = useAuth();
 
