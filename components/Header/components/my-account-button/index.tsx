@@ -43,7 +43,11 @@ export function MyAccountButton() {
       return (
         <Link href={paths.auth}>
           <Typography as="a">
-            Minha conta
+            <Typography>
+              Entre ou
+            </Typography>
+            <br />
+            <Typography>cadastre-se</Typography>
           </Typography>
         </Link>
       );
