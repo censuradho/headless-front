@@ -7,6 +7,7 @@ export const paths = {
   cart: "/cart",
   auth: "/auth",
   checkout: "/checkout",
+  myAccount: "/my-account",
 };
 
 export const routePaths = {

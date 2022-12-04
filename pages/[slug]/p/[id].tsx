@@ -1,3 +1,4 @@
+import { Header } from "components";
 import { MainLayout, ProductPageLayout } from "layout";
 import { ProductPageProps } from "layout/product/types";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
@@ -28,9 +29,10 @@ export const getStaticProps: GetStaticProps<ProductPageProps> = async (context) 
 
 export default function ProductPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout>
+    <div>
+      <Header />
       <ProductPageLayout {...props} />
-    </MainLayout>
+    </div>
   );
 }
 

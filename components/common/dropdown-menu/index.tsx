@@ -9,41 +9,31 @@ export function DropDownMenu(props: DropDownMenuProps) {
     trigger: triggerChild,
   } = props;
 
-  // const renderItems = items.map((item) => {
-  //   const options = item.options.map((option) => (
-  //     <Styles.Item key={uuid()}>
-  //       {option.label}
-  //     </Styles.Item>
-  //   ));
+  const renderItems = items.map((item) => {
+    const options = item.options.map((option) => (
+      <Styles.Item key={uuid()} onSelect={option?.onSelect}>
+        {option.label}
+      </Styles.Item>
+    ));
 
-  //   const hasSeparator = options.length > 1;
-
-  //   return (
-  //     <Fragment key={uuid()}>
-  //       <Styles.Group>
-  //         {options}
-  //       </Styles.Group>
-  //       {hasSeparator && <Styles.Separator />}
-  //     </Fragment>
-  //   );
-  // });
+    return (
+      <Fragment key={uuid()}>
+        <Styles.Group>
+          {options}
+        </Styles.Group>
+      </Fragment>
+    );
+  });
 
   return (
     <Styles.Root>
-      <Styles.Trigger asChild={typeof triggerChild !== "string"}>
+      <Styles.Trigger asChild>
         {triggerChild}
       </Styles.Trigger>
-      <Styles.Portal>
-        <Styles.Content>
-          <Styles.Group>
-            <Styles.Item>
-              teste
-            </Styles.Item>
-          </Styles.Group>
-          {/* {renderItems} */}
-          <Styles.Arrow />
-        </Styles.Content>
-      </Styles.Portal>
+      <Styles.Content sideOffset={2} alignOffset={-5}>
+        {renderItems}
+        <Styles.Arrow />
+      </Styles.Content>
     </Styles.Root>
   );
 }

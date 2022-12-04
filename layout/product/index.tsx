@@ -96,8 +96,6 @@ export function ProductPageLayout(props: ProductPageProps) {
       <Styles.Content>
         <Preview {...product} />
         <Styles.ProductInfo>
-          {/* <DropDownMenu trigger={<button>teste</button>} /> */}
-
           <ProductInfo {...attributes} />
           <ProductSizes
             onSelectSize={(option) => {

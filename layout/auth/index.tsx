@@ -47,8 +47,7 @@ export function AuthLayout() {
   };
 
   return (
-    <>
-      <Header />
+    <Styles.Main>
       <Styles.Container>
         <Styles.FormView>
           {renderLoginFormMobile()}
@@ -63,6 +62,6 @@ export function AuthLayout() {
           {renderToggleModeButton()}
         </Styles.FormView>
       </Styles.Container>
-    </>
+    </Styles.Main>
   );
 }

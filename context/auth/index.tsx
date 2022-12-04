@@ -1,6 +1,8 @@
 import { AxiosError } from "axios";
 import { JWT_KEY } from "constants/localStorage";
+import { paths } from "constants/routes";
 import { useLocalStorage } from "hooks";
+import { useRouter } from "next/router";
 import {
   createContext,
   useContext,
@@ -16,11 +18,18 @@ import { AuthContextProps, AuthProviderProps } from "./types";
 export const AuthContext = createContext({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const router = useRouter();
+
   const [user, setUser] = useState<User | null>(null);
   const [jwt, setJwt] = useLocalStorage<string | null>(JWT_KEY, null);
   const [isLoading, setIsLoading] = useState(true);
 
   const isSigned = !!user;
+
+  const handleSignOut = () => {
+    router.push(paths.auth);
+    setJwt(null);
+  };
 
   const handleJWT = async () => {
     try {
@@ -62,6 +71,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setJwt,
         isSigned,
         isLoading,
+        signOut: handleSignOut,
       }}
     >
       {children}

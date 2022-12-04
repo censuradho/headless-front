@@ -26,14 +26,15 @@ export const {
 } = DropdownMenu;
 
 export const Root = styled(DropdownMenu.Root, {
-  zIndex: 999,
   position: "relative",
 });
 export const Content = styled(DropdownMenu.Content, {
   minWidth: 220,
-  backgroundColor: "tomato",
+
+  backgroundColor: "$background",
   borderRadius: 6,
-  padding: 5,
+  padding: "1rem 0.5rem",
+  zIndex: 999,
 
   boxShadow:
     "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
@@ -59,7 +60,7 @@ const itemStyles = {
   display: "flex",
   alignItems: "center",
   height: 25,
-  padding: "0 5px",
+  padding: "0.3rem",
   position: "relative",
   paddingLeft: 25,
   userSelect: "none",
@@ -89,6 +90,7 @@ export const Label = styled(DropdownMenu.Label, {
 
 export const Separator = styled(DropdownMenu.Separator, {
   height: 1,
+  width: "100%",
   backgroundColor: "$primary",
   margin: 5,
 });
@@ -102,4 +104,6 @@ export const Indicator = styled(DropdownMenu.ItemIndicator, {
   justifyContent: "center",
 });
 
-export const Group = styled(DropdownMenu.Group, {});
+export const Group = styled(DropdownMenu.Group, {
+
+});

@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
 interface Options {
-  label: string
+  label: string | ReactNode
+  onSelect?: () => void
 }
 
 interface Group {

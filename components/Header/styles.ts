@@ -9,8 +9,8 @@ export const Container = styled("header", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  position: "sticky",
-  top: 0,
+  // position: "sticky",
+  // top: 0,
   zIndex: 5,
 
   "@laptops-min": {
@@ -30,6 +30,8 @@ export const TopBar = styled("div", {
   alignItems: "center",
   padding: "0.625rem",
   background: "$background",
+  position: "relative",
+
   "@laptops-min": {
     zIndex: 2,
   },

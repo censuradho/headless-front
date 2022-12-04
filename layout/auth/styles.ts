@@ -1,7 +1,17 @@
 import { styled } from "stitches.config";
 
+export const Main = styled("main", {
+  height: "100vh",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
 export const Container = styled("div", {
   width: "100%",
+  display: "flex",
+  alignItems: "center",
   maxWidth: "74.0625rem",
   margin: "3rem auto",
 });
