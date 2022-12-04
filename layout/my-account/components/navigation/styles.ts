@@ -3,6 +3,10 @@ import { styled } from "stitches.config";
 export const Container = styled("nav", {
   width: "100%",
 
+  "@table-min": {
+    maxWidth: "20rem",
+  },
+
 });
 
 export const Item = styled("li", {

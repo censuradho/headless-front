@@ -1,7 +1,7 @@
 import { Box, Typography } from "components";
 import { Container } from "components/common";
 import { useAuth } from "context";
-import { Navigation } from "./components";
+import { Navigation, PersonalInfo } from "./components";
 import * as Styles from "./styles";
 
 export function MyAccountPageLayout() {
@@ -14,8 +14,9 @@ export function MyAccountPageLayout() {
           <Typography variant="sub-headline">Olá,</Typography>
           <Typography uppercase variant="title2">{auth.user?.username}</Typography>
         </Box>
-        <Box marginTop={1}>
+        <Box marginTop={1} gap={3}>
           <Navigation />
+          <PersonalInfo />
         </Box>
       </Container>
     </Styles.Main>
