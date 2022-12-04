@@ -7,7 +7,7 @@ export const paths = {
   cart: "/cart",
   auth: "/auth",
   checkout: "/checkout",
-  myAccount: "/my-account",
+  myAccount: "/my-account/profile",
 };
 
 export const routePaths = {

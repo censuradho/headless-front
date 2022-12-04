@@ -71,7 +71,7 @@ export function useAddress() {
     }
   };
 
-  const handleGetDefaultAddress = async (userId: number) => {
+  const handleGetDefaultAddress = async () => {
     try {
       const { data: addressResponse } = await getAddressApi();
 
@@ -91,8 +91,7 @@ export function useAddress() {
 
   useEffect(() => {
     if (!auth?.user) return;
-
-    handleGetDefaultAddress(auth?.user?.id);
+    handleGetDefaultAddress();
   }, [auth?.user]);
 
   useEffect(() => {

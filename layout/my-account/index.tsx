@@ -2,7 +2,7 @@ import { Box, Typography } from "components";
 import { Container } from "components/common";
 import { useAuth } from "context";
 import { useRouter } from "next/router";
-import { Navigation, PersonalInfo } from "./components";
+import { Address, Navigation, PersonalInfo } from "./components";
 import * as Styles from "./styles";
 
 export const myAccountNavigationPaths = {
@@ -28,6 +28,7 @@ export function MyAccountPageLayout() {
 
   const mappedContent = {
     [myAccountNavigationPaths.perfil]: <PersonalInfo />,
+    [myAccountNavigationPaths.address]: <Address />,
   };
 
   return (
