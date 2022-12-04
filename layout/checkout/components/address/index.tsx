@@ -25,7 +25,7 @@ import {
 import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
 import { useAuth } from "context";
 import { checkoutStepsPaths } from "constants/checkout";
-import { cepMask, CEP_MASK } from "constants/masks";
+import { cepMask } from "constants/masks";
 import * as Styles from "./styles";
 import { AddressFormData, AddressProps } from "./types";
 import { addressSchemaValidation } from "./validations";
@@ -51,7 +51,7 @@ export function Address(props: AddressProps) {
   });
   const cep = useDebounce(watch("cep"), 1000);
 
-  const { address } = useAddress(useDebounce(cep, 1000), !defaultAddress);
+  const { address } = useAddress(useDebounce(cep, 1000));
 
   const ufOptions = useMemo(
     () => estadosOptions.map((option) => ({

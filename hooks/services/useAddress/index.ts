@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAddressByCep } from "services/rest/viaCep";
 import { GetCepResponse } from "types/viaCep";
 
-export function useAddress(cep?: string, initialize?: boolean) {
+export function useAddress(cep?: string) {
   const [address, setAddress] = useState<GetCepResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -20,7 +20,7 @@ export function useAddress(cep?: string, initialize?: boolean) {
   };
 
   useEffect(() => {
-    if (!cep || !initialize) return;
+    if (!cep) return;
 
     handleGetCep(cep);
   }, [cep]);
