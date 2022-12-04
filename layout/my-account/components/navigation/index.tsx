@@ -1,12 +1,14 @@
 import {
   Box, Button, Icon, Typography,
 } from "components";
+import { NavLink } from "components/common";
+import { useAuth } from "context";
 import Link from "next/link";
 import { uuid } from "utils";
 import * as Styles from "./styles";
 
 const navigationPaths = {
-  perfil: "/my-account/perfil",
+  perfil: "/my-account",
   address: "/my-account/address",
 };
 
@@ -19,24 +21,31 @@ const myAccountNavigation = [
     label: "Endereço",
     path: navigationPaths.address,
   },
+
 ];
 
 export function Navigation() {
+  const auth = useAuth();
+
   const renderLinks = myAccountNavigation.map((item) => (
     <Styles.Item key={uuid()}>
-      <Link href={item.path}>
-        <Typography as="a">
-          {item.label}
-          <Icon name="arrowForward" />
-        </Typography>
-      </Link>
+      <NavLink href={item.path}>
+        {item.label}
+        <Icon name="arrowForward" />
+      </NavLink>
     </Styles.Item>
   ));
+
   return (
     <Styles.Container>
       <Styles.List>{renderLinks}</Styles.List>
       <Box marginTop={2}>
-        <Button variant="letter-underline">Sair</Button>
+        <Button
+          onClick={auth.signOut}
+          variant="letter-underline"
+        >
+          Sair
+        </Button>
       </Box>
     </Styles.Container>
   );

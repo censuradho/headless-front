@@ -12,6 +12,11 @@ export const Item = styled("li", {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+
+    "&.active": {
+      color: "$primary",
+      fontWeight: 600,
+    },
   },
   borderBottom: "1px solid $highlight",
 });
