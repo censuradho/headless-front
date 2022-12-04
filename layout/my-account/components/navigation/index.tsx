@@ -1,28 +1,13 @@
 import {
-  Box, Button, Icon, Typography,
+  Box,
+  Button,
+  Icon,
 } from "components";
 import { NavLink } from "components/common";
 import { useAuth } from "context";
-import Link from "next/link";
+import { myAccountNavigation } from "layout/my-account";
 import { uuid } from "utils";
 import * as Styles from "./styles";
-
-const navigationPaths = {
-  perfil: "/my-account",
-  address: "/my-account/address",
-};
-
-const myAccountNavigation = [
-  {
-    label: "Dados pessoais",
-    path: navigationPaths.perfil,
-  },
-  {
-    label: "Endereço",
-    path: navigationPaths.address,
-  },
-
-];
 
 export function Navigation() {
   const auth = useAuth();

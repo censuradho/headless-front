@@ -1,11 +1,34 @@
 import { Box, Typography } from "components";
 import { Container } from "components/common";
 import { useAuth } from "context";
+import { useRouter } from "next/router";
 import { Navigation, PersonalInfo } from "./components";
 import * as Styles from "./styles";
 
+export const myAccountNavigationPaths = {
+  perfil: "/my-account/perfil",
+  address: "/my-account/address",
+};
+
+export const myAccountNavigation = [
+  {
+    label: "Dados pessoais",
+    path: myAccountNavigationPaths.perfil,
+  },
+  {
+    label: "Endereço",
+    path: myAccountNavigationPaths.address,
+  },
+
+];
+
 export function MyAccountPageLayout() {
   const auth = useAuth();
+  const { asPath } = useRouter();
+
+  const mappedContent = {
+    [myAccountNavigationPaths.perfil]: <PersonalInfo />,
+  };
 
   return (
     <Styles.Main>
@@ -16,7 +39,7 @@ export function MyAccountPageLayout() {
         </Box>
         <Box marginTop={1} gap={3}>
           <Navigation />
-          <PersonalInfo />
+          {mappedContent[asPath as keyof typeof mappedContent]}
         </Box>
       </Container>
     </Styles.Main>
