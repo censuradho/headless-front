@@ -7,18 +7,11 @@ import { SelectForm } from "components/hook-form";
 import {
   cpfMask, dateMask, phoneMask,
 } from "constants/masks";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useEffect, useState } from "react";
 import { checkoutStepsPaths } from "constants/checkout";
-import { Perfil } from "types/checkout";
-import { getPerfil, postPerfil, putPerfil } from "services/rest/cms/checkout";
-import { useAuth } from "context";
 import { usePerfil } from "hooks/entries";
 import * as Styles from "./styles";
-import { PersonalInfoFormData, PersonalInfoProps } from "./types";
-import { personalInfoSchemaValidations } from "./validations";
+import { PersonalInfoProps } from "./types";
 
 export function PersonalInfo(props: PersonalInfoProps) {
   const { isActive } = props;
