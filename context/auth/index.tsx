@@ -23,6 +23,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [jwt, setJwt] = useLocalStorage<string | null>(JWT_KEY, null);
   const [isLoading, setIsLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(false);
 
   const isSigned = !!user;
 
@@ -44,6 +45,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       delete cmsApi.defaults.headers.common.Authorization;
     } finally {
       setIsLoading(false);
+      setInitialLoading(true);
     }
   };
 
@@ -61,6 +63,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     handleJWT();
   }, [jwt]);
+
+  if (!initialLoading) return null;
 
   return (
     <AuthContext.Provider
