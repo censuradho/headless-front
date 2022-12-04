@@ -11,7 +11,7 @@ export const Container = styled("header", {
   alignItems: "center",
   position: "sticky",
   top: 0,
-  zIndex: 10,
+  zIndex: 5,
 
   "@laptops-min": {
     flexDirection: "column",

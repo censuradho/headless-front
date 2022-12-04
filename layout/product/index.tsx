@@ -1,4 +1,5 @@
 import { Button } from "components";
+import { DropDownMenu } from "components/common";
 import { useCart } from "context";
 import { InventoryCartItem } from "context/cart/types";
 import { SizeOption } from "hooks/useProductSizes";
@@ -95,6 +96,8 @@ export function ProductPageLayout(props: ProductPageProps) {
       <Styles.Content>
         <Preview {...product} />
         <Styles.ProductInfo>
+          {/* <DropDownMenu trigger={<button>teste</button>} /> */}
+
           <ProductInfo {...attributes} />
           <ProductSizes
             onSelectSize={(option) => {
