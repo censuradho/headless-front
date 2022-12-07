@@ -15,7 +15,17 @@ import { PaymentMethodProps } from "./types";
 export function PaymentMethod(props: PaymentMethodProps) {
   const { isActive } = props;
 
-  const { paymentMethod } = useCheckout();
+  const {
+    paymentMethod,
+    address,
+    perfil,
+  } = useCheckout();
+
+  const canSubmit = useMemo(() => {
+    const { isValid: addressIsValid } = address.form.formState;
+    const { isValid: perfilIsValid } = perfil.form.formState;
+    return addressIsValid && perfilIsValid;
+  }, [address.form, perfil.form]);
 
   const {
     form,
@@ -57,7 +67,6 @@ export function PaymentMethod(props: PaymentMethodProps) {
           />
           <Input
             id="holderName"
-            autoFocus
             label="Nome impresso no cartão"
             register={register("holderName")}
             errorMessage={errors?.holderName?.message}
@@ -88,7 +97,6 @@ export function PaymentMethod(props: PaymentMethodProps) {
           </Box>
           <Input
             id="securityCode"
-            autoFocus
             label="Código de segurança"
             register={register("securityCode")}
             errorMessage={errors?.securityCode?.message}
@@ -96,13 +104,12 @@ export function PaymentMethod(props: PaymentMethodProps) {
           />
           <Input
             id="clientDocument"
-            autoFocus
             label="CPF do titular"
             register={register("clientDocument")}
             mask={cpfMask}
             errorMessage={errors?.clientDocument?.message}
           />
-          <Button loading={isSubmitting} fullWidth>Salvar</Button>
+          {canSubmit && <Button loading={isSubmitting} fullWidth>Salvar</Button>}
 
         </Styles.Form>
       );

@@ -21,6 +21,10 @@ export function usePaymentMethod(params: UsePaymentMethodParams) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (payload: PaymentMethodFormData) => {
+    const inventories = Object
+      .entries(cart.cart)
+      .map(([key, value]) => value.id);
+
     await generateCardToken({
       amount: {
         currency: "BRL",
@@ -38,6 +42,11 @@ export function usePaymentMethod(params: UsePaymentMethodParams) {
             name: payload.holderName,
           },
         },
+      },
+      order: {
+        subTotal: cart.subTotal,
+        total: cart.subTotal,
+        inventories,
       },
     });
 

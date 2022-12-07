@@ -61,7 +61,7 @@ export function CheckoutPageLayout() {
       <Box
         gap={2}
         flexDirection={{
-          "@laptops-max": "column",
+          "@laptops-max": "column-reverse",
         }}
       >
         <Box

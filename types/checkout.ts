@@ -49,6 +49,11 @@ export interface GenerateCardTokenRequest {
       }
     }
   }
+  order: {
+    total: number,
+    subTotal: number,
+    inventories: number[]
+  }
 }
 
 export interface GenerateCardTokenResponse {
@@ -77,5 +82,10 @@ export interface GenerateCardTokenResponse {
       }
     }
     soft_descriptor: string
+  }
+  order: {
+    total: number,
+    subTotal: number,
+    inventories: number[]
   }
 }
