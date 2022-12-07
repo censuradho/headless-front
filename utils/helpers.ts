@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import { cardFlags } from "constants/creditCard";
 import { useRouter } from "next/router";
 import { v4 } from "uuid";
@@ -76,3 +77,71 @@ export function getCardFlag(cardnumber: string) {
 
   return flag;
 }
+
+export const validateCpf = (cpf: string) => {
+  const parsedCpf = cpf.replace(/\D/g, "");
+
+  if (parsedCpf == null) {
+    return false;
+  }
+  if (parsedCpf.length !== 11) {
+    return false;
+  }
+  if (
+    parsedCpf === "00000000000"
+    || parsedCpf === "11111111111"
+    || parsedCpf === "22222222222"
+    || parsedCpf === "33333333333"
+    || parsedCpf === "44444444444"
+    || parsedCpf === "55555555555"
+    || parsedCpf === "66666666666"
+    || parsedCpf === "77777777777"
+    || parsedCpf === "88888888888"
+    || parsedCpf === "99999999999"
+  ) {
+    return false;
+  }
+  let numero: number = 0;
+  let caracter: string = "";
+  const numeros: string = "0123456789";
+  let j: number = 10;
+  let somatorio: number = 0;
+  let resto: number = 0;
+  let digito1: number = 0;
+  let digito2: number = 0;
+  let cpfAux: string = "";
+  cpfAux = parsedCpf.substring(0, 9);
+  for (let i: number = 0; i < 9; i++) {
+    caracter = cpfAux.charAt(i);
+    if (numeros.search(caracter) === -1) {
+      return false;
+    }
+    numero = Number(caracter);
+    somatorio += numero * j;
+    j--;
+  }
+  resto = somatorio % 11;
+  digito1 = 11 - resto;
+  if (digito1 > 9) {
+    digito1 = 0;
+  }
+  j = 11;
+  somatorio = 0;
+  cpfAux += digito1;
+  for (let i: number = 0; i < 10; i++) {
+    caracter = cpfAux.charAt(i);
+    numero = Number(caracter);
+    somatorio += numero * j;
+    j--;
+  }
+  resto = somatorio % 11;
+  digito2 = 11 - resto;
+  if (digito2 > 9) {
+    digito2 = 0;
+  }
+  cpfAux += digito2;
+  if (parsedCpf !== cpfAux) {
+    return false;
+  }
+  return true;
+};

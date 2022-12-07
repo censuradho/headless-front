@@ -1,4 +1,5 @@
 import { MESSAGES } from "constants/validations";
+import { validateCpf } from "utils";
 import * as y from "yup";
 
 export const personalInfoSchemaValidations = y.object({
@@ -10,6 +11,6 @@ export const personalInfoSchemaValidations = y.object({
     .string()
     .required(MESSAGES.REQUIRED)
     .length(10, MESSAGES.INCORRECT_FORMAT),
-  clientDocument: y.string().required(MESSAGES.REQUIRED).length(14, MESSAGES.INCORRECT_FORMAT),
+  clientDocument: y.string().required(MESSAGES.REQUIRED).test("cpf", MESSAGES.INCORRECT_FORMAT, (val) => validateCpf(val || "")),
   phone: y.string().required(MESSAGES.REQUIRED).length(16, MESSAGES.INCORRECT_FORMAT),
 });

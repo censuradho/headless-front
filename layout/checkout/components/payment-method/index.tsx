@@ -3,7 +3,7 @@ import {
 } from "components";
 import { SelectForm } from "components/hook-form";
 import { checkoutStepsPaths } from "constants/checkout";
-import { cardFlagMask } from "constants/masks";
+import { cardFlagMask, cpfMask } from "constants/masks";
 import { usePaymentMethod } from "hooks/entries";
 import router from "next/router";
 import { useMemo } from "react";
@@ -97,6 +97,7 @@ export function PaymentMethod(props: PaymentMethodProps) {
             autoFocus
             label="CPF do titular"
             register={register("clientDocument")}
+            mask={cpfMask}
             errorMessage={errors?.clientDocument?.message}
           />
           <Button loading={isSubmitting} fullWidth>Salvar</Button>
