@@ -9,19 +9,21 @@ import {
 } from "constants/masks";
 
 import { checkoutStepsPaths } from "constants/checkout";
-import { usePerfil } from "hooks/entries";
+import { useCheckout } from "context";
 import * as Styles from "./styles";
 import { PersonalInfoProps } from "./types";
 
 export function PersonalInfo(props: PersonalInfoProps) {
   const { isActive } = props;
 
+  const { perfil } = useCheckout();
+
   const {
     form,
     onSubmit,
-    isSubmitting,
     defaultInfo,
-  } = usePerfil();
+    isSubmitting,
+  } = perfil;
 
   const {
     getValues,

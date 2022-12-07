@@ -4,7 +4,7 @@ import {
 import { SelectForm } from "components/hook-form";
 import { checkoutStepsPaths } from "constants/checkout";
 import { cardFlagMask, cpfMask } from "constants/masks";
-import { usePaymentMethod } from "hooks/entries";
+import { useCheckout } from "context";
 import router from "next/router";
 import { useMemo } from "react";
 import { getCardFlag } from "utils";
@@ -15,11 +15,13 @@ import { PaymentMethodProps } from "./types";
 export function PaymentMethod(props: PaymentMethodProps) {
   const { isActive } = props;
 
+  const { paymentMethod } = useCheckout();
+
   const {
     form,
     onSubmit,
     isSubmitting,
-  } = usePaymentMethod();
+  } = paymentMethod;
 
   const {
     register,

@@ -37,7 +37,7 @@ export interface GenerateCardTokenRequest {
   payment_method: {
     installments: number
     capture?: boolean
-    soft_descriptor: string
+    soft_descriptor?: string
     card: {
       number: string
       exp_month: string
