@@ -13,3 +13,4 @@ export * from "./Tooltip";
 export * from "./input";
 export * from "./input-password";
 export * from "./select";
+export * from "./public-icon";

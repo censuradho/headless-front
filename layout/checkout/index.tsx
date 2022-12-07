@@ -11,6 +11,7 @@ import {
   Address,
   OrderResume,
 } from "./components";
+import { Footer } from "./components/footer";
 
 export function CheckoutPageLayout() {
   const { cart } = useCart();

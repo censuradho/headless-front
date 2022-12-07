@@ -1,4 +1,4 @@
-import Mastercard from "public/icons/card-flags/mastercard.svg";
+import Mastercard from "public/icons/card-flags/master.svg";
 import Amex from "public/icons/card-flags/amex.svg";
 import Diners from "public/icons/card-flags/diners.svg";
 import Elo from "public/icons/card-flags/elo.svg";
