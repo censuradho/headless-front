@@ -87,7 +87,7 @@ export function PersonalInfo() {
             register={register("phone")}
           />
         </Box>
-        <Button loading={isSubmitting}>Salvar alterações</Button>
+        <Button fullWidth loading={isSubmitting}>Salvar alterações</Button>
       </Styles.Form>
     </Styles.Container>
   );
