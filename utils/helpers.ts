@@ -70,11 +70,9 @@ export function getCardFlag(cardnumber: string) {
     [cardFlags.aura]: /^(5078\d{2})(\d{2})(\d{11})$/,
   };
 
-  const [
-    result,
-  ] = Object.entries(cards).filter(([key, value]) => (!!value.test(cardNumberParsed)));
+  const result = Object.entries(cards).filter(([key, value]) => (!!value.test(cardNumberParsed)));
 
-  const [flag] = result || [];
+  const [flag] = result[result.length - 1] || [];
 
   return flag;
 }

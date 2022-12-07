@@ -9,3 +9,21 @@ export const cardFlagIcons = {
   [cardFlags.diners]: publicIcons.cardDiners,
   [cardFlags.hipercard]: publicIcons.cardHipercard,
 };
+
+export const optionsExMonth = Array(12)
+  .fill(1)
+  .map((value, index) => index)
+  .map((value) => String(value + 1).padStart(2, "0"))
+  .map((value) => ({
+    value,
+    label: value,
+  }));
+
+export const optionsExYears = Array(50)
+  .fill(1)
+  .map((value, index) => index)
+  .map((value) => value + 20)
+  .map((value) => ({
+    value: String(value),
+    label: String(value),
+  }));

@@ -73,3 +73,22 @@ export const phoneMask = (event: any) => {
   event.target.value = date;
   return event;
 };
+
+export const cardFlagMask = (event: any) => {
+  const target = event.target as HTMLInputElement;
+  target.maxLength = 19;
+
+  let cardFlag = target.value;
+
+  // 5502 0935 4714 0761
+
+  cardFlag = cardFlag
+    .replace(/\D/g, "")
+    .replace(/(\d{4})/, "$1 ")
+    .replace(/(\d{4}) (\d{4})/, "$1 $2 ")
+    .replace(/(\d{4}) (\d{4}) (\d{4})/, "$1 $2 $3 ")
+    .replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, "$1 $2 $3 $4");
+
+  event.target.value = cardFlag;
+  return event;
+};
