@@ -5,6 +5,7 @@ export const Container = styled("div", {
   padding: "1rem",
   width: "100%",
 
+  minWidth: "20rem",
   "@laptops-min": {
     maxWidth: "25rem",
   },

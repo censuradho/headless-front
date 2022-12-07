@@ -1,4 +1,4 @@
-import { Image, PublicIcon } from "components";
+import { PublicIcon } from "components";
 import { Container } from "components/common";
 import * as Styles from "./styles";
 

@@ -10,6 +10,7 @@ import {
   PersonalInfo,
   Address,
   OrderResume,
+  PaymentMethod,
 } from "./components";
 import { Footer } from "./components/footer";
 
@@ -72,7 +73,10 @@ export function CheckoutPageLayout() {
           }}
         >
           <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
-          <Address isActive={query === checkoutStepsQuery.address} />
+          <Box flex={1} fullWidth flexDirection="column" alignItems="flex-start" gap={2}>
+            <Address isActive={query === checkoutStepsQuery.address} />
+            <PaymentMethod isActive={query === checkoutStepsQuery.payment} />
+          </Box>
         </Box>
         <OrderResume />
       </Box>
