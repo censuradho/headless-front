@@ -1,5 +1,6 @@
 import { cardFlags } from "constants/creditCard";
 import { publicIcons } from "constants/public-icons";
+import { format } from "date-fns";
 
 export const cardFlagIcons = {
   [cardFlags.mastercard]: publicIcons.cardMastercard,
@@ -22,7 +23,7 @@ export const optionsExMonth = Array(12)
 export const optionsExYears = Array(50)
   .fill(1)
   .map((value, index) => index)
-  .map((value) => value + 20)
+  .map((value) => value + Number(format(new Date(), "yy")))
   .map((value) => ({
     value: String(value),
     label: String(value),
