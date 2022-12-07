@@ -71,8 +71,10 @@ export function getCardFlag(cardnumber: string) {
   };
 
   const [
-    [flag],
+    result,
   ] = Object.entries(cards).filter(([key, value]) => (!!value.test(cardNumberParsed)));
+
+  const [flag] = result || [];
 
   return flag;
 }

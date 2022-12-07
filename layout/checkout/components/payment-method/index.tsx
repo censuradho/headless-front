@@ -4,7 +4,9 @@ import {
 import { checkoutStepsPaths } from "constants/checkout";
 import { usePaymentMethod } from "hooks/entries";
 import router from "next/router";
+import { useMemo } from "react";
 import { getCardFlag } from "utils";
+import { cardFlagIcons } from "./constants";
 import * as Styles from "./styles";
 import { PaymentMethodProps } from "./types";
 
@@ -15,18 +17,27 @@ export function PaymentMethod(props: PaymentMethodProps) {
 
   const {
     register,
+    watch,
     formState: {
       errors,
     },
     handleSubmit,
   } = form;
 
+  const cardNumber = watch("creditCardNumber");
+
+  const CardFlag = useMemo(() => {
+    const cardFlag = cardNumber ? getCardFlag(cardNumber) : "";
+    return cardFlagIcons?.[cardFlag];
+  }, [cardNumber]);
+
   const
     renderForm = () => {
       if (!isActive) return null;
-      console.log(getCardFlag("4539620659922097"));
+
       return (
         <Styles.Form onSubmit={handleSubmit(onSubmit)}>
+          {CardFlag && <CardFlag />}
           <Input
             id="email"
             autoFocus
