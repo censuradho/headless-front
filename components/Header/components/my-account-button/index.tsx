@@ -1,22 +1,74 @@
-import { Button } from "components";
+import { ComponentProps } from "react";
 
+import {
+  Box,
+  Icon,
+  Typography,
+} from "components";
+
+import { DropDownMenu } from "components/common";
+import Link from "next/link";
+import { paths } from "constants/routes";
 import { useAuth } from "context";
 
-import * as Styles from "./styles";
+type DropDownMenuItems = ComponentProps<typeof DropDownMenu>["items"]
 
 export function MyAccountButton() {
   const auth = useAuth();
 
-  const label = auth?.user ? `Olá, \n ${auth.user?.username}` : "Minha conta";
+  const dropDownOptionsGroup: DropDownMenuItems = [
+    {
+      options: [
+        {
+          label: (
+            <Link href={paths.myAccount}>
+              <a>Minha conta</a>
+            </Link>
+          ),
+        },
+      ],
+    },
+    {
+      options: [
+        {
+          label: "Sair",
+          onSelect: auth.signOut,
+        },
+      ],
+    },
+  ];
 
-  return (
-    <Button
-      variant="letter"
-      icon={{ name: "outlineUser" }}
-    >
-      <Styles.Label>
-        {label}
-      </Styles.Label>
-    </Button>
-  );
+  const renderMyAccountContext = () => {
+    if (!auth.isSigned) {
+      return (
+        <Link href={paths.auth}>
+          <Typography as="a">
+            <Typography>
+              Entre ou
+            </Typography>
+            <br />
+            <Typography>cadastre-se</Typography>
+          </Typography>
+        </Link>
+      );
+    }
+
+    return (
+      <DropDownMenu
+        trigger={(
+          <button type="button">
+            <Box alignItems="center" gap={0.5}>
+              <Icon name="outlineUser" />
+              <Typography>
+                Minha conta
+              </Typography>
+            </Box>
+          </button>
+        )}
+        items={dropDownOptionsGroup}
+      />
+    );
+  };
+
+  return renderMyAccountContext();
 }

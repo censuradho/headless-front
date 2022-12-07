@@ -53,16 +53,8 @@ export async function putAddress(id: number, payload: AddressAttr) {
   };
 }
 
-export async function getAddressByUserId(userId: number) {
-  const query = strapiQuery.parse("/user-addresses", {
-    filters: {
-      user: {
-        id: userId,
-      },
-    },
-  });
-
-  const response = await cmsApi.get<ResponseDataType<Address[]>>(query);
+export async function getAddress() {
+  const response = await cmsApi.get<ResponseDataType<Address[]>>("/user-addresses");
 
   const {
     data: address,
@@ -129,16 +121,8 @@ export async function putPerfil(id: number, payload: PutPerfilRequest) {
   };
 }
 
-export async function getPerfilByUserId(userId: number) {
-  const query = strapiQuery.parse("/perfils", {
-    filters: {
-      user: {
-        id: userId,
-      },
-    },
-  });
-
-  const response = await cmsApi.get<ResponseDataType<Perfil[]>>(query);
+export async function getPerfil() {
+  const response = await cmsApi.get<ResponseDataType<Perfil[]>>("/perfils");
 
   const {
     data: perfil,

@@ -16,6 +16,7 @@ type RootInputProps = Pick<InputHTMLAttributes<HTMLInputElement>,
   | "defaultValue"
   | "type"
   | "autoFocus"
+  | "disabled"
 >
 
 type InputStylesProps = Pick<VariantProps<typeof Container>,

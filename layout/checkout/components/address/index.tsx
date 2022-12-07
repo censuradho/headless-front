@@ -1,9 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import router from "next/router";
-
-import estadosOptions from "public/estados.json";
 
 import {
   Box,
@@ -14,44 +9,36 @@ import {
   Input,
   Typography,
 } from "components";
+import estadosOptions from "public/estados.json";
 
-import useDebounce from "hooks/useDebounce";
-import { useAddress } from "hooks/services";
 import { SelectForm } from "components/hook-form";
 
-import {
-  Address as IAddress,
-} from "types/checkout";
-import { getAddressByUserId, postAddress, putAddress } from "services/rest/cms/checkout";
-import { useAuth } from "context";
 import { checkoutStepsPaths } from "constants/checkout";
 import { cepMask } from "constants/masks";
+import { useAddress } from "hooks/entries";
+import { useMemo } from "react";
 import * as Styles from "./styles";
-import { AddressFormData, AddressProps } from "./types";
-import { addressSchemaValidation } from "./validations";
+import { AddressProps } from "./types";
 
 export function Address(props: AddressProps) {
   const { isActive } = props;
-  const auth = useAuth();
-
-  const [defaultAddress, setDefaultAddress] = useState<IAddress | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const {
-    register,
-    setValue,
-    watch,
+    form,
+    getAddress,
+    isLoading,
+    onSubmit,
+  } = useAddress();
+
+  const {
     handleSubmit,
-    getValues,
-    reset,
-    formState: { errors },
-  } = useForm<AddressFormData>({
-    resolver: yupResolver(addressSchemaValidation),
-
-  });
-  const cep = useDebounce(watch("cep"), 1000);
-
-  const { address } = useAddress(useDebounce(cep, 1000));
+    register,
+    watch,
+    setValue,
+    formState: {
+      errors,
+    },
+  } = form;
 
   const ufOptions = useMemo(
     () => estadosOptions.map((option) => ({
@@ -61,55 +48,7 @@ export function Address(props: AddressProps) {
     [estadosOptions],
   );
 
-  const getAddress = () => {
-    if (defaultAddress) return defaultAddress.attributes;
-    return getValues();
-  };
-
-  const onSubmit = async (data: AddressFormData) => {
-    try {
-      if (!auth?.user) return;
-      setIsLoading(true);
-
-      if (defaultAddress) {
-        await putAddress(defaultAddress.id, {
-          ...data,
-          user: auth.user.id,
-        });
-        return;
-      }
-      await postAddress({
-        ...data,
-        user: auth.user.id,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleGetDefaultAddress = async (userId: number) => {
-    try {
-      const { data: addressResponse } = await getAddressByUserId(userId);
-
-      setDefaultAddress(addressResponse.data);
-    } catch (err) {}
-  };
-
-  useEffect(() => {
-    if (!address) return;
-    reset(address);
-  }, [address]);
-
-  useEffect(() => {
-    if (!defaultAddress) return;
-    reset(defaultAddress.attributes);
-  }, [defaultAddress]);
-
-  useEffect(() => {
-    if (!auth?.user) return;
-
-    handleGetDefaultAddress(auth?.user?.id);
-  }, [auth?.user]);
+  const cep = watch("cep");
 
   const renderForm = () => {
     if (!isActive) return null;

@@ -5,70 +5,34 @@ import {
 } from "components";
 import { SelectForm } from "components/hook-form";
 import {
-  cpfMask, CPF_MASK, dateMask, DATE_MASK, phoneMask, PHONE_MASK,
+  cpfMask, dateMask, phoneMask,
 } from "constants/masks";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useEffect, useState } from "react";
 import { checkoutStepsPaths } from "constants/checkout";
-import { Perfil } from "types/checkout";
-import { getPerfilByUserId, postPerfil, putPerfil } from "services/rest/cms/checkout";
-import { useAuth } from "context";
+import { usePerfil } from "hooks/entries";
 import * as Styles from "./styles";
-import { PersonalInfoFormData, PersonalInfoProps } from "./types";
-import { personalInfoSchemaValidations } from "./validations";
+import { PersonalInfoProps } from "./types";
 
 export function PersonalInfo(props: PersonalInfoProps) {
   const { isActive } = props;
-  const auth = useAuth();
 
   const {
-    register,
+    form,
+    onSubmit,
+    isSubmitting,
+    defaultInfo,
+  } = usePerfil();
+
+  const {
     getValues,
     setValue,
-    watch,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<PersonalInfoFormData>({
-    resolver: yupResolver(personalInfoSchemaValidations),
-  });
-
-  const [defaultInfo, setDefaultInfo] = useState<Perfil | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const onSubmit = async (payload: PersonalInfoFormData) => {
-    try {
-      setIsLoading(true);
-      if (!auth?.user) return;
-
-      if (defaultInfo) {
-        await putPerfil(defaultInfo.id, {
-          ...payload,
-          user: auth.user.id,
-        });
-        router.push(checkoutStepsPaths.address);
-        return;
-      }
-      await postPerfil({
-        ...payload,
-        user: auth.user.id,
-      });
-
-      router.push(checkoutStepsPaths.address);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleGetDefaultAddress = async (userId: number) => {
-    try {
-      const { data: personalInfo } = await getPerfilByUserId(userId);
-
-      setDefaultInfo(personalInfo.data);
-    } catch (err) {}
-  };
+    register,
+    watch,
+    formState: {
+      errors,
+    },
+  } = form;
 
   const renderInfo = () => {
     if (isActive) return null;
@@ -93,6 +57,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
           autoFocus
           label="E-mail"
           register={register("email")}
+          disabled={!!defaultInfo}
           errorMessage={errors?.email?.message}
         />
         <Box gap={1}>
@@ -166,7 +131,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
           />
         </Box>
         <Box marginTop={2}>
-          <Button loading={isLoading} fullWidth>Ir para entrega</Button>
+          <Button loading={isSubmitting} fullWidth>Ir para entrega</Button>
         </Box>
       </Styles.Form>
     );
@@ -180,20 +145,6 @@ export function PersonalInfo(props: PersonalInfoProps) {
       onClick={() => router.push(checkoutStepsPaths.profile)}
     />
   );
-
-  useEffect(() => {
-    if (!defaultInfo) return;
-    reset({
-      ...defaultInfo.attributes,
-      email: auth?.user?.email,
-    });
-  }, [defaultInfo]);
-
-  useEffect(() => {
-    if (!auth?.user) return;
-
-    handleGetDefaultAddress(auth?.user?.id);
-  }, [auth?.user]);
 
   return (
     <Styles.Container>

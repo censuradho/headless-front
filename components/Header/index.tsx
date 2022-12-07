@@ -55,10 +55,10 @@ export function Header() {
           </Box>
         </HiddenView>
       </Styles.TopBar>
-      <Navigation
+      {/* <Navigation
         isOpen={isOpen}
         toggleIsOpen={toggleIsOpen}
-      />
+      /> */}
     </Styles.Container>
   );
 }
