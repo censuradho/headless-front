@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Box, Button, Typography } from "components";
 import { checkoutStepsQuery } from "constants/checkout";
 import { paths } from "constants/routes";
-import { useCart } from "context";
+import { useCart, useCheckout } from "context";
 import { getQueryFromUrl } from "utils";
 import {
   CheckoutLayout,
@@ -16,6 +16,7 @@ import {
 
 export function CheckoutPageLayout() {
   const { cart } = useCart();
+  const checkout = useCheckout();
 
   const [query, setQuery] = useState(getQueryFromUrl("q") || "");
 

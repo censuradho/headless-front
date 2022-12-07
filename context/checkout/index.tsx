@@ -21,4 +21,4 @@ export function CheckoutProvider({ children }: any) {
   );
 }
 
-export const useCheckout = useContext(CheckoutContext);
+export const useCheckout = () => useContext(CheckoutContext);
