@@ -1,9 +1,10 @@
+import router from "next/router";
+import { useEffect, useMemo, useState } from "react";
+
 import { Box, Button, Typography } from "components";
 import { checkoutStepsQuery } from "constants/checkout";
 import { paths } from "constants/routes";
 import { useCart } from "context";
-import router from "next/router";
-import { useEffect, useMemo, useState } from "react";
 import { getQueryFromUrl } from "utils";
 import {
   CheckoutLayout,
@@ -12,7 +13,6 @@ import {
   OrderResume,
   PaymentMethod,
 } from "./components";
-import { Footer } from "./components/footer";
 
 export function CheckoutPageLayout() {
   const { cart } = useCart();
@@ -75,7 +75,9 @@ export function CheckoutPageLayout() {
           <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
           <Box flex={1} fullWidth flexDirection="column" alignItems="flex-start" gap={2}>
             <Address isActive={query === checkoutStepsQuery.address} />
-            <PaymentMethod isActive={query === checkoutStepsQuery.payment} />
+            <PaymentMethod
+              isActive={query === checkoutStepsQuery.payment}
+            />
           </Box>
         </Box>
         <OrderResume />
