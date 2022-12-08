@@ -131,7 +131,6 @@ export function PaymentMethod(props: PaymentMethodProps) {
             errorMessage={errors?.installments?.message}
           />
           {canSubmit && <Button loading={isSubmitting} fullWidth>Salvar</Button>}
-
         </Styles.Form>
       );
     };
