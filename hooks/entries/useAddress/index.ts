@@ -80,6 +80,12 @@ export function useAddress() {
   };
 
   useEffect(() => {
+    if (!cep || !form.formState.touchedFields?.cep) return;
+
+    handleGetCep(cep);
+  }, [cep]);
+
+  useEffect(() => {
     if (!address) return;
     reset(address);
   }, [address]);
@@ -93,12 +99,6 @@ export function useAddress() {
     if (!auth?.user) return;
     handleGetDefaultAddress();
   }, [auth?.user]);
-
-  useEffect(() => {
-    if (!cep) return;
-
-    handleGetCep(cep);
-  }, [cep]);
 
   return {
     form,

@@ -62,7 +62,6 @@ export function Address(props: AddressProps) {
             <Input
               label="CEP"
               fullWidth
-              autoFocus
               placeholder="Digite seu CEP"
               register={register("cep")}
               mask={cepMask}
