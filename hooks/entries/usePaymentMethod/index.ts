@@ -31,7 +31,7 @@ export function usePaymentMethod(params: UsePaymentMethodParams) {
         value: cart.subTotal,
       },
       payment_method: {
-        installments: 1,
+        installments: Number(payload.installments),
         card: {
           exp_month: payload.expMonth,
           exp_year: payload.expYear,

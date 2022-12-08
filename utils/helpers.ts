@@ -145,3 +145,13 @@ export const validateCpf = (cpf: string) => {
   }
   return true;
 };
+
+export function getInstallmentsSelectOptions(total: number) {
+  return Array(12)
+    .fill(1)
+    .map((value, index) => index + 1)
+    .map((value) => ({
+      value: String(value),
+      label: `${value}x ${toLocaleMonetize(total / value)}`,
+    }));
+}

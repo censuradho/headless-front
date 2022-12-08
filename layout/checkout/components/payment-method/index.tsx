@@ -4,22 +4,32 @@ import {
 import { SelectForm } from "components/hook-form";
 import { checkoutStepsPaths } from "constants/checkout";
 import { cardFlagMask, cpfMask } from "constants/masks";
-import { useCheckout } from "context";
+import { useCart, useCheckout } from "context";
 import router from "next/router";
 import { useMemo } from "react";
-import { getCardFlag } from "utils";
-import { cardFlagIcons, optionsExMonth, optionsExYears } from "./constants";
+import {
+  getCardFlag,
+  getInstallmentsSelectOptions,
+} from "utils";
+import {
+  cardFlagIcons,
+  optionsExMonth,
+  optionsExYears,
+} from "./constants";
 import * as Styles from "./styles";
 import { PaymentMethodProps } from "./types";
 
 export function PaymentMethod(props: PaymentMethodProps) {
   const { isActive } = props;
+  const cart = useCart();
 
   const {
     paymentMethod,
     address,
     perfil,
   } = useCheckout();
+
+  const installmentsOptions = getInstallmentsSelectOptions(cart.subTotal);
 
   const canSubmit = useMemo(() => {
     const { isValid: addressIsValid } = address.form.formState;
@@ -108,6 +118,17 @@ export function PaymentMethod(props: PaymentMethodProps) {
             register={register("clientDocument")}
             mask={cpfMask}
             errorMessage={errors?.clientDocument?.message}
+          />
+          <SelectForm
+            id="installments"
+            name="installments"
+            label="Quantidade de parcelas"
+            fullWidth
+            watch={watch}
+            setValue={setValue}
+            data={installmentsOptions}
+            register={register}
+            errorMessage={errors?.installments?.message}
           />
           {canSubmit && <Button loading={isSubmitting} fullWidth>Salvar</Button>}
 
