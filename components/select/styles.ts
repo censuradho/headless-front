@@ -1,4 +1,5 @@
 import * as Select from "@radix-ui/react-select";
+import { Typography } from "components/typography";
 
 import { styled } from "stitches.config";
 
@@ -20,6 +21,10 @@ export const Content = styled(Select.Content, {
   borderRadius: "6px",
   boxShadow: "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
   zIndex: 10,
+});
+
+export const ErrorMessage = styled(Typography, {
+  color: "$error",
 });
 
 export const Trigger = styled(Select.Trigger, {
@@ -47,6 +52,12 @@ export const Trigger = styled(Select.Trigger, {
     fullWidth: {
       true: {
         width: "100%",
+      },
+    },
+    hasError: {
+      true: {
+        borderColor: "$error",
+        color: "$error",
       },
     },
   },

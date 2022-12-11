@@ -15,20 +15,22 @@ import { SelectForm } from "components/hook-form";
 
 import { checkoutStepsPaths } from "constants/checkout";
 import { cepMask } from "constants/masks";
-import { useAddress } from "hooks/entries";
 import { useMemo } from "react";
+import { useCheckout } from "context";
 import * as Styles from "./styles";
 import { AddressProps } from "./types";
 
 export function Address(props: AddressProps) {
   const { isActive } = props;
 
+  const { address } = useCheckout();
+
   const {
     form,
     getAddress,
     isLoading,
     onSubmit,
-  } = useAddress();
+  } = address;
 
   const {
     handleSubmit,
@@ -60,7 +62,6 @@ export function Address(props: AddressProps) {
             <Input
               label="CEP"
               fullWidth
-              autoFocus
               placeholder="Digite seu CEP"
               register={register("cep")}
               mask={cepMask}

@@ -3,6 +3,7 @@ import { useBooleanToggle, useLocalStorage } from "hooks";
 import {
   createContext,
   useContext,
+  useMemo,
   useState,
 } from "react";
 
@@ -139,10 +140,26 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   };
 
+  const subTotal = useMemo(() => {
+    const products = Object
+      .entries(cart)
+      .map(([key, value]) => value);
+
+    return products.map((product) => {
+      const entriesPrice = Object
+        .entries(product?.inventories || {})
+        .map(([, inventory]) => inventory.quantity * product.price);
+
+      return entriesPrice?.reduce((prev, next) => prev + next, 0);
+    })
+      .reduce((prev, next) => prev + next, 0);
+  }, [cart]);
+
   return (
     <CartContext.Provider
       value={{
         cart,
+        subTotal,
         isOpenResumeCart,
         setIsOpenResumeCart,
         addCartItem: handleAddCartItem,

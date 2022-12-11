@@ -42,14 +42,6 @@ export interface ImageAttr {
 }
 
 export type Image = Entity<ImageAttr>
-interface DiscountAttr {
-  name: string;
-  description: string
-  value: number;
-  active: boolean
-}
-
-type Discount = Entity<DiscountAttr>
 
 export interface InventoryAttr {
   stock: number
@@ -68,13 +60,13 @@ export interface ProductAttr {
   updatedAt: string
   publishedAt: string
   inventories: Data<Inventory[]>,
-  discount: Data<Discount | null>;
   slug: string;
   installment: number;
   videoPreview?: string;
   hoverImage: Data<Image>,
   image: Data<Image[]>,
   defaultImage: Data<Image>
+  installments: number
 }
 
 export type Product = Entity<ProductAttr>

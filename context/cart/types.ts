@@ -29,6 +29,7 @@ export type Cart = Record<string | number, CartAttr>
 export interface CartContextProps {
   cart: Cart
   isOpenResumeCart?: boolean
+  subTotal: number
   setIsOpenResumeCart: Dispatch<SetStateAction<boolean>>
   addCartItem: (payload: CartAttr, type?: "increase" | "set") => void
   decreaseCartItem: (productId: number, inventoryId: number) => void

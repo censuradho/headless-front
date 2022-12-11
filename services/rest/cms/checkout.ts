@@ -1,8 +1,14 @@
 import { responseFactory } from "factors/meta";
 import { ResponseDataType } from "factors/types";
-import strapiQuery from "lib/strapi-query";
+
 import {
-  Address, AddressAttr, Perfil, PerfilAttr, PostPerfilRequest, PutPerfilRequest,
+  Address,
+  AddressAttr,
+  GenerateCardTokenRequest,
+  GenerateCardTokenResponse,
+  Perfil,
+  PostPerfilRequest,
+  PutPerfilRequest,
 } from "types/checkout";
 
 import { cmsApi } from ".";
@@ -140,4 +146,8 @@ export async function getPerfil() {
     data,
     ...rest,
   };
+}
+
+export async function generateCardToken(payload: GenerateCardTokenRequest) {
+  return cmsApi.post<GenerateCardTokenResponse>("/charge/token", payload);
 }

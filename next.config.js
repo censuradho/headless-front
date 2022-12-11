@@ -3,17 +3,20 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['res.cloudinary.com']
+    domains: [
+      "res.cloudinary.com",
+      "self",
+    ],
   },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"]
+      use: ["@svgr/webpack"],
     });
 
     return config;
-  }
-  
-}
+  },
 
-module.exports = nextConfig
+};
+
+module.exports = nextConfig;

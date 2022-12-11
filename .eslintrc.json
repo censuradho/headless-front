@@ -42,6 +42,7 @@
           "consistent-return": "off",
           "react/jsx-no-constructed-context-values": "off",
           "no-unused-vars": "warn",
-          "no-empty": "off"
+          "no-empty": "off",
+          "camelcase": "off"
     }
 }

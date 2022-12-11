@@ -16,6 +16,8 @@ export function Select(props: SelectProps) {
     ...otherProps
   } = props;
 
+  const hasError = !!errorMessage;
+
   const renderOptions = data.map((option) => (
     <Styles.Item
       key={uuid()}
@@ -39,6 +41,15 @@ export function Select(props: SelectProps) {
     );
   };
 
+  const renderErrorMessage = () => {
+    if (!hasError) return null;
+
+    return (
+      <Styles.ErrorMessage color="error" variant="caption2">{errorMessage}</Styles.ErrorMessage>
+
+    );
+  };
+
   return (
     <Box
       gap={0.5}
@@ -48,6 +59,7 @@ export function Select(props: SelectProps) {
       {renderLabel()}
       <Styles.Root {...otherProps}>
         <Styles.Trigger
+          hasError={hasError}
           id={id}
         >
           <Styles.Value
@@ -67,6 +79,7 @@ export function Select(props: SelectProps) {
           <Styles.ScrollDownButton>d</Styles.ScrollDownButton>
         </Styles.Content>
       </Styles.Root>
+      {renderErrorMessage()}
     </Box>
   );
 }

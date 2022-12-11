@@ -1,14 +1,14 @@
 import {
-  Box, Button, Icon, Typography,
+  Box, Icon, Typography,
 } from "components";
 import { useCart } from "context";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { toLocaleMonetize, uuid } from "utils";
 import { ProductPreview } from "./components";
 import * as Styles from "./styles";
 
 export const OrderResume = memo(() => {
-  const { cart } = useCart();
+  const { cart, subTotal } = useCart();
 
   const renderProductPreview = () => {
     const products = Object
@@ -29,21 +29,6 @@ export const OrderResume = memo(() => {
       )));
   };
 
-  const subTotal = useMemo(() => {
-    const products = Object
-      .entries(cart)
-      .map(([key, value]) => value);
-
-    return products.map((product) => {
-      const entriesPrice = Object
-        .entries(product?.inventories || {})
-        .map(([, value]) => value.quantity * product.price);
-
-      return entriesPrice?.reduce((prev, next) => prev + next, 0);
-    })
-      .reduce((prev, next) => prev + next, 0);
-  }, [cart]);
-
   const total = subTotal;
 
   return (
@@ -63,9 +48,6 @@ export const OrderResume = memo(() => {
         <Typography semiBold>Total:</Typography>
         <Typography semiBold>{toLocaleMonetize(total)}</Typography>
       </Styles.SummaryItem>
-      <Box marginTop={2}>
-        <Button fullWidth>Finalizar compra</Button>
-      </Box>
     </Styles.Container>
   );
 });
