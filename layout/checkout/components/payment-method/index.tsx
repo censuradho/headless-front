@@ -130,7 +130,7 @@ export function PaymentMethod(props: PaymentMethodProps) {
             register={register}
             errorMessage={errors?.installments?.message}
           />
-          {canSubmit && <Button loading={isSubmitting} fullWidth>Salvar</Button>}
+          {canSubmit && <Button loading={isSubmitting} fullWidth>Finalizar compra</Button>}
         </Styles.Form>
       );
     };

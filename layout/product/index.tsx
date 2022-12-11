@@ -1,10 +1,12 @@
-import { Button, PublicIcon } from "components";
-import { DropDownMenu } from "components/common";
+import { useState } from "react";
+import router from "next/router";
+
+import { Button } from "components";
 import { useCart } from "context";
 import { InventoryCartItem } from "context/cart/types";
 import { SizeOption } from "hooks/useProductSizes";
-import { useState } from "react";
 
+import { paths } from "constants/routes";
 import {
   Preview,
   ProductInfo,
@@ -35,7 +37,7 @@ export function ProductPageLayout(props: ProductPageProps) {
     if (size?.unavailableSize) return null;
 
     const handleAddCart = async () => {
-      if (!size) return setIsUnselected(true);
+      if (!size) return;
 
       const selectedInventory = attributes
         ?.inventories
@@ -65,6 +67,13 @@ export function ProductPageLayout(props: ProductPageProps) {
       setIsOpenResumeCart(true);
     };
 
+    const handleBuy = () => {
+      if (!size) return setIsUnselected(true);
+
+      handleAddCart();
+      router.push(paths.checkout);
+    };
+
     return (
       <Styles.BuyButtons>
         <Button
@@ -76,6 +85,7 @@ export function ProductPageLayout(props: ProductPageProps) {
         </Button>
         <Button
           fullWidth
+          onClick={handleBuy}
         >
           Comprar
         </Button>
