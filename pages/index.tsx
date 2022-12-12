@@ -1,30 +1,30 @@
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
-
 import { HomeLayout } from "layout";
-import { getHome } from "services/rest/cms/home";
 import { HomeProps } from "layout/home/types";
+import { getHomePage } from "lib/sanity/sanity.queries";
+
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
-    const { data } = await getHome();
+    const data = await getHomePage();
 
     return {
       props: {
         ...data,
       },
-      revalidate: 10,
     };
   } catch (err) {
-    console.log(err);
     return {
-      props: {},
       notFound: true,
     };
   }
 };
 
 function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <HomeLayout {...props} />;
+  console.log(props);
+  return (
+    <HomeLayout {...props} />
+  );
 }
 
 export default Home;

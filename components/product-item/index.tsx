@@ -4,32 +4,38 @@ import { Image, Box } from "components";
 import { paths } from "constants/routes";
 import { toLocaleDateString } from "lib/toLocaleDateString";
 
-import { Product } from "types/product";
 import {
   getPriceProduct,
   getRelatedPercentage,
   resolvePath,
 } from "utils";
 
+import { Product } from "lib/sanity/types/product";
+import { sanityClient, urlFor } from "lib/sanity";
+import { useNextSanityImage } from "next-sanity-image";
 import { Discount } from "./components";
 
 import * as Styles from "./styles";
 
 export function ProductItem(props: Product) {
   const {
-    id,
-    attributes: {
-      slug,
-      hoverImage,
-      name,
-      price,
-      defaultImage,
-      discount,
-    },
-  } = props || {};
+    _id,
+    slug,
+    default_variant,
+    name,
+    price,
+  } = props;
 
-  const firstImage = defaultImage?.data || {};
-  const lastImage = hoverImage?.data || {};
+  const {
+    images,
+    discount = 0,
+  } = default_variant;
+
+  const [firstImage, lastImage] = images;
+
+  const parsedFirstImage = urlFor(firstImage.asset.url).width(563).height(750);
+
+  const parsedLastImage = urlFor(lastImage.asset.url).width(563).height(750);
 
   const [isHoverThumb, setIsHoverThumb] = useState(true);
 
@@ -44,7 +50,7 @@ export function ProductItem(props: Product) {
   };
 
   const renderValue = () => {
-    const value = getPriceProduct(price, discount?.data?.attributes?.value);
+    const value = getPriceProduct(price, discount);
     const hasDiscount = !!discount;
 
     return <Styles.Price hasDiscount={hasDiscount}>{toLocaleDateString(value)}</Styles.Price>;
@@ -53,17 +59,17 @@ export function ProductItem(props: Product) {
   const renderDiscountTag = () => {
     if (!discount) return null;
     return (
-      <Discount>{`${getRelatedPercentage(price, discount?.data?.attributes?.value)}% OFF`}</Discount>
+      <Discount>{`${getRelatedPercentage(price, discount)}% OFF`}</Discount>
     );
   };
 
   const href = resolvePath(paths.pdp, {
-    slug,
-    id,
+    slug: slug.current,
+    id: _id,
   });
 
   const handleHoverThumb = () => {
-    if (!lastImage?.id) return;
+    if (!lastImage) return;
 
     setIsHoverThumb((prevState) => !prevState);
   };
@@ -84,20 +90,20 @@ export function ProductItem(props: Product) {
           >
             <Styles.ImageContainer isHidden={!isHoverThumb}>
               <Image
-                src={firstImage?.attributes?.url}
-                alt={firstImage?.attributes?.alternativeText}
-                height={firstImage?.attributes?.height}
-                width={firstImage?.attributes?.width}
+                src={parsedFirstImage.url()}
                 layout="responsive"
+                width={563}
+                height={750}
+                alt={firstImage.alternative_text}
               />
             </Styles.ImageContainer>
             <Styles.ImageContainer isHidden={isHoverThumb}>
               <Image
-                src={lastImage?.attributes?.url}
-                alt={lastImage?.attributes?.alternativeText}
-                height={lastImage?.attributes?.height}
-                width={lastImage?.attributes?.width}
+                src={parsedLastImage.url()}
                 layout="responsive"
+                width={563}
+                height={750}
+                alt={lastImage.alternative_text}
               />
             </Styles.ImageContainer>
           </Styles.Thumb>

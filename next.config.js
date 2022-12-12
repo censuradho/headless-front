@@ -6,6 +6,7 @@ const nextConfig = {
     domains: [
       "res.cloudinary.com",
       "self",
+      "cdn.sanity.io",
     ],
   },
   webpack(config) {

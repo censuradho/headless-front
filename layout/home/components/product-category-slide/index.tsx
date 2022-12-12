@@ -41,7 +41,7 @@ export function ProductCategorySlide(props: ProductCategorySlideProps) {
   });
 
   const renderProducts = data?.map((value) => (
-    <div className="keen-slider__slide" key={value.id}>
+    <div className="keen-slider__slide" key={value._id}>
       <ProductItem {...value} />
     </div>
   ));

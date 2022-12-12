@@ -15,7 +15,6 @@ export const Link = styled(NextLink, {
 });
 
 export const ImageContainer = styled("div", {
-
   variants: {
     isHidden: {
       true: {
