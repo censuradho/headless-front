@@ -13,6 +13,7 @@ import {
 import { Product } from "lib/sanity/types/product";
 import { sanityClient, urlFor } from "lib/sanity";
 import { useNextSanityImage } from "next-sanity-image";
+import { imageSizes } from "constants/imageSizes";
 import { Discount } from "./components";
 
 import * as Styles from "./styles";
@@ -92,8 +93,8 @@ export function ProductItem(props: Product) {
               <Image
                 src={parsedFirstImage.url()}
                 layout="responsive"
-                width={563}
-                height={750}
+                width={imageSizes["563x750"].width}
+                height={imageSizes["563x750"].height}
                 alt={firstImage.alternative_text}
               />
             </Styles.ImageContainer>

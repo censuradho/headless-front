@@ -16,25 +16,12 @@ export const Container = styled("div", {
 export const Thumb = styled("div", {
   position: "relative",
   maxHeight: "34.375rem",
+  width: "100%",
 
-  ".keen-slider": {
-    height: "100%",
-
-    "&__slide": {
-      height: "100%",
-    },
-  },
   "@laptops-min": {
     width: "80%",
     display: "flex",
     maxHeight: "unset",
-
-    ".keen-slider": {
-      "&__slide": {
-        width: "100%",
-        height: "100%",
-      },
-    },
   },
 });
 
@@ -53,6 +40,7 @@ export const Preview = styled("div", {
 
 export const PreviewImageItem = styled("div", {
   cursor: "pointer",
+  position: "relative",
 
   variants: {
     selected: {
@@ -83,7 +71,7 @@ export const DotContainer = styled("div", {
   justifyContent: "center",
   gap: "1rem",
   position: "absolute",
-  bottom: "1.5rem",
+  bottom: "3rem",
 
   "@laptops-min": {
     display: "none",

@@ -1,5 +1,5 @@
 import { Header } from "components";
-import { MainLayout, ProductPageLayout } from "layout";
+import { ProductPageLayout } from "layout";
 import { ProductPageProps } from "layout/product/types";
 import {
   getProductsIdentifier,
