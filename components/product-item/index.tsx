@@ -11,8 +11,7 @@ import {
 } from "utils";
 
 import { Product } from "lib/sanity/types/product";
-import { sanityClient, urlFor } from "lib/sanity";
-import { useNextSanityImage } from "next-sanity-image";
+import { urlFor } from "lib/sanity";
 import { imageSizes } from "constants/imageSizes";
 import { Discount } from "./components";
 
@@ -21,22 +20,18 @@ import * as Styles from "./styles";
 export function ProductItem(props: Product) {
   const {
     _id,
-    slug,
-    default_variant,
     name,
+    slug,
+    discount,
+    images,
     price,
   } = props;
 
-  const {
-    images,
-    discount = 0,
-  } = default_variant;
+  const [firstImage, lastImage] = images || [];
 
-  const [firstImage, lastImage] = images;
+  const parsedFirstImage = firstImage ? urlFor(firstImage.asset.url).width(563).height(750).url() : "";
 
-  const parsedFirstImage = urlFor(firstImage.asset.url).width(563).height(750);
-
-  const parsedLastImage = urlFor(lastImage.asset.url).width(563).height(750);
+  const parsedLastImage = lastImage ? urlFor(lastImage.asset.url).width(563).height(750).url() : "";
 
   const [isHoverThumb, setIsHoverThumb] = useState(true);
 
@@ -65,7 +60,7 @@ export function ProductItem(props: Product) {
   };
 
   const href = resolvePath(paths.pdp, {
-    sku: default_variant.sku,
+    slug: slug.current,
     id: _id,
   });
 
@@ -91,7 +86,7 @@ export function ProductItem(props: Product) {
           >
             <Styles.ImageContainer isHidden={!isHoverThumb}>
               <Image
-                src={parsedFirstImage.url()}
+                src={parsedFirstImage}
                 layout="responsive"
                 width={imageSizes["563x750"].width}
                 height={imageSizes["563x750"].height}
@@ -100,7 +95,7 @@ export function ProductItem(props: Product) {
             </Styles.ImageContainer>
             <Styles.ImageContainer isHidden={isHoverThumb}>
               <Image
-                src={parsedLastImage.url()}
+                src={parsedLastImage}
                 layout="responsive"
                 width={563}
                 height={750}

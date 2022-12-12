@@ -7,23 +7,23 @@ import { ProductInfoProps } from "./types";
 
 export function ProductInfo(props: ProductInfoProps) {
   const {
-    variant,
     product: {
       price,
       name,
+      discount,
     },
   } = props;
 
-  const priceWithDiscount = variant?.discount
-    ? getPriceProduct(price, variant?.discount)
+  const priceWithDiscount = discount
+    ? getPriceProduct(price, discount)
     : price;
 
-  const relativePercentage = variant?.discount
-    ? getRelatedPercentage(price, variant?.discount)
+  const relativePercentage = discount
+    ? getRelatedPercentage(price, discount)
     : price;
 
   const renderValue = () => {
-    if (!variant?.discount) return null;
+    if (!discount) return null;
 
     return (
       <Box alignItems="center" gap={1}>

@@ -10,10 +10,12 @@ import * as Styles from "./styles";
 
 export function Preview(props: PreviewProps) {
   const {
-    variant,
+    product,
   } = props;
 
-  if (!variant?.images) return null;
+  const { images } = product;
+
+  if (!images) return null;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [, setCurrentSlidePreview] = useState(0);
@@ -44,7 +46,7 @@ export function Preview(props: PreviewProps) {
   }, []);
 
   const renderPhotos = useMemo(() => (
-    variant?.images?.map((value, index) => {
+    images?.map((value, index) => {
       const image = urlFor(value);
 
       return (
@@ -60,7 +62,7 @@ export function Preview(props: PreviewProps) {
     })
   ), []);
 
-  const renderPreview = useMemo(() => variant?.images?.map((value, index) => {
+  const renderPreview = useMemo(() => images?.map((value, index) => {
     const image = urlFor(value);
 
     return (
@@ -81,14 +83,14 @@ export function Preview(props: PreviewProps) {
     );
   }), [currentSlide, instanceRef]);
 
-  const renderDots = useMemo(() => variant?.images?.map((value, index) => (
+  const renderDots = useMemo(() => images?.map((value, index) => (
     <li key={uuid()}>
       <Styles.Dot
         onClick={() => instanceRef.current?.moveToIdx(index)}
         active={currentSlide === index}
       />
     </li>
-  )), [variant, currentSlide]);
+  )), [images, currentSlide]);
 
   return (
     <Styles.Container>

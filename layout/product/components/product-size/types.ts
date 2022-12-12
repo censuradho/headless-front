@@ -1,6 +1,5 @@
 import { SizeOption } from "hooks/useProductSizes";
-
-import { Product } from "types/product";
+import { Product } from "lib/sanity/types/product";
 
 export interface ProductSizeProps {
   onSelectSize?: (size: SizeOption) => void

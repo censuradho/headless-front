@@ -7,9 +7,7 @@ import { ProductDescriptionProps } from "./types";
 export function ProductDescription(props: ProductDescriptionProps) {
   const {
     product: {
-      attributes: {
-        description,
-      },
+      description,
     },
   } = props;
 

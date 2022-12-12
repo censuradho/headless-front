@@ -1,5 +1,5 @@
 export const paths = {
-  pdp: "/:sku/p/:id",
+  pdp: "/:slug/p/:id",
   home: "/",
   vibradores: "/vibradores",
   lingerie: "/lingerie",

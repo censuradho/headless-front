@@ -16,23 +16,11 @@ export const homePageQuery = groq`
     },
     emphasis[]->{
       ...,
+      images[]{
         ...,
-      default_variant->{
-        ...,
-        sizes[]->{...},
-        images[]{
-          ...,
-          asset->{url}
-        }
+        asset->{url},
+        metadata->{...},
       },
-      variants[]->{
-        ...,
-        images[]{
-          ...,
-          asset->{url},
-          metadata->{...},
-        }
-      }
     }
   }
 `;
@@ -44,9 +32,6 @@ export function getProductsIdentifier() {
   *[_type == 'product']{
     _id,
     slug,
-    variants[]->{
-      sku
-    }
   }
 `;
 
@@ -56,22 +41,15 @@ export function getProductsIdentifier() {
 export function getProduct(params: GetProductQueryRequest) {
   const productQuery = groq`
   *[_type == 'product' && _id == "${params._id}"][0]{
+    ...,
+    images[]{
       ...,
-    default_variant->{
-      ...,
-      sizes[]->{...},
-      images[]{
-        ...,
-        asset->{url}
-      }
+      asset->{url},
+      metadata->{...},
     },
-    variants[]->{
+    sizes[]{
       ...,
-      images[]{
-        ...,
-        asset->{url},
-        metadata->{...},
-      }
+      size->{...}
     }
   }
 `;

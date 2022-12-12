@@ -10,18 +10,12 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 export const getStaticPaths: GetStaticPaths = async () => {
   const products = await getProductsIdentifier();
 
-  const paths = [] as any;
-
-  products.forEach((product) => {
-    product.variants.forEach((variant) => {
-      paths.push({
-        params: {
-          id: product._id,
-          sku: variant.sku,
-        },
-      });
-    });
-  });
+  const paths = products.map((value) => ({
+    params: {
+      slug: value.slug.current,
+      id: value._id,
+    },
+  }));
 
   return {
     paths,

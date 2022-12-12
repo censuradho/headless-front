@@ -14,26 +14,20 @@ import {
   Freight,
   ProductDescription,
 } from "./components";
+
 import * as Styles from "./styles";
 
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
-  const { sku } = router.query;
-
   const {
     data,
   } = props;
 
-  const { variants } = data;
-
-  const currentVariant = variants.find((variant) => variant.sku === sku);
-
   // const { addCartItem, setIsOpenResumeCart } = useCart();
+  const [size, setSize] = useState<SizeOption>();
 
-  // const [isUnselected, setIsUnselected] = useState(false);
-
-  // const [size, setSize] = useState<SizeOption>();
+  const [isUnselected, setIsUnselected] = useState(false);
 
   // const {
   //   product: {
@@ -43,98 +37,97 @@ export function ProductPageLayout(props: ProductPageProps) {
   //   product,
   // } = props;
 
-  // const renderSubmitButtons = () => {
-  //   if (size?.unavailableSize) return null;
+  const renderSubmitButtons = () => {
+    if (size?.unavailableSize) return null;
 
-  //   const handleAddCart = async () => {
-  //     if (!size) return;
+    const handleAddCart = async () => {
+      // if (!size) return;
 
-  //     const selectedInventory = attributes
-  //       ?.inventories
-  //       .data
-  //       .find((value) => value.id === size.inventoryId);
+      // const selectedInventory = attributes
+      //   ?.inventories
+      //   .data
+      //   .find((value) => value.id === size.inventoryId);
 
-  //     if (!selectedInventory) return;
+      // if (!selectedInventory) return;
 
-  //     const inventory: InventoryCartItem = {
-  //       id: selectedInventory.id,
-  //       size: selectedInventory.attributes.size.data.attributes.name,
-  //       quantity: 1,
-  //       stock: selectedInventory.attributes.stock,
-  //     };
+      // const inventory: InventoryCartItem = {
+      //   id: selectedInventory.id,
+      //   size: selectedInventory.attributes.size.data.attributes.name,
+      //   quantity: 1,
+      //   stock: selectedInventory.attributes.stock,
+      // };
 
-  //     addCartItem({
-  //       defaultImage: attributes.defaultImage,
-  //       id,
-  //       name: attributes?.name,
-  //       price: attributes?.price,
-  //       slug: attributes?.slug,
-  //       inventories: {
-  //         [inventory.id]: inventory,
-  //       },
-  //     });
+      // addCartItem({
+      //   defaultImage: attributes.defaultImage,
+      //   id,
+      //   name: attributes?.name,
+      //   price: attributes?.price,
+      //   slug: attributes?.slug,
+      //   inventories: {
+      //     [inventory.id]: inventory,
+      //   },
+      // });
 
-  //     setIsOpenResumeCart(true);
-  //   };
+      // setIsOpenResumeCart(true);
+    };
 
-  //   const handleBuy = () => {
-  //     if (!size) return setIsUnselected(true);
+    const handleBuy = () => {
+      if (!size) return setIsUnselected(true);
 
-  //     handleAddCart();
-  //     router.push(paths.checkout);
-  //   };
+      handleAddCart();
+      router.push(paths.checkout);
+    };
 
-  //   return (
-  //     <Styles.BuyButtons>
-  //       <Button
-  //         fullWidth
-  //         variant="letter"
-  //         onClick={handleAddCart}
-  //       >
-  //         Adicionar à sacola
-  //       </Button>
-  //       <Button
-  //         fullWidth
-  //         onClick={handleBuy}
-  //       >
-  //         Comprar
-  //       </Button>
-  //     </Styles.BuyButtons>
-  //   );
-  // };
+    return (
+      <Styles.BuyButtons>
+        <Button
+          fullWidth
+          variant="letter"
+          onClick={handleAddCart}
+        >
+          Adicionar à sacola
+        </Button>
+        <Button
+          fullWidth
+          onClick={handleBuy}
+        >
+          Comprar
+        </Button>
+      </Styles.BuyButtons>
+    );
+  };
 
-  // const renderFreight = () => {
-  //   if (size?.unavailableSize) return null;
+  const renderFreight = () => {
+    if (size?.unavailableSize) return null;
 
-  //   return (
-  //     <Freight />
-  //   );
-  // };
+    return (
+      <Freight />
+    );
+  };
 
   return (
     <Styles.Container>
       <Styles.Content>
         <Preview
           product={data}
-          variant={currentVariant}
         />
-        <ProductInfo
-          product={data}
-          variant={currentVariant}
-        />
+
         <Styles.ProductInfo>
-          {/* <ProductInfo {...attributes} /> */}
-          {/* <ProductSizes
+          <ProductInfo
+            product={data}
+          />
+          <ProductSizes
             onSelectSize={(option) => {
               setSize(option);
               setIsUnselected(false);
             }}
             errorMessage={isUnselected ? "Selecione uma opção" : ""}
-            product={product}
-          /> */}
-          {/* <ProductDescription product={product} /> */}
-          {/* {renderFreight()} */}
-          {/* {renderSubmitButtons()} */}
+            product={data}
+          />
+
+          <ProductDescription product={data} />
+          {renderFreight()}
+          {renderSubmitButtons()}
         </Styles.ProductInfo>
       </Styles.Content>
     </Styles.Container>

@@ -1,27 +1,20 @@
 import { useState } from "react";
 
-import { Product } from "types/product";
+import { Product } from "lib/sanity/types/product";
 
 export interface SizeOption {
   stock: number,
   size: string,
-  inventoryId: number
-  productId: number
   remainingMessage: string
   unavailableSize: boolean
 }
 
-export function useProductSizes(props: Product) {
+export function useProductSizes(params: Product) {
   const [size, setSize] = useState<SizeOption>();
 
   const {
-    id,
-    attributes: {
-      inventories: {
-        data: inventories,
-      },
-    },
-  } = props;
+    sizes: sizeOptions,
+  } = params;
 
   const getRemainingMessage = (amount: number) => {
     if (amount === 1) return `Resta ${amount}`;
@@ -29,13 +22,11 @@ export function useProductSizes(props: Product) {
     return "";
   };
 
-  const sizes: SizeOption[] = inventories.map((value) => ({
-    inventoryId: value.id,
-    productId: id,
-    size: value.attributes.size.data.attributes.name,
-    stock: value.attributes.stock,
-    unavailableSize: value.attributes.stock === 0,
-    remainingMessage: getRemainingMessage(value.attributes.stock),
+  const sizes: SizeOption[] = sizeOptions?.map((value) => ({
+    size: value.size.name,
+    stock: value.stock,
+    unavailableSize: value.stock === 0,
+    remainingMessage: getRemainingMessage(value.stock),
   }));
 
   return {

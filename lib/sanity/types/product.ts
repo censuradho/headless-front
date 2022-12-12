@@ -11,13 +11,18 @@ interface Size {
   value: number
 }
 
+interface ProductSize {
+  stock: number
+  size: Size
+}
+
 export interface Variant {
   _id: string
   color: string,
-  sizes: Size[]
+  size: Size
   sku: string,
   stock: number
-  images: Image[]
+  images?: Image[]
   discount?: number
 }
 
@@ -26,11 +31,12 @@ export interface Product {
   name: string,
   price: number
   description: number
+  discount?: number
+  images?: Image[]
+  sizes: ProductSize[]
   slug: {
     current: string
   }
-  variants: Variant[],
-  default_variant: Variant
 }
 
 export interface GetProductQueryRequest {
