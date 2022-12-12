@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
@@ -7,6 +7,8 @@ import { Image } from "components";
 import useInterval from "hooks/useInterval";
 import { breakpoints } from "constants/breakpoints";
 import { uuid } from "utils";
+import { urlFor } from "lib/sanity";
+import Link from "next/link";
 import * as Styles from "./styles";
 import { HeroCarouselProps } from "./types";
 
@@ -35,17 +37,28 @@ export function HeroCarousel(props: HeroCarouselProps) {
     },
   });
 
-  const renderItem = data?.map((value) => (
-    <div className="keen-slider__slide" key={uuid()}>
-      <Image
-        src={value.attributes?.formats?.large?.url}
-        alt={value.attributes?.alternativeText}
-        width={value.attributes?.formats?.large?.width}
-        height={value.attributes?.formats?.large?.height}
-        layout="responsive"
-      />
-    </div>
-  ));
+  const renderItem = useMemo(() => data?.map((value) => {
+    const img = urlFor(value.image);
+
+    const width = 3264;
+    const height = 1134;
+
+    return (
+      <div className="keen-slider__slide" key={uuid()}>
+        <Link href={value.path}>
+          <a>
+            <Image
+              src={img.url()}
+              alt={value.image.alternative_text}
+              width={width}
+              height={height}
+              layout="responsive"
+            />
+          </a>
+        </Link>
+      </div>
+    );
+  }), [data]);
 
   const renderDots = data?.map((value, index) => (
     <li key={uuid()}>

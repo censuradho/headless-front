@@ -1,6 +1,8 @@
 import { HomeLayout } from "layout";
 import { HomeProps } from "layout/home/types";
-import { getHomePage } from "lib/sanity/sanity.queries";
+import {
+  getHomePage,
+} from "lib/sanity/sanity.queries";
 
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 
@@ -21,7 +23,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 };
 
 function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(props);
   return (
     <HomeLayout {...props} />
   );

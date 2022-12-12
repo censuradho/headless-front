@@ -8,11 +8,14 @@ import * as Styles from "./styles";
 export function HomeLayout(props: HomeProps) {
   const {
     emphasis,
+    hero_banners,
   } = props;
 
   return (
     <MainLayout>
       <Styles.Container>
+        <HeroCarousel data={hero_banners || []} />
+
         <ProductCategorySlide
           title="Destaques"
           data={emphasis}

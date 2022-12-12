@@ -1,5 +1,5 @@
-import { Product } from "types/product";
+import { Product } from "lib/sanity/types/product";
 
 export interface ProductPageProps {
-  product: Product
+  data: Product
 }

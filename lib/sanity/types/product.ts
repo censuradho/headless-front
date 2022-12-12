@@ -1,4 +1,4 @@
-interface Image {
+export interface Image {
   alternative_text: string
   asset: {
     url: string
@@ -31,4 +31,9 @@ export interface Product {
   }
   variants: Variant[],
   default_variant: Variant
+}
+
+export interface GetProductQueryRequest {
+  slug: string,
+  _id: string
 }
