@@ -1,3 +1,6 @@
-import { ProductAttr } from "types/product";
+import { Product, Variant } from "lib/sanity/types/product";
 
-export type ProductInfoProps = ProductAttr
+export interface ProductInfoProps {
+  product: Product
+  variant?: Variant
+}

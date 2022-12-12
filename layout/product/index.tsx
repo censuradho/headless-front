@@ -1,5 +1,5 @@
 import { useState } from "react";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 
 import { Button } from "components";
 import { useCart } from "context";
@@ -19,9 +19,16 @@ import * as Styles from "./styles";
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
+  const { sku } = router.query;
+
   const {
     data,
   } = props;
+
+  const { variants } = data;
+
+  const currentVariant = variants.find((variant) => variant.sku === sku);
+
   // const { addCartItem, setIsOpenResumeCart } = useCart();
 
   // const [isUnselected, setIsUnselected] = useState(false);
@@ -107,8 +114,14 @@ export function ProductPageLayout(props: ProductPageProps) {
   return (
     <Styles.Container>
       <Styles.Content>
-        <Preview product={data} />
-
+        <Preview
+          product={data}
+          variant={currentVariant}
+        />
+        <ProductInfo
+          product={data}
+          variant={currentVariant}
+        />
         <Styles.ProductInfo>
           {/* <ProductInfo {...attributes} /> */}
           {/* <ProductSizes

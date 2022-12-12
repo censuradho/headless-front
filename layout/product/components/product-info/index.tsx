@@ -7,22 +7,23 @@ import { ProductInfoProps } from "./types";
 
 export function ProductInfo(props: ProductInfoProps) {
   const {
-    discount,
-    installment,
-    price,
-    name,
+    variant,
+    product: {
+      price,
+      name,
+    },
   } = props;
 
-  const priceWithDiscount = discount
-    ? getPriceProduct(price, discount?.data?.attributes?.value)
+  const priceWithDiscount = variant?.discount
+    ? getPriceProduct(price, variant?.discount)
     : price;
 
-  const relativePercentage = discount
-    ? getRelatedPercentage(price, discount?.data?.attributes?.value)
+  const relativePercentage = variant?.discount
+    ? getRelatedPercentage(price, variant?.discount)
     : price;
 
   const renderValue = () => {
-    if (!discount) return null;
+    if (!variant?.discount) return null;
 
     return (
       <Box alignItems="center" gap={1}>
@@ -32,23 +33,23 @@ export function ProductInfo(props: ProductInfoProps) {
     );
   };
 
-  const renderInstallment = () => {
-    if (!installment) return null;
+  // const renderInstallment = () => {
+  //   if (!installment) return null;
 
-    const value = toLocaleDateString(price / installment);
+  //   const value = toLocaleDateString(price / installment);
 
-    return (
-      <Typography variant="footnote">
-        Em até 3x
-        {" "}
-        <Typography variant="footnote" semiBold as="strong">
-          {value}
-          {" "}
-        </Typography>
-        <Typography uppercase>sem juros</Typography>
-      </Typography>
-    );
-  };
+  //   return (
+  //     <Typography variant="footnote">
+  //       Em até 3x
+  //       {" "}
+  //       <Typography variant="footnote" semiBold as="strong">
+  //         {value}
+  //         {" "}
+  //       </Typography>
+  //       <Typography uppercase>sem juros</Typography>
+  //     </Typography>
+  //   );
+  // };
 
   return (
     <Styles.Container>
@@ -70,7 +71,7 @@ export function ProductInfo(props: ProductInfoProps) {
             <Typography variant="title2" semiBold as="strong">{toLocaleDateString(priceWithDiscount)}</Typography>
             <Typography variant="caption2">à vista</Typography>
           </Box>
-          {renderInstallment()}
+          {/* {renderInstallment()} */}
         </Box>
       </Box>
     </Styles.Container>

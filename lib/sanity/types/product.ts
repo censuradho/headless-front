@@ -11,7 +11,7 @@ interface Size {
   value: number
 }
 
-interface Variant {
+export interface Variant {
   _id: string
   color: string,
   sizes: Size[]

@@ -3,27 +3,17 @@ import { useEffect, useMemo, useState } from "react";
 
 import { Image } from "components";
 import { useKeenSlider } from "keen-slider/react";
-import { useRouter } from "next/router";
 import { urlFor } from "lib/sanity";
 import { uuid } from "utils";
-import { imageSizes } from "constants/imageSizes";
 import { PreviewProps } from "./types";
 import * as Styles from "./styles";
 
 export function Preview(props: PreviewProps) {
-  const router = useRouter();
-
-  const { sku } = router.query;
-
   const {
-    product: {
-      variants,
-    },
+    variant,
   } = props;
 
-  const currentVariant = variants.find((variant) => variant.sku === sku);
-
-  if (!currentVariant?.images) return null;
+  if (!variant?.images) return null;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [, setCurrentSlidePreview] = useState(0);
@@ -54,7 +44,7 @@ export function Preview(props: PreviewProps) {
   }, []);
 
   const renderPhotos = useMemo(() => (
-    currentVariant?.images?.map((value, index) => {
+    variant?.images?.map((value, index) => {
       const image = urlFor(value);
 
       return (
@@ -70,7 +60,7 @@ export function Preview(props: PreviewProps) {
     })
   ), []);
 
-  const renderPreview = useMemo(() => currentVariant?.images?.map((value, index) => {
+  const renderPreview = useMemo(() => variant?.images?.map((value, index) => {
     const image = urlFor(value);
 
     return (
@@ -91,16 +81,14 @@ export function Preview(props: PreviewProps) {
     );
   }), [currentSlide, instanceRef]);
 
-  const renderDots = useMemo(() => currentVariant?.images?.map((value, index) => (
+  const renderDots = useMemo(() => variant?.images?.map((value, index) => (
     <li key={uuid()}>
       <Styles.Dot
         onClick={() => instanceRef.current?.moveToIdx(index)}
         active={currentSlide === index}
       />
     </li>
-  )), [currentVariant, currentSlide]);
-
-  if (!currentVariant) return null;
+  )), [variant, currentSlide]);
 
   return (
     <Styles.Container>
