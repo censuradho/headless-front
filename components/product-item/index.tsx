@@ -64,7 +64,7 @@ export function ProductItem(props: Product) {
   };
 
   const href = resolvePath(paths.pdp, {
-    slug: slug.current,
+    sku: default_variant.sku,
     id: _id,
   });
 

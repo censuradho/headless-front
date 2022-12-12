@@ -1,3 +1,5 @@
-import { Product } from "types/product";
+import { Product } from "lib/sanity/types/product";
 
-export type PreviewProps = Product
+export interface PreviewProps {
+  product: Product
+}

@@ -44,6 +44,9 @@ export function getProductsIdentifier() {
   *[_type == 'product']{
     _id,
     slug,
+    variants[]->{
+      sku
+    }
   }
 `;
 
@@ -52,7 +55,7 @@ export function getProductsIdentifier() {
 
 export function getProduct(params: GetProductQueryRequest) {
   const productQuery = groq`
-  *[_type == 'product' && _id == "${params._id}" && slug.current == "${params.slug}"][0]{
+  *[_type == 'product' && _id == "${params._id}"][0]{
       ...,
     default_variant->{
       ...,

@@ -34,6 +34,5 @@ export interface Product {
 }
 
 export interface GetProductQueryRequest {
-  slug: string,
   _id: string
 }

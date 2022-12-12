@@ -19,6 +19,7 @@ import * as Styles from "./styles";
 import { ProductPageProps } from "./types";
 
 export function ProductPageLayout(props: ProductPageProps) {
+  console.log(props);
   // const { addCartItem, setIsOpenResumeCart } = useCart();
 
   // const [isUnselected, setIsUnselected] = useState(false);

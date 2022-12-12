@@ -7,9 +7,8 @@ import { PreviewProps } from "./types";
 
 export function Preview(props: PreviewProps) {
   const {
-    id,
-    attributes: {
-      image,
+    product: {
+      variants,
     },
   } = props;
 
