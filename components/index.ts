@@ -1,4 +1,4 @@
-export * from "./header";
+export * from "./Header";
 export * from "./m-icon";
 export * from "./button-icon";
 export * from "./button";
