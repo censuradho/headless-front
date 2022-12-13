@@ -26,7 +26,6 @@ export function NotifyMe() {
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
     try {
       setIsLoading(true);
       setIsSuccess(true);

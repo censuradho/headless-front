@@ -1,3 +1,5 @@
+import { SessionProvider } from "next-auth/react";
+
 import {
   AuthProvider,
   ThemeProvider,
@@ -7,17 +9,25 @@ import {
 
 import type { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps: {
+    session,
+    ...pageProps
+  },
+}: AppProps) {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <CartProvider>
-          <ToastProvider>
-            <Component {...pageProps} />
-          </ToastProvider>
-        </CartProvider>
-      </ThemeProvider>
-    </AuthProvider>
+    <SessionProvider session={session}>
+      <AuthProvider>
+        <ThemeProvider>
+          <CartProvider>
+            <ToastProvider>
+              <Component {...pageProps} />
+            </ToastProvider>
+          </CartProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </SessionProvider>
   );
 }
 
