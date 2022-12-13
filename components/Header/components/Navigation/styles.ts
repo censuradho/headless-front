@@ -109,7 +109,7 @@ export const Navigation = styled("nav", {
   },
 
   defaultVariants: {
-    isOpen: false,
+    open: false,
   },
 });
 
