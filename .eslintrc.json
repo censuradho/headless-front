@@ -43,6 +43,7 @@
           "react/jsx-no-constructed-context-values": "off",
           "no-unused-vars": "warn",
           "no-empty": "off",
-          "camelcase": "off"
+          "camelcase": "off",
+          "no-underscore-dangle": "off"
     }
 }

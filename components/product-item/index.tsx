@@ -24,7 +24,6 @@ export function ProductItem(props: Product) {
       name,
       price,
       defaultImage,
-      discount,
     },
   } = props || {};
 
@@ -35,6 +34,8 @@ export function ProductItem(props: Product) {
 
   const [isGrab, setIsGrab] = useState(false);
 
+  const discount = 0;
+
   const renderDiscount = () => {
     if (!discount) return null;
 
@@ -44,7 +45,7 @@ export function ProductItem(props: Product) {
   };
 
   const renderValue = () => {
-    const value = getPriceProduct(price, discount?.data?.attributes?.value);
+    const value = getPriceProduct(price, discount);
     const hasDiscount = !!discount;
 
     return <Styles.Price hasDiscount={hasDiscount}>{toLocaleDateString(value)}</Styles.Price>;
@@ -53,7 +54,7 @@ export function ProductItem(props: Product) {
   const renderDiscountTag = () => {
     if (!discount) return null;
     return (
-      <Discount>{`${getRelatedPercentage(price, discount?.data?.attributes?.value)}% OFF`}</Discount>
+      <Discount>{`${getRelatedPercentage(price, discount)}% OFF`}</Discount>
     );
   };
 

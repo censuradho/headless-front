@@ -1,11 +1,12 @@
-import { Options } from './types'
-import { stringify } from 'qs'
-
+import { stringify } from "qs";
+import { Options } from "./types";
 
 function parse <T>(path: string, options?: Options<T>) {
-  const { fields, pagination, populate, filters  } = options || {}
+  const {
+    fields, pagination, populate, filters,
+  } = options || {};
 
-  const sort = options?.sort?.map(value => `${value.value}:${value.desk ? 'desk' : 'asc'}`)
+  const sort = options?.sort?.map((value) => `${value.value}:${value.desk ? "desk" : "asc"}`);
 
   const query = {
     ...(fields && { fields }),
@@ -13,13 +14,13 @@ function parse <T>(path: string, options?: Options<T>) {
     ...((sort && { sort })),
     ...((pagination && { pagination })),
     ...((populate && { populate })),
-  }
+  };
 
-  return `${path}?${stringify(query, { encodeValuesOnly: true })}`
+  return `${path}?${stringify(query, { encodeValuesOnly: true })}`;
 }
 
 const strapiQuery = {
-  parse
-}
+  parse,
+};
 
-export default strapiQuery
+export default strapiQuery;
