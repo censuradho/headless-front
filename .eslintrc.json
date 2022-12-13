@@ -1,50 +1,41 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "prettier"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "indent": [
-            "error",
-            2
-          ],
-          "import/prefer-default-export": "off",
-          "react/react-in-jsx-scope": "off",
-          "react/jsx-filename-extension": "off",
-          "quotes": [
-            "error",
-            "double"
-          ],
-          "no-duplicate-imports": "error",
-          "linebreak-style": "off",
-          "import/extensions": "off",
-          "react/jsx-props-no-spreading": "off",
-          "import/no-unresolved": "off",
-          "array-callback-return": "off",
-          "jsx-a11y/anchor-is-valid": "off",
-          "react/require-default-props": "off",
-          "consistent-return": "off",
-          "react/jsx-no-constructed-context-values": "off",
-          "no-unused-vars": "warn",
-          "no-empty": "off",
-          "camelcase": "off",
-          "no-underscore-dangle": "off"
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 2],
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "quotes": ["error", "double"],
+    "no-duplicate-imports": "error",
+    "linebreak-style": "off",
+    "import/extensions": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-unresolved": "off",
+    "array-callback-return": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/require-default-props": "off",
+    "consistent-return": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "no-unused-vars": "warn",
+    "no-empty": "off",
+    "camelcase": "off",
+    "no-underscore-dangle": "off"
+  }
 }

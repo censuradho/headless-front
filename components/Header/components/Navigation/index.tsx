@@ -51,7 +51,6 @@ function BaseNavigation(props: NavigationProps) {
           <Styles.SoftwareVersion>V1.0.0</Styles.SoftwareVersion>
         </HiddenView>
       </Styles.Navigation>
-
     </Styles.Container>
   );
 }

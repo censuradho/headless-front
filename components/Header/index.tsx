@@ -1,29 +1,21 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-import {
-  Box, HiddenView, ButtonIcon,
-} from "components";
+import { Box, HiddenView, ButtonIcon } from "components";
 
 import { useBooleanToggle } from "hooks";
 import { routePaths } from "constants/routes";
 
 import * as Styles from "./styles";
 
-import {
-  CartButton,
-  MyAccountButton,
-  Navigation,
-} from "./components";
+import { CartButton, MyAccountButton, Navigation } from "./components";
 
 const Logo = dynamic(() => import("public/icons/logo.svg"));
 
 export function Header() {
   const [isOpen, toggleIsOpen] = useBooleanToggle();
 
-  const renderCartButton = () => (
-    <CartButton />
-  );
+  const renderCartButton = () => <CartButton />;
 
   return (
     <Styles.Container>
@@ -42,14 +34,9 @@ export function Header() {
             <Logo />
           </a>
         </Link>
-        <HiddenView breakpoint="laptops-min">
-          {renderCartButton()}
-        </HiddenView>
+        <HiddenView breakpoint="laptops-min">{renderCartButton()}</HiddenView>
         <HiddenView breakpoint="laptops-max">
-          <Box
-            alignItems="center"
-            gap={2.375}
-          >
+          <Box alignItems="center" gap={2.375}>
             <MyAccountButton />
             {renderCartButton()}
           </Box>

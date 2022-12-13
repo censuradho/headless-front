@@ -5,4 +5,5 @@ export const viaCep = axios.create({
   baseURL: "https://viacep.com.br/ws",
 });
 
-export const getAddressByCep = (cep: string) => viaCep.get<GetCepResponse>(`/${cep}/json`);
+export const getAddressByCep = (cep: string) =>
+  viaCep.get<GetCepResponse>(`/${cep}/json`);

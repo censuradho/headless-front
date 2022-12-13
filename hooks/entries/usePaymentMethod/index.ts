@@ -3,13 +3,8 @@ import { useCart } from "context";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { generateCardToken } from "services/rest/cms/checkout";
-import {
-  PaymentMethodFormData,
-  UsePaymentMethodParams,
-} from "./types";
-import {
-  PaymentMethodSchemaValidation,
-} from "./validations";
+import { PaymentMethodFormData, UsePaymentMethodParams } from "./types";
+import { PaymentMethodSchemaValidation } from "./validations";
 
 export function usePaymentMethod(params: UsePaymentMethodParams) {
   const form = useForm<PaymentMethodFormData>({
@@ -21,9 +16,9 @@ export function usePaymentMethod(params: UsePaymentMethodParams) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (payload: PaymentMethodFormData) => {
-    const inventories = Object
-      .entries(cart.cart)
-      .map(([key, value]) => value.id);
+    const inventories = Object.entries(cart.cart).map(
+      ([key, value]) => value.id
+    );
 
     await generateCardToken({
       amount: {

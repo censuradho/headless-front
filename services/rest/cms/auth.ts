@@ -15,8 +15,13 @@ export async function emailConfirmation(payload: EmailConfirmationPayload) {
   return response;
 }
 
-export async function createUserWithEmailPassword(payload: CreateUserWithEmailPasswordPayload) {
-  const response = await cmsApi.post<CreateUserWithEmailPasswordResponse>("/auth/local/register", payload);
+export async function createUserWithEmailPassword(
+  payload: CreateUserWithEmailPasswordPayload
+) {
+  const response = await cmsApi.post<CreateUserWithEmailPasswordResponse>(
+    "/auth/local/register",
+    payload
+  );
   const { email } = payload;
 
   await emailConfirmation({ email });

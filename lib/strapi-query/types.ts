@@ -3,7 +3,7 @@ import { DotNestedKeys } from "types/utils";
 
 interface Sort {
   value: string | number;
-  desk?: boolean
+  desk?: boolean;
 }
 
 type LogicalOperators<T> = {
@@ -35,22 +35,21 @@ type AttributeOperators<T, K extends keyof T> = {
 
 export type WhereParams<T> = {
   [K in keyof T]?: T[K] | AttributeOperators<T, K>;
-} &
-  LogicalOperators<T>;
+} & LogicalOperators<T>;
 
 export interface Pagination {
   page?: number;
-  pageSize?: number
-  withCount?: boolean
+  pageSize?: number;
+  withCount?: boolean;
   start?: number;
-  limit?: number
+  limit?: number;
 }
 
 export interface Options<F> {
-  sort?: Sort[]
-  pagination?: Pagination
-  publicationState?: "live" | "preview"
-  fields?: Array<DotNestedKeys<F>>
-  filters?: WhereParams<F>
-  populate?: Record<string, any> | string[]
+  sort?: Sort[];
+  pagination?: Pagination;
+  publicationState?: "live" | "preview";
+  fields?: Array<DotNestedKeys<F>>;
+  filters?: WhereParams<F>;
+  populate?: Record<string, any> | string[];
 }

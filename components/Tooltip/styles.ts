@@ -29,17 +29,18 @@ export const Content = styled(TooltipPrimitive.Content, {
   lineHeight: 1,
   backgroundColor: "$black",
   color: "white",
-  boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+  boxShadow:
+    "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
   userSelect: "none",
   "@media (prefers-reduced-motion: no-preference)": {
     animationDuration: "400ms",
     animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
     willChange: "transform, opacity",
-    "&[data-state=\"delayed-open\"]": {
-      "&[data-side=\"top\"]": { animationName: slideDownAndFade },
-      "&[data-side=\"right\"]": { animationName: slideLeftAndFade },
-      "&[data-side=\"bottom\"]": { animationName: slideUpAndFade },
-      "&[data-side=\"left\"]": { animationName: slideRightAndFade },
+    '&[data-state="delayed-open"]': {
+      '&[data-side="top"]': { animationName: slideDownAndFade },
+      '&[data-side="right"]': { animationName: slideLeftAndFade },
+      '&[data-side="bottom"]': { animationName: slideUpAndFade },
+      '&[data-side="left"]': { animationName: slideRightAndFade },
     },
   },
 });
@@ -48,13 +49,10 @@ export const Arrow = styled(TooltipPrimitive.Arrow, {
   fill: "black",
 });
 
-export const Root = styled(TooltipPrimitive.Root, {
-});
+export const Root = styled(TooltipPrimitive.Root, {});
 
 export const Portal = styled(TooltipPrimitive.Portal, {
   zIndex: 11,
 });
 
-export const {
-  Provider, Trigger,
-} = TooltipPrimitive;
+export const { Provider, Trigger } = TooltipPrimitive;

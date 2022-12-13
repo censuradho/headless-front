@@ -3,12 +3,7 @@ import { JWT_KEY } from "constants/localStorage";
 import { paths } from "constants/routes";
 import { useLocalStorage } from "hooks";
 import { useRouter } from "next/router";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { cmsApi, getMe } from "services/rest/cms";
 
 import { User } from "types/auth";

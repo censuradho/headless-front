@@ -24,7 +24,8 @@ export const Overlay = styled(Dialog.Overlay, {
 
 export const Content = styled(Dialog.Content, {
   backgroundColor: "$background",
-  boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+  boxShadow:
+    "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
   position: "fixed",
   width: "100%",
   top: 0,
@@ -41,8 +42,7 @@ export const Content = styled(Dialog.Content, {
   },
 });
 
-export const Portal = styled(Dialog.Portal, {
-});
+export const Portal = styled(Dialog.Portal, {});
 
 export const Header = styled("div", {
   width: "100%",
@@ -74,7 +74,4 @@ export const SubmitContainer = styled("div", {
   padding: "1rem",
 });
 
-export const {
-  Root,
-  Close,
-} = Dialog;
+export const { Root, Close } = Dialog;

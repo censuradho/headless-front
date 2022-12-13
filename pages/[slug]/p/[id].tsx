@@ -4,14 +4,14 @@ import { ProductPageProps } from "layout/product/types";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { getProduct, getProducts } from "services/rest/cms";
 
-export const getStaticProps: GetStaticProps<ProductPageProps> = async (context) => {
+export const getStaticProps: GetStaticProps<ProductPageProps> = async (
+  context
+) => {
   const id = context?.params?.id as string;
   const slug = context?.params?.slug as string;
 
   const {
-    data: {
-      data: product,
-    },
+    data: { data: product },
   } = await getProduct({
     id,
     slug,
@@ -27,7 +27,9 @@ export const getStaticProps: GetStaticProps<ProductPageProps> = async (context) 
   };
 };
 
-export default function ProductPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function ProductPage(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   return (
     <div>
       <Header />

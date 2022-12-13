@@ -6,7 +6,6 @@ export const Container = styled("nav", {
   "@table-min": {
     maxWidth: "20rem",
   },
-
 });
 
 export const Item = styled("li", {

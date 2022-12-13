@@ -21,9 +21,7 @@ const slideLeftAndFade = keyframes({
   "100%": { opacity: 1, transform: "translateX(0)" },
 });
 
-export const {
-  Portal,
-} = DropdownMenu;
+export const { Portal } = DropdownMenu;
 
 export const Root = styled(DropdownMenu.Root, {
   position: "relative",
@@ -41,11 +39,11 @@ export const Content = styled(DropdownMenu.Content, {
   animationDuration: "400ms",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   willChange: "transform, opacity",
-  "&[data-state=\"open\"]": {
-    "&[data-side=\"top\"]": { animationName: slideDownAndFade },
-    "&[data-side=\"right\"]": { animationName: slideLeftAndFade },
-    "&[data-side=\"bottom\"]": { animationName: slideUpAndFade },
-    "&[data-side=\"left\"]": { animationName: slideRightAndFade },
+  '&[data-state="open"]': {
+    '&[data-side="top"]': { animationName: slideDownAndFade },
+    '&[data-side="right"]': { animationName: slideLeftAndFade },
+    '&[data-side="bottom"]': { animationName: slideUpAndFade },
+    '&[data-side="left"]': { animationName: slideRightAndFade },
   },
 });
 
@@ -104,6 +102,4 @@ export const Indicator = styled(DropdownMenu.ItemIndicator, {
   justifyContent: "center",
 });
 
-export const Group = styled(DropdownMenu.Group, {
-
-});
+export const Group = styled(DropdownMenu.Group, {});

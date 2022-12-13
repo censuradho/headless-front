@@ -3,13 +3,7 @@ import { useEffect } from "react";
 import { SelectFormProps } from "./types";
 
 export function SelectForm(props: SelectFormProps) {
-  const {
-    register,
-    name,
-    setValue,
-    watch,
-    ...otherProps
-  } = props;
+  const { register, name, setValue, watch, ...otherProps } = props;
 
   const selectValue = watch(name);
 

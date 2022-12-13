@@ -11,9 +11,7 @@ export function Header() {
           <Box gap={0.5} alignItems="center">
             <Icon name="lock" />
             <Typography uppercase as="strong">
-              Compra
-              {" "}
-              <Typography semiBold>100% segura</Typography>
+              Compra <Typography semiBold>100% segura</Typography>
             </Typography>
           </Box>
         </Box>

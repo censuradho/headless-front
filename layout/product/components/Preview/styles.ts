@@ -9,8 +9,7 @@ export const Container = styled("div", {
   "@laptops-min": {
     display: "flex",
   },
-  "@desktop-min": {
-  },
+  "@desktop-min": {},
 });
 
 export const Thumb = styled("div", {

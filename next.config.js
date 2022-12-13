@@ -3,10 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "self",
-    ],
+    domains: ["res.cloudinary.com", "self"],
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -19,7 +16,6 @@ const nextConfig = {
 
     return config;
   },
-
 };
 
 module.exports = nextConfig;

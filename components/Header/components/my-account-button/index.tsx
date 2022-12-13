@@ -1,17 +1,13 @@
 import { ComponentProps } from "react";
 
-import {
-  Box,
-  Icon,
-  Typography,
-} from "components";
+import { Box, Icon, Typography } from "components";
 
 import { DropDownMenu } from "components/common";
 import Link from "next/link";
 import { paths } from "constants/routes";
 import { useAuth } from "context";
 
-type DropDownMenuItems = ComponentProps<typeof DropDownMenu>["items"]
+type DropDownMenuItems = ComponentProps<typeof DropDownMenu>["items"];
 
 export function MyAccountButton() {
   const auth = useAuth();
@@ -43,9 +39,7 @@ export function MyAccountButton() {
       return (
         <Link href={paths.auth}>
           <Typography as="a">
-            <Typography>
-              Entre ou
-            </Typography>
+            <Typography>Entre ou</Typography>
             <br />
             <Typography>cadastre-se</Typography>
           </Typography>
@@ -55,16 +49,14 @@ export function MyAccountButton() {
 
     return (
       <DropDownMenu
-        trigger={(
+        trigger={
           <button type="button">
             <Box alignItems="center" gap={0.5}>
               <Icon name="outlineUser" />
-              <Typography>
-                Minha conta
-              </Typography>
+              <Typography>Minha conta</Typography>
             </Box>
           </button>
-        )}
+        }
         items={dropDownOptionsGroup}
       />
     );

@@ -20,7 +20,6 @@ export const Button = styled("button", {
       },
       false: {
         background: "none",
-
       },
     },
   },

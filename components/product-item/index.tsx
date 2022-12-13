@@ -5,11 +5,7 @@ import { paths } from "constants/routes";
 import { toLocaleDateString } from "lib/toLocaleDateString";
 
 import { Product } from "types/product";
-import {
-  getPriceProduct,
-  getRelatedPercentage,
-  resolvePath,
-} from "utils";
+import { getPriceProduct, getRelatedPercentage, resolvePath } from "utils";
 
 import { Discount } from "./components";
 
@@ -18,13 +14,7 @@ import * as Styles from "./styles";
 export function ProductItem(props: Product) {
   const {
     id,
-    attributes: {
-      slug,
-      hoverImage,
-      name,
-      price,
-      defaultImage,
-    },
+    attributes: { slug, hoverImage, name, price, defaultImage },
   } = props || {};
 
   const firstImage = defaultImage?.data || {};
@@ -48,7 +38,11 @@ export function ProductItem(props: Product) {
     const value = getPriceProduct(price, discount);
     const hasDiscount = !!discount;
 
-    return <Styles.Price hasDiscount={hasDiscount}>{toLocaleDateString(value)}</Styles.Price>;
+    return (
+      <Styles.Price hasDiscount={hasDiscount}>
+        {toLocaleDateString(value)}
+      </Styles.Price>
+    );
   };
 
   const renderDiscountTag = () => {
@@ -70,7 +64,6 @@ export function ProductItem(props: Product) {
   };
 
   return (
-
     <Styles.Container>
       <Styles.Link
         href={href}
@@ -113,6 +106,5 @@ export function ProductItem(props: Product) {
         </a>
       </Styles.Link>
     </Styles.Container>
-
   );
 }

@@ -1,3 +1,3 @@
 import { ProductAttr } from "types/product";
 
-export type ProductInfoProps = ProductAttr
+export type ProductInfoProps = ProductAttr;

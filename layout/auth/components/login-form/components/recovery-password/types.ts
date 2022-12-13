@@ -3,10 +3,10 @@ import { ForgotPasswordPayload, ResetPasswordPayload } from "types/auth";
 
 export interface RecoveryPasswordProps extends Omit<DialogProps, "children"> {}
 
-export type ForgottenFormData = ForgotPasswordPayload
+export type ForgottenFormData = ForgotPasswordPayload;
 
-export type ResetFormData = Omit<ResetPasswordPayload, "code">
+export type ResetFormData = Omit<ResetPasswordPayload, "code">;
 
 export interface CodeFormData {
-  code: string
+  code: string;
 }

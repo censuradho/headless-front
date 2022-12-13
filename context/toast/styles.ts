@@ -37,27 +37,28 @@ export const Viewport = styled(ToastPrimitive.Viewport, {
 export const Root = styled(ToastPrimitive.Root, {
   backgroundColor: "white",
   borderRadius: 6,
-  boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+  boxShadow:
+    "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
   padding: 15,
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
 
   "@media (prefers-reduced-motion: no-preference)": {
-    "&[data-state=\"open\"]": {
+    '&[data-state="open"]': {
       animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
     },
-    "&[data-state=\"closed\"]": {
+    '&[data-state="closed"]': {
       animation: `${hide} 100ms ease-in`,
     },
-    "&[data-swipe=\"move\"]": {
+    '&[data-swipe="move"]': {
       transform: "translateX(var(--radix-toast-swipe-move-x))",
     },
-    "&[data-swipe=\"cancel\"]": {
+    '&[data-swipe="cancel"]': {
       transform: "translateX(0)",
       transition: "transform 200ms ease-out",
     },
-    "&[data-swipe=\"end\"]": {
+    '&[data-swipe="end"]': {
       animation: `${swipeOut} 100ms ease-out`,
     },
   },

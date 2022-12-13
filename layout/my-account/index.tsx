@@ -19,7 +19,6 @@ export const myAccountNavigation = [
     label: "Endereço",
     path: myAccountNavigationPaths.address,
   },
-
 ];
 
 export function MyAccountPageLayout() {
@@ -36,7 +35,9 @@ export function MyAccountPageLayout() {
       <Container>
         <Box flexDirection="column" gap={0.5} marginTop={2}>
           <Typography variant="sub-headline">Olá,</Typography>
-          <Typography uppercase variant="title2">{auth.user?.username}</Typography>
+          <Typography uppercase variant="title2">
+            {auth.user?.username}
+          </Typography>
         </Box>
         <Box marginTop={1} gap={3}>
           <Navigation />

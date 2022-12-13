@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+    "format": "prettier --write . --config ./.prettierrc"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",

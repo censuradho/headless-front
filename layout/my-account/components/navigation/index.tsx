@@ -1,8 +1,4 @@
-import {
-  Box,
-  Button,
-  Icon,
-} from "components";
+import { Box, Button, Icon } from "components";
 import { NavLink } from "components/common";
 import { useAuth } from "context";
 import { myAccountNavigation } from "layout/my-account";
@@ -25,10 +21,7 @@ export function Navigation() {
     <Styles.Container>
       <Styles.List>{renderLinks}</Styles.List>
       <Box marginTop={2}>
-        <Button
-          onClick={auth.signOut}
-          variant="letter-underline"
-        >
+        <Button onClick={auth.signOut} variant="letter-underline">
           Sair
         </Button>
       </Box>

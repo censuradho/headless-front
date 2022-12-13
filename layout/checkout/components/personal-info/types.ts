@@ -1,9 +1,9 @@
 import { PerfilAttr } from "types/checkout";
 
 export interface PersonalInfoFormData extends PerfilAttr {
-  email: string
+  email: string;
 }
 
 export interface PersonalInfoProps {
-  isActive?: boolean
+  isActive?: boolean;
 }

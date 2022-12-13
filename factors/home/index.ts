@@ -16,13 +16,19 @@ export function homeFactory(props: Partial<Home>): Home {
     id: props?.id || 0,
     attributes: {
       hero: {
-        data: props?.attributes?.hero?.data?.map((value) => imageFactory(value)) || [],
+        data:
+          props?.attributes?.hero?.data?.map((value) => imageFactory(value)) ||
+          [],
       },
       heroMobile: {
-        data: props?.attributes?.hero?.data?.map((value) => imageFactory(value)) || [],
+        data:
+          props?.attributes?.hero?.data?.map((value) => imageFactory(value)) ||
+          [],
       },
       lubrificantes: carouselFactory(props.attributes?.lubrificantes || {}),
-      langerieCarousel: carouselFactory(props.attributes?.langerieCarousel || {}),
+      langerieCarousel: carouselFactory(
+        props.attributes?.langerieCarousel || {}
+      ),
       sectionBanner1: {
         data: imageFactory(props.attributes?.sectionBanner1?.data || {}),
       },

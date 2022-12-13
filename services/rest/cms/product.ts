@@ -7,7 +7,9 @@ import { productFactory } from "factors/product";
 import { cmsApi } from ".";
 
 export async function getProducts() {
-  const response = await cmsApi.get<ResponseDataType<Product[]>>("/products?fields=*&populate=*");
+  const response = await cmsApi.get<ResponseDataType<Product[]>>(
+    "/products?fields=*&populate=*"
+  );
 
   const { data: products, ...rest } = response;
 
@@ -19,7 +21,7 @@ export async function getProducts() {
   };
 }
 
-export async function getProduct(options: { id: string, slug: string }) {
+export async function getProduct(options: { id: string; slug: string }) {
   const { id, slug } = options;
 
   const query = strapiQuery.parse(`/products/${id}`, {

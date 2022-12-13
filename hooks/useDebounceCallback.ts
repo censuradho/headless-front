@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 export function useDebounceCallback<A extends any[]>(
   callback: (...args: A) => void,
-  wait: number,
+  wait: number
 ) {
   // track args & timeout handle between calls
   const argsRef = useRef<A>();

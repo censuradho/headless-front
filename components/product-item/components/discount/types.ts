@@ -1,3 +1,3 @@
 export interface DiscountProps {
-  children: string
+  children: string;
 }

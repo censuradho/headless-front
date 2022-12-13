@@ -14,6 +14,4 @@ export const FlagList = styled("ul", {
   gap: "1rem",
 });
 
-export const FlagItem = styled("li", {
-
-});
+export const FlagItem = styled("li", {});

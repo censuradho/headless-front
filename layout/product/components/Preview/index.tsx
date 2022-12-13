@@ -8,9 +8,7 @@ import { PreviewProps } from "./types";
 export function Preview(props: PreviewProps) {
   const {
     id,
-    attributes: {
-      image,
-    },
+    attributes: { image },
   } = props;
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -37,37 +35,43 @@ export function Preview(props: PreviewProps) {
     },
   });
 
-  const renderPhotos = useMemo(() => (
-    image?.data?.map((value) => (
-      <div className="keen-slider__slide" key={value.id}>
-        <Image
-          src={value.attributes?.formats?.large?.url}
-          alt={value.attributes?.alternativeText}
-          width={value.attributes?.formats?.large?.width}
-          height={value.attributes?.formats?.large?.height}
-          layout="responsive"
-          objectFit="fill"
-        />
-      </div>
-    ))
-  ), []);
+  const renderPhotos = useMemo(
+    () =>
+      image?.data?.map((value) => (
+        <div className="keen-slider__slide" key={value.id}>
+          <Image
+            src={value.attributes?.formats?.large?.url}
+            alt={value.attributes?.alternativeText}
+            width={value.attributes?.formats?.large?.width}
+            height={value.attributes?.formats?.large?.height}
+            layout="responsive"
+            objectFit="fill"
+          />
+        </div>
+      )),
+    []
+  );
 
-  const renderPreview = useMemo(() => image?.data?.map((value, index) => (
-    <Styles.PreviewImageItem
-      key={value.id}
-      className="keen-slider__slide"
-      onClick={() => instanceRef.current?.moveToIdx(index)}
-      selected={currentSlide === index}
-    >
-      <Image
-        src={value.attributes?.formats?.large?.url}
-        alt={value.attributes?.alternativeText}
-        width={value.attributes?.formats?.large?.width}
-        height={value.attributes?.formats?.large?.height}
-        layout="responsive"
-      />
-    </Styles.PreviewImageItem>
-  )), [currentSlide, instanceRef]);
+  const renderPreview = useMemo(
+    () =>
+      image?.data?.map((value, index) => (
+        <Styles.PreviewImageItem
+          key={value.id}
+          className="keen-slider__slide"
+          onClick={() => instanceRef.current?.moveToIdx(index)}
+          selected={currentSlide === index}
+        >
+          <Image
+            src={value.attributes?.formats?.large?.url}
+            alt={value.attributes?.alternativeText}
+            width={value.attributes?.formats?.large?.width}
+            height={value.attributes?.formats?.large?.height}
+            layout="responsive"
+          />
+        </Styles.PreviewImageItem>
+      )),
+    [currentSlide, instanceRef]
+  );
 
   const renderDots = image?.data?.map((value, index) => (
     <li key={value.id}>

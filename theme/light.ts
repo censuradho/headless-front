@@ -1,1 +1,1 @@
-export { theme as light } from 'stitches.config'
+export { theme as light } from "stitches.config";

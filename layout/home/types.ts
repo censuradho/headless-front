@@ -3,29 +3,29 @@ import { Image, Product } from "types/product";
 
 export interface LangerieCarousel {
   id: number;
-  title: string
+  title: string;
   products: {
-    data: Product[]
-  }
+    data: Product[];
+  };
 }
 
 export interface HomeAttrs {
   langerieCarousel: LangerieCarousel;
   hero: {
-    data: Array<Image>
-  }
+    data: Array<Image>;
+  };
   heroMobile: {
-    data: Array<Image>
-  }
+    data: Array<Image>;
+  };
   sectionBanner1: {
-    data: Image
-  },
-  lubrificantes: LangerieCarousel,
-  lubri: any
+    data: Image;
+  };
+  lubrificantes: LangerieCarousel;
+  lubri: any;
 }
-export interface Home  {
+export interface Home {
   id: number;
-  attributes: HomeAttrs
+  attributes: HomeAttrs;
 }
 
-export type HomeProps = ResponseDataType<Home>
+export type HomeProps = ResponseDataType<Home>;

@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  Input,
-  Typography,
-} from "components";
+import { Box, Button, Input, Typography } from "components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Styles from "./styles";
@@ -41,8 +36,12 @@ export function NotifyMe() {
     return (
       <>
         <Box flexDirection="column" gap={0.5}>
-          <Typography variant="sub-headline" semiBold>Produto indisponível</Typography>
-          <Typography variant="footnote" semiBold>Avise-me quando chegar!</Typography>
+          <Typography variant="sub-headline" semiBold>
+            Produto indisponível
+          </Typography>
+          <Typography variant="footnote" semiBold>
+            Avise-me quando chegar!
+          </Typography>
         </Box>
         <Styles.Form onSubmit={handleSubmit(onSubmit)}>
           <Box flexDirection="column" gap={1}>
@@ -60,11 +59,7 @@ export function NotifyMe() {
             />
           </Box>
           <Box marginTop={1}>
-            <Button
-              loading={isLoading}
-              fullWidth
-              type="submit"
-            >
+            <Button loading={isLoading} fullWidth type="submit">
               Enviar
             </Button>
           </Box>
@@ -89,8 +84,12 @@ export function NotifyMe() {
             Voltar
           </Button>
         </Box>
-        <Styles.SuccessTitle variant="footnote">E-mail cadastrado com sucesso</Styles.SuccessTitle>
-        <Typography variant="caption2">Nós te avisaremos assim que o produto estiver disponível!</Typography>
+        <Styles.SuccessTitle variant="footnote">
+          E-mail cadastrado com sucesso
+        </Styles.SuccessTitle>
+        <Typography variant="caption2">
+          Nós te avisaremos assim que o produto estiver disponível!
+        </Typography>
       </Box>
     );
   };

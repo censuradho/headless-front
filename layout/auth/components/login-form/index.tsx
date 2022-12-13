@@ -1,9 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import {
-  Button, Input, InputPassword, Typography,
-} from "components";
+import { Button, Input, InputPassword, Typography } from "components";
 
 import { LoginFormData } from "layout/auth/types";
 
@@ -34,7 +32,8 @@ export function LoginForm() {
   const currentStep = router?.query?.s as string | undefined;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isRecoveryPasswordModalOpen, setIsRecoveryPasswordModalOpen] = useState(false);
+  const [isRecoveryPasswordModalOpen, setIsRecoveryPasswordModalOpen] =
+    useState(false);
 
   const auth = useAuth();
 
@@ -60,7 +59,8 @@ export function LoginForm() {
       auth?.setUser(data.user);
 
       router.push(redirects(redirectPath as string));
-    } catch (err) {} finally {
+    } catch (err) {
+    } finally {
       setIsLoading(false);
     }
   };
@@ -100,15 +100,11 @@ export function LoginForm() {
           >
             Esqueci minha senha
           </Button>
-          <Button
-            fullWidth
-            loading={isLoading}
-          >
+          <Button fullWidth loading={isLoading}>
             Acessar conta
           </Button>
         </Styles.Form>
       </Styles.Container>
     </>
-
   );
 }

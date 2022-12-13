@@ -3,12 +3,12 @@ import { useState } from "react";
 import { Product } from "types/product";
 
 export interface SizeOption {
-  stock: number,
-  size: string,
-  inventoryId: number
-  productId: number
-  remainingMessage: string
-  unavailableSize: boolean
+  stock: number;
+  size: string;
+  inventoryId: number;
+  productId: number;
+  remainingMessage: string;
+  unavailableSize: boolean;
 }
 
 export function useProductSizes(props: Product) {
@@ -17,9 +17,7 @@ export function useProductSizes(props: Product) {
   const {
     id,
     attributes: {
-      inventories: {
-        data: inventories,
-      },
+      inventories: { data: inventories },
     },
   } = props;
 

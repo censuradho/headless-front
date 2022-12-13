@@ -37,7 +37,6 @@ export const Resume = styled("div", {
   width: "100%",
   padding: "1rem",
   marginTop: "2rem",
-
 });
 
 export const ResumeGoToCheckoutView = styled("div", {

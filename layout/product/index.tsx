@@ -26,10 +26,7 @@ export function ProductPageLayout(props: ProductPageProps) {
   const [size, setSize] = useState<SizeOption>();
 
   const {
-    product: {
-      id,
-      attributes,
-    },
+    product: { id, attributes },
     product,
   } = props;
 
@@ -39,10 +36,9 @@ export function ProductPageLayout(props: ProductPageProps) {
     const handleAddCart = async () => {
       if (!size) return;
 
-      const selectedInventory = attributes
-        ?.inventories
-        .data
-        .find((value) => value.id === size.inventoryId);
+      const selectedInventory = attributes?.inventories.data.find(
+        (value) => value.id === size.inventoryId
+      );
 
       if (!selectedInventory) return;
 
@@ -76,17 +72,10 @@ export function ProductPageLayout(props: ProductPageProps) {
 
     return (
       <Styles.BuyButtons>
-        <Button
-          fullWidth
-          variant="letter"
-          onClick={handleAddCart}
-        >
+        <Button fullWidth variant="letter" onClick={handleAddCart}>
           Adicionar à sacola
         </Button>
-        <Button
-          fullWidth
-          onClick={handleBuy}
-        >
+        <Button fullWidth onClick={handleBuy}>
           Comprar
         </Button>
       </Styles.BuyButtons>
@@ -96,9 +85,7 @@ export function ProductPageLayout(props: ProductPageProps) {
   const renderFreight = () => {
     if (size?.unavailableSize) return null;
 
-    return (
-      <Freight />
-    );
+    return <Freight />;
   };
 
   return (

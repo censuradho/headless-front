@@ -14,16 +14,16 @@ import {
 import { cmsApi } from ".";
 
 export async function postAddress(payload: AddressAttr) {
-  const response = await cmsApi.post<ResponseDataType<Address>>("/user-addresses", {
-    data: {
-      ...payload,
-    },
-  });
+  const response = await cmsApi.post<ResponseDataType<Address>>(
+    "/user-addresses",
+    {
+      data: {
+        ...payload,
+      },
+    }
+  );
 
-  const {
-    data: checkout,
-    ...rest
-  } = response;
+  const { data: checkout, ...rest } = response;
 
   const data = responseFactory({
     meta: checkout?.meta,
@@ -37,16 +37,16 @@ export async function postAddress(payload: AddressAttr) {
 }
 
 export async function putAddress(id: number, payload: AddressAttr) {
-  const response = await cmsApi.put<ResponseDataType<Address>>(`/user-addresses/${id}`, {
-    data: {
-      ...payload,
-    },
-  });
+  const response = await cmsApi.put<ResponseDataType<Address>>(
+    `/user-addresses/${id}`,
+    {
+      data: {
+        ...payload,
+      },
+    }
+  );
 
-  const {
-    data: address,
-    ...rest
-  } = response;
+  const { data: address, ...rest } = response;
 
   const data = responseFactory({
     meta: address?.meta,
@@ -60,12 +60,11 @@ export async function putAddress(id: number, payload: AddressAttr) {
 }
 
 export async function getAddress() {
-  const response = await cmsApi.get<ResponseDataType<Address[]>>("/user-addresses");
+  const response = await cmsApi.get<ResponseDataType<Address[]>>(
+    "/user-addresses"
+  );
 
-  const {
-    data: address,
-    ...rest
-  } = response;
+  const { data: address, ...rest } = response;
 
   const mainAddress = address.data.find((value) => value.attributes?.isMain);
   const [firstAddress] = address.data;
@@ -88,10 +87,7 @@ export async function postPerfil(payload: PostPerfilRequest) {
     },
   });
 
-  const {
-    data: perfil,
-    ...rest
-  } = response;
+  const { data: perfil, ...rest } = response;
 
   const data = responseFactory({
     meta: perfil?.meta,
@@ -105,16 +101,16 @@ export async function postPerfil(payload: PostPerfilRequest) {
 }
 
 export async function putPerfil(id: number, payload: PutPerfilRequest) {
-  const response = await cmsApi.put<ResponseDataType<Perfil>>(`/perfils/${id}`, {
-    data: {
-      ...payload,
-    },
-  });
+  const response = await cmsApi.put<ResponseDataType<Perfil>>(
+    `/perfils/${id}`,
+    {
+      data: {
+        ...payload,
+      },
+    }
+  );
 
-  const {
-    data: perfil,
-    ...rest
-  } = response;
+  const { data: perfil, ...rest } = response;
 
   const data = responseFactory({
     meta: perfil?.meta,
@@ -130,10 +126,7 @@ export async function putPerfil(id: number, payload: PutPerfilRequest) {
 export async function getPerfil() {
   const response = await cmsApi.get<ResponseDataType<Perfil[]>>("/perfils");
 
-  const {
-    data: perfil,
-    ...rest
-  } = response;
+  const { data: perfil, ...rest } = response;
 
   const [currentPerfil] = perfil.data;
 

@@ -8,18 +8,9 @@ import * as Styles from "./styles";
 import { ProductSizeProps } from "./types";
 
 export function ProductSizes(props: ProductSizeProps) {
-  const {
-    onSelectSize,
-    errorMessage,
-    product,
-  } = props;
+  const { onSelectSize, errorMessage, product } = props;
 
-  const {
-    sizes,
-    setSize,
-    size,
-
-  } = useProductSizes(product);
+  const { sizes, setSize, size } = useProductSizes(product);
 
   const handleSelectSize = (value: SizeOption) => {
     setSize(value);
@@ -53,10 +44,12 @@ export function ProductSizes(props: ProductSizeProps) {
   return (
     <Styles.Container>
       <Typography variant="callout">Tamanho</Typography>
-      {errorMessage && <Styles.ErrorMessage color="error" uppercase>Selecione Uma Opção</Styles.ErrorMessage>}
-      <Styles.SizeList>
-        {renderSizes}
-      </Styles.SizeList>
+      {errorMessage && (
+        <Styles.ErrorMessage color="error" uppercase>
+          Selecione Uma Opção
+        </Styles.ErrorMessage>
+      )}
+      <Styles.SizeList>{renderSizes}</Styles.SizeList>
       {renderNotifyMe()}
     </Styles.Container>
   );

@@ -16,7 +16,8 @@ export const HiddenView = styled("div", {
           content: "",
           height: "35px",
           width: "100%",
-          background: "linear-gradient(180deg,hsla(0,0%,100%,0) -11.81%,hsla(0,0%,100%,.91) 51.43%)",
+          background:
+            "linear-gradient(180deg,hsla(0,0%,100%,0) -11.81%,hsla(0,0%,100%,.91) 51.43%)",
           position: "absolute",
           bottom: 0,
           left: 0,

@@ -3,12 +3,7 @@ import { HiddenViewProps } from "./types";
 import * as Styles from "./styles";
 
 export function HiddenView(props: HiddenViewProps) {
-  const {
-    breakpoint,
-    children,
-    hidden,
-    fullWidth = false,
-  } = props;
+  const { breakpoint, children, hidden, fullWidth = false } = props;
 
   const _breakpoint = `@${breakpoint}`;
 

@@ -15,5 +15,4 @@ export const colors = {
   SILVER: "#CCCCCC",
   BLACK: "#000000",
   MAUVE3: "hsl(294, 5.5%, 95.3%)",
-
 };

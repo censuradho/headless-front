@@ -15,7 +15,6 @@ export const Link = styled(NextLink, {
 });
 
 export const ImageContainer = styled("div", {
-
   variants: {
     isHidden: {
       true: {
@@ -50,7 +49,6 @@ export const Content = styled("div", {
 export const Thumb = styled("figure", {
   width: "100%",
   position: "relative",
-
 });
 
 export const Price = styled("span", {

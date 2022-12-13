@@ -1,9 +1,7 @@
 import { useAddress, usePaymentMethod, usePerfil } from "hooks/entries";
 import { createContext, useContext } from "react";
 
-import type {
-  CheckoutParams,
-} from "./types";
+import type { CheckoutParams } from "./types";
 
 const CheckoutContext = createContext({} as CheckoutParams);
 

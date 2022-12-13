@@ -1,7 +1,5 @@
 import { Icon } from "components/m-icon";
-import {
-  MouseEvent, TouchEvent, useState,
-} from "react";
+import { MouseEvent, TouchEvent, useState } from "react";
 import * as Styles from "./styles";
 import { ButtonIconProps } from "./types";
 
@@ -28,12 +26,16 @@ export function ButtonIcon(props: ButtonIconProps) {
     setIsRipple(false);
   };
 
-  const handleMouseDown = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+  const handleMouseDown = (
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
     onMouseDown?.(event);
     setIsRipple(true);
   };
 
-  const handleMouseUp = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+  const handleMouseUp = (
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
     onMouseUp?.(event);
     setIsRipple(false);
   };
