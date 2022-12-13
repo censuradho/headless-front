@@ -1,4 +1,4 @@
-import { Icon } from "components/icon";
+import { Icon } from "components/m-icon";
 import { ButtonHTMLAttributes, ComponentProps } from "react";
 
 type IconProps = ComponentProps<typeof Icon>

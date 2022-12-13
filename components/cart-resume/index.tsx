@@ -7,7 +7,7 @@ import { Typography } from "components/typography";
 import { useCart } from "context";
 import { toLocaleMonetize, uuid } from "utils";
 
-import { Icon } from "components/icon";
+import { Icon } from "components/m-icon";
 import { paths } from "constants/routes";
 import { useRouter } from "next/router";
 import { ProductPreview } from "./components";

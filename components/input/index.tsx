@@ -1,6 +1,6 @@
 import { ButtonIcon } from "components/button-icon";
-import { Icon } from "components/icon";
-import { IconProps } from "components/icon/type";
+import { Icon } from "components/m-icon";
+import { IconProps } from "components/m-icon/type";
 import {
   FormEvent, forwardRef, KeyboardEvent, memo,
 } from "react";

@@ -1,5 +1,5 @@
 import { VariantProps } from "@stitches/react";
-import { IconProps } from "components/icon/type";
+import { IconProps } from "components/m-icon/type";
 import { InputHTMLAttributes, KeyboardEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 

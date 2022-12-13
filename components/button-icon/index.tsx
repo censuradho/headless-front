@@ -1,4 +1,4 @@
-import { Icon } from "components/icon";
+import { Icon } from "components/m-icon";
 import {
   MouseEvent, TouchEvent, useState,
 } from "react";
