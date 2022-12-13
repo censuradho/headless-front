@@ -7,7 +7,6 @@ export function Freight() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = () => {
@@ -28,7 +27,6 @@ export function Freight() {
       </Typography>
       <Styles.Form onSubmit={handleSubmit(onSubmit)}>
         <Input
-          errorMessage={errors?.cep?.message}
           fullWidth
           register={register("cep")}
           placeholder="00000-00"

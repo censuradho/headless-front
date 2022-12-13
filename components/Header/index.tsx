@@ -21,10 +21,6 @@ const Logo = dynamic(() => import("public/icons/logo.svg"));
 export function Header() {
   const [isOpen, toggleIsOpen] = useBooleanToggle();
 
-  const renderCartButton = () => (
-    <CartButton />
-  );
-
   return (
     <Styles.Container>
       <Styles.TopBar>
@@ -43,7 +39,7 @@ export function Header() {
           </a>
         </Link>
         <HiddenView breakpoint="laptops-min">
-          {renderCartButton()}
+          <CartButton />
         </HiddenView>
         <HiddenView breakpoint="laptops-max">
           <Box
@@ -51,7 +47,7 @@ export function Header() {
             gap={2.375}
           >
             <MyAccountButton />
-            {renderCartButton()}
+            <CartButton />
           </Box>
         </HiddenView>
       </Styles.TopBar>

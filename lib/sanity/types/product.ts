@@ -5,13 +5,13 @@ export interface Image {
   }
 }
 
-interface Size {
+export interface Size {
   _id: string
   name: string,
   value: number
 }
 
-interface ProductSize {
+export interface ProductSize {
   stock: number
   size: Size
 }

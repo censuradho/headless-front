@@ -1,32 +1,27 @@
 import { CartResume } from "components/cart-resume";
 import { useLocalStorage } from "hooks";
 import {
-  createContext,
-  useContext,
-  useMemo,
-  useState,
+  createContext, useContext, useMemo, useState,
 } from "react";
 
 import type {
-  CartProviderProps,
-  CartContextProps,
   Cart,
   CartAttr,
-  InventoryCartItem,
+  CartContextProps,
+  CartProviderProps,
+  VariantOption,
 } from "./types";
 
 const CartContext = createContext({} as CartContextProps);
 
 export function CartProvider({ children }: CartProviderProps) {
   const [isOpenResumeCart, setIsOpenResumeCart] = useState(false);
-
   const [cart, setCart] = useLocalStorage<Cart>("cart", {});
 
   const handleAddCartItem = (payload: CartAttr, type: "increase" | "set" = "increase") => {
-    // eslint-disable-next-line max-len
-    const getQuantity = (prev: InventoryCartItem, next: InventoryCartItem) => {
+    const getQuantity = (prev: VariantOption, next: VariantOption) => {
       const mapFunctions = {
-        increase: () => (prev.stock >= prev.quantity
+        increase: () => (prev.stock > prev.quantity
           ? prev.quantity + next.quantity
           : prev.quantity),
         set: () => next.quantity,
@@ -36,22 +31,21 @@ export function CartProvider({ children }: CartProviderProps) {
     };
 
     setCart((prevState) => {
-      const product = prevState[payload.id];
+      const product = prevState[payload._id];
 
       if (!product) {
         return ({
           ...prevState,
-          [payload.id]: payload,
+          [payload._id]: payload,
         });
       }
 
-      const parsedInventories = Object
-        .entries(payload.inventories)
-        .map(([key, value]) => ({
+      const parsedSizeOptions = Object
+        .entries(payload.variant).map(([key, value]) => ({
           [key]: {
             ...value,
-            ...(product.inventories[key] && ({
-              quantity: getQuantity(product.inventories[key], value),
+            ...(product.variant[key] && ({
+              quantity: getQuantity(product.variant[key], value),
             })),
           },
         }))
@@ -60,50 +54,49 @@ export function CartProvider({ children }: CartProviderProps) {
           ...next,
         }), {});
 
-      const inventories = {
-        ...product.inventories,
-        ...parsedInventories,
+      const variant = {
+        ...product.variant,
+        ...parsedSizeOptions,
       };
 
       return ({
         ...prevState,
-        [product.id]: {
+        [product._id]: {
           ...product,
-          inventories,
+          variant,
         },
       });
     });
   };
 
-  const handleDecreaseCartItem = (productId: number, inventoryId: number) => {
+  const handleDecreaseCartItem = (productId: string, variantId: string) => {
     setCart((prevState) => {
       const product = prevState[productId];
 
       if (!product) return prevState;
 
-      const inventory = product.inventories[inventoryId];
+      const variant = product.variant[variantId];
 
-      if (!inventory) return prevState;
+      if (!variant) return prevState;
 
-      if (inventory.quantity > 0) {
+      if (variant.quantity > 0) {
         const parsedInventory = {
-          ...inventory,
-          quantity: inventory.quantity - 1,
+          ...variant,
+          quantity: variant.quantity - 1,
         };
-
         return {
           ...prevState,
           [productId]: {
             ...product,
-            inventories: {
-              ...product.inventories,
-              [inventoryId]: parsedInventory,
+            variant: {
+              ...product.variant,
+              [variantId]: parsedInventory,
             },
           },
         };
       }
 
-      delete product.inventories[inventoryId];
+      delete product.variant[variantId];
 
       return {
         ...prevState,
@@ -112,17 +105,17 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   };
 
-  const handleRemoveCartItem = (productId: number, inventoryId: number) => {
+  const handleRemoveCartItem = (productId: string, variantId: string) => {
     setCart((prevState) => {
       const product = prevState[productId];
 
       if (!product) return prevState;
 
-      delete product.inventories[inventoryId];
+      delete product.variant[variantId];
 
-      const hasInventories = Object.keys(product.inventories).length > 0;
+      const hasVariant = Object.keys(product.variant).length > 0;
 
-      if (!hasInventories) {
+      if (!hasVariant) {
         const currentState = {
           ...prevState,
         };
@@ -143,12 +136,12 @@ export function CartProvider({ children }: CartProviderProps) {
   const subTotal = useMemo(() => {
     const products = Object
       .entries(cart)
-      .map(([key, value]) => value);
+      .map(([, value]) => value);
 
     return products.map((product) => {
       const entriesPrice = Object
-        .entries(product?.inventories || {})
-        .map(([, inventory]) => inventory.quantity * product.price);
+        .entries(product?.variant || {})
+        .map(([, variant]) => variant.quantity * product.price);
 
       return entriesPrice?.reduce((prev, next) => prev + next, 0);
     })
@@ -158,18 +151,19 @@ export function CartProvider({ children }: CartProviderProps) {
   return (
     <CartContext.Provider
       value={{
-        cart,
-        subTotal,
         isOpenResumeCart,
         setIsOpenResumeCart,
-        addCartItem: handleAddCartItem,
         decreaseCartItem: handleDecreaseCartItem,
         removeCartItem: handleRemoveCartItem,
+        subTotal,
+        cart,
+        addCartItem: handleAddCartItem,
       }}
     >
       <CartResume />
       {children}
     </CartContext.Provider>
+
   );
 }
 

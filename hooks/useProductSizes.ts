@@ -5,6 +5,7 @@ import { Product } from "lib/sanity/types/product";
 export interface SizeOption {
   stock: number,
   size: string,
+  id: string
   remainingMessage: string
   unavailableSize: boolean
 }
@@ -24,6 +25,7 @@ export function useProductSizes(params: Product) {
 
   const sizes: SizeOption[] = sizeOptions?.map((value) => ({
     size: value.size.name,
+    id: value.size._id,
     stock: value.stock,
     unavailableSize: value.stock === 0,
     remainingMessage: getRemainingMessage(value.stock),

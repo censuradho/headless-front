@@ -8,28 +8,28 @@ import { ProductPreview } from "./components";
 import * as Styles from "./styles";
 
 export const OrderResume = memo(() => {
-  const { cart, subTotal } = useCart();
+  const { cart } = useCart();
 
-  const renderProductPreview = () => {
-    const products = Object
-      .entries(cart)
-      .map(([, value]) => value);
+  // const renderProductPreview = () => {
+  //   const products = Object
+  //     .entries(cart)
+  //     .map(([, value]) => value);
 
-    return products.map((product) => Object
-      .entries(product.inventories)
-      .map(([, inventory]) => (
-        <li
-          key={uuid()}
-        >
-          <ProductPreview
-            inventory={inventory}
-            product={product}
-          />
-        </li>
-      )));
-  };
+  //   return products.map((product) => Object
+  //     .entries(product.inventories)
+  //     .map(([, inventory]) => (
+  //       <li
+  //         key={uuid()}
+  //       >
+  //         <ProductPreview
+  //           inventory={inventory}
+  //           product={product}
+  //         />
+  //       </li>
+  //     )));
+  // };
 
-  const total = subTotal;
+  const total = 0;
 
   return (
     <Styles.Container>
@@ -38,11 +38,11 @@ export const OrderResume = memo(() => {
           <Icon name="shoppingBag" />
           <Typography variant="sub-headline">Resumo da compra</Typography>
         </Box>
-        <Styles.ProductPreviewList>{renderProductPreview()}</Styles.ProductPreviewList>
+        {/* <Styles.ProductPreviewList>{renderProductPreview()}</Styles.ProductPreviewList> */}
       </Box>
       <Styles.SummaryItem>
         <Typography>Subtotal:</Typography>
-        <Typography>{toLocaleMonetize(subTotal)}</Typography>
+        {/* <Typography>{toLocaleMonetize(subTotal)}</Typography> */}
       </Styles.SummaryItem>
       <Styles.SummaryItem>
         <Typography semiBold>Total:</Typography>

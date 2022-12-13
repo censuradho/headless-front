@@ -10,16 +10,16 @@ export function CartButton() {
   const { cart, setIsOpenResumeCart } = useCart();
 
   const quantity = useMemo(() => {
-    const inventories = Object
+    const variant = Object
       .entries(cart)
-      .map(([, value]) => value.inventories)
+      .map(([, value]) => value.variant)
       .reduce((prev, next) => ({
         ...prev,
         ...next,
       }), {});
 
     return Object
-      .entries(inventories || {})
+      .entries(variant || {})
       .map(([, value]) => value.quantity)
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);

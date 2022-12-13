@@ -14,30 +14,41 @@ import { resolvePath } from "utils";
 import { useCart } from "context";
 
 import { memo } from "react";
+import { urlFor } from "lib/sanity";
+import { imageSizes } from "constants/imageSizes";
 import * as Styles from "./styles";
 import { ProductPreviewProps } from "./types";
 
 export const ProductPreview = memo((props: ProductPreviewProps) => {
   const {
-    inventory,
     product: {
-      defaultImage,
-      id: productId,
+      _id: productId,
       slug,
+      images,
       price,
       name,
+      description,
+      discount,
     },
+    variant,
   } = props;
 
   const {
-    id: inventoryId,
+    _id: variantId,
+    name: size,
     quantity,
-    size,
     stock,
-  } = inventory;
+  } = variant;
+
+  const [defaultImage] = images || [];
+
+  const defaultImageParsedUrl = urlFor(defaultImage)
+    .width(imageSizes["563x750"].width)
+    .height(imageSizes["563x750"].height)
+    .url();
 
   const href = resolvePath(paths.pdp, {
-    slug,
+    slug: slug.current,
     id: productId,
   });
 
@@ -60,10 +71,10 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
         <a>
           <Styles.ImagePreviewContainer>
             <Image
-              src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-              width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
-              height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
-              alt={defaultImage?.data?.attributes?.alternativeText}
+              src={defaultImageParsedUrl}
+              width={imageSizes["563x750"].width}
+              height={imageSizes["563x750"].height}
+              alt={defaultImage?.alternative_text}
               layout="responsive"
             />
           </Styles.ImagePreviewContainer>
@@ -84,7 +95,7 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
         <Box flexDirection="column" justifyContent="space-between">
           <Box flex={1} justifyContent="flex-end">
             <ButtonIcon
-              onClick={() => removeCartItem(productId, inventoryId)}
+              onClick={() => removeCartItem(productId, variantId)}
               icon={{
                 name: "trash",
               }}
@@ -102,19 +113,22 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
               placeholder="tamanho"
               value={String(quantity)}
               onValueChange={(value) => addCartItem({
-                defaultImage,
-                id: productId,
+                _id: productId,
+                description,
                 name,
                 price,
                 slug,
-                inventories: {
-                  [inventoryId]: {
-                    id: inventoryId,
+                discount,
+                images,
+                variant: {
+                  [variantId]: {
+                    _id: variantId,
+                    name: size,
                     quantity: Number(value),
                     stock,
-                    size,
                   },
                 },
+
               }, "set")}
             />
           </Box>

@@ -25,11 +25,11 @@ export function CartResume() {
       .map(([, value]) => value);
 
     return products.map((product) => Object
-      .entries(product.inventories)
-      .map(([, inventory]) => (
+      .entries(product.variant)
+      .map(([, variant]) => (
         <ProductPreview
           key={uuid()}
-          inventory={inventory}
+          variant={variant}
           product={product}
         />
       )));
@@ -42,7 +42,7 @@ export function CartResume() {
 
     return products.map((product) => {
       const entriesPrice = Object
-        .entries(product?.inventories || {})
+        .entries(product?.variant || {})
         .map(([, value]) => value.quantity * product.price);
 
       return entriesPrice?.reduce((prev, next) => prev + next, 0);

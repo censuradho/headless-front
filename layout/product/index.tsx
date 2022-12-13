@@ -3,10 +3,10 @@ import router, { useRouter } from "next/router";
 
 import { Button } from "components";
 import { useCart } from "context";
-import { InventoryCartItem } from "context/cart/types";
 import { SizeOption } from "hooks/useProductSizes";
 
 import { paths } from "constants/routes";
+import { VariantOption } from "context/sanity/cart/types";
 import {
   Preview,
   ProductInfo,
@@ -24,51 +24,43 @@ export function ProductPageLayout(props: ProductPageProps) {
     data,
   } = props;
 
-  // const { addCartItem, setIsOpenResumeCart } = useCart();
+  const { addCartItem, setIsOpenResumeCart } = useCart();
+
   const [size, setSize] = useState<SizeOption>();
 
   const [isUnselected, setIsUnselected] = useState(false);
-
-  // const {
-  //   product: {
-  //     id,
-  //     attributes,
-  //   },
-  //   product,
-  // } = props;
 
   const renderSubmitButtons = () => {
     if (size?.unavailableSize) return null;
 
     const handleAddCart = async () => {
-      // if (!size) return;
+      if (!size) return;
 
-      // const selectedInventory = attributes
-      //   ?.inventories
-      //   .data
-      //   .find((value) => value.id === size.inventoryId);
+      const selectedSize = data.sizes.find((value) => value.size._id === size.id);
 
-      // if (!selectedInventory) return;
+      if (!selectedSize) return;
 
-      // const inventory: InventoryCartItem = {
-      //   id: selectedInventory.id,
-      //   size: selectedInventory.attributes.size.data.attributes.name,
-      //   quantity: 1,
-      //   stock: selectedInventory.attributes.stock,
-      // };
+      const variant: VariantOption = {
+        quantity: 1,
+        stock: selectedSize.stock,
+        _id: selectedSize.size._id,
+        name: selectedSize.size.name,
+      };
 
-      // addCartItem({
-      //   defaultImage: attributes.defaultImage,
-      //   id,
-      //   name: attributes?.name,
-      //   price: attributes?.price,
-      //   slug: attributes?.slug,
-      //   inventories: {
-      //     [inventory.id]: inventory,
-      //   },
-      // });
+      addCartItem({
+        _id: data._id,
+        description: data.description,
+        price: data.price,
+        discount: data.discount,
+        images: data.images,
+        name: data.name,
+        slug: data.slug,
+        variant: {
+          [size.id]: variant,
+        },
+      });
 
-      // setIsOpenResumeCart(true);
+      setIsOpenResumeCart(true);
     };
 
     const handleBuy = () => {

@@ -1,6 +1,6 @@
-import { InventoryCartItem, ProductCartItemAttr } from "context/cart/types";
+import { ProductAttr, VariantOption } from "context/sanity/cart/types";
 
 export interface ProductPreviewProps {
-  product: ProductCartItemAttr
-  inventory: InventoryCartItem
+  product: ProductAttr
+  variant: VariantOption
 }

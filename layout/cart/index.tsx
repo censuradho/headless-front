@@ -23,13 +23,13 @@ export function CartPageLayout() {
       .map(([, value]) => value);
 
     return products.map((product) => Object
-      .entries(product.inventories)
+      .entries(product.variant)
       .map(([, inventory]) => (
         <li
           key={uuid()}
         >
           <ProductPreview
-            inventory={inventory}
+            variant={inventory}
             product={product}
           />
         </li>
@@ -43,7 +43,7 @@ export function CartPageLayout() {
 
     return products.map((product) => {
       const entriesPrice = Object
-        .entries(product?.inventories || {})
+        .entries(product?.variant || {})
         .map(([, value]) => value.quantity * product.price);
 
       return entriesPrice?.reduce((prev, next) => prev + next, 0);

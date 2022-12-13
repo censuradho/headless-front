@@ -1,8 +1,10 @@
 import {
   Box, Button, Image, Select, Typography,
 } from "components";
+import { imageSizes } from "constants/imageSizes";
 import { paths } from "constants/routes";
 import { useCart } from "context";
+import { urlFor } from "lib/sanity";
 import Link from "next/link";
 import { resolvePath, toLocaleMonetize } from "utils";
 import * as Styles from "./styles";
@@ -10,26 +12,28 @@ import { ProductPreviewProps } from "./types";
 
 export function ProductPreview(props: ProductPreviewProps) {
   const {
-    inventory,
     product: {
-      defaultImage,
-      id: productId,
       slug,
-      price,
+      _id: productId,
+      description,
       name,
+      price,
+      discount,
+      images,
     },
+    variant,
   } = props;
 
   const {
-    id: inventoryId,
+    _id: variantId,
     quantity,
-    size,
+    name: size,
     stock,
-  } = inventory;
+  } = variant;
 
   const {
-    removeCartItem,
     addCartItem,
+    removeCartItem,
   } = useCart();
 
   const sizeOptions = Array(stock)
@@ -40,8 +44,15 @@ export function ProductPreview(props: ProductPreviewProps) {
       value: String(value),
     }));
 
+  const [defaultImage] = images || [];
+
+  const defaultImageParsedUrl = urlFor(defaultImage)
+    .width(imageSizes["563x750"].width)
+    .height(imageSizes["563x750"].height)
+    .url();
+
   const href = resolvePath(paths.pdp, {
-    slug,
+    slug: slug.current,
     id: productId,
   });
 
@@ -50,10 +61,10 @@ export function ProductPreview(props: ProductPreviewProps) {
       <Box gap={1} alignItems="flex-start">
         <Styles.ImagePreviewView>
           <Image
-            src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-            width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
-            height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
-            alt={defaultImage?.data?.attributes?.alternativeText}
+            src={defaultImageParsedUrl}
+            width={imageSizes["563x750"].width}
+            height={imageSizes["563x750"].height}
+            alt={defaultImage?.alternative_text}
             layout="responsive"
           />
         </Styles.ImagePreviewView>
@@ -66,7 +77,7 @@ export function ProductPreview(props: ProductPreviewProps) {
             </Link>
             <Button
               variant="letter-underline"
-              onClick={() => removeCartItem(productId, inventoryId)}
+              onClick={() => removeCartItem(productId, variantId)}
             >
               Remover item
             </Button>
@@ -91,19 +102,22 @@ export function ProductPreview(props: ProductPreviewProps) {
               placeholder="tamanho"
               value={String(quantity)}
               onValueChange={(value) => addCartItem({
-                defaultImage,
-                id: productId,
+                _id: productId,
+                description,
                 name,
                 price,
                 slug,
-                inventories: {
-                  [inventoryId]: {
-                    id: inventoryId,
+                discount,
+                images,
+                variant: {
+                  [variantId]: {
+                    _id: variantId,
+                    name: size,
                     quantity: Number(value),
                     stock,
-                    size,
                   },
                 },
+
               }, "set")}
             />
           </Box>
