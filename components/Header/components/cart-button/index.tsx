@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-import { Icon } from "components";
-
 import { useCart } from "context";
+
+import { Icon } from "../../../icon";
 
 import * as Styles from "./styles";
 
