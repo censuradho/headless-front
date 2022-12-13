@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { DotNestedKeys } from "types/utils";
 
 interface Sort {
@@ -33,7 +34,7 @@ type AttributeOperators<T, K extends keyof T> = {
 };
 
 export type WhereParams<T> = {
-  [K in keyof T]?: T[K]  | AttributeOperators<T, K>;
+  [K in keyof T]?: T[K] | AttributeOperators<T, K>;
 } &
   LogicalOperators<T>;
 
@@ -48,8 +49,8 @@ export interface Pagination {
 export interface Options<F> {
   sort?: Sort[]
   pagination?: Pagination
-  publicationState?: 'live' | 'preview'
-  fields?: Array<DotNestedKeys<F>> 
+  publicationState?: "live" | "preview"
+  fields?: Array<DotNestedKeys<F>>
   filters?: WhereParams<F>
   populate?: Record<string, any> | string[]
 }
