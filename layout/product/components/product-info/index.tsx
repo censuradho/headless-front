@@ -7,18 +7,18 @@ import { ProductInfoProps } from "./types";
 
 export function ProductInfo(props: ProductInfoProps) {
   const {
-    discount,
     installment,
     price,
     name,
   } = props;
 
+  const discount = 0;
   const priceWithDiscount = discount
-    ? getPriceProduct(price, discount?.data?.attributes?.value)
+    ? getPriceProduct(price, discount)
     : price;
 
   const relativePercentage = discount
-    ? getRelatedPercentage(price, discount?.data?.attributes?.value)
+    ? getRelatedPercentage(price, discount)
     : price;
 
   const renderValue = () => {
