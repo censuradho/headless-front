@@ -1,5 +1,5 @@
 import * as Select from "@radix-ui/react-select";
-import { Typography } from "components/typography";
+import { Typography } from "components";
 
 import { styled } from "stitches.config";
 

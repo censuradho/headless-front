@@ -1,7 +1,7 @@
 import router from "next/router";
 
 import { Box, Button, ButtonIcon, Icon, Input, Typography } from "components";
-import { SelectForm } from "components/hook-form";
+import { SelectForm } from "components/HookForm";
 import { cpfMask, dateMask, phoneMask } from "constants/masks";
 
 import { checkoutStepsPaths } from "constants/checkout";

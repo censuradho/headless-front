@@ -1,4 +1,4 @@
-import { Typography } from "components/typography";
+import { Typography } from "components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { NavLinkProps } from "./types";

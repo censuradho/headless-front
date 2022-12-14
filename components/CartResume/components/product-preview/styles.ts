@@ -1,4 +1,4 @@
-import { Typography } from "components/typography";
+import { Typography } from "components";
 import { styled } from "stitches.config";
 
 export const Container = styled("div", {

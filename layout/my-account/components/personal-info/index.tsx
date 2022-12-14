@@ -1,5 +1,5 @@
 import { Box, Button, Typography, Input } from "components";
-import { SelectForm } from "components/hook-form";
+import { SelectForm } from "components/HookForm";
 import { usePerfil } from "hooks/entries";
 import * as Styles from "./styles";
 

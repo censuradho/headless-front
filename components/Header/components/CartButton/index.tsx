@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 import { useCart } from "context";
 
-import { Icon } from "../../../m-icon";
+import { Icon } from "../../../Icon";
 
 import * as Styles from "./styles";
 

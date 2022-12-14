@@ -1,5 +1,5 @@
 import { Box, Button, HiddenView, Input, Typography } from "components";
-import { SelectForm } from "components/hook-form";
+import { SelectForm } from "components/HookForm";
 import { cepMask } from "constants/masks";
 import { useAddress } from "hooks/entries";
 

@@ -11,7 +11,7 @@ import {
 } from "components";
 import estadosOptions from "public/estados.json";
 
-import { SelectForm } from "components/hook-form";
+import { SelectForm } from "components/HookForm";
 
 import { checkoutStepsPaths } from "constants/checkout";
 import { cepMask } from "constants/masks";

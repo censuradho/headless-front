@@ -1,5 +1,5 @@
 import { Box, Button, ButtonIcon, Icon, Input, Typography } from "components";
-import { SelectForm } from "components/hook-form";
+import { SelectForm } from "components/HookForm";
 import { checkoutStepsPaths } from "constants/checkout";
 import { cardFlagMask, cpfMask } from "constants/masks";
 import { useCart, useCheckout } from "context";

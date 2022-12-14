@@ -1,4 +1,4 @@
-import { InputProps } from "components/input/types";
+import { InputProps } from "../Input/types";
 
 export type InputPasswordProps = Omit<
   InputProps,

@@ -9,7 +9,7 @@ import { uuid } from "utils";
 
 import { NavigationProps } from "./types";
 import * as Styles from "./styles";
-import { MyAccountButton } from "../my-account-button";
+import { MyAccountButton } from "../MyAccountButton";
 
 function BaseNavigation(props: NavigationProps) {
   const { isOpen, toggleIsOpen } = props;

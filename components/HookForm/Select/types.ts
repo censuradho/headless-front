@@ -1,4 +1,4 @@
-import { SelectProps } from "components/select/types";
+import { SelectProps } from "components/Select/types";
 
 import {
   UseFormRegister,
