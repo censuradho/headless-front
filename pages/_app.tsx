@@ -1,4 +1,3 @@
-import {
   AuthProvider,
   ThemeProvider,
   ToastProvider,

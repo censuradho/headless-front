@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from "react";
-import { Box } from "components/box";
+import { Box } from "components/Box";
 
-import { Button } from "components/button";
-import { ButtonIcon } from "components/button-icon";
+import { Button } from "components/Button";
+import { ButtonIcon } from "components/ButtonIcon";
 import { Typography } from "components/typography";
 import { useCart } from "context";
 import { toLocaleMonetize, uuid } from "utils";

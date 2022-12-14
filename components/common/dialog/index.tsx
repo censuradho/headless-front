@@ -1,4 +1,4 @@
-import { ButtonIcon } from "components/button-icon";
+import { ButtonIcon } from "components/ButtonIcon";
 import * as Styles from "./styles";
 
 import { DialogProps } from "./types";

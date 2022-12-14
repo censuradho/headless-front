@@ -1,9 +1,9 @@
 export { Header } from "./Header";
 export { Icon } from "./m-icon";
-export { ButtonIcon } from "./button-icon";
-export { Button } from "./button";
-export { Box } from "./box";
-export { HiddenView } from "./hidden-view";
+export { ButtonIcon } from "./ButtonIcon";
+export { Button } from "./Button";
+export { Box } from "./Box";
+export { HiddenView } from "./HiddenView";
 export { Image } from "./image";
 export { ProductItem } from "./product-item";
 export { Discount } from "./discount";

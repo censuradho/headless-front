@@ -1,4 +1,4 @@
-import { ButtonIcon } from "components/button-icon";
+import { ButtonIcon } from "components/ButtonIcon";
 import { Icon } from "components/m-icon";
 import { IconProps } from "components/m-icon/type";
 import { FormEvent, forwardRef, KeyboardEvent, memo } from "react";

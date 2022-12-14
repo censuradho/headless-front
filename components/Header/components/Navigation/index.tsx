@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { routePaths } from "constants/routes";
 
-import { HiddenView } from "components/hidden-view";
+import { HiddenView } from "components/HiddenView";
 import { useScrollDirection } from "hooks";
 import { uuid } from "utils";
 

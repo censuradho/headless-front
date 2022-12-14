@@ -1,6 +1,6 @@
 import { uuid } from "utils";
 import { Icon } from "components/m-icon";
-import { Box } from "components/box";
+import { Box } from "components/Box";
 import { SelectProps } from "./types";
 
 import * as Styles from "./styles";
