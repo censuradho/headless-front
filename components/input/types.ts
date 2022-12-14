@@ -1,9 +1,8 @@
 import { VariantProps } from "@stitches/react";
-import { IconProps } from "components/m-icon/type";
+import { IconProps } from "components/Icon/type";
 import { InputHTMLAttributes, KeyboardEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 
-import { setMask } from "utils/helpers";
 import { Container } from "./styles";
 
 type RootInputProps = Pick<

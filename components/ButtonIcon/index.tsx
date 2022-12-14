@@ -1,4 +1,4 @@
-import { Icon } from "components/m-icon";
+import { Icon } from "components/Icon";
 import { MouseEvent, TouchEvent, useState } from "react";
 import * as Styles from "./styles";
 import { ButtonIconProps } from "./types";

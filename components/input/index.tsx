@@ -1,8 +1,7 @@
 import { ButtonIcon } from "components/ButtonIcon";
-import { Icon } from "components/m-icon";
-import { IconProps } from "components/m-icon/type";
-import { FormEvent, forwardRef, KeyboardEvent, memo } from "react";
-import { setMask } from "utils";
+import { Icon } from "components/Icon";
+import { IconProps } from "components/Icon/type";
+import { forwardRef, KeyboardEvent, memo } from "react";
 
 import * as Styles from "./styles";
 import { InputProps } from "./types";
