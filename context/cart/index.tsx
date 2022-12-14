@@ -1,5 +1,5 @@
-import { CartResume } from "components/cart-resume";
-import { useBooleanToggle, useLocalStorage } from "hooks";
+import { CartResume } from "components/CartResume";
+import { useLocalStorage } from "hooks";
 import { createContext, useContext, useMemo, useState } from "react";
 
 import type {
