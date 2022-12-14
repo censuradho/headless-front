@@ -1,7 +1,7 @@
-export * from "./home";
-export * from "./main";
-export * from "./product";
-export * from "./auth";
-export * from "./cart";
-export * from "./checkout";
+export { HomeLayout } from "./home";
+export { MainLayout } from "./main";
+export { ProductPageLayout } from "./product";
+export { AuthLayout } from "./auth";
+export { CartPageLayout } from "./cart";
+export { CheckoutPageLayout } from "./checkout";
 export * from "./my-account";

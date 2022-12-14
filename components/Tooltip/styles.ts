@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import { styled, keyframes } from "stitches.config";
 
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";

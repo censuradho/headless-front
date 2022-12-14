@@ -6,7 +6,9 @@
   "extends": [
     "plugin:react/recommended",
     "airbnb",
-    "plugin:prettier/recommended"
+    "prettier/prettier",
+    "plugin:prettier/recommended",
+    "next/core-web-vitals"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -37,6 +39,8 @@
     "no-empty": "off",
     "camelcase": "off",
     "no-underscore-dangle": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "import/no-cycle": "off",
+    "react/display-name": "off"
   }
 }

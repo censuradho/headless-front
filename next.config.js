@@ -1,12 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   images: {
     domains: ["res.cloudinary.com", "self"],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
   webpack(config) {
     config.module.rules.push({

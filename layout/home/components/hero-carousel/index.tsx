@@ -6,7 +6,6 @@ import { useKeenSlider } from "keen-slider/react";
 import { Image } from "components";
 import useInterval from "hooks/useInterval";
 import { breakpoints } from "constants/breakpoints";
-import { uuid } from "utils";
 import * as Styles from "./styles";
 import { HeroCarouselProps } from "./types";
 

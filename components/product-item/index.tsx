@@ -71,39 +71,37 @@ export function ProductItem(props: Product) {
         onMouseDown={() => setIsGrab(true)}
         onMouseUp={() => setIsGrab(false)}
       >
-        <a>
-          <Styles.Thumb
-            onMouseEnter={handleHoverThumb}
-            onMouseLeave={handleHoverThumb}
-          >
-            <Styles.ImageContainer isHidden={!isHoverThumb}>
-              <Image
-                src={firstImage?.attributes?.url}
-                alt={firstImage?.attributes?.alternativeText}
-                height={firstImage?.attributes?.height}
-                width={firstImage?.attributes?.width}
-                layout="responsive"
-              />
-            </Styles.ImageContainer>
-            <Styles.ImageContainer isHidden={isHoverThumb}>
-              <Image
-                src={lastImage?.attributes?.url}
-                alt={lastImage?.attributes?.alternativeText}
-                height={lastImage?.attributes?.height}
-                width={lastImage?.attributes?.width}
-                layout="responsive"
-              />
-            </Styles.ImageContainer>
-          </Styles.Thumb>
-          <Styles.Content>
-            <Styles.Name>{name}</Styles.Name>
-            {renderDiscount()}
-            <Box gap={1}>
-              {renderValue()}
-              {renderDiscountTag()}
-            </Box>
-          </Styles.Content>
-        </a>
+        <Styles.Thumb
+          onMouseEnter={handleHoverThumb}
+          onMouseLeave={handleHoverThumb}
+        >
+          <Styles.ImageContainer isHidden={!isHoverThumb}>
+            <Image
+              src={firstImage?.attributes?.url}
+              alt={firstImage?.attributes?.alternativeText}
+              height={firstImage?.attributes?.height}
+              width={firstImage?.attributes?.width}
+              layout="responsive"
+            />
+          </Styles.ImageContainer>
+          <Styles.ImageContainer isHidden={isHoverThumb}>
+            <Image
+              src={lastImage?.attributes?.url}
+              alt={lastImage?.attributes?.alternativeText}
+              height={lastImage?.attributes?.height}
+              width={lastImage?.attributes?.width}
+              layout="responsive"
+            />
+          </Styles.ImageContainer>
+        </Styles.Thumb>
+        <Styles.Content>
+          <Styles.Name>{name}</Styles.Name>
+          {renderDiscount()}
+          <Box gap={1}>
+            {renderValue()}
+            {renderDiscountTag()}
+          </Box>
+        </Styles.Content>
       </Styles.Link>
     </Styles.Container>
   );

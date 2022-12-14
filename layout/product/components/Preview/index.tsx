@@ -7,7 +7,6 @@ import { PreviewProps } from "./types";
 
 export function Preview(props: PreviewProps) {
   const {
-    id,
     attributes: { image },
   } = props;
 
@@ -40,7 +39,7 @@ export function Preview(props: PreviewProps) {
       image?.data?.map((value) => (
         <div className="keen-slider__slide" key={value.id}>
           <Image
-            src={value.attributes?.formats?.large?.url}
+            src={value.attributes?.url}
             alt={value.attributes?.alternativeText}
             width={value.attributes?.formats?.large?.width}
             height={value.attributes?.formats?.large?.height}
@@ -62,7 +61,7 @@ export function Preview(props: PreviewProps) {
           selected={currentSlide === index}
         >
           <Image
-            src={value.attributes?.formats?.large?.url}
+            src={value.attributes?.url}
             alt={value.attributes?.alternativeText}
             width={value.attributes?.formats?.large?.width}
             height={value.attributes?.formats?.large?.height}
@@ -70,7 +69,7 @@ export function Preview(props: PreviewProps) {
           />
         </Styles.PreviewImageItem>
       )),
-    [currentSlide, instanceRef]
+    [currentSlide, image?.data, instanceRef]
   );
 
   const renderDots = image?.data?.map((value, index) => (

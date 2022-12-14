@@ -22,8 +22,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   }
 };
 
-function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   return <HomeLayout {...props} />;
 }
-
-export default Home;
