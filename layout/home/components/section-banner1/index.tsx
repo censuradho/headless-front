@@ -4,9 +4,11 @@ import * as Styles from "./styles";
 import { SectionBanner1Props } from "./types";
 
 export function SectionBanner1(props?: SectionBanner1Props) {
-  if (!props?.data?.id) return null;
+  const { data } = props || {};
 
-  const { attributes } = props.data;
+  if (!data?.id) return null;
+
+  const { attributes } = data;
 
   return (
     <Styles.Container>

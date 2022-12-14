@@ -12,7 +12,7 @@ import * as Styles from "./styles";
 export function HomeLayout(props: HomeProps) {
   const {
     data: {
-      attributes: { hero, langerieCarousel, sectionBanner1, lubrificantes },
+      attributes: { hero, sectionBanner1, section1 },
     },
   } = props || {};
 
@@ -21,14 +21,10 @@ export function HomeLayout(props: HomeProps) {
       <Styles.Container>
         <HeroCarousel data={hero.data || []} />
         <ProductCategorySlide
-          title={langerieCarousel?.title}
-          data={langerieCarousel?.products?.data}
+          title={section1?.title}
+          data={section1?.products?.data}
         />
         <SectionBanner1 data={sectionBanner1?.data} />
-        <ProductCategorySlide
-          title={lubrificantes?.title}
-          data={lubrificantes?.products?.data}
-        />
       </Styles.Container>
     </MainLayout>
   );

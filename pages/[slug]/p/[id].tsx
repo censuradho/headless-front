@@ -17,8 +17,6 @@ export const getStaticProps: GetStaticProps<ProductPageProps> = async (
     slug,
   });
 
-  console.log(product);
-
   return {
     props: {
       product,

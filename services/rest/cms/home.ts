@@ -10,18 +10,11 @@ export async function getHome() {
   const query = strapiQuery.parse("/home", {
     populate: [
       "hero",
-      "heroMobile",
-      "langerieCarousel",
-      "langerieCarousel.products",
-      "langerieCarousel.products.image",
-      "langerieCarousel.products.hoverImage",
-      "langerieCarousel.products.defaultImage",
-      "sectionBanner1",
-      "lubrificantes",
-      "lubrificantes.products",
-      "lubrificantes.products.image",
-      "lubrificantes.products.hoverImage",
-      "lubrificantes.products.defaultImage",
+      "section1",
+      "section1.products",
+      "section1.products.image",
+      "section1.products.hoverImage",
+      "section1.products.defaultImage",
     ],
   });
 

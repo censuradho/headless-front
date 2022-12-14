@@ -1,16 +1,17 @@
 import { imageFactory, productFactory } from "factors/product";
-import type { Home, LangerieCarousel } from "layout/home/types";
 
-function carouselFactory(props: Partial<LangerieCarousel>): LangerieCarousel {
+import type { Home, Section } from "layout/home/types";
+
+function SectionFactory(params: Partial<Section>): Section {
   return {
-    id: props?.id || 0,
+    id: params?.id || 0,
     products: {
-      data: props?.products?.data?.map((value) => productFactory(value)) || [],
+      data:
+        params.products?.data?.map((product) => productFactory(product)) || [],
     },
-    title: props?.title || "",
+    title: params?.title || "",
   };
 }
-
 export function homeFactory(props: Partial<Home>): Home {
   return {
     id: props?.id || 0,
@@ -20,19 +21,10 @@ export function homeFactory(props: Partial<Home>): Home {
           props?.attributes?.hero?.data?.map((value) => imageFactory(value)) ||
           [],
       },
-      heroMobile: {
-        data:
-          props?.attributes?.hero?.data?.map((value) => imageFactory(value)) ||
-          [],
-      },
-      lubrificantes: carouselFactory(props.attributes?.lubrificantes || {}),
-      langerieCarousel: carouselFactory(
-        props.attributes?.langerieCarousel || {}
-      ),
+      section1: SectionFactory(props?.attributes?.section1 || {}),
       sectionBanner1: {
         data: imageFactory(props.attributes?.sectionBanner1?.data || {}),
       },
-      lubri: props.attributes?.lubri || {},
     },
   };
 }

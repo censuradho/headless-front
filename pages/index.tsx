@@ -15,7 +15,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       revalidate: 10,
     };
   } catch (err) {
-    console.log(err);
     return {
       props: {},
       notFound: true,

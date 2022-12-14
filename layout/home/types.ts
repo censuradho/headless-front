@@ -1,7 +1,7 @@
 import { ResponseDataType } from "factors/types";
 import { Image, Product } from "types/product";
 
-export interface LangerieCarousel {
+export interface Section {
   id: number;
   title: string;
   products: {
@@ -10,18 +10,13 @@ export interface LangerieCarousel {
 }
 
 export interface HomeAttrs {
-  langerieCarousel: LangerieCarousel;
+  section1: Section;
   hero: {
-    data: Array<Image>;
-  };
-  heroMobile: {
     data: Array<Image>;
   };
   sectionBanner1: {
     data: Image;
   };
-  lubrificantes: LangerieCarousel;
-  lubri: any;
 }
 export interface Home {
   id: number;
