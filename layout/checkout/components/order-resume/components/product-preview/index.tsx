@@ -31,21 +31,17 @@ export function ProductPreview(props: ProductPreviewProps) {
     <Styles.Container>
       <Box gap={1} alignItems="center">
         <Link href={href}>
-          <a>
-            <Styles.ImagePreviewView>
-              <Image
-                src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-                width={
-                  defaultImage?.data?.attributes?.formats?.thumbnail?.width
-                }
-                height={
-                  defaultImage?.data?.attributes?.formats?.thumbnail?.height
-                }
-                alt={defaultImage?.data?.attributes?.alternativeText}
-                layout="responsive"
-              />
-            </Styles.ImagePreviewView>
-          </a>
+          <Styles.ImagePreviewView>
+            <Image
+              src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
+              width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
+              height={
+                defaultImage?.data?.attributes?.formats?.thumbnail?.height
+              }
+              alt={defaultImage?.data?.attributes?.alternativeText}
+              layout="responsive"
+            />
+          </Styles.ImagePreviewView>
         </Link>
         <Typography>{description}</Typography>
       </Box>

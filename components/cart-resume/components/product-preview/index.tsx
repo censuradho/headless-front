@@ -37,19 +37,15 @@ export const ProductPreview = memo((props: ProductPreviewProps) => {
   return (
     <Styles.Container>
       <Link href={href}>
-        <a>
-          <Styles.ImagePreviewContainer>
-            <Image
-              src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-              width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
-              height={
-                defaultImage?.data?.attributes?.formats?.thumbnail?.height
-              }
-              alt={defaultImage?.data?.attributes?.alternativeText}
-              layout="responsive"
-            />
-          </Styles.ImagePreviewContainer>
-        </a>
+        <Styles.ImagePreviewContainer>
+          <Image
+            src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
+            width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
+            height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
+            alt={defaultImage?.data?.attributes?.alternativeText}
+            layout="responsive"
+          />
+        </Styles.ImagePreviewContainer>
       </Link>
       <Box alignItems="flex-start" gap={1} flex={1}>
         <Styles.InfoView>

@@ -30,9 +30,7 @@ export function Header() {
           />
         </HiddenView>
         <Link href={routePaths.home.link}>
-          <a>
-            <Logo />
-          </a>
+          <Logo />
         </Link>
         <HiddenView breakpoint="laptops-min">{renderCartButton()}</HiddenView>
         <HiddenView breakpoint="laptops-max">

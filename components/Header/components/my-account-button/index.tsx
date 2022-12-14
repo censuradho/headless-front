@@ -16,11 +16,7 @@ export function MyAccountButton() {
     {
       options: [
         {
-          label: (
-            <Link href={paths.myAccount}>
-              <a>Minha conta</a>
-            </Link>
-          ),
+          label: <Link href={paths.myAccount}>Minha conta</Link>,
         },
       ],
     },

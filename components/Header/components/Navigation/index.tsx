@@ -19,9 +19,7 @@ function BaseNavigation(props: NavigationProps) {
 
   const renderList = Object.entries(routePaths).map(([, value]) => (
     <Styles.Item key={uuid()}>
-      <Link href={value.link}>
-        <a>{value.label}</a>
-      </Link>
+      <Link href={value.link}>{value.label}</Link>
     </Styles.Item>
   ));
 

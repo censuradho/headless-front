@@ -11,7 +11,6 @@ export function NavLink(props: NavLinkProps) {
   return (
     <Link {...otherProps}>
       <Typography
-        as="a"
         className={router.pathname === otherProps.href ? "active" : ""}
       >
         {children}

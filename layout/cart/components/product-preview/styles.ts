@@ -4,7 +4,7 @@ export const Container = styled("div", {
   padding: "1.2rem",
 });
 
-export const Name = styled("a", {
+export const Name = styled("span", {
   fontSize: "$caption1",
   textDecoration: "underline",
   fontWeight: 600,
