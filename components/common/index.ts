@@ -1,4 +1,4 @@
-export * from "./dialog";
+export * from "./Dialog";
 export * from "./container";
-export * from "./dropdown-menu";
-export * from "./nav-link";
+export * from "./DropDownMenu";
+export * from "./NavLink";
