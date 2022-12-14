@@ -1,15 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "self",
-    ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
+    domains: ["res.cloudinary.com", "self"],
   },
   webpack(config) {
     config.module.rules.push({
@@ -19,7 +13,6 @@ const nextConfig = {
 
     return config;
   },
-
 };
 
 module.exports = nextConfig;

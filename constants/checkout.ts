@@ -6,7 +6,10 @@ export const checkoutStepsQuery = {
   payment: "payment",
 };
 
-export const checkoutStepsPaths: Record<keyof typeof checkoutStepsQuery, string> = {
+export const checkoutStepsPaths: Record<
+  keyof typeof checkoutStepsQuery,
+  string
+> = {
   address: `${paths.checkout}?q=${checkoutStepsQuery.address}`,
   profile: `${paths.checkout}?q=${checkoutStepsQuery.profile}`,
   payment: `${paths.checkout}?q=${checkoutStepsQuery.payment}`,

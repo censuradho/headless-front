@@ -1,6 +1,4 @@
-import {
-  Box, Button, Input, InputPassword, Typography,
-} from "components";
+import { Box, Button, Input, InputPassword, Typography } from "components";
 import { Dialog } from "components/common";
 
 import { useForm } from "react-hook-form";
@@ -10,7 +8,10 @@ import { useRouter } from "next/router";
 import { paths } from "constants/routes";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  CodeFormData, ForgottenFormData, RecoveryPasswordProps, ResetFormData,
+  CodeFormData,
+  ForgottenFormData,
+  RecoveryPasswordProps,
+  ResetFormData,
 } from "./types";
 
 import * as Styles from "./styles";
@@ -92,10 +93,11 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
   };
 
   const renderForgotten = () => (
-
     <>
       <Box flexDirection="column" gap={0.5}>
-        <Typography semiBold variant="title2">Esqueci minha senha</Typography>
+        <Typography semiBold variant="title2">
+          Esqueci minha senha
+        </Typography>
         <Typography>Informe o e-mail cadastrado no site</Typography>
       </Box>
       <Styles.Form onSubmit={handleSubmit(onSubmitForgotten)}>
@@ -110,7 +112,9 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
           placeholder="Informe seu e-mail"
           errorMessage={errorsForgotten?.email?.message}
         />
-        <Button loading={isLoading} fullWidth>Verificar</Button>
+        <Button loading={isLoading} fullWidth>
+          Verificar
+        </Button>
       </Styles.Form>
     </>
   );
@@ -132,13 +136,14 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
     return (
       <>
         <Box flexDirection="column" gap={0.5}>
-          <Typography semiBold variant="title2">Esqueci minha senha</Typography>
-          <Typography>
-            As instruções de recuperação de senha foram enviadas para o e-mail informado
+          <Typography semiBold variant="title2">
+            Esqueci minha senha
           </Typography>
           <Typography>
-            Digite o código recebido no campo abaixo
+            As instruções de recuperação de senha foram enviadas para o e-mail
+            informado
           </Typography>
+          <Typography>Digite o código recebido no campo abaixo</Typography>
         </Box>
         <Styles.Form onSubmit={handleSubmitCode(onSubmitCode)}>
           <Input
@@ -149,7 +154,9 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
             errorMessage={errorsCode?.code?.message}
           />
           <Box flexDirection="column" gap={0.5} alignItems="flex-start">
-            <Button loading={isLoading} fullWidth>Criar nova senha</Button>
+            <Button loading={isLoading} fullWidth>
+              Criar nova senha
+            </Button>
             {renderResendCode()}
           </Box>
         </Styles.Form>
@@ -160,10 +167,10 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
   const renderReset = () => (
     <>
       <Box flexDirection="column" gap={0.5}>
-        <Typography semiBold variant="title2">Esqueci minha senha</Typography>
-        <Typography>
-          Insira sua nova senha
+        <Typography semiBold variant="title2">
+          Esqueci minha senha
         </Typography>
+        <Typography>Insira sua nova senha</Typography>
       </Box>
       <Styles.Form onSubmit={handleSubmitReset(onSubmitReset)}>
         <InputPassword
@@ -180,7 +187,9 @@ export function RecoveryPassword(props: RecoveryPasswordProps) {
           errorMessage={errorsReset?.passwordConfirmation?.message}
         />
         <Box flexDirection="column" gap={0.5} alignItems="flex-start">
-          <Button loading={isLoading} fullWidth>Confirmar</Button>
+          <Button loading={isLoading} fullWidth>
+            Confirmar
+          </Button>
         </Box>
       </Styles.Form>
     </>

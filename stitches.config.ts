@@ -106,6 +106,4 @@ const globalStyle = GlobalCss({
   },
 });
 
-export {
-  styled, getCssText, theme, css, keyframes, createTheme, globalStyle,
-};
+export { styled, getCssText, theme, css, keyframes, createTheme, globalStyle };

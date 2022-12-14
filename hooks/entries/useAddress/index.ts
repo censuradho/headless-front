@@ -1,11 +1,10 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup"; import { useEffect, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useState } from "react";
 import { GetCepResponse } from "types/viaCep";
 import { getAddressByCep } from "services/rest/viaCep";
 import useDebounce from "hooks/useDebounce";
-import {
-  Address as IAddress,
-} from "types/checkout";
+import { Address as IAddress } from "types/checkout";
 import {
   postAddress,
   putAddress,
@@ -26,11 +25,7 @@ export function useAddress() {
     resolver: yupResolver(addressSchemaValidation),
   });
 
-  const {
-    watch,
-    getValues,
-    reset,
-  } = form;
+  const { watch, getValues, reset } = form;
 
   const cep = useDebounce(watch("cep"), 1000);
 

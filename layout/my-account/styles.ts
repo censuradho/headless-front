@@ -1,5 +1,3 @@
 import { styled } from "stitches.config";
 
-export const Main = styled("main", {
-
-});
+export const Main = styled("main", {});

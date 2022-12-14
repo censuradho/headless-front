@@ -12,7 +12,8 @@ export const breakpointNames = {
   tvMax: "tv-max",
 } as const;
 
-export type KeyBreakpoints = typeof breakpointNames[keyof typeof breakpointNames]
+export type KeyBreakpoints =
+  typeof breakpointNames[keyof typeof breakpointNames];
 
 export const breakpoints: Record<KeyBreakpoints, string> = {
   [breakpointNames.smartPhoneMin]: "(min-width: 480px)",

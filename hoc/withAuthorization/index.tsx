@@ -4,18 +4,21 @@ import { useRouter } from "next/router";
 import { paths } from "constants/routes";
 
 // eslint-disable-next-line max-len
-export const withAuthorization = <P extends object>(Component: ComponentType<P>) => function (props: P) {
-  const auth = useAuth();
+export const withAuthorization = <P extends object>(
+  Component: ComponentType<P>
+) =>
+  function (props: P) {
+    const auth = useAuth();
 
-  const router = useRouter();
+    const router = useRouter();
 
-  if (auth?.isLoading) return null;
+    if (auth?.isLoading) return null;
 
-  useEffect(() => {
-    if (!auth?.isSigned && !auth?.isLoading) {
-      router.push(paths.auth);
-    }
-  }, [auth]);
+    useEffect(() => {
+      if (!auth?.isSigned && !auth?.isLoading) {
+        router.push(paths.auth);
+      }
+    }, [auth]);
 
-  return <Component {...props} />;
-};
+    return <Component {...props} />;
+  };

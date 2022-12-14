@@ -1,7 +1,5 @@
-import {
-  Box, Button, HiddenView, Input, Typography,
-} from "components";
-import { SelectForm } from "components/hook-form";
+import { Box, Button, HiddenView, Input, Typography } from "components";
+import { SelectForm } from "components/HookForm";
 import { cepMask } from "constants/masks";
 import { useAddress } from "hooks/entries";
 
@@ -10,12 +8,7 @@ import { useMemo, useState } from "react";
 import * as Styles from "./styles";
 
 export function Address() {
-  const {
-    form,
-    getAddress,
-    isLoading,
-    onSubmit,
-  } = useAddress();
+  const { form, getAddress, isLoading, onSubmit } = useAddress();
 
   const address = getAddress();
 
@@ -26,17 +19,16 @@ export function Address() {
     register,
     watch,
     setValue,
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = form;
 
   const ufOptions = useMemo(
-    () => estadosOptions.map((option) => ({
-      value: option.value,
-      label: option.value,
-    })),
-    [estadosOptions],
+    () =>
+      estadosOptions.map((option) => ({
+        value: option.value,
+        label: option.value,
+      })),
+    [estadosOptions]
   );
 
   const cep = watch("cep");
@@ -95,7 +87,6 @@ export function Address() {
               errorMessage={errors?.bairro?.message}
             />
             <Box alignItems="flex-start" gap={1}>
-
               <Input
                 id="localidade"
                 label="Cidade"
@@ -115,7 +106,9 @@ export function Address() {
               />
             </Box>
             <Box marginTop={2}>
-              <Button loading={isLoading} fullWidth>Salvar</Button>
+              <Button loading={isLoading} fullWidth>
+                Salvar
+              </Button>
             </Box>
           </Box>
         </HiddenView>
@@ -134,9 +127,7 @@ export function Address() {
         marginTop={1}
         alignItems="flex-start"
       >
-        <Typography>
-          Você não tem nenhum endereço cadastrado!
-        </Typography>
+        <Typography>Você não tem nenhum endereço cadastrado!</Typography>
         <Button onClick={() => setIsEditing(true)}>Adicionar endereço</Button>
       </Box>
     );
@@ -145,7 +136,9 @@ export function Address() {
   return (
     <Styles.Container>
       <Box marginBottom={1.5}>
-        <Typography variant="sub-headline" as="h1">Dados pessoais</Typography>
+        <Typography variant="sub-headline" as="h1">
+          Dados pessoais
+        </Typography>
       </Box>
       {renderForm()}
       {renderEmptyAddressMessage()}

@@ -12,9 +12,7 @@ export function CheckoutLayout(props: CheckoutLayoutProps) {
   return (
     <Styles.Wrapper>
       <Header />
-      <Container style={{ flex: 1 }}>
-        {children}
-      </Container>
+      <Container style={{ flex: 1 }}>{children}</Container>
       <Footer />
     </Styles.Wrapper>
   );

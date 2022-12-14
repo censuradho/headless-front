@@ -9,16 +9,8 @@ import * as Styles from "./styles";
 import { ButtonProps } from "./types";
 
 function BaseButton(props: ButtonProps) {
-  const {
-    children,
-    icon,
-    loading,
-    disabled,
-    href,
-    type,
-    as,
-    ...otherProps
-  } = props;
+  const { children, icon, loading, disabled, href, type, as, ...otherProps } =
+    props;
 
   const renderLoading = () => {
     if (!loading) return null;
@@ -38,20 +30,14 @@ function BaseButton(props: ButtonProps) {
       {...otherProps}
     >
       {icon && <Icon {...icon} />}
-      <Typography>
-        {children}
-      </Typography>
+      <Typography>{children}</Typography>
       {renderLoading()}
     </Styles.Button>
   );
 
   const renderContent = () => {
     if (as === "a" && href) {
-      return (
-        <Link href={href}>
-          {renderButton()}
-        </Link>
-      );
+      return <Link href={href}>{renderButton()}</Link>;
     }
 
     return renderButton();

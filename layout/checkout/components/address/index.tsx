@@ -11,7 +11,7 @@ import {
 } from "components";
 import estadosOptions from "public/estados.json";
 
-import { SelectForm } from "components/hook-form";
+import { SelectForm } from "components/HookForm";
 
 import { checkoutStepsPaths } from "constants/checkout";
 import { cepMask } from "constants/masks";
@@ -25,29 +25,23 @@ export function Address(props: AddressProps) {
 
   const { address } = useCheckout();
 
-  const {
-    form,
-    getAddress,
-    isLoading,
-    onSubmit,
-  } = address;
+  const { form, getAddress, isLoading, onSubmit } = address;
 
   const {
     handleSubmit,
     register,
     watch,
     setValue,
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = form;
 
   const ufOptions = useMemo(
-    () => estadosOptions.map((option) => ({
-      value: option.value,
-      label: option.value,
-    })),
-    [estadosOptions],
+    () =>
+      estadosOptions.map((option) => ({
+        value: option.value,
+        label: option.value,
+      })),
+    [estadosOptions]
   );
 
   const cep = watch("cep");
@@ -75,7 +69,9 @@ export function Address(props: AddressProps) {
           </Box>
           <HiddenView hidden={!cep}>
             <Box flexDirection="column" gap={0.5}>
-              <Typography variant="sub-headline">Endereço de entrega</Typography>
+              <Typography variant="sub-headline">
+                Endereço de entrega
+              </Typography>
               <Input
                 id="logradouro"
                 label="Endereço"
@@ -107,7 +103,6 @@ export function Address(props: AddressProps) {
                 errorMessage={errors?.bairro?.message}
               />
               <Box alignItems="flex-start" gap={1}>
-
                 <Input
                   id="localidade"
                   label="Cidade"
@@ -127,7 +122,9 @@ export function Address(props: AddressProps) {
                 />
               </Box>
               <Box marginTop={2}>
-                <Button loading={isLoading} fullWidth>Salvar</Button>
+                <Button loading={isLoading} fullWidth>
+                  Salvar
+                </Button>
               </Box>
             </Box>
           </HiddenView>
@@ -151,21 +148,18 @@ export function Address(props: AddressProps) {
       );
     }
 
-    return (
-      <Typography>
-        Aguardando o preenchimento dos dados
-      </Typography>
-    );
+    return <Typography>Aguardando o preenchimento dos dados</Typography>;
   };
 
-  const renderEditButton = () => !isActive && (
-    <ButtonIcon
-      icon={{
-        name: "edit",
-      }}
-      onClick={() => router.push(checkoutStepsPaths.address)}
-    />
-  );
+  const renderEditButton = () =>
+    !isActive && (
+      <ButtonIcon
+        icon={{
+          name: "edit",
+        }}
+        onClick={() => router.push(checkoutStepsPaths.address)}
+      />
+    );
 
   return (
     <Styles.Container>

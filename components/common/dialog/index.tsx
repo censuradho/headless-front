@@ -1,14 +1,10 @@
-import { ButtonIcon } from "components/button-icon";
+import { ButtonIcon } from "components/ButtonIcon";
 import * as Styles from "./styles";
 
 import { DialogProps } from "./types";
 
 export function Dialog(props: DialogProps) {
-  const {
-    onOpenChange,
-    open,
-    children,
-  } = props;
+  const { onOpenChange, open, children } = props;
 
   return (
     <Styles.Root modal open={open} onOpenChange={onOpenChange}>

@@ -11,9 +11,11 @@ export function metaFactory(props: Partial<Meta>): Meta {
   };
 }
 
-export function responseFactory <T>(props: Partial<ResponseDataType<T>>): ResponseDataType<T> {
+export function responseFactory<T>(
+  props: Partial<ResponseDataType<T>>
+): ResponseDataType<T> {
   return {
     meta: metaFactory(props?.meta || {}),
-    data: props?.data || {},
+    data: props?.data || ({} as T),
   };
 }

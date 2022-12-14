@@ -27,5 +27,4 @@ export const routePaths = {
     label: "Carrinho",
     link: "/cart",
   },
-
 };

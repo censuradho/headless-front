@@ -10,6 +10,12 @@ export const personalInfoSchemaValidations = y.object({
     .string()
     .required(MESSAGES.REQUIRED)
     .length(10, MESSAGES.INCORRECT_FORMAT),
-  clientDocument: y.string().required(MESSAGES.REQUIRED).length(14, MESSAGES.INCORRECT_FORMAT),
-  phone: y.string().required(MESSAGES.REQUIRED).length(16, MESSAGES.INCORRECT_FORMAT),
+  clientDocument: y
+    .string()
+    .required(MESSAGES.REQUIRED)
+    .length(14, MESSAGES.INCORRECT_FORMAT),
+  phone: y
+    .string()
+    .required(MESSAGES.REQUIRED)
+    .length(16, MESSAGES.INCORRECT_FORMAT),
 });

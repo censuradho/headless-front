@@ -1,7 +1,4 @@
-import {
-  FiMenu,
-  FiTruck,
-} from "@meronex/icons/fi";
+import { FiMenu, FiTruck } from "@meronex/icons/fi";
 import {
   AiOutlineUser,
   AiFillHeart,
@@ -9,11 +6,7 @@ import {
   AiOutlineEye,
 } from "@meronex/icons/ai";
 import { BiShoppingBag } from "@meronex/icons/bi";
-import {
-  BsChevronDown,
-  BsChevronUp,
-  BsCreditCard,
-} from "@meronex/icons/bs";
+import { BsChevronDown, BsChevronUp, BsCreditCard } from "@meronex/icons/bs";
 
 import { MdModeEdit } from "@meronex/icons/md";
 import {

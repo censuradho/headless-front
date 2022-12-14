@@ -1,5 +1,5 @@
 import * as Select from "@radix-ui/react-select";
-import { Typography } from "components/typography";
+import { Typography } from "components";
 
 import { styled } from "stitches.config";
 
@@ -19,7 +19,8 @@ export const Content = styled(Select.Content, {
   overflow: "hidden",
   backgroundColor: "$background",
   borderRadius: "6px",
-  boxShadow: "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
+  boxShadow:
+    "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
   zIndex: 10,
 });
 
@@ -61,7 +62,6 @@ export const Trigger = styled(Select.Trigger, {
       },
     },
   },
-
 });
 
 export const Portal = styled(Select.Portal, {
@@ -114,6 +114,9 @@ export const ItemText = styled(Select.ItemText, {});
 
 export const ItemIndicator = styled(Select.ItemIndicator, {});
 
-export const ScrollDownButton = styled(Select.ScrollDownButton, scrollButtonStyles);
+export const ScrollDownButton = styled(
+  Select.ScrollDownButton,
+  scrollButtonStyles
+);
 
 export const ScrollUpButton = styled(Select.ScrollUpButton, scrollButtonStyles);

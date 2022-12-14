@@ -6,19 +6,13 @@ import * as Styles from "./styles";
 import { ProductInfoProps } from "./types";
 
 export function ProductInfo(props: ProductInfoProps) {
-  const {
-    discount,
-    installment,
-    price,
-    name,
-  } = props;
+  const { installment, price, name } = props;
 
-  const priceWithDiscount = discount
-    ? getPriceProduct(price, discount?.data?.attributes?.value)
-    : price;
+  const discount = 0;
+  const priceWithDiscount = discount ? getPriceProduct(price, discount) : price;
 
   const relativePercentage = discount
-    ? getRelatedPercentage(price, discount?.data?.attributes?.value)
+    ? getRelatedPercentage(price, discount)
     : price;
 
   const renderValue = () => {
@@ -27,7 +21,9 @@ export function ProductInfo(props: ProductInfoProps) {
     return (
       <Box alignItems="center" gap={1}>
         <Discount>{`${relativePercentage}% OFF`}</Discount>
-        <Typography variant="caption1" lineThrough>{toLocaleDateString(price)}</Typography>
+        <Typography variant="caption1" lineThrough>
+          {toLocaleDateString(price)}
+        </Typography>
       </Box>
     );
   };
@@ -39,11 +35,9 @@ export function ProductInfo(props: ProductInfoProps) {
 
     return (
       <Typography variant="footnote">
-        Em até 3x
-        {" "}
+        Em até 3x{" "}
         <Typography variant="footnote" semiBold as="strong">
-          {value}
-          {" "}
+          {value}{" "}
         </Typography>
         <Typography uppercase>sem juros</Typography>
       </Typography>
@@ -61,13 +55,14 @@ export function ProductInfo(props: ProductInfoProps) {
         }}
       >
         {name}
-
       </Typography>
       <Box flexDirection="column" gap={0.5}>
         {renderValue()}
         <Box flexDirection="column" gap={1}>
           <Box alignItems="flex-end" gap={0.3}>
-            <Typography variant="title2" semiBold as="strong">{toLocaleDateString(priceWithDiscount)}</Typography>
+            <Typography variant="title2" semiBold as="strong">
+              {toLocaleDateString(priceWithDiscount)}
+            </Typography>
             <Typography variant="caption2">à vista</Typography>
           </Box>
           {renderInstallment()}

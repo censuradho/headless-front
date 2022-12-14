@@ -8,11 +8,7 @@ import { cmsApi } from ".";
 
 export async function getInventories(filters: Record<string, any>) {
   const query = strapiQuery.parse("/inventories", {
-    populate: [
-      "product",
-      "product.defaultImage",
-      "size",
-    ],
+    populate: ["product", "product.defaultImage", "size"],
     filters,
   });
 

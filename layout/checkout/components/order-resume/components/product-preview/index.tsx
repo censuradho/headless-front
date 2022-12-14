@@ -8,21 +8,10 @@ import { ProductPreviewProps } from "./types";
 export function ProductPreview(props: ProductPreviewProps) {
   const {
     inventory,
-    product: {
-      defaultImage,
-      id: productId,
-      slug,
-      price,
-      name,
-    },
+    product: { defaultImage, id: productId, slug, price, name },
   } = props;
 
-  const {
-    id: inventoryId,
-    quantity,
-    size,
-    stock,
-  } = inventory;
+  const { id: inventoryId, quantity, size, stock } = inventory;
 
   const sizeOptions = Array(stock)
     .fill(1)
@@ -42,17 +31,17 @@ export function ProductPreview(props: ProductPreviewProps) {
     <Styles.Container>
       <Box gap={1} alignItems="center">
         <Link href={href}>
-          <a>
-            <Styles.ImagePreviewView>
-              <Image
-                src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
-                width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
-                height={defaultImage?.data?.attributes?.formats?.thumbnail?.height}
-                alt={defaultImage?.data?.attributes?.alternativeText}
-                layout="responsive"
-              />
-            </Styles.ImagePreviewView>
-          </a>
+          <Styles.ImagePreviewView>
+            <Image
+              src={defaultImage?.data?.attributes?.formats?.thumbnail?.url}
+              width={defaultImage?.data?.attributes?.formats?.thumbnail?.width}
+              height={
+                defaultImage?.data?.attributes?.formats?.thumbnail?.height
+              }
+              alt={defaultImage?.data?.attributes?.alternativeText}
+              layout="responsive"
+            />
+          </Styles.ImagePreviewView>
         </Link>
         <Typography>{description}</Typography>
       </Box>

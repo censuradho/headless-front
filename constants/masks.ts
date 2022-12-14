@@ -13,8 +13,7 @@ export const cepMask = (event: any) => {
 
   let cep = target.value;
 
-  cep = cep
-    .replace(/\D/g, "");
+  cep = cep.replace(/\D/g, "");
 
   cep = cep.replace(/^(\d{5})(\d)/, "$1-$2");
 

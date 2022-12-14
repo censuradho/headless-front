@@ -3,14 +3,13 @@ import Link from "next/link";
 
 import { routePaths } from "constants/routes";
 
-import { Button } from "components/button";
-import { HiddenView } from "components/hidden-view";
+import { HiddenView } from "components/HiddenView";
 import { useScrollDirection } from "hooks";
 import { uuid } from "utils";
 
 import { NavigationProps } from "./types";
 import * as Styles from "./styles";
-import { MyAccountButton } from "../my-account-button";
+import { MyAccountButton } from "../MyAccountButton";
 
 function BaseNavigation(props: NavigationProps) {
   const { isOpen, toggleIsOpen } = props;
@@ -20,9 +19,7 @@ function BaseNavigation(props: NavigationProps) {
 
   const renderList = Object.entries(routePaths).map(([, value]) => (
     <Styles.Item key={uuid()}>
-      <Link href={value.link}>
-        <a>{value.label}</a>
-      </Link>
+      <Link href={value.link}>{value.label}</Link>
     </Styles.Item>
   ));
 
@@ -52,7 +49,6 @@ function BaseNavigation(props: NavigationProps) {
           <Styles.SoftwareVersion>V1.0.0</Styles.SoftwareVersion>
         </HiddenView>
       </Styles.Navigation>
-
     </Styles.Container>
   );
 }

@@ -1,6 +1,4 @@
-import {
-  Box, Button, Image, Select, Typography,
-} from "components";
+import { Box, Button, Image, Select, Typography } from "components";
 import { paths } from "constants/routes";
 import { useCart } from "context";
 import Link from "next/link";
@@ -11,26 +9,12 @@ import { ProductPreviewProps } from "./types";
 export function ProductPreview(props: ProductPreviewProps) {
   const {
     inventory,
-    product: {
-      defaultImage,
-      id: productId,
-      slug,
-      price,
-      name,
-    },
+    product: { defaultImage, id: productId, slug, price, name },
   } = props;
 
-  const {
-    id: inventoryId,
-    quantity,
-    size,
-    stock,
-  } = inventory;
+  const { id: inventoryId, quantity, size, stock } = inventory;
 
-  const {
-    removeCartItem,
-    addCartItem,
-  } = useCart();
+  const { removeCartItem, addCartItem } = useCart();
 
   const sizeOptions = Array(stock)
     .fill(1)
@@ -60,9 +44,7 @@ export function ProductPreview(props: ProductPreviewProps) {
         <Box flexDirection="column" gap={1} flex={1}>
           <Box justifyContent="space-between" gap={1.3} fullWidth>
             <Link href={href}>
-              <Styles.Name>
-                {name}
-              </Styles.Name>
+              <Styles.Name>{name}</Styles.Name>
             </Link>
             <Button
               variant="letter-underline"
@@ -72,39 +54,38 @@ export function ProductPreview(props: ProductPreviewProps) {
             </Button>
           </Box>
           <Typography>
-            Tamanho:
-            {" "}
-            <Typography>{size}</Typography>
+            Tamanho: <Typography>{size}</Typography>
           </Typography>
           <Typography>
-            Preço:
-            {" "}
-            <Typography>{toLocaleMonetize(price)}</Typography>
+            Preço: <Typography>{toLocaleMonetize(price)}</Typography>
           </Typography>
           <Box alignItems="center" gap={1}>
-            <Typography>
-              Quantidade:
-            </Typography>
+            <Typography>Quantidade:</Typography>
             <Select
               data={sizeOptions}
               defaultValue={String(size)}
               placeholder="tamanho"
               value={String(quantity)}
-              onValueChange={(value) => addCartItem({
-                defaultImage,
-                id: productId,
-                name,
-                price,
-                slug,
-                inventories: {
-                  [inventoryId]: {
-                    id: inventoryId,
-                    quantity: Number(value),
-                    stock,
-                    size,
+              onValueChange={(value) =>
+                addCartItem(
+                  {
+                    defaultImage,
+                    id: productId,
+                    name,
+                    price,
+                    slug,
+                    inventories: {
+                      [inventoryId]: {
+                        id: inventoryId,
+                        quantity: Number(value),
+                        stock,
+                        size,
+                      },
+                    },
                   },
-                },
-              }, "set")}
+                  "set"
+                )
+              }
             />
           </Box>
         </Box>

@@ -1,6 +1,4 @@
-import {
-  Box, Icon, Typography,
-} from "components";
+import { Box, Icon, Typography } from "components";
 import { useCart } from "context";
 import { memo } from "react";
 import { toLocaleMonetize, uuid } from "utils";
@@ -11,22 +9,15 @@ export const OrderResume = memo(() => {
   const { cart, subTotal } = useCart();
 
   const renderProductPreview = () => {
-    const products = Object
-      .entries(cart)
-      .map(([, value]) => value);
+    const products = Object.entries(cart).map(([, value]) => value);
 
-    return products.map((product) => Object
-      .entries(product.inventories)
-      .map(([, inventory]) => (
-        <li
-          key={uuid()}
-        >
-          <ProductPreview
-            inventory={inventory}
-            product={product}
-          />
+    return products.map((product) =>
+      Object.entries(product.inventories).map(([, inventory]) => (
+        <li key={uuid()}>
+          <ProductPreview inventory={inventory} product={product} />
         </li>
-      )));
+      ))
+    );
   };
 
   const total = subTotal;
@@ -38,7 +29,9 @@ export const OrderResume = memo(() => {
           <Icon name="shoppingBag" />
           <Typography variant="sub-headline">Resumo da compra</Typography>
         </Box>
-        <Styles.ProductPreviewList>{renderProductPreview()}</Styles.ProductPreviewList>
+        <Styles.ProductPreviewList>
+          {renderProductPreview()}
+        </Styles.ProductPreviewList>
       </Box>
       <Styles.SummaryItem>
         <Typography>Subtotal:</Typography>

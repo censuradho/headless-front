@@ -20,10 +20,8 @@ export function CheckoutPageLayout() {
   const [query, setQuery] = useState(getQueryFromUrl("q") || "");
 
   const hasProduct = useMemo(
-    () => Object
-      .entries(cart)
-      .map(([, value]) => value).length > 0,
-    [cart],
+    () => Object.entries(cart).map(([, value]) => value).length > 0,
+    [cart]
   );
 
   useEffect(() => {
@@ -31,9 +29,10 @@ export function CheckoutPageLayout() {
       setQuery(getQueryFromUrl("q"));
     });
 
-    return () => router.events.off("routeChangeComplete", () => {
-      setQuery(getQueryFromUrl("q"));
-    });
+    return () =>
+      router.events.off("routeChangeComplete", () => {
+        setQuery(getQueryFromUrl("q"));
+      });
   }, []);
 
   useEffect(() => {
@@ -45,7 +44,9 @@ export function CheckoutPageLayout() {
   return (
     <CheckoutLayout>
       <Box justifyContent="space-between" alignItems="center">
-        <Typography uppercase variant="callout" as="h1">Checkout</Typography>
+        <Typography uppercase variant="callout" as="h1">
+          Checkout
+        </Typography>
         <Button
           variant="letter"
           icon={{
@@ -55,7 +56,6 @@ export function CheckoutPageLayout() {
           href={paths.home}
         >
           Continuar comprando
-
         </Button>
       </Box>
       <Box
@@ -72,12 +72,18 @@ export function CheckoutPageLayout() {
             "@laptops-max": "column",
           }}
         >
-          <PersonalInfo isActive={query === checkoutStepsQuery.profile || !query} />
-          <Box flex={1} fullWidth flexDirection="column" alignItems="flex-start" gap={2}>
+          <PersonalInfo
+            isActive={query === checkoutStepsQuery.profile || !query}
+          />
+          <Box
+            flex={1}
+            fullWidth
+            flexDirection="column"
+            alignItems="flex-start"
+            gap={2}
+          >
             <Address isActive={query === checkoutStepsQuery.address} />
-            <PaymentMethod
-              isActive={query === checkoutStepsQuery.payment}
-            />
+            <PaymentMethod isActive={query === checkoutStepsQuery.payment} />
           </Box>
         </Box>
         <OrderResume />

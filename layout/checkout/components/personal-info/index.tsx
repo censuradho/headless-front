@@ -1,12 +1,8 @@
 import router from "next/router";
 
-import {
-  Box, Button, ButtonIcon, Icon, Input, Typography,
-} from "components";
-import { SelectForm } from "components/hook-form";
-import {
-  cpfMask, dateMask, phoneMask,
-} from "constants/masks";
+import { Box, Button, ButtonIcon, Icon, Input, Typography } from "components";
+import { SelectForm } from "components/HookForm";
+import { cpfMask, dateMask, phoneMask } from "constants/masks";
 
 import { checkoutStepsPaths } from "constants/checkout";
 import { useCheckout } from "context";
@@ -18,12 +14,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
 
   const { perfil } = useCheckout();
 
-  const {
-    form,
-    onSubmit,
-    defaultInfo,
-    isSubmitting,
-  } = perfil;
+  const { form, onSubmit, defaultInfo, isSubmitting } = perfil;
 
   const {
     getValues,
@@ -31,9 +22,7 @@ export function PersonalInfo(props: PersonalInfoProps) {
     handleSubmit,
     register,
     watch,
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = form;
 
   const renderInfo = () => {
@@ -133,20 +122,23 @@ export function PersonalInfo(props: PersonalInfoProps) {
           />
         </Box>
         <Box marginTop={2}>
-          <Button loading={isSubmitting} fullWidth>Ir para entrega</Button>
+          <Button loading={isSubmitting} fullWidth>
+            Ir para entrega
+          </Button>
         </Box>
       </Styles.Form>
     );
   };
 
-  const renderEditButton = () => !isActive && (
-    <ButtonIcon
-      icon={{
-        name: "edit",
-      }}
-      onClick={() => router.push(checkoutStepsPaths.profile)}
-    />
-  );
+  const renderEditButton = () =>
+    !isActive && (
+      <ButtonIcon
+        icon={{
+          name: "edit",
+        }}
+        onClick={() => router.push(checkoutStepsPaths.profile)}
+      />
+    );
 
   return (
     <Styles.Container>

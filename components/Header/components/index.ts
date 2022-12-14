@@ -1,3 +1,3 @@
-export * from "./navigation";
-export * from "./cart-button";
-export * from "./my-account-button";
+export { Navigation } from "./Navigation";
+export { CartButton } from "./CartButton";
+export { MyAccountButton } from "./MyAccountButton";

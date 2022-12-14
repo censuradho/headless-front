@@ -1,5 +1,4 @@
 import { styled } from "stitches.config";
-import { ButtonIcon as CommonButtonIcon } from "components";
 
 export const Container = styled("header", {
   width: "100%",
@@ -19,8 +18,6 @@ export const Container = styled("header", {
     padding: "1.25rem 3rem 1.25rem 3rem",
   },
 });
-
-export const ButtonIcon = styled(CommonButtonIcon);
 
 export const TopBar = styled("div", {
   width: "100%",

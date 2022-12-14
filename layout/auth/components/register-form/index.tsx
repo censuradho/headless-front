@@ -1,9 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import {
-  Box, Button, Input, InputPassword, Typography,
-} from "components";
+import { Box, Button, Input, InputPassword, Typography } from "components";
 
 import { createUserWithEmailPassword } from "services/rest/cms/auth";
 import { useState } from "react";
@@ -93,11 +91,7 @@ export function RegisterForm() {
           register={register("rePassword")}
           errorMessage={errors.rePassword?.message}
         />
-        <Button
-          fullWidth
-          type="submit"
-          loading={isLoading}
-        >
+        <Button fullWidth type="submit" loading={isLoading}>
           Cadastre-se
         </Button>
       </Styles.Form>

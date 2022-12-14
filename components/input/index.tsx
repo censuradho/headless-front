@@ -1,15 +1,12 @@
-import { ButtonIcon } from "components/button-icon";
-import { Icon } from "components/icon";
-import { IconProps } from "components/icon/type";
-import {
-  FormEvent, forwardRef, KeyboardEvent, memo,
-} from "react";
-import { setMask } from "utils";
+import { ButtonIcon } from "components/ButtonIcon";
+import { Icon } from "components/Icon";
+import { IconProps } from "components/Icon/type";
+import { forwardRef, KeyboardEvent, memo } from "react";
 
 import * as Styles from "./styles";
 import { InputProps } from "./types";
 
-export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     label,
     errorMessage,
@@ -27,38 +24,25 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>((props, ref) =
 
   const renderLabel = () => {
     if (!label) return null;
-    return (
-      <Styles.Label
-        htmlFor={otherProps?.id || ""}
-      >
-        {label}
-      </Styles.Label>
-    );
+    return <Styles.Label htmlFor={otherProps?.id || ""}>{label}</Styles.Label>;
   };
 
   const renderErrorMessage = () => {
     if (!hasError) return null;
 
     return (
-      <Styles.ErrorMessage color="error" variant="caption2">{errorMessage}</Styles.ErrorMessage>
-
+      <Styles.ErrorMessage color="error" variant="caption2">
+        {errorMessage}
+      </Styles.ErrorMessage>
     );
   };
 
   const renderIcon = (icon: IconProps, callback?: () => void) => {
     if (callback) {
-      return (
-        <ButtonIcon
-          onClick={callback}
-          type="button"
-          icon={icon}
-        />
-      );
+      return <ButtonIcon onClick={callback} type="button" icon={icon} />;
     }
 
-    return (
-      <Icon {...icon} />
-    );
+    return <Icon {...icon} />;
   };
 
   const renderLeftIcon = () => {

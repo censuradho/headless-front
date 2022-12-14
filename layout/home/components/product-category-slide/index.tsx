@@ -54,7 +54,9 @@ export function ProductCategorySlide(props: ProductCategorySlideProps) {
         <Styles.Title>{title}</Styles.Title>
         <Styles.Hr />
       </Styles.Header>
-      <div ref={sliderRef} className="keen-slider">{renderProducts}</div>
+      <div ref={sliderRef} className="keen-slider">
+        {renderProducts}
+      </div>
     </Styles.Container>
   );
 }

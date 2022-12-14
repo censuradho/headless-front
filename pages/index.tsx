@@ -15,7 +15,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       revalidate: 10,
     };
   } catch (err) {
-    console.log(err);
     return {
       props: {},
       notFound: true,
@@ -23,8 +22,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   }
 };
 
-function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   return <HomeLayout {...props} />;
 }
-
-export default Home;

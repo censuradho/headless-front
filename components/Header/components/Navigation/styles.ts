@@ -125,7 +125,6 @@ export const Item = styled("li", {
         color: "$primary",
       },
     },
-
   },
 
   "@laptops-min": {

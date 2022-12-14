@@ -6,7 +6,6 @@ import { useKeenSlider } from "keen-slider/react";
 import { Image } from "components";
 import useInterval from "hooks/useInterval";
 import { breakpoints } from "constants/breakpoints";
-import { uuid } from "utils";
 import * as Styles from "./styles";
 import { HeroCarouselProps } from "./types";
 
@@ -35,8 +34,8 @@ export function HeroCarousel(props: HeroCarouselProps) {
     },
   });
 
-  const renderItem = data?.map((value) => (
-    <div className="keen-slider__slide" key={uuid()}>
+  const renderItem = data?.map((value, index) => (
+    <div className="keen-slider__slide" key={index}>
       <Image
         src={value.attributes?.formats?.large?.url}
         alt={value.attributes?.alternativeText}
@@ -48,7 +47,7 @@ export function HeroCarousel(props: HeroCarouselProps) {
   ));
 
   const renderDots = data?.map((value, index) => (
-    <li key={uuid()}>
+    <li key={index}>
       <Styles.Dot
         onClick={() => instanceRef.current?.moveToIdx(index)}
         active={currentSlide === index}

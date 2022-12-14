@@ -1,11 +1,6 @@
-import { CartResume } from "components/cart-resume";
-import { useBooleanToggle, useLocalStorage } from "hooks";
-import {
-  createContext,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import { CartResume } from "components/CartResume";
+import { useLocalStorage } from "hooks";
+import { createContext, useContext, useMemo, useState } from "react";
 
 import type {
   CartProviderProps,
@@ -22,13 +17,17 @@ export function CartProvider({ children }: CartProviderProps) {
 
   const [cart, setCart] = useLocalStorage<Cart>("cart", {});
 
-  const handleAddCartItem = (payload: CartAttr, type: "increase" | "set" = "increase") => {
+  const handleAddCartItem = (
+    payload: CartAttr,
+    type: "increase" | "set" = "increase"
+  ) => {
     // eslint-disable-next-line max-len
     const getQuantity = (prev: InventoryCartItem, next: InventoryCartItem) => {
       const mapFunctions = {
-        increase: () => (prev.stock >= prev.quantity
-          ? prev.quantity + next.quantity
-          : prev.quantity),
+        increase: () =>
+          prev.stock >= prev.quantity
+            ? prev.quantity + next.quantity
+            : prev.quantity,
         set: () => next.quantity,
       };
 
@@ -39,39 +38,41 @@ export function CartProvider({ children }: CartProviderProps) {
       const product = prevState[payload.id];
 
       if (!product) {
-        return ({
+        return {
           ...prevState,
           [payload.id]: payload,
-        });
+        };
       }
 
-      const parsedInventories = Object
-        .entries(payload.inventories)
+      const parsedInventories = Object.entries(payload.inventories)
         .map(([key, value]) => ({
           [key]: {
             ...value,
-            ...(product.inventories[key] && ({
+            ...(product.inventories[key] && {
               quantity: getQuantity(product.inventories[key], value),
-            })),
+            }),
           },
         }))
-        .reduce((prev, next) => ({
-          ...prev,
-          ...next,
-        }), {});
+        .reduce(
+          (prev, next) => ({
+            ...prev,
+            ...next,
+          }),
+          {}
+        );
 
       const inventories = {
         ...product.inventories,
         ...parsedInventories,
       };
 
-      return ({
+      return {
         ...prevState,
         [product.id]: {
           ...product,
           inventories,
         },
-      });
+      };
     });
   };
 
@@ -141,17 +142,16 @@ export function CartProvider({ children }: CartProviderProps) {
   };
 
   const subTotal = useMemo(() => {
-    const products = Object
-      .entries(cart)
-      .map(([key, value]) => value);
+    const products = Object.entries(cart).map(([key, value]) => value);
 
-    return products.map((product) => {
-      const entriesPrice = Object
-        .entries(product?.inventories || {})
-        .map(([, inventory]) => inventory.quantity * product.price);
+    return products
+      .map((product) => {
+        const entriesPrice = Object.entries(product?.inventories || {}).map(
+          ([, inventory]) => inventory.quantity * product.price
+        );
 
-      return entriesPrice?.reduce((prev, next) => prev + next, 0);
-    })
+        return entriesPrice?.reduce((prev, next) => prev + next, 0);
+      })
       .reduce((prev, next) => prev + next, 0);
   }, [cart]);
 

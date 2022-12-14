@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-type State = "up" | "down"
+type State = "up" | "down";
 
 export function useScrollDirection(): State {
   const THRESHOLD = 0;
@@ -17,7 +17,8 @@ export function useScrollDirection(): State {
       const scrollY = window.pageYOffset;
 
       if (Math.abs(scrollY - prevScrollY.current) >= THRESHOLD) {
-        const newScrollDirection = scrollY > prevScrollY.current ? "down" : "up";
+        const newScrollDirection =
+          scrollY > prevScrollY.current ? "down" : "up";
 
         setScrollDirection(newScrollDirection);
 

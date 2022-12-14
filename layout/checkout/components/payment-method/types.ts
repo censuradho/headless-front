@@ -1,3 +1,3 @@
 export interface PaymentMethodProps {
-  isActive?: boolean
+  isActive?: boolean;
 }

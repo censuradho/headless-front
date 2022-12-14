@@ -1,10 +1,7 @@
 import { Button, Header, HiddenView } from "components";
 import { useBooleanToggle } from "hooks";
 
-import {
-  LoginForm,
-  RegisterForm,
-} from "./components";
+import { LoginForm, RegisterForm } from "./components";
 
 import * as Styles from "./styles";
 
@@ -20,7 +17,9 @@ export function AuthLayout() {
           <Styles.HorizontalLine />
         </HiddenView>
         <HiddenView breakpoint="table-min">
-          <Button onClick={toggleIsRegister} fullWidth>{label}</Button>
+          <Button onClick={toggleIsRegister} fullWidth>
+            {label}
+          </Button>
         </HiddenView>
       </>
     );

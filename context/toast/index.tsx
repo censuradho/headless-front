@@ -1,6 +1,4 @@
-import {
-  createContext, useContext, useEffect, useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { Box, Typography } from "components";
 import { cmsApi } from "services/rest/cms";
@@ -38,29 +36,38 @@ export function ToastProvider({ children }: ToastProviderProps) {
   const renderAction = () => {
     if (!notify.action) return null;
 
-    return <Styles.Action altText={notify.action}>{notify.action}</Styles.Action>;
+    return (
+      <Styles.Action altText={notify.action}>{notify.action}</Styles.Action>
+    );
   };
 
   useEffect(() => {
-    cmsApi.interceptors.response.use((response) => response, async (data: AxiosError) => {
-      const { response } = data;
+    cmsApi.interceptors.response.use(
+      (response) => response,
+      async (data: AxiosError) => {
+        const { response } = data;
 
-      const responseParsed = response as any;
+        const responseParsed = response as any;
 
-      const isError = responseParsed?.data?.error
-        && responseParsed.data.error.status >= 400
-        && responseParsed.data.error.status < 500;
+        const isError =
+          responseParsed?.data?.error &&
+          responseParsed.data.error.status >= 400 &&
+          responseParsed.data.error.status < 500;
 
-      if (isError) {
-        const errorMessage = API_ERRORS?.[responseParsed?.data?.error?.message as keyof typeof API_ERRORS] || "";
-        if (errorMessage) {
-          onNotify({
-            title: errorMessage,
-          });
+        if (isError) {
+          const errorMessage =
+            API_ERRORS?.[
+              responseParsed?.data?.error?.message as keyof typeof API_ERRORS
+            ] || "";
+          if (errorMessage) {
+            onNotify({
+              title: errorMessage,
+            });
+          }
         }
+        Promise.reject(data);
       }
-      Promise.reject(data);
-    });
+    );
   }, []);
 
   return (
