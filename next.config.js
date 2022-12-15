@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ["res.cloudinary.com", "self"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
