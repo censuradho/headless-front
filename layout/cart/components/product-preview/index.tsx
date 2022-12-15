@@ -66,7 +66,7 @@ export function ProductPreview(props: ProductPreviewProps) {
               defaultValue={String(size)}
               placeholder="tamanho"
               value={String(quantity)}
-              onValueChange={(value) =>
+              onValueChange={(value: string) =>
                 addCartItem(
                   {
                     defaultImage,
