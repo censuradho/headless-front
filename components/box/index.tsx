@@ -1,3 +1,5 @@
+"use client";
+
 import { ComponentProps, CSSProperties, ReactNode } from "react";
 
 import { Container } from "./styles";
